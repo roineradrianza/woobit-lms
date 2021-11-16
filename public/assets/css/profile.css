@@ -1,0 +1,20 @@
+.profile-container{
+	min-height: 100vh;
+}
+.profile-container .avatar{
+	width: 9vw !important;
+	height: 9vw !important;
+	border-radius: 50% !important;
+}
+.profile-container .avatar img{
+	object-fit: cover;
+}
+.profile-container .name{
+	font-size: 2.5em;
+}
+@media only screen and (max-width: 599px) {
+	.profile-container .avatar{
+		width: 25vw !important;
+		height: 25vw !important;
+	}
+}

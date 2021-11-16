@@ -1,0 +1,51 @@
+.video-js .vjs-big-play-button {
+left: 40% !important;
+top: 35% !important;
+font-size: 7vw !important;
+width: 10vw !important;
+height: 10vw !important;
+}
+.full-height .v-skeleton-loader__image.v-skeleton-loader__bone{
+	height: 30vw;
+}
+.lesson-sidebar .v-window__container{
+	max-height: 90vh;
+	overflow-y: auto;
+}
+.quiz-countdown{
+	position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right,#003146 0,#3d0235 100%);
+  width: 100%;
+  margin-left: 0px !important;
+  transition: 1s all;
+}
+.quiz_container{
+	min-height:90vh;
+}
+.quiz-countdown p.secondary--text, .quiz-countdown h2{
+  color:white !important;
+}
+.lesson_sidebar{
+  width: 50% !important;
+}
+@media only screen and ( max-width: 600px ) {
+	.full-height .v-skeleton-loader__image.v-skeleton-loader__bone{
+		height: 50vw;
+	}
+	.quiz-countdown{
+		padding-top:10% !important;
+	}
+	.video-js .vjs-big-play-button {
+	left: 41% !important;
+	top: 43% !important;
+	font-size: 10vw !important;
+	width: 15vw !important;
+	height: 15vw !important;
+	}
+	.lesson_sidebar{
+  	width: 90% !important;
+	}
+}
