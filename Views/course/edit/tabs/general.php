@@ -37,8 +37,8 @@
 	                    </v-col>
 
 			                <v-col cols="12">
-			                	<label class="body-1 font-weight-thin pl-1">Descripción</label>
-			                  <vue-editor class="mt-3 fl-text-input" v-model="course.meta.description" placeholder="Descripción del curso"/>
+			                	<label class="body-1 font-weight-thin pl-1">Descriere</label>
+			                  <vue-editor class="mt-3 fl-text-input" v-model="course.meta.description" placeholder="Descriere del curso"/>
 			                </v-col>
 
 			                <v-col class="d-flex justify-center" cols="12">

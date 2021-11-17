@@ -1,59 +1,59 @@
 const validations = {
   selectRules: [
-		v => !!v || 'Seleccione una opción',
+		v => !!v || 'Selectați o opțiune',
 	],
 
   usernameRules: [
-    v => !!v || 'Nombre de usuario es requerido',
-    v => (v && v.length <= 30) || 'El usuario debe ser menor a 30 caracteres',
+    v => !!v || 'Numele de utilizator este necesar',
+    v => (v && v.length <= 30) || 'Utilizatorul trebuie să aibă mai puțin de 30 de caractere',
   ],
 
   requiredRules: [
-		v => !!v || 'Este campo es requerido',
+		v => !!v || 'Acest câmp este obligatoriu',
 	],
 
   nameRules: [
-    v => !!v || 'Este campo es requerido',
-    v => (v && v.length <= 60) || 'Debe ser menor a 60 caracteres',
+    v => !!v || 'Acest câmp este obligatoriu',
+    v => (v && v.length <= 60) || 'Trebuie să aibă mai puțin de 60 de caractere',
   ],
 
   emailRules: [
-    v => !!v || 'Este campo es requerido',
-    v => /.+@.+\..+/.test(v) || 'Debe ser un correo electrónico válido',
+    v => !!v || 'Acest câmp este obligatoriu',
+    v => /.+@.+\..+/.test(v) || 'Trebuie să fie o adresă de e-mail validă',
   ],
 
   birthdateRules: [
-    v => !!v || 'La fecha de nacimiento es requerida',
+    v => !!v || 'Data nașterii este necesară',
   ],
 
   agesGraduated: [
-    v => !!v || 'Este campo es requerido',
-    v => (v && v.length <= 3) || 'Debe debe ser menor a 3 caracteres',
+    v => !!v || 'Acest câmp este obligatoriu',
+    v => (v && v.length <= 3) || 'Trebuie să fie mai mic de 3 caractere',
   ],
 
   genderRules: [
-    v => !!v || 'Debe seleccionar un género',
+    v => !!v || 'Trebuie să selectați un sex',
   ],
 
   telephoneRules: [
-    v => !!v || 'Ingrese un número de télefono',
+    v => !!v || 'Introduceți un număr de telefon',
   ],
 
   countryRules: [
-    v => !!v || 'Seleccione un país',
+    v => !!v || 'Selectați o țară',
   ],
 
   countryStateRules: [
-    v => !!v || 'Seleccione la provincia',
+    v => !!v || 'Selectați provincia',
   ],
 
   passwordRules: [
-    v => !!v || 'Ingrese una contraseña',
-    v => (v && v.length >= 5 && v.length <= 20) || 'Debe ser mayor o igual a 5 caracteres y menor a 20 caracteres',
+    v => !!v || 'Introduceți o parolă',
+    v => (v && v.length >= 5 && v.length <= 20) || 'Trebuie să fie mai mare sau egală cu 5 caractere și mai mică de 20 de caractere.',
   ],
 
   passwordConfirmRules: [
-    v => vm.checkPasswords() || 'Deben ambas coincidir con la contraseña',
+    v => vm.checkPasswords() || 'Ambele trebuie să se potrivească cu parola',
   ],
 
 }

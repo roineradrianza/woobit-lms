@@ -24,7 +24,7 @@
             </v-btn>
         </v-col>
     </v-row>
-    <v-text-field type="text" v-model="resource.name" class="mt-3 fl-text-input" hint="Nombre del material"
+    <v-text-field type="text" v-model="resource.name" class="mt-3 fl-text-input" hint="Înregistrare del material"
         persistent-hint filled rounded dense></v-text-field>
     <v-file-input class="mt-3 fl-text-input" v-model="resource.file" prepend-icon="mdi-file-document"
         :hint="resource.url" persistent-hint filled rounded dense></v-file-input>

@@ -27,7 +27,7 @@
         <v-dialog v-model="dialogOrderPreview" max-width="95%" @click:outside="dialogOrderPreview = false">
             <v-card>
                 <v-toolbar class="gradient" elevation="0">
-                    <v-toolbar-title class="white--text">Información de la Orden</v-toolbar-title>
+                    <v-toolbar-title class="white--text">Informații de plată</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
                         <v-btn icon dark @click="dialogOrderPreview = false">
@@ -43,7 +43,7 @@
                             <v-col cols="12">
                                 <v-row>
                                     <v-col cols="4">
-                                        <p class="body-1 primary--text">Nombre completo: <span
+                                        <p class="body-1 primary--text">Înregistrare completo: <span
                                                 class="font-weight-light black--text">{{ FullName }}</span></p>
                                     </v-col>
                                     <v-col cols="4">
@@ -58,7 +58,7 @@
                                     </v-col>
 
                                     <v-col cols="4">
-                                        <p class="body-1 primary--text">Monto:
+                                        <p class="body-1 primary--text">Suma:
                                             <span class="font-weight-light black--text">
                                                 ${{ orders.editedItem.total_pay }}
                                             </span>
@@ -71,7 +71,7 @@
                                                 Curso:
                                             </template>
                                             <template v-else>
-                                                Descripción:
+                                                Descriere:
                                             </template>
                                             <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.meta.course }}</span>
@@ -80,7 +80,7 @@
 
                                     <v-col cols="4" v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.status) == 2">
                                         <p class="body-1 primary--text">
-                                            Nota:
+                                            Notă:
                                             <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.note }}</span>
                                         </p>

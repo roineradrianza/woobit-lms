@@ -27,7 +27,7 @@
 																	<v-icon color="red" @click="removeSection(section)">mdi-delete</v-icon>
 																</v-col>
 																<v-col cols="12">
-																	<v-text-field v-model="section.section_name" class="mt-3 fl-text-input" placeholder="Nombre de la sección" @click.native.stop filled rounded dense :disabled="curriculum.add_loading"></v-text-field>
+																	<v-text-field v-model="section.section_name" class="mt-3 fl-text-input" placeholder="Înregistrare de la sección" @click.native.stop filled rounded dense :disabled="curriculum.add_loading"></v-text-field>
 																</v-col>
 															</v-row>
 														</v-expansion-panel-header>
@@ -60,7 +60,7 @@
 																				</v-btn-toggle>
 																			</v-col>
 																			<v-col cols="12">
-																				<v-text-field v-model="lesson.lesson_name" class="mt-3 fl-text-input" placeholder="Nombre de la clase" @click.native.stop filled rounded dense :disabled="curriculum.add_loading"></v-text-field>
+																				<v-text-field v-model="lesson.lesson_name" class="mt-3 fl-text-input" placeholder="Înregistrare de la clase" @click.native.stop filled rounded dense :disabled="curriculum.add_loading"></v-text-field>
 																			</v-col>
 																			<v-col cols="12" md="6" v-if="instructors.items.length > 0">
 																				<v-select class="v-normal-input" v-model="lesson.user_id" label="Profesor encargado" :items="instructors.items" @change="lesson.old_lesson_name += ' '" item-value="user_id" clearable dense>

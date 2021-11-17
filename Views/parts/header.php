@@ -31,7 +31,7 @@
                     class="white--text px-12 py-3 mt-1 text-uppercase font-weight-bold" color="#e70f66"> -->
                 <v-btn href="#"
                     class="white--text px-12 py-3 mt-1 text-uppercase font-weight-bold" color="#e70f66">
-                    Login
+                    Autentificare
                 </v-btn>
                 <?php endif ?>
             </v-tabs>
@@ -81,7 +81,7 @@
                     </v-list-item>
                     <v-list-item href="<?php echo SITE_URL ?>/login">
                         <v-list-item-content>
-                            <v-list-item-title class="text-center">Iniciar Sesión</v-list-item-title>
+                            <v-list-item-title class="text-center">Autentificare</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item href="<?php echo SITE_URL ?>/register">
@@ -89,7 +89,7 @@
                             <v-list-item-title class="text-center">
                                 <v-btn href="<?php echo SITE_URL ?>/register"
                                     class="white--text rounded-pill px-12 py-3 mt-1 secondary text-uppercase font-weight-light">
-                                    Registrarse</v-btn>
+                                    Înregistrare</v-btn>
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>

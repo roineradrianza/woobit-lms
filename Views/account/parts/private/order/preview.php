@@ -4,7 +4,7 @@
         <v-dialog v-model="dialogOrderPreview" max-width="95%" @click:outside="dialogOrderPreview = false">
             <v-card>
                 <v-toolbar class="gradient" elevation="0">
-                    <v-toolbar-title class="white--text">Información de la Orden</v-toolbar-title>
+                    <v-toolbar-title class="white--text">Informații de plată</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
                         <v-btn icon dark @click="dialogOrderPreview = false">
@@ -21,7 +21,7 @@
                                 <v-row>
 
                                     <v-col cols="4">
-                                        <p class="body-1 primary--text">Monto:
+                                        <p class="body-1 primary--text">Suma:
                                             <span class="font-weight-light black--text">
                                                 ${{ orders.editedItem.total_pay }}
                                             </span>
@@ -31,10 +31,10 @@
                                     <v-col cols="4">
                                         <p class="body-1 primary--text">
                                             <template v-if="parseInt(orders.editedItem.type) == 1">
-                                                Curso:
+                                                Curs:
                                             </template>
                                             <template v-else>
-                                                Descripción:
+                                                Descriere:
                                             </template>
                                             <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.meta.course }}</span>
@@ -42,7 +42,7 @@
                                     </v-col>
 
                                     <v-col cols="4" v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.type) == 2">
-                                        <p class="body-1 primary--text">Nota:
+                                        <p class="body-1 primary--text">Notă:
                                             <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.note }}</span>
                                         </p>
@@ -56,9 +56,6 @@
                                         <?php echo new Controller\Template('account/parts/private/order/preview/bs-bank-transfer') ?>
                                     </template>
                                     
-                                    <template v-else-if="orders.editedItem.payment_method == 'PagoMovil'">
-                                        <?php echo new Controller\Template('account/parts/private/order/preview/pagomovil') ?>
-                                    </template>
                                 </v-row>
                             </v-col>
                         </v-row>

@@ -28,7 +28,7 @@
               <template v-if="openList || optionSelected == 1 || optionSelected == 2">
 
                 <v-col cols="12" md="6">
-                  <label class="body-1 font-weight-normal pl-1">Tipo de selección de usuarios</label>
+                  <label class="body-1 font-weight-normal pl-1">Tipo de selección de Utilizators</label>
                   <v-select class="mt-3 fl-text-input pt-select" v-model="userOptionSelected" :items="user_options" item-text="text" item-value="value" :loading="courses_loading" @change="studentsSelected = []" filled rounded dense ></v-select>
                 </v-col>
 
@@ -38,7 +38,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6" v-if="userOptionSelected == 1">
-                  <label class="body-1 font-weight-normal pl-1">Seleccione los usuarios a los que se enviará el correo</label>
+                  <label class="body-1 font-weight-normal pl-1">Seleccione los Utilizators a los que se enviará el correo</label>
                   <v-select class="mt-3 fl-text-input pt-select" v-model="studentsSelected" :item-text="item => displayItem(item)" :items="students" :loading="students_loading"  multiple filled rounded dense return-object>
                     <template #selection="{ item }">
                       <v-chip color="primary" class="mb-2">{{ displayItem(item) }}</v-chip>

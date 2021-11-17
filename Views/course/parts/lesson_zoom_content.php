@@ -50,7 +50,7 @@
             <p v-if="meta.hasOwnProperty('zoom_id') && meta.zoom_id != ''"><span class="secondary--text">ID:</span>
                 {{ meta.zoom_id }}</p>
             <p v-if="meta.hasOwnProperty('zoom_password') && meta.zoom_password != ''"><span
-                    class="secondary--text">Contraseña:</span> {{ meta.zoom_password }}</p>
+                    class="secondary--text">Parola:</span> {{ meta.zoom_password }}</p>
         </v-col>
         <v-col class="d-flex justify-center" cols="12" v-if="show_button">
             <v-btn class="secondary white--text py-6" @click="joinClass" :loading="join_loading" rounded>Entrar a

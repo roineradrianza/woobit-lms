@@ -38,19 +38,19 @@
                                                     <?php if ($type == 1) : ?>
                                                     Curso:
                                                     <?php elseif ($type == 2) : ?>
-                                                    Descripción:
+                                                    Descriere:
                                                     <?php endif ?>
                                                 </span>
                                                 <?php echo $meta['course'] ?>
                                             </p>
                                             <p style="text-align: center"><span
-                                                    style="color: #3d0235;font-weight: bold;">Monto:</span>
+                                                    style="color: #3d0235;font-weight: bold;">Suma:</span>
                                                 <?php echo '$' . $total_pay ?>
                                             </p>
                                             <?php if (!empty($note)) : ?>
                                             <p style="text-align: center">
                                                 <span style="color: #3d0235;font-weight: bold;">
-                                                    Nota:
+                                                    Notă:
                                                 </span>
                                                 <?php echo $note ?>
                                             </p>

@@ -44,7 +44,7 @@
                     <v-col cols="12">
                         <v-card color="grey lighten-2" class="mb-4">
                             <v-tabs fixed-tabs centered show-arrows ref="tabs_section">
-                                <v-tab class="py-6 primary--text" href="#description">Descripción</v-tab>
+                                <v-tab class="py-6 primary--text" href="#description">Descriere</v-tab>
 
                                 <?php if (!empty($data['instructors'])): ?>
                                 <v-tab class="py-6 primary--text" href="#instructors">Profesores</v-tab>
@@ -107,7 +107,7 @@
                                                 <v-expansion-panel-header>
                                                     <v-row no-gutters>
                                                         <v-col class="d-flex justify-start p-0" cols="12" md="9">
-                                                            Nombre de la clase
+                                                            Înregistrare de la clase
                                                         </v-col>
                                                         <v-col class="d-flex justify-end p-0" cols="12" md="3">
                                                             <v-icon color="success">mdi-check-circle</v-icon>
@@ -160,12 +160,12 @@
                                 <br>
                                 <span class="text-h6 white--text">Sección 1</span>
                                 <br>
-                                <span class="text-h6 white--text"><b>Clase:</b> Nombre de la clase</span>
+                                <span class="text-h6 white--text"><b>Clase:</b> Înregistrare de la clase</span>
                                 <br>
                                 <span class="text-h6 white--text"><b>Fecha:</b> 2021-03-15 19:00 America/Caracas</span>
                             </v-col>
                             <v-col cols="12" md="2">
-                                <v-btn class="secondary--text" color="white" block secondary>Ir a la clase</v-btn>
+                                <v-btn class="secondary--text" color="white" block secondary>Mergeți la clasa</v-btn>
                             </v-col>
                         </v-row>
                     </v-col>

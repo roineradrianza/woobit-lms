@@ -13,6 +13,6 @@
         dense></v-text-field>
 </v-col>
 <v-col class="p-0 mt-n4" cols="12">
-    <p class="secondary--text font-weight-bold">Nota: <span class="font-weight-light">El pago será aprobado al realizar
+    <p class="secondary--text font-weight-bold">Notă: <span class="font-weight-light">El pago será aprobado al realizar
             la verificación de la transferencia. Esto puede demorar hasta 72 horas.</span></p>
 </v-col>

@@ -35,7 +35,7 @@
 							<v-form>
 								<v-row class="px-md-16 px-8 py-12">
 									<v-col cols="12">
-										<label for="">Nombre y apellido</label>
+										<label for="">Înregistrare y Numele de familie</label>
 										<v-text-field class="fl-text-input" filled rounded dense></v-text-field>
 									</v-col>
 									<v-col cols="12">

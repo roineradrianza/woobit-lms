@@ -1,4 +1,4 @@
-<v-col class="grey lighten-1 px-6" cols="12" md="2">
+<v-col class="white px-6" cols="12" md="2">
     <?php echo new Controller\Template('components/snackbar') ?>
     <div class="d-flex justify-center mt-5" v-if="preview_avatar_image != null && preview_avatar_image != ''">
         <v-avatar class="avatar">
@@ -29,13 +29,13 @@
             <v-col class="d-flex justify-center py-0" cols="12">
                 <template v-if="image_upload_btn && !avatar_loading">
                     <label for="avatar_image">
-                        <p class="text-uppercase cursor-pointer secondary--text">Seleccionar imágen</p>
+                        <p class="text-uppercase cursor-pointer secondary--text">Selectați imaginea</p>
                         <input type="file" name="avatar_image" id="avatar_image" class="d-none" accept="image/*"
                             v-on:change="prevImage" />
                     </label>
                 </template>
                 <v-btn color="primary" v-if="!image_upload_btn && !avatar_loading" @click="image_upload_btn = true"
-                    text>Actualizar imágen</v-btn>
+                    text>Actualizați imaginea</v-btn>
             </v-col>
         </v-row>
     </div>
@@ -67,38 +67,17 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item-group>
-            <v-list-item class="pl-0 pb-0 pt-0" v-if="1 == 2">
-
-                <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Actividad</v-list-item-title>
-                </v-list-item-content>
-
-            </v-list-item>
             <v-list-item class="pl-0 pb-0 pt-0" @click="courses_container = true">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Cursos</v-list-item-title>
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Cursuri</v-list-item-title>
                 </v-list-item-content>
 
             </v-list-item>
             <v-list-item class="pl-0 pb-0 pt-0" @click="orders_container = true">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Pagos</v-list-item-title>
-                </v-list-item-content>
-
-            </v-list-item>
-            <v-list-item class="pl-0 pb-0 pt-0" v-if="profile.hasOwnProperty('rol')">
-
-                <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Portafolio</v-list-item-title>
-                </v-list-item-content>
-
-            </v-list-item>
-            <v-list-item class="pl-0 pb-0 pt-0" v-if="1 == 2">
-
-                <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Más</v-list-item-title>
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Plăți</v-list-item-title>
                 </v-list-item-content>
 
             </v-list-item>
@@ -106,7 +85,7 @@
             <v-list-item class="pl-0 pb-0 pt-0" @click="grades_container = true">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Mis Calificaciones
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Calificările mele
                     </v-list-item-title>
                 </v-list-item-content>
 
@@ -114,7 +93,7 @@
             <v-list-item class="pl-0 pb-0 pt-0" @click="profile_container = true">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Editar perfil
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Editează profilul
                     </v-list-item-title>
                 </v-list-item-content>
 

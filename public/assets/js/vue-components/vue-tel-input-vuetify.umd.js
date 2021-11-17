@@ -1600,8 +1600,8 @@
 	  }
 	}
 	var defaultOptions = {
-	  placeholder: 'Enter a phone number',
-	  label: 'Enter a Phone Number',
+	  placeholder: '',
+	  label: '',
 	  disabledFetchingCountry: false,
 	  disabled: false,
 	  disabledFormatting: false,

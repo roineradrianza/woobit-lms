@@ -1,4 +1,4 @@
-<v-col class="white px-12 py-md-8 info-container mt-10 mx-md-6" cols="12" md="7" v-if="grades_container">
+<v-col class="white px-12 py-md-8 info-container mx-md-6" cols="12" md="7" v-if="grades_container">
     <v-dialog v-model="grades.dialog" max-width="1200px">
         <v-card>
             <v-toolbar class="gradient" elevation="0">
@@ -36,10 +36,10 @@
                                     <template v-else>
                                         <v-chip class="ma-2" color="success" text-color="white"
                                             v-if="parseInt(item.approved)">
-                                            Aprobado
+                                            Aprobat
                                         </v-chip>
                                         <v-chip class="ma-2" color="error" text-color="white" v-else>
-                                            Reprobado
+                                        A eșuat
                                         </v-chip>
                                     </template>
                                 </template>
@@ -48,11 +48,11 @@
                                     <v-btn color="secondary"
                                         :href="'<?php echo SITE_URL ?>/courses/'+ grades.course.slug + '/' + item.lesson_id"
                                         text>
-                                        Ir al quiz
+                                        Mergeți la test
                                     </v-btn>
                                 </template>
                                 <template #no-data>
-                                    No hay quizzes disponibles aún para este curso
+                                    Nu există teste disponibile încă pentru acest curs.
                                 </template>
                             </v-data-table>
                         </v-col>
@@ -63,7 +63,7 @@
     </v-dialog>
     <v-row v-if="my_courses.length > 0">
         <v-col class="mb-n8" cols="12">
-            <h3 class="text-h5 mb-4">Selecciona un curso para ver tus calificaciones</h3>
+            <h3 class="text-h5 mb-4">Selectați un curs pentru a vă vizualiza notele</h3>
             <v-divider></v-divider>
         </v-col>
         <v-col cols="12" md="4" v-for="course in my_courses"
@@ -85,12 +85,12 @@
             <v-img src="<?php echo SITE_URL ?>/img/no-grades.svg" max-width="40%"></v-img>
         </v-col>
         <v-col class="m-0" cols="12">
-            <h4 class="text-h5 text-center">Qué lástima, no podremos mostrarte tus calificaciones si no te has inscrito
-                a algún curso, busca algún curso e
-                inscríbete.</h4>
+            <h4 class="text-h5 text-center">
+                Din păcate, nu vă vom putea arăta notele dacă nu v-ați înscris la un curs. la un curs, căutați un curs și să vă înscrieți la un curs.
+            </h4>
         </v-col>
         <v-col class="m-0 d-flex justify-center" cols="12">
-            <v-btn class="secondary white--text" href="<?php echo SITE_URL ?>/courses">Ver cursos</v-btn>
+            <v-btn class="secondary white--text" href="<?php echo SITE_URL ?>/courses">Vezi cursuri</v-btn>
         </v-col>
     </v-row>
 </v-col>

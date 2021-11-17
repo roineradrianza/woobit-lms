@@ -6,12 +6,12 @@
 							<v-row class="pr-md-10">
 
 								<v-col cols="12" md="6">
-									<label class="body-1 font-weight-thin pl-1">Contraseña</label>
+									<label class="body-1 font-weight-thin pl-1">Parola</label>
 									<v-text-field type="password" name="password" v-model="password" class="mt-3 fl-text-input" :rules="validations.passwordRules" filled rounded dense></v-text-field>
 								</v-col>
 
 								<v-col cols="12" md="6">
-									<label class="body-1 font-weight-thin pl-1">Confirmar contraseña</label>
+									<label class="body-1 font-weight-thin pl-1">Confirmați parola</label>
 									<v-text-field type="password" name="password_confirm" v-model="password_confirm" class="mt-3 fl-text-input" filled rounded dense></v-text-field>
 								</v-col>
 								<v-col cols="12">

@@ -23,27 +23,13 @@ let vm = new Vue({
       validations,
       gender: [
         {
-          text: 'Hombre',
+          text: 'Omul',
           value: 'M'
         },
         {
-          text: 'Mujer',
+          text: 'Femeie',
           value: 'F'
         },
-        {
-          text: 'Prefiero no especificar',
-          value: 'N'
-        },
-      ],
-      degrees: [
-        'Ortopedia', 'Neurocirugía', 
-        'Cirugía de Columna', 'Radiología',
-        'Radiología', 'Dolor/Cuidado Paliativos',
-        'Reumatología', 'Infectología', 'Otros'
-      ],
-      resident_levels: [
-        'Residente de 1er año', 'Residente de 2do año', 
-        'Residente de 3er año', 'Residente de 4to año',
       ],
       form: {
         username: '',
@@ -196,7 +182,7 @@ let vm = new Vue({
           }, err => {
             app.alert = true
             app.alert_type = 'error'
-            app.alert_message = 'Error inesperado, intenta de nuevo' 
+            app.alert_message = 'Eroare neașteptată, încercați din nou' 
             app.save_loading = false       
           })
         }

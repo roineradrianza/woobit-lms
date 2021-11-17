@@ -27,7 +27,7 @@
                           Para iniciar sesión en <a href ="<?php echo SITE_URL ?>"><?php echo SITE_URL ?></a>, utiliza las siguientes credenciales: <br>
                           <span><b>Email:</b><?php echo $data['email'] ?></span>
                           <br>
-                          <span><b>Contraseña:</b><?php echo $data['password'] ?></span>
+                          <span><b>Parola:</b><?php echo $data['password'] ?></span>
                           <br>
                           <br>
                           <span>Puedes cambiar tu contraseña al iniciar sesión e ir al perfil.</span>   

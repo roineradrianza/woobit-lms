@@ -30,7 +30,7 @@
             </v-col>
         </v-img>
         <v-tabs class="course-tabs border-top" v-model="course_tab" fixed-tabs centered show-arrows ref="tabs_section">
-            <v-tab class="pt-6 white--text font-weight-light" href="#description">Descripción</v-tab>
+            <v-tab class="pt-6 white--text font-weight-light" href="#description">Descriere</v-tab>
 
             <?php if (!empty($instructors)): ?>
             <v-tab class="pt-6 white--text font-weight-light" href="#instructors">Profesores</v-tab>

@@ -1,12 +1,6 @@
 .container{
 	padding: 0;
 }
-.v-input__slot{
-	padding: 20px 15px 20px 15px !important;
-}
-.v-normal-input .v-input__slot{
-	padding: 5px 0px 0px 0px !important;
-}
 .fl-append-outer{
 	padding-top: 10px;
 }

@@ -636,7 +636,7 @@ let vm = new Vue({
       }, err => {
         app.reminder_loading = false
         app.snackbar = true
-        app.snackbar_text = 'Error inesperado, intente de nuevo'
+        app.snackbar_text = 'Eroare neașteptată, încercați din nou'
         app.snackbar_type = 'error'
       })
     },
@@ -665,7 +665,7 @@ let vm = new Vue({
       }, err => {
         app.reminder_loading = false
         app.snackbar = true
-        app.snackbar_text = 'Error inesperado, intente de nuevo'
+        app.snackbar_text = 'Eroare neașteptată, încercați din nou'
         app.snackbar_type = 'error'
       })
     },
@@ -694,7 +694,7 @@ let vm = new Vue({
       }, err => {
         app.reminder_loading = false
         app.snackbar = true
-        app.snackbar_text = 'Error inesperado, intente de nuevo'
+        app.snackbar_text = 'Eroare neașteptată, încercați din nou'
         app.snackbar_type = 'error'
       })
     },

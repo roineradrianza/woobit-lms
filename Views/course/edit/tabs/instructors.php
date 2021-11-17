@@ -2,7 +2,7 @@
 						    	<v-row>
                     <v-col cols="12" md="4">
                     	<p class="text-center text-h5">Añadir profesor</p>
-                      <label class="body-1 font-weight-thin pl-1">Ingrese el nombre de usuario</label>
+                      <label class="body-1 font-weight-thin pl-1">Ingrese el Înregistrare de Utilizator</label>
 						          <v-text-field class="fl-text-input" v-model="instructors.username_search" clear-icon="mdi-close-circle" clearable type="text" :loading="instructors.loading" filled rounded dense>
 						          	<template v-slot:append-outer>
 							          	<div class="fl-append-outer">
@@ -11,7 +11,7 @@
 						          	</template>
 						          </v-text-field>
 						          <template v-if="instructors.searched">
-							          <label class="body-1 font-weight-thin pl-1">Seleccione el usuario</label>
+							          <label class="body-1 font-weight-thin pl-1">Seleccione el Utilizator</label>
 	                      <v-select class="mt-3 fl-text-input" v-model="instructors.user_selected" :items="instructors.users" item-text="item => item.first_name + ' ' + item.last_name"  :rules="validations.requiredRules" @change="filterSubcategories" :disabled="instructors.add_loading" return-object filled rounded dense>
 	                      	<template #item="{item}">
 	                      		{{ item.first_name }} {{ item.last_name }}  <span class="secondary--text"> ({{ item.username }})</span>
@@ -21,7 +21,7 @@
 			                    </template>
 	                      </v-select>
 						          </template >
-	                    <v-btn class="primary" v-if="instructors.user_selected != ''" :loading="instructors.add_loading" @click="saveInstructor" block>Añadir usuario como profesor</v-btn>
+	                    <v-btn class="primary" v-if="instructors.user_selected != ''" :loading="instructors.add_loading" @click="saveInstructor" block>Añadir Utilizator como profesor</v-btn>
 									    <v-col cols="12">
 										    <v-alert class="white--text" :type="instructors.alert_type" elevation="2" v-if="instructors.alert">
 										      {{ instructors.alert_message }}

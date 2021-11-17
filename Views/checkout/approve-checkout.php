@@ -32,7 +32,7 @@
 
         <v-card v-if="order.hasOwnProperty('order_id')">
             <v-toolbar class="gradient" elevation="0">
-                <v-toolbar-title class="white--text">Información de la Orden</v-toolbar-title>
+                <v-toolbar-title class="white--text">Informații de plată</v-toolbar-title>
             </v-toolbar>
 
             <v-divider></v-divider>
@@ -46,7 +46,7 @@
                                         {{ getStatus(order.status).name }}</v-chip>
                                 </v-col>
                                 <v-col cols="4">
-                                    <p class="body-1 primary--text">Nombre completo: <span
+                                    <p class="body-1 primary--text">Înregistrare completo: <span
                                             class="font-weight-light black--text">{{ FullName }}</span>
                                     </p>
                                 </v-col>
@@ -62,7 +62,7 @@
                                 </v-col>
 
                                 <v-col cols="4">
-                                    <p class="body-1 primary--text">Monto:
+                                    <p class="body-1 primary--text">Suma:
                                         <span class="font-weight-light black--text">${{ order.total_pay }}
                                         </span>
                                     </p>
@@ -75,7 +75,7 @@
                                 </v-col>
 
                                 <v-col cols="12" v-if="order.note !== '' && parseInt(order.status) == 2">
-                                    <p class="body-1 primary--text">Nota: <span
+                                    <p class="body-1 primary--text">Notă: <span
                                             class="font-weight-light black--text">{{ order.note }}</span>
                                     </p>
                                 </v-col>

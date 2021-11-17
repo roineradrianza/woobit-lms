@@ -44,11 +44,11 @@ let vm = new Vue({
         items: [],
         headers: [
           { text: 'ID', align: 'start', value: 'order_id' },
-          { text: 'Fecha', align: 'start', value: 'registered_at' },
-          { text: 'Monto', align: 'start', value: 'amount' },
-          { text: 'Método de Pago', align: 'start', value: 'payment_method' },
-          { text: 'Estado', align: 'start', value: 'status' },
-          { text: 'Acción', value: 'actions', align:'center', sortable: false },
+          { text: 'Data', align: 'start', value: 'registered_at' },
+          { text: 'Suma', align: 'start', value: 'amount' },
+          { text: 'Metoda de plată', align: 'start', value: 'payment_method' },
+          { text: 'Stat', align: 'start', value: 'status' },
+          { text: 'Acțiune', value: 'actions', align:'center', sortable: false },
         ],
         editedIndex: -1,
         editedItem: {},
@@ -58,10 +58,10 @@ let vm = new Vue({
         dialog: false,
         loading: false,
         headers: [
-          { text: 'Quiz', align: 'start', value: 'lesson_name' },
-          { text: 'Puntuación', align: 'start', value: 'score' },
-          { text: 'Estado', align: 'center', value: 'approved' },
-          { text: 'Acción', align: 'center', value: 'action' },
+          { text: 'Test', align: 'start', value: 'lesson_name' },
+          { text: 'Scor', align: 'start', value: 'score' },
+          { text: 'Stare', align: 'center', value: 'approved' },
+          { text: 'Acțiune', align: 'center', value: 'action' },
         ],
         course: {},
         items: [],
@@ -424,17 +424,16 @@ let vm = new Vue({
       getOrderStatus (status) {
         switch (parseInt(status)) {
           case 0:
-            return {color: 'warning', name: 'Procesando'}
+            return {color: 'warning', name: 'Prelucrare'}
             break;
 
           case 1:
-            return {color: 'success', name: 'Aprobada'}
+            return {color: 'success', name: 'Aprobat'}
             break;
 
           case 2:
-            return {color: 'error', name: 'Rechazada'}
+            return {color: 'error', name: 'Respinsă'}
             break;
-
         }
       },
 
@@ -474,7 +473,7 @@ let vm = new Vue({
           app.snackbar = true
           app.snackbar_text = res.body.message
           if (res.body.status == 'success') {
-            app.profile.avatar = res.body.data.avatarW
+            app.profile.avatar = res.body.data.avatar
             app.profile.old_avatar = res.body.data.avatar
             app.preview_avatar_image = res.body.data.avatar
             app.image_upload_btn = false
@@ -482,7 +481,7 @@ let vm = new Vue({
           }
         }, err => {
           app.snackbar = true
-          app.snackbar_text = 'Error inesperado, intente de nuevo'
+          app.snackbar_text = 'Eroare neașteptată, încercați din nou'
           app.avatar_loading = false
         })
       },

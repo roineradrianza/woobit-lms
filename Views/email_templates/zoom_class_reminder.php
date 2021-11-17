@@ -25,7 +25,7 @@
 						            <p>PARA ENTRAR DESDE FULL LEARNING:</p>
 						            <ol>
 					                <li>Ingrese en <a href='<?php echo SITE_URL ?>' target='_blank' style="color: #3d0235"><?php echo SITE_URL ?></a></li>
-					                <li>Inicie sesión con su usuario y contraseña</li>
+					                <li>Inicie sesión con su Utilizator y contraseña</li>
 					                <li>Busque <b style="color: #3d0235">"<?php echo $course['title'] ?>"</b></li>
 					                <li>Haga click en <span style="color: #3d0235"><b>"Entrar a clase"</b></span></li>
 					                <li>Seleccione la clase de hoy: <b style="color: #3d0235"><?php echo $lesson['lesson_name'] ?></b></li>

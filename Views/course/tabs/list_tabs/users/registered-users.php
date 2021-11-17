@@ -10,7 +10,7 @@
             <template #activator="{ on, attrs }">
                 <v-btn color="secondary" dark pill class="mb-2" v-bind="attrs" v-on="on">
                     <v-icon>mdi-plus</v-icon>
-                    Añadir usuario
+                    Añadir Utilizator
                 </v-btn>
             </template>
             <v-card>
@@ -28,7 +28,7 @@
                         <v-container>
                             <v-row class="d-flex justify-center">
                                 <v-col cols="11">
-                                    <label class="body-1 font-weight-thin pl-1">Buscar por usuario o correo</label>
+                                    <label class="body-1 font-weight-thin pl-1">Buscar por Utilizator o correo</label>
                                     <v-text-field type="text" name="search_user" v-model="user_search"
                                         class="mt-3 fl-text-input" @keyup.enter.preventDefault
                                         :loading="search_user_loading" filled rounded dense>
@@ -42,7 +42,7 @@
                                 <v-col cols="11" v-if="searched">
                                     <v-row>
                                         <v-col cols="12">
-                                            <label class="body-1 font-weight-thin pl-1">Seleccionar el usuario</label>
+                                            <label class="body-1 font-weight-thin pl-1">Seleccionar el Utilizator</label>
                                             <v-select class="mt-3 fl-text-input" v-model="user_selected"
                                                 :items="users_list" :disabled="search_user_loading" return-object filled
                                                 rounded dense>
@@ -67,7 +67,7 @@
                                         </v-col>
                                     </v-row>
                                     <v-btn class="primary" v-if="user_selected != '' && rol_selected != ''"
-                                        :loading="add_loading" @click="addUser" block>Añadir usuario al curso</v-btn>
+                                        :loading="add_loading" @click="addUser" block>Añadir Utilizator al curso</v-btn>
                                 </v-col>
                                 <?php echo new Controller\Template('components/alert') ?>
                             </v-row>

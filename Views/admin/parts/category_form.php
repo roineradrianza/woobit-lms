@@ -26,7 +26,7 @@
                         <v-container>
                           <v-row>
                             <v-col cols="12">
-                              <label class="body-1 font-weight-thin pl-1">Nombre</label>
+                              <label class="body-1 font-weight-thin pl-1">Înregistrare</label>
                               <v-text-field type="text" v-model="categories.editedItem.name" class="mt-3 fl-text-input" :rules="validations.requiredRules" filled rounded dense></v-text-field>
                             </v-col>
                           </v-row>

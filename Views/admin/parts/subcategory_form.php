@@ -30,7 +30,7 @@
                               <v-select class="mt-3 fl-text-input pt-select" v-model="subcategories.editedItem.category_id" :items="categories.items" item-text="name" item-value="category_id" :rules="validations.requiredRules" filled rounded dense></v-select>
                             </v-col>
                             <v-col cols="12" md="6">
-                              <label class="body-1 font-weight-thin pl-1">Nombre</label>
+                              <label class="body-1 font-weight-thin pl-1">Înregistrare</label>
                               <v-text-field type="text" v-model="subcategories.editedItem.name" class="mt-3 fl-text-input" :rules="validations.requiredRules" filled rounded dense></v-text-field>
                             </v-col>
                           </v-row>

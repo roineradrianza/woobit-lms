@@ -32,11 +32,11 @@
                                                 <?php echo $meta['user_email'] ?></p>
 
                                             <p style="text-align: center"><span
-                                                    style="color: #3d0235;font-weight: bold;">Número de Télefono:</span>
+                                                    style="color: #3d0235;font-weight: bold;">Número de Telefon:</span>
                                                 <?php echo $meta['telephone'] ?></p>
 
                                             <p style="text-align: center"><span
-                                                    style="color: #3d0235;font-weight: bold;">Monto:</span>
+                                                    style="color: #3d0235;font-weight: bold;">Suma:</span>
                                                 <?php echo '$' . $total_pay ?></p>
 
                                             <p style="text-align: center"><span

@@ -9,7 +9,7 @@
                       <template v-slot:activator="{ on, attrs }">
                           <v-btn color="secondary" dark pill class="mb-2" v-bind="attrs" v-on="on">
                             <v-icon>mdi-plus</v-icon>
-                            Añadir usuario
+                            Añadir Utilizator
                           </v-btn>
                       </template>
                     <v-card>
