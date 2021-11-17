@@ -352,7 +352,7 @@ class Routes
 
                                 $course_result = $course_result[0];
 
-                                $instructor = $member->get($course_result['user_id'], ['first_name', 'last_name']);
+                                $instructor = $member->get($course_result['user_id'], ['first_name', 'last_name', 'avatar']);
                                 $course_result['instructor'] = $instructor[0];
                                 $course_result['students'] = $course->get_total_students($course_result['course_id']);
                                 $course_result['classes'] = $section->get_total_lessons($course_result['course_id']);

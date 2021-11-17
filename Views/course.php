@@ -1,107 +1,72 @@
-<v-row class="px-4 px-md-16 pb-16 mt-12" course_id="<?php echo $course_id ?>" ref="course_container">
-    <?php if (!empty($meta['paid_certified']) && empty($current_user_has_enroll)): ?>
-    <v-col cols="12" md="8" lg="6" offset-md="2" offset-lg="3">
-        <v-alert icon="mdi-certificate" prominent type="secondary">
-            <v-row class="d-flex justify-center">
-                <v-col class="grow">
-                    Obten tu certificado de <b><?php echo $title ?></b> por
-                    <b>$<?php echo $meta['certified_price'] ?></b>
-                </v-col>
-            </v-row>
-        </v-alert>
-    </v-col>
-    <?php endif;?>
-    <?php if (!empty($current_user_has_enroll) && empty($_COOKIE["modalv1_course_${data['course_id']}"])): ?>
-    <?php echo new Controller\Template('course/parts/enrollment_successful', $data) ?>
-    <?php endif?>
-    <v-col class="course-details" cols="12">
-        <?php if (isset($manage_course) && $manage_course): ?>
-        <v-btn class="primary white--text" href="<?php echo SITE_URL ?>/courses/edit/<?php echo $course_id ?>" block>
-            Editar curso</v-btn>
+<v-container class="px-8 px-md-0">
+    <v-row course_id="<?php echo $course_id ?>" ref="course_container">
+        <?php if (!empty($current_user_has_enroll) && empty($_COOKIE["modalv1_course_${data['course_id']}"])): ?>
+        <?php echo new Controller\Template('course/parts/enrollment_successful', $data) ?>
         <?php endif?>
-        <v-img class="grey darken-3 <?php if (!isset($meta['title_off']) || $meta['title_off'] !== '1') {echo "overlay-img";}
-;?> d-flex align-center" src="<?php echo $featured_image ?>" width="100%"
-            <?php if (isset($meta['image_size_type']) && intval($meta['image_size_type'])): ?> <?php else: ?>
-            max-height="60vw" <?php endif;?>>
-            <v-col class="px-16 mt-n16" cols="10" md="7">
-                <?php if (!isset($meta['title_off']) || $meta['title_off'] !== '1'): ?>
-                <h3 class="mt-md-16 text-md-h1 text-sm-h3 white--text category"><?php echo $title ?></h3>
-                <?php endif;?>
+        <v-row>
+            <v-col cols="12" md="6">
+                <v-row>
+                    <v-col cols="12">
+                        <span class="font-weight-light text-h6"><?php echo $data['category'][0]['name'] ?></span>
+                        <h1 class="text-h3 font-weight-light">
+                            <?php echo $title ?>
+                        </h1>
+                    </v-col>
+                    <?php echo new Controller\Template('course/summary/instructor', $instructor) ?>
+                    <v-col cols="12">
+                        <p class="primary--text">
+                            <v-icon class="mr-2" color="primary">mdi-tag</v-icon>Pret total: <span
+                                class="font-weight-light black--text"><?php echo $price ?> RON per cursant</span>
+                        </p>
+                        <p class="primary--text">
+                            <v-icon class="mr-2" color="primary">mdi-clock</v-icon>Durata: <span
+                                class="font-weight-light black--text"><?php echo $duration ?></span>
+                        </p>
+                        <p class="primary--text">
+                            <v-icon class="mr-2" color="primary">mdi-calendar</v-icon>Cursuri: <span
+                                class="font-weight-light black--text"><?php echo $classes['total'] ?></span>
+                        </p>
+                        <p class="primary--text">
+                            <v-icon class="mr-2" color="primary">mdi-account-group</v-icon>Numar de cursanti: <span
+                                class="font-weight-light black--text">1 - 10</span>
+                        </p>
+                        <p class="primary--text">
+                            <v-icon class="mr-2" color="primary">mdi-cake</v-icon>Varsta: <span
+                                class="font-weight-light black--text">10 - 15</span>
+                        </p>
+                    </v-col>
+                    <?php if (!empty($meta['description'])): ?>
+                    <v-col class="ql-editor" cols="12" md="9">
+                        <?php echo $meta['description'] ?>
+                    </v-col>
+                    <?php endif?>
+
+                </v-row>
             </v-col>
-        </v-img>
-        <v-tabs class="course-tabs border-top" v-model="course_tab" fixed-tabs centered show-arrows ref="tabs_section">
-            <v-tab class="pt-6 white--text font-weight-light" href="#description">Descriere</v-tab>
-
-            <?php if (!empty($instructors)): ?>
-            <v-tab class="pt-6 white--text font-weight-light" href="#instructors">Profesores</v-tab>
-            <?php endif?>
-
-            <v-tab class="pt-6 white--text font-weight-light" style="text-transform: initial !important;"
-                href="#curriculum">Entrar a clase</v-tab>
-
-            <?php if (isset($meta['faq'])): ?>
-            <v-tab class="pt-6 white--text font-weight-light" href="#faq">FAQ</v-tab>
-            <?php endif?>
-
-            <?php if (isset($manage_course) && $manage_course): ?>
-            <v-tab class="pt-6 white--text font-weight-light" href="#list" @click="getCourseTotalViews">Lista</v-tab>
-            <?php endif?>
-            
-            <v-tab class="pt-6 white--text font-weight-light" href="#certified" <?php if (!empty($current_user_has_enroll)): ?>
-                @click="initializeCourseProgress"
-            <?php endif ?>>Certificado</v-tab>
-
-            <v-tab class="pt-6 white--text font-weight-light" href="#comments">Comentarios</v-tab>
-
-            <v-tab-item class="px-14 pt-5 description-container ql-editor fl-background" value="description">
-                <v-row class="d-flex justify-center">
-                    <v-col class="p-0" cols="8" md="2">
-                        <v-img src="<?php echo SITE_URL ?>/img/full-learning-logo.png"></v-img>
+            <v-col cols="12" md="6">
+                <v-row>
+                    <v-col cols="12">
+                        <img src="<?php echo $featured_image ?>" width="100%"></img>
+                    </v-col>
+                    <v-col class="px-0" cols="12">
+                        <?php echo new Controller\Template('course/summary/enrollment', $data) ?>
                     </v-col>
                 </v-row>
-                <v-img></v-img>
-                <?php if (!empty($meta['description'])): ?>
-                <?php echo $meta['description'] ?>
-                <?php endif?>
-            </v-tab-item>
-
-            <?php if (!empty($instructors)): ?>
-            <v-tab-item class="px-14 py-10" value="instructors">
-                <?php echo new Controller\Template('course/tabs/instructors', $instructors) ?>
-            </v-tab-item>
-            <?php endif?>
-
-            <v-tab-item class="px-14 py-10" value="curriculum">
-                <?php echo new Controller\Template('course/tabs/curriculum', [
-                    'course_slug' => $data['slug'],
-                    'current_user_has_enroll' => !empty($current_user_has_enroll) ? $current_user_has_enroll : false,
-                    'manage_course' => !empty($manage_course) ? $manage_course : false,
-                    'sections' => $data['sections'],
-                ]) ?>
-            </v-tab-item>
-
-            <?php if (isset($meta['faq'])): ?>
-            <v-tab-item class="px-14 py-10" value="faq">
-                <?php echo new Controller\Template('course/tabs/FAQ', json_decode($meta['faq'], true)) ?>
-            </v-tab-item>
-            <?php endif?>
-
-            <?php if (isset($manage_course) && $manage_course): ?>
-            <v-tab-item class="px-14 py-10" value="list">
-                <?php echo new Controller\Template('course/tabs/list') ?>
-            </v-tab-item>
-            <?php endif?>
-
-            <v-tab-item class="px-14 py-10" value="certified">
-                <?php echo new Controller\Template('course/tabs/certified', $data) ?>
-            </v-tab-item>
-
-            <v-tab-item class="px-14 py-10" value="comments">
-                <?php echo new Controller\Template('course/tabs/comments') ?>
-            </v-tab-item>
-
-        </v-tabs>
-        <v-sheet class="gradient" height="2vw"></v-sheet>
-    </v-col>
-    <?php echo new Controller\Template('course/parts/sidebar', $data) ?>
-</v-row>
+            </v-col>
+            <v-col cols="12">
+                <h3 class="text-h4 text-center font-weight-light">
+                    Alte cursuri oferite de <?php echo "{$instructor['first_name']} {$instructor['last_name']}"  ?>
+                </h3>
+            </v-col>
+            <v-col cols="12">
+                <v-row justify="center">
+                    <?php for ($i=0; $i < 3; $i++) : ?>
+                        <v-col class="px-md-4 px-lg-8" cols="12" md="4" lg="3">
+                            <?php echo new Controller\Template('courses/course_template') ?>
+                        </v-col>
+                    <?php endfor ?>
+                </v-row>
+            </v-col>
+        </v-row>
+    </v-row>
+</v-container>

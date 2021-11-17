@@ -9,32 +9,14 @@
             <v-col class="d-flex justify-end" cols="12" md="4" order="1" order-md="2">
                 <v-img src="<?php echo SITE_URL ?>/img/home/bubbles-2.svg" max-width="100px"></v-img>
             </v-col>
-            <v-col cols="12" md="3" :order="i + 2" v-for="i in 4">
-                <v-card class="my-12" max-width="374">
-
-                    <v-img height="200" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
-                    <v-card-subtitle class="mb-n6">Cooking</v-card-subtitle>
-                    <v-card-title class="font-weight-bold">Basics of Cooking</v-card-title>
-                    <v-card-text>
-                        <v-divider></v-divider>
-                    </v-card-text>
-                    <v-card-actions>
-                        <v-row align="center" class="mx-0">
-                            <v-col class="d-flex align-center" cols="12" md="8" lg="9">
-                                <v-rating :value="5" color="amber" dense half-increments readonly size="18">
-                                </v-rating>
-
-                                <span class="grey--text">
-                                    5
-                                </span>
-                            </v-col>
-
-                            <v-col cols="12" md="4" lg="3">
-                                <p class="mt-2">FREE</p>
-                            </v-col>
-                        </v-row>
-                    </v-card-actions>
-                </v-card>
+            <v-col cols="12" order="3">
+                <v-row justify="center">
+                    <?php for ($i=0; $i < 4; $i++) : ?>
+                    <v-col class="px-md-2 px-lg-6" cols="12" md="4" lg="3">
+                        <?php echo new Controller\Template('courses/course_template') ?>
+                    </v-col>
+                    <?php endfor ?>
+                </v-row>
             </v-col>
         </v-row>
     </v-col>
