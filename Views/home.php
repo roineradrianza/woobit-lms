@@ -4,7 +4,7 @@
 
 <?php if (!empty($data)): ?>
 
-<v-row class="px-16 mt-4 d-flex justify-center">
+<v-row class="px-16 mt-4 d-flex justify-center mb-16">
     <v-col class="mw-md" cols="12">
         <v-row>
             <v-col cols="12" md="4">

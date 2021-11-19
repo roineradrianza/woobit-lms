@@ -22,7 +22,7 @@
             </v-row>
         </v-col>
         <v-col class="d-flex justify-center mb-n3 mb-lg-n0" cols="12" md="6" lg="6">
-            <img src="<?php echo SITE_URL ?>/img/home/slider/1/image-1.png" class="img-slide-1"></img>
+            <img src="<?php echo SITE_URL ?>/img/home/slider/1/image-1.png" class="img-slide-1 d-block d-md-none"></img>
         </v-col>
     </v-row>
 </v-sheet>
