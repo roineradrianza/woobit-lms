@@ -22,7 +22,7 @@
 										</v-col>
 									</v-row>
 								</v-col>
-								<?php echo new Controller\Template('components/alert') ?>
+								<?= new Controller\Template('components/alert') ?>
 
 							</v-row>
 						</v-form>

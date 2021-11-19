@@ -59,7 +59,7 @@
               </template>
             </v-data-table>
           </v-col>
-          <?php echo new Controller\Template('admin/parts/order/preview') ?>
-          <?php echo new Controller\Template('admin/parts/order/delete') ?>
-          <?php echo new Controller\Template('admin/parts/payment_form') ?>
+          <?= new Controller\Template('admin/parts/order/preview') ?>
+          <?= new Controller\Template('admin/parts/order/delete') ?>
+          <?= new Controller\Template('admin/parts/payment_form') ?>
 			  </v-row>

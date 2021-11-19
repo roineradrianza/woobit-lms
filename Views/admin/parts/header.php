@@ -12,20 +12,20 @@
 			        <v-list>
 			          <v-list-item class="d-flex justify-center">
 							    <v-avatar>
-							      <img src="<?php echo $_SESSION['avatar'] ?>" alt="<?php echo $_SESSION['first_name'] ?>">
+							      <img src="<?= $_SESSION['avatar'] ?>" alt="<?= $_SESSION['first_name'] ?>">
 							    </v-avatar>
 			          </v-list-item>
 			          <v-list-item class="mb-n4">
 						      <v-list-item-content>
-						        <v-list-item-title class="text-center primary--text"><?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']?></v-list-item-title>
+						        <v-list-item-title class="text-center primary--text"><?= $_SESSION['first_name'] . ' ' . $_SESSION['last_name']?></v-list-item-title>
 						      </v-list-item-content>
 			          </v-list-item>
-			         	<v-list-item class="mb-n2" href="<?php echo SITE_URL ?>">
+			         	<v-list-item class="mb-n2" href="<?= SITE_URL ?>">
 						      <v-list-item-content>
 						        <v-list-item-title class="text-center">Inicio</v-list-item-title>
 						      </v-list-item-content>
 				    		</v-list-item>
-			          <v-list-item class="mb-n2" href="<?php echo SITE_URL ?>/profile/">
+			          <v-list-item class="mb-n2" href="<?= SITE_URL ?>/profile/">
 						      <v-list-item-content>
 						        <v-list-item-title class="text-center">Perfil</v-list-item-title>
 						      </v-list-item-content>
@@ -37,4 +37,4 @@
 			      </v-menu>		     	
 			    </v-col>
 			  </v-app-bar>
-			  <?php echo new Controller\Template('admin/parts/sidebar', Controller\Template::admin_menu_tabs()) ?>
+			  <?= new Controller\Template('admin/parts/sidebar', Controller\Template::admin_menu_tabs()) ?>

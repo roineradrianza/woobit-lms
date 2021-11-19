@@ -9,7 +9,7 @@
             <table class='main' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;'>
               <tr>
                 <td style="display: flex;">
-                  <a href="<?php echo SITE_URL ?>" style="width:35%; max-width: 200px; margin:auto;">
+                  <a href="<?= SITE_URL ?>" style="width:35%; max-width: 200px; margin:auto;">
                     <img src='https://full-learning.com/img/logo.png' style="width:100%;"></img>                
                   </a>
                 </td>
@@ -20,21 +20,21 @@
                   <table border='0' cellpadding='0' cellspacing='0' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;'>
                     <tr>
                       <td style='font-size: 16px; vertical-align: top;'>
-                        <?php echo $data['content'] ?>
+                        <?= $data['content'] ?>
                         <p>
                           Para iniciar sesión, utiliza las siguientes credenciales: <br>
-                          <span><b>Email:</b><?php echo $data['email'] ?></span>
+                          <span><b>Email:</b><?= $data['email'] ?></span>
                           <br>
-                          <span><b>Parola:</b><?php echo $data['password'] ?></span>
+                          <span><b>Parola:</b><?= $data['password'] ?></span>
                           <br>
                           <br>
                           <span>Puedes cambiar tu contraseña al iniciar sesión y completar el formulario de registro.</span>   
                         </p>
                         <p style="text-align: center;">
-                          Debajo de este texto, encontrarás el código del cupón de descuento del <b><?php echo $data['coupon_discount'] ?></b>, ingresalo en el curso <a href="<?php echo SITE_URL ?>/courses/<?php echo $data['course']['slug'] ?>" style="color: #3d0235;"><b>"<?php echo $data['course']['title'] ?>"</b> <span style="color: #003146;">(puedes ir al curso haciendo click al título del mismo)</span></a>
+                          Debajo de este texto, encontrarás el código del cupón de descuento del <b><?= $data['coupon_discount'] ?></b>, ingresalo en el curso <a href="<?= SITE_URL ?>/courses/<?= $data['course']['slug'] ?>" style="color: #3d0235;"><b>"<?= $data['course']['title'] ?>"</b> <span style="color: #003146;">(puedes ir al curso haciendo click al título del mismo)</span></a>
                         </p>
                         <div style="color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
-                          <p style='text-align: center;'><?php echo $data['coupon_code'] ?></p>
+                          <p style='text-align: center;'><?= $data['coupon_code'] ?></p>
                         </div>
                       </td>
                     </tr>
@@ -44,7 +44,7 @@
               <?php if (!empty($data['course_sponsors'])): ?>
               <tr>
                 <td style="display: flex;">
-                  <img src='<?php echo $data['course_sponsors']['course_meta_val'] ?>' style="width:100%; max-width: 95%; margin:auto"></img>
+                  <img src='<?= $data['course_sponsors']['course_meta_val'] ?>' style="width:100%; max-width: 95%; margin:auto"></img>
                 </td>
               </tr>
               <?php endif ?>

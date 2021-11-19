@@ -13,7 +13,7 @@
                                         <?php if (empty($students['total']) ) : ?>
                                         N/A
                                         <?php else: ?>
-                                        <?php echo $students['total'] ?>
+                                        <?= $students['total'] ?>
                                         <?php endif?>
                                     </span>
                                 </v-list-item-title>
@@ -24,7 +24,7 @@
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1 no-white-space">Ore video:
-                                    <span class="font-weight-light"><?php echo $duration ?></span>
+                                    <span class="font-weight-light"><?= $duration ?></span>
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -37,7 +37,7 @@
                                         <?php if (empty($classes['total']) ) : ?>
                                         Próximamente
                                         <?php else: ?>
-                                        <?php echo $classes['total'] ?>
+                                        <?= $classes['total'] ?>
                                         <?php endif?>
                                     </span>
                                 </v-list-item-title>
@@ -50,7 +50,7 @@
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1 no-white-space">Material suplimentar:
                                     <span class="font-weight-light">
-                                        <?php echo $meta['complementary_material'] ?>
+                                        <?= $meta['complementary_material'] ?>
                                     </span>
                                 </v-list-item-title>
                             </v-list-item-content>
@@ -61,7 +61,7 @@
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1 no-white-space">Nivel: <span
-                                        class="font-weight-light"><?php echo $level ?></span></v-list-item-title>
+                                        class="font-weight-light"><?= $level ?></span></v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
                     </v-col>
@@ -74,10 +74,10 @@
                                     <?php else: ?>
                                         <?php if (!empty($meta['manual_teachers']) ) : ?>
                                             Profesori: <span
-                                            class="font-weight-light"><?php echo $meta['manual_teachers'] ?></span>
+                                            class="font-weight-light"><?= $meta['manual_teachers'] ?></span>
                                         <?php else: ?>
                                             Profesor: <span
-                                            class="font-weight-light"><?php echo $instructor['first_name'] . ' ' . $instructor['last_name'] ?></span>
+                                            class="font-weight-light"><?= $instructor['first_name'] . ' ' . $instructor['last_name'] ?></span>
                                         <?php endif?>
                                 </v-list-item-title>
                                 <?php endif?>
@@ -88,9 +88,9 @@
                         <v-list-item>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1 no-white-space">Categoria:
-                                    <span class="font-weight-light"><?php echo $data['category'][0]['name'] ?>
+                                    <span class="font-weight-light"><?= $data['category'][0]['name'] ?>
                                         <?php if (!empty($data['subcategory']) ) : ?>
-                                        / <?php echo $data['subcategory'][0]['name'] ?>
+                                        / <?= $data['subcategory'][0]['name'] ?>
                                         <?php endif?>
                                     </span>
                                 </v-list-item-title>
@@ -105,15 +105,15 @@
                 <?php if (isset($_SESSION['user_id'])): ?>
                 <?php if ($data['price'] <= 0): ?>
                 <v-col class="d-flex justify-center mt-n4" cols="12">
-                    <v-btn class="secondary white--text py-8 px-8" @click="enrollToCourse(<?php echo $course_id ?>)">
+                    <v-btn class="secondary white--text py-8 px-8" @click="enrollToCourse(<?= $course_id ?>)">
                         Obțineți cursul <br> gratuit
                     </v-btn>
                 </v-col>
                 <?php else: ?>
                 <v-col class="d-flex justify-center mt-n4" cols="12">
                     <v-btn class="secondary white--text py-8 px-8"
-                        href="<?php echo SITE_URL ?>/checkout/?<?php echo "course_id=${course_id}&course=${title}" ?>"
-                        >Obțineți cursul <br>$<?php echo $data['price'] ?></v-btn>
+                        href="<?= SITE_URL ?>/checkout/?<?= "course_id=${course_id}&course=${title}" ?>"
+                        >Obțineți cursul <br>$<?= $data['price'] ?></v-btn>
                 </v-col>
                 <v-col cols="12">
                     <v-divider></v-divider>
@@ -123,11 +123,11 @@
                     <v-text-field type="text" v-model="coupon_code" name="coupon_code"
                         class="mt-3 input-text-center" placeholder="Introduceți cuponul de reducere" v-if="1 == 2"></v-text-field>
                     <v-row class="d-flex justify-center">
-                        <v-btn class="primary white--text py-4 px-4" @click="checkCoupon(<?php echo $course_id ?>)"
+                        <v-btn class="primary white--text py-4 px-4" @click="checkCoupon(<?= $course_id ?>)"
                             :loading="coupon_loading" v-if="1 == 2">Aplicați cuponul</v-btn>
                     </v-row>
                     <?php endif?>
-                    <?php echo new Controller\Template('components/alert') ?>
+                    <?= new Controller\Template('components/alert') ?>
                     <?php else: ?>
 
                     <v-row class="d-flex justify-center">
@@ -135,7 +135,7 @@
                             <p class="text-center">Pentru a achiziționa acest curs, trebuie mai întâi să vă autentificați.</p>
                         </v-col>
                         <v-btn class="secondary white--text py-6 px-6"
-                            :href="'<?php echo SITE_URL ?>/login/?redirect_url=' + current_url">
+                            :href="'<?= SITE_URL ?>/login/?redirect_url=' + current_url">
                             conectați-vă <br></v-btn>
                     </v-row>
 
@@ -147,12 +147,12 @@
                 <v-alert icon="mdi-certificate" prominent type="secondary">
                     <v-row class="d-flex justify-center">
                         <v-col class="grow">
-                            Obțineți certificatul de <b><?php echo $title ?></b> prin 
-                            <b>$<?php echo $meta['certified_price'] ?></b>
+                            Obțineți certificatul de <b><?= $title ?></b> prin 
+                            <b>$<?= $meta['certified_price'] ?></b>
                         </v-col>
                         <v-col class="shrink">
                             <v-btn color="white"
-                                href="<?php echo SITE_URL ?>/checkout/?course_id=<?php echo $course_id ?>&course=<?php echo $title ?>&extra=certified"
+                                href="<?= SITE_URL ?>/checkout/?course_id=<?= $course_id ?>&course=<?= $title ?>&extra=certified"
                                 outlined>Certificat de plată</v-btn>
                         </v-col>
                     </v-row>
@@ -176,11 +176,11 @@
                             cols="6" md="2"
                             <?php endif?>>
                             <?php if(!empty($certified_by['website']) ) : ?>
-                                <a href="<?php echo $certified_by['website'] ?>">
-                                    <img src="<?php echo $certified_by['url'] ?>" style="max-width: 100%"></img>
+                                <a href="<?= $certified_by['website'] ?>">
+                                    <img src="<?= $certified_by['url'] ?>" style="max-width: 100%"></img>
                                 </a>
                             <?php else: ?>
-                                <img src="<?php echo $certified_by['url'] ?>" style="max-width: 100%"></img>
+                                <img src="<?= $certified_by['url'] ?>" style="max-width: 100%"></img>
                             <?php endif?> 
                         </v-col>
                         <?php endforeach?>

@@ -18,6 +18,6 @@
                   </template>
                 </v-data-table>
               </v-col>
-              <?php echo new Controller\Template('account/parts/private/order/preview') ?>
+              <?= new Controller\Template('account/parts/private/order/preview') ?>
             </v-row>
           </v-col>

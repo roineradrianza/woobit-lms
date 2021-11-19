@@ -22,7 +22,7 @@
     </v-card-text>
     <v-card-text>
       <div class="display-1 font-weight-thin">
-        <?php echo $data['chart_title'] ?>
+        <?= $data['chart_title'] ?>
       </div>
     </v-card-text>
     <v-divider></v-divider>

@@ -32,7 +32,7 @@
                                                     style="color: #3d0235;font-weight: bold;">
                                                         Orden: 
                                                 </span>
-                                                <?php echo $order_id ?>
+                                                <?= $order_id ?>
                                             </p>
                                             <p style="text-align: center">
                                                 <span
@@ -43,14 +43,14 @@
                                                         Descriere: 
                                                     <?php endif ?>
                                                 </span>
-                                                <?php echo $meta['course'] ?>
+                                                <?= $meta['course'] ?>
                                             </p>
 
                                             <p style="text-align: center"><span
                                                     style="color: #3d0235;font-weight: bold;">Suma:</span>
-                                                <?php echo '$' . $total_pay ?></p>
+                                                <?= '$' . $total_pay ?></p>
 
-                                            <a href="<?php echo SITE_URL . "/courses/{$course['slug']}"?>"
+                                            <a href="<?= SITE_URL . "/courses/{$course['slug']}"?>"
                                                 style="display: block; color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
                                                 <p style='text-align: center;'>Ir al curso</p>
                                             </a>

@@ -1,5 +1,5 @@
 <v-col class="white px-6" cols="12" md="2">
-    <?php echo new Controller\Template('components/snackbar') ?>
+    <?= new Controller\Template('components/snackbar') ?>
     <div class="d-flex justify-center mt-5" v-if="preview_avatar_image != null && preview_avatar_image != ''">
         <v-avatar class="avatar">
             <img :src="preview_avatar_image">

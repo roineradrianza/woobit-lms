@@ -75,6 +75,6 @@
 											</v-expansion-panels>
 						    		</v-col>						    	
 						    	</v-row>
-						    	<?php echo new Controller\Template('course/edit/parts/lesson_form') ?>
+						    	<?= new Controller\Template('course/edit/parts/lesson_form') ?>
 
 						    	

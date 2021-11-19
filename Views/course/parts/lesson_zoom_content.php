@@ -1,9 +1,9 @@
-<?php echo new Controller\Template('course/parts/lesson_menu', [
+<?= new Controller\Template('course/parts/lesson_menu', [
 'course_slug' => $course['slug'], 
 'sections' => $course['sections']
 ]) 
 ?>
-<?php echo new Controller\Template('course/parts/resources/preview') ?>
+<?= new Controller\Template('course/parts/resources/preview') ?>
 <v-col class="lesson" cols="12">
     <v-row>
         <v-col class="d-flex justify-center mb-n4" cols="12">
@@ -33,7 +33,7 @@
             </countdown>
         </v-col>
         <v-col cols="12">
-            <h3 class="text-h3 text-center my-5"><?php echo $data['lesson']['lesson_name'] ?></h3>
+            <h3 class="text-h3 text-center my-5"><?= $data['lesson']['lesson_name'] ?></h3>
             <h4 class="text-h5 text-center my-5" v-if="meta.hasOwnProperty('zoom_timezone')">Fecha y hora: <br>
                 <span class="secondary--text">{{ formatDate(meta.zoom_start_time) }},
                     {{ replaceString(meta.zoom_timezone, '_', ' ') }}</span>
@@ -75,8 +75,8 @@
                         <?php foreach ($data['course']['course_sponsors'] as $sponsor): ?>
 
                         <v-col cols="4" md="3">
-                            <a href="<?php echo $sponsor['website'] ?>">
-                                <v-img src="<?php echo $sponsor['logo_url'] ?>" width="100%" style="max-width:300px">
+                            <a href="<?= $sponsor['website'] ?>">
+                                <v-img src="<?= $sponsor['logo_url'] ?>" width="100%" style="max-width:300px">
                                 </v-img>
                             </a>
                         </v-col>

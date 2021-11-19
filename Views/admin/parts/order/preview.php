@@ -87,19 +87,19 @@
                                     </v-col>
 
                                     <template v-if="orders.editedItem.payment_method == 'Zelle'">
-                                        <?php echo new Controller\Template('admin/parts/order/preview/zelle') ?>
+                                        <?= new Controller\Template('admin/parts/order/preview/zelle') ?>
                                     </template>
 
                                     <template v-else-if="orders.editedItem.payment_method == 'Bank Transfer(Bs)'">
-                                        <?php echo new Controller\Template('admin/parts/order/preview/bs-bank-transfer') ?>
+                                        <?= new Controller\Template('admin/parts/order/preview/bs-bank-transfer') ?>
                                     </template>
 
                                     <template v-else-if="orders.editedItem.payment_method == 'PagoMovil'">
-                                        <?php echo new Controller\Template('admin/parts/order/preview/pagomovil') ?>
+                                        <?= new Controller\Template('admin/parts/order/preview/pagomovil') ?>
                                     </template>
 
                                     <template v-else-if="orders.editedItem.payment_method == 'Paypal'">
-                                        <?php echo new Controller\Template('admin/parts/order/preview/paypal') ?>
+                                        <?= new Controller\Template('admin/parts/order/preview/paypal') ?>
                                     </template>
                                 </v-row>
                             </v-col>

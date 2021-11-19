@@ -67,7 +67,7 @@
 		          </v-col>
 
 		          <v-col class="d-flex justify-center" cols="12">
-		           <?php echo new Controller\Template('components/alert') ?>
+		           <?= new Controller\Template('components/alert') ?>
 		          </v-col>
 
 		          <v-col class="d-flex justify-end" cols="12">

@@ -82,15 +82,15 @@
 
 
                                 <template v-if="order.payment_method == 'Zelle'">
-                                    <?php echo new Controller\Template('admin/parts/order/preview/zelle') ?>
+                                    <?= new Controller\Template('admin/parts/order/preview/zelle') ?>
                                 </template>
 
                                 <template v-else-if="order.payment_method == 'Bank Transfer(Bs)'">
-                                    <?php echo new Controller\Template('checkout/preview/bs-bank-transfer') ?>
+                                    <?= new Controller\Template('checkout/preview/bs-bank-transfer') ?>
                                 </template>
 
                                 <template v-else-if="order.payment_method == 'PagoMovil'">
-                                    <?php echo new Controller\Template('checkout/preview/pagomovil') ?>
+                                    <?= new Controller\Template('checkout/preview/pagomovil') ?>
                                 </template>
                             </v-row>
                         </v-col>
@@ -108,7 +108,7 @@
         </v-card>
         <v-row class="d-flex justify-center" v-else>
             <v-col cols="12" md="8">
-                <v-img src="<?php echo SITE_URL ?>/img/order-not-fund.svg"></v-img>
+                <v-img src="<?= SITE_URL ?>/img/order-not-fund.svg"></v-img>
             </v-col>
             <v-col cols="12">
                 <h4 class="secondary--text text-center text-h5">

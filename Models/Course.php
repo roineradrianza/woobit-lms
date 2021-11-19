@@ -2,6 +2,7 @@
 namespace Model;
 
 use Model\Helper\DB;
+use Model\Category;
 
 /**
  *
@@ -30,6 +31,26 @@ class Course extends DB
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
+    public function get_by_user($id = 0, $rows = 4, $course_id = 0)
+    {
+        if (empty($id)) {
+            return [];
+        }
+            $sql = "SELECT C.course_id, active, duration, price, featured_image, certified_template,
+            level, published_at, slug, title, category_id, user_id, platform_owner, hide_avatar_preview
+            FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
+            WHERE C.{$this->id_user_column} = $id AND active = 1";
+        $sql .= !empty($course_id) ? " AND C.course_id != $course_id" : '';
+        $result = $this->execute_query($sql);
+        $arr = [];
+        $category = new Category;
+        while ($row = $result->fetch_assoc()) {
+            $row['category'] = !empty($row['category_id']) ? $category->get($row['category_id'])[0]['name'] : [];
             $arr[] = $row;
         }
         return $arr;

@@ -1,6 +1,6 @@
 <v-row class="d-flex justify-center align-center quiz_container mt-6">
     <v-col class="lesson" cols="11" md="9">
-        <h2 class="my-2 text-center"><?php echo $data['lesson']['lesson_name'] ?></h2>
+        <h2 class="my-2 text-center"><?= $data['lesson']['lesson_name'] ?></h2>
         <v-col cols="12" :v-html="meta.description" v-if="meta.description != ''">
         </v-col>
         <template v-if="loading">
@@ -130,7 +130,7 @@
                         <v-btn color="primary" v-if="quiz_started && !quiz_finished" :loading="send_quiz_loading"
                             :disabled="quiz_finished" @click="saveQuiz()" light>Finalizar quiz</v-btn>
                     </v-col>
-                    <?php echo new Controller\Template('components/alert') ?>
+                    <?= new Controller\Template('components/alert') ?>
                 </v-form>
             </template>
             <template v-if="quiz_finished && attempt_results.hasOwnProperty('score')">

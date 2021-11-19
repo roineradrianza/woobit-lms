@@ -5,7 +5,7 @@
             <v-icon color="primary" md>mdi-account</v-icon>
             <?php else: ?>
             <v-avatar>
-                <img src="<?php echo $_SESSION['avatar'] ?>" alt="<?php echo $_SESSION['first_name'] ?>">
+                <img src="<?= $_SESSION['avatar'] ?>" alt="<?= $_SESSION['first_name'] ?>">
             </v-avatar>
             <?php endif ?>
         </v-btn>

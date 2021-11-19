@@ -12,7 +12,7 @@
 						      <v-progress-linear color="deep-purple" height="10" indeterminate ></v-progress-linear>
 						    </template>
 
-						    <v-img width="50vw" height="30vw" class="align-end" src="<?php echo SITE_URL ?>/img/avatar/ximena.jpg" >
+						    <v-img width="50vw" height="30vw" class="align-end" src="<?= SITE_URL ?>/img/avatar/ximena.jpg" >
 						    	<v-card-title class="d-block font-weight-bold card-teacher-title white--text no-word-break">
 						    			<h4 class="text-h5">Ximena Sanchez</h4>
 						    			<h5 class="font-weight-light">Profesora de Comunicación social de la UCAB</h5>
@@ -28,7 +28,7 @@
 						      <v-progress-linear color="deep-purple" height="10" indeterminate ></v-progress-linear>
 						    </template>
 
-						    <v-img width="50vw" height="30vw" class="align-end" src="<?php echo SITE_URL ?>/img/avatar/ruth.jpg" >
+						    <v-img width="50vw" height="30vw" class="align-end" src="<?= SITE_URL ?>/img/avatar/ruth.jpg" >
 						    	<v-card-title class="d-block font-weight-bold card-teacher-title white--text no-word-break">
 						    			<h4 class="text-h5">Ruth Velazquez</h4>
 						    			<h5 class="font-weight-light">Profesora</h5>

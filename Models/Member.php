@@ -68,7 +68,7 @@ class Member extends DB
     public function check_user($email, $password, $encrypt_password = true)
     {
         $password = $encrypt_password ? md5($password) : $password;
-        $sql = "SELECT * FROM {$this->table} WHERE 'email' = '$email' AND `password` = '$password'";
+        $sql = "SELECT * FROM {$this->table} WHERE email = '$email' AND `password` = '$password'";
         $result = $this->execute_query($sql);
         if ($result) {
             return $result->fetch_object();

@@ -63,7 +63,7 @@
 					<v-col class="pl-16 pr-16 pr-md-0" cols="12" md="6">
 						<v-row>
 							<v-col class="pl-md-8" cols="12" md="4">
-								<v-img src="<?php echo SITE_URL ?>/img/ximena.jpg"></v-img>
+								<v-img src="<?= SITE_URL ?>/img/ximena.jpg"></v-img>
 							</v-col>
 							<v-col cols="12" md="8">
 								<h3 class="text-h4 font-weight-light">Ximena Sanchez</h3>
@@ -75,7 +75,7 @@
 					<v-col class="pl-16 pr-16 pr-md-0" cols="12" md="6">
 						<v-row>
 							<v-col class="pl-md-8" cols="12" md="4">
-								<v-img src="<?php echo SITE_URL ?>/img/marcel-marin.jpg"></v-img>
+								<v-img src="<?= SITE_URL ?>/img/marcel-marin.jpg"></v-img>
 							</v-col>
 							<v-col cols="12" md="8">
 								<h3 class="text-h4 font-weight-light">Marcel Marin</h3>
@@ -87,7 +87,7 @@
 					<v-col class="pl-16 pr-16 pr-md-0" cols="12" md="6">
 						<v-row>
 							<v-col class="pl-md-8" cols="12" md="4">
-								<v-img src="<?php echo SITE_URL ?>/img/alexandra-leon.jpg"></v-img>
+								<v-img src="<?= SITE_URL ?>/img/alexandra-leon.jpg"></v-img>
 							</v-col>
 							<v-col cols="12" md="8">
 								<h3 class="text-h4 font-weight-light">Alexandra Leon</h3>

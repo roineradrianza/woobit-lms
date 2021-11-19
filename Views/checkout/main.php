@@ -39,15 +39,15 @@
                             </v-col>
 
                             <template v-if="info.payment_method == 'Zelle'">
-                                <?php echo new Controller\Template('checkout/payments/zelle') ?>
+                                <?= new Controller\Template('checkout/payments/zelle') ?>
                             </template>
 
                             <template v-else-if="info.payment_method == 'Bank Transfer(Bs)'">
-                                <?php echo new Controller\Template('checkout/payments/bs-bank-transfer') ?>
+                                <?= new Controller\Template('checkout/payments/bs-bank-transfer') ?>
                             </template>
 
                             <template v-else-if="info.payment_method == 'PagoMovil'">
-                                <?php echo new Controller\Template('checkout/payments/pagomovil') ?>
+                                <?= new Controller\Template('checkout/payments/pagomovil') ?>
                             </template>
                         </v-row>
                     </v-col>
@@ -70,7 +70,7 @@
                         <div id="paypal-button-container" v-show="info.payment_method == 'Paypal' && !already_paid">
                         </div>
                     </v-col>
-                    <?php echo new Controller\Template('components/alert') ?>
+                    <?= new Controller\Template('components/alert') ?>
                 </v-row>
             </v-sheet>
         </v-col>

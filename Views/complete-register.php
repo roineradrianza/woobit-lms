@@ -91,7 +91,7 @@
                     <v-text-field type="password" name="password_confirm" v-model="form.password_confirm"
                         class="mt-3 fl-text-input" filled rounded dense></v-text-field>
                 </v-col>
-                <?php echo new Controller\Template('components/alert') ?>
+                <?= new Controller\Template('components/alert') ?>
                 <v-col cols="12">
                     <v-row class="px-10 d-flex align-center">
                         <v-col cols="12" md="4"></v-col>

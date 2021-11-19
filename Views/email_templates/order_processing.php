@@ -25,43 +25,43 @@
                                     <tr>
                                         <td style='font-size: 16px; vertical-align: top;'>
                                             La orden de pago por parte de <b
-                                                style="color: #3d0235;font-weight: bold;"><?php echo $meta['first_name'] . ' ' . $meta['last_name'] ?></b>
+                                                style="color: #3d0235;font-weight: bold;"><?= $meta['first_name'] . ' ' . $meta['last_name'] ?></b>
                                             está pendiente por ser aprobada.
                                             <p style="text-align: center"><span
                                                     style="color: #3d0235;font-weight: bold;">Correo electrónico:</span>
-                                                <?php echo $meta['user_email'] ?></p>
+                                                <?= $meta['user_email'] ?></p>
 
                                             <p style="text-align: center"><span
                                                     style="color: #3d0235;font-weight: bold;">Número de Telefon:</span>
-                                                <?php echo $meta['telephone'] ?></p>
+                                                <?= $meta['telephone'] ?></p>
 
                                             <p style="text-align: center"><span
                                                     style="color: #3d0235;font-weight: bold;">Suma:</span>
-                                                <?php echo '$' . $total_pay ?></p>
+                                                <?= '$' . $total_pay ?></p>
 
                                             <p style="text-align: center"><span
                                                     style="color: #3d0235;font-weight: bold;">Curso:</span>
-                                                <?php echo $meta['course'] ?></p>
+                                                <?= $meta['course'] ?></p>
 
                                             <?php if ($payment_method == 'Bank Transfer(Bs)'): ?>
 
-                                              <?php echo new Controller\Template('email_templates/order_processing/bs-bank-transfer', $data) ?>
+                                              <?= new Controller\Template('email_templates/order_processing/bs-bank-transfer', $data) ?>
 
                                             <?php endif ?>
 
 
                                             <?php if ($payment_method == 'PagoMovil'): ?>
 
-                                              <?php echo new Controller\Template('email_templates/order_processing/pagomovil', $data) ?>
+                                              <?= new Controller\Template('email_templates/order_processing/pagomovil', $data) ?>
 
                                             <?php endif ?>
 
                                             <?php if ($payment_method == 'Zelle'): ?>
 
-                                              <?php echo new Controller\Template('email_templates/order_processing/zelle', $data) ?>
+                                              <?= new Controller\Template('email_templates/order_processing/zelle', $data) ?>
 
                                             <?php endif ?>
-                                            <a href="<?php echo SITE_URL . "/approve-checkout/?order_id=" . $order_id ?>"
+                                            <a href="<?= SITE_URL . "/approve-checkout/?order_id=" . $order_id ?>"
                                                 style="display: block; color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
                                                 <p style='text-align: center;'>Aprobar Orden</p>
                                             </a>

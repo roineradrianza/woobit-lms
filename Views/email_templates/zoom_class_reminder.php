@@ -17,18 +17,18 @@
                   <table border='0' cellpadding='0' cellspacing='0' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;'>
                     <tr>
                       <td style='font-size: 16px; vertical-align: top;'>
-                        <p>Estimado/a <?php echo $student['first_name'] .' ' . $student['last_name'] ?></p>
-						            <p>Hoy continuamos con <b style="color: #3d0235"><?php echo $course['title'] . ' - ' . $section['section_name']?></b>.</p>
-						            <p>Clase: <b style="color: #3d0235"><?php echo $lesson['lesson_name'] ?></b></p>
-						            <p>Hora: <b style="color: #3d0235"><?php echo $lesson['meta']['zoom_date'] . ' ' . $lesson['meta']['zoom_time'] . ' ' . $lesson['meta']['zoom_timezone'] ?></b></p>
-						            <p>Puede ingresar directamente a la clase a través del siguiente link: <a href="<?php echo SITE_URL ?>/courses/<?php echo $course['slug'] ?>/<?php echo $lesson['lesson_id'] ?>" style="color: #3d0235"><?php echo SITE_URL ?>/courses/<?php echo $course['slug'] ?>/<?php echo $lesson['lesson_id'] ?></a></p>
+                        <p>Estimado/a <?= $student['first_name'] .' ' . $student['last_name'] ?></p>
+						            <p>Hoy continuamos con <b style="color: #3d0235"><?= $course['title'] . ' - ' . $section['section_name']?></b>.</p>
+						            <p>Clase: <b style="color: #3d0235"><?= $lesson['lesson_name'] ?></b></p>
+						            <p>Hora: <b style="color: #3d0235"><?= $lesson['meta']['zoom_date'] . ' ' . $lesson['meta']['zoom_time'] . ' ' . $lesson['meta']['zoom_timezone'] ?></b></p>
+						            <p>Puede ingresar directamente a la clase a través del siguiente link: <a href="<?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
 						            <p>PARA ENTRAR DESDE FULL LEARNING:</p>
 						            <ol>
-					                <li>Ingrese en <a href='<?php echo SITE_URL ?>' target='_blank' style="color: #3d0235"><?php echo SITE_URL ?></a></li>
+					                <li>Ingrese en <a href='<?= SITE_URL ?>' target='_blank' style="color: #3d0235"><?= SITE_URL ?></a></li>
 					                <li>Inicie sesión con su Utilizator y contraseña</li>
-					                <li>Busque <b style="color: #3d0235">"<?php echo $course['title'] ?>"</b></li>
+					                <li>Busque <b style="color: #3d0235">"<?= $course['title'] ?>"</b></li>
 					                <li>Haga click en <span style="color: #3d0235"><b>"Entrar a clase"</b></span></li>
-					                <li>Seleccione la clase de hoy: <b style="color: #3d0235"><?php echo $lesson['lesson_name'] ?></b></li>
+					                <li>Seleccione la clase de hoy: <b style="color: #3d0235"><?= $lesson['lesson_name'] ?></b></li>
 					                <li>Haga click en el botón de <b style="color: #3d0235">"Entrar a la clase"</b></li>
 						            </ol>
 						            <h3><b>NOTA: Es necesario que descargue la app Zoom en su computador o dispositivo móvil.</b></h3>
@@ -40,7 +40,7 @@
               <?php if (!empty($data['course_sponsors'])): ?>
               <tr>
                 <td style="display: flex;">
-                  <img src='<?php echo $data['course_sponsors']['course_meta_val'] ?>' style="width:100%; max-width: 95%; margin:auto"></img>
+                  <img src='<?= $data['course_sponsors']['course_meta_val'] ?>' style="width:100%; max-width: 95%; margin:auto"></img>
                 </td>
               </tr>
               <?php endif ?>

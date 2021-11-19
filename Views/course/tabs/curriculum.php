@@ -1,16 +1,16 @@
 <v-row class="d-flex justify-center">
     <v-col cols="12" md="10">
-        <v-expansion-panels <?php echo count($sections) == 1 ? ':mandatory="true"' : '' ?> >
+        <v-expansion-panels <?= count($sections) == 1 ? ':mandatory="true"' : '' ?> >
             <?php if (empty($sections)):?>
             <h3 class="text-center text-uppercase">próximamente</h3>
             <?php else: ?>
             <?php foreach ($sections as $section_index => $section): ?>
 
-            <v-expansion-panel key="<?php echo $section_index ?>">
+            <v-expansion-panel key="<?= $section_index ?>">
                 <v-expansion-panel-header>
                     <v-row no-gutters>
                         <v-col class="d-flex justify-start p-0" cols="10">
-                            <?php echo $section['section_name'] ?>
+                            <?= $section['section_name'] ?>
                         </v-col>
                         <v-col class="d-flex justify-end p-0" cols="2">
                             <?php if (!empty($section['items']) && isset($section['completed']) && $section['completed']): ?>
@@ -28,12 +28,12 @@
                                     <?php if (!empty($lesson['meta']) && isset($lesson['meta']['class_type']) && $lesson['meta']['class_type'] == 'zoom_meeting'): ?>
                                     <v-col class="p-0 d-flex justify-end" cols="12">
                                         <p class="subtitle-2 secondary--text font-weight-bold">Inicio:
-                                            <?php echo $lesson['meta']['zoom_date'] . ' ' . $lesson['meta']['zoom_time'] . ' ' . $lesson['meta']['zoom_timezone'] ?>
+                                            <?= $lesson['meta']['zoom_date'] . ' ' . $lesson['meta']['zoom_time'] . ' ' . $lesson['meta']['zoom_timezone'] ?>
                                         </p>
                                     </v-col>
                                     <?php endif ?>
                                     <v-col class="d-flex justify-start p-0" cols="9">
-                                        <?php echo $lesson['lesson_name'] ?>
+                                        <?= $lesson['lesson_name'] ?>
                                     </v-col>
                                     <v-col class="d-flex justify-end p-0" cols="12" md="3">
                                         <?php if (isset($lesson['completed']) && $lesson['completed']): ?>
@@ -41,7 +41,7 @@
                                         <?php endif ?>
                                         <?php if ($data['current_user_has_enroll'] || $data['manage_course']): ?>
                                         <v-btn class="primary--text"
-                                            href="<?php echo SITE_URL ?>/courses/<?php echo $data['course_slug'] ?>/<?php echo $lesson['lesson_id'] ?>/"
+                                            href="<?= SITE_URL ?>/courses/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
                                             text>
                                             <?php if ($lesson['lesson_type'] == 2): ?>
                                             Ir al quiz
@@ -52,7 +52,7 @@
                                         <?php endif ?>
                                         <?php if (empty($_SESSION['user_id'])): ?>
                                         <v-btn class="primary--text"
-                                            href="<?php echo SITE_URL ?>/login/?redirect_url=<?php echo SITE_URL ?>/courses/<?php echo $data['course_slug'] ?>/<?php echo $lesson['lesson_id'] ?>/"
+                                            href="<?= SITE_URL ?>/login/?redirect_url=<?= SITE_URL ?>/courses/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
                                             text>Iniciar Sesión</v-btn>
                                         <?php endif ?>
                                     </v-col>
@@ -63,7 +63,7 @@
                                 <?php if (isset($lesson['meta']['description'])): ?>
 
                                 <v-col cols="12">
-                                    <?php echo $lesson['meta']['description'] ?>
+                                    <?= $lesson['meta']['description'] ?>
                                 </v-col>
 
                                 <?php endif ?>
@@ -75,7 +75,7 @@
 
                                     <v-avatar color="primary" class="mr-2">
                                         <?php if (!empty($lesson['teacher']['avatar'])): ?>
-                                        <v-img src="<?php echo $lesson['teacher']['avatar'] ?>"></v-img>
+                                        <v-img src="<?= $lesson['teacher']['avatar'] ?>"></v-img>
                                         <?php else: ?>
                                         <v-icon dark>
                                             mdi-account-circle
@@ -84,7 +84,7 @@
                                     </v-avatar>
 
 
-                                    <?php echo $lesson['teacher']['first_name'] . ' ' . $lesson['teacher']['last_name'] ?>
+                                    <?= $lesson['teacher']['first_name'] . ' ' . $lesson['teacher']['last_name'] ?>
                                 </v-row>
                             </v-col>
 

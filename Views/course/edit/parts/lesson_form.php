@@ -19,13 +19,13 @@
                                   <v-row>
                                     <v-col cols="12">
                                       <template v-if="lessons.item.lesson_type == 1">
-                                        <?php echo new Controller\Template('course/edit/parts/class_form') ?>  
+                                        <?= new Controller\Template('course/edit/parts/class_form') ?>  
                                       </template>
                                       <template v-if="lessons.item.lesson_type == 2">
-                                        <?php echo new Controller\Template('course/edit/parts/quiz_form') ?>
+                                        <?= new Controller\Template('course/edit/parts/quiz_form') ?>
                                       </template>
                                       <template v-if="lessons.item.lesson_type == 4">
-                                        <?php echo new Controller\Template('course/edit/parts/resources_form') ?>
+                                        <?= new Controller\Template('course/edit/parts/resources_form') ?>
                                       </template>
                                     </v-col>
                                   </v-row>

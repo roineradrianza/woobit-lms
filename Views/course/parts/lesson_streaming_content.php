@@ -1,4 +1,4 @@
-					<?php echo new Controller\Template('course/parts/lesson_menu', [
+					<?= new Controller\Template('course/parts/lesson_menu', [
 			    		'course_slug' => $course['slug'], 
 			    		'sections' => $course['sections']
 					  ]) 
@@ -27,7 +27,7 @@
 								  </countdown>
 							</v-col>
 							<v-col cols="12">	
-								<h3 class="text-h3 text-center my-5"><?php echo $data['lesson']['lesson_name'] ?></h3>
+								<h3 class="text-h3 text-center my-5"><?= $data['lesson']['lesson_name'] ?></h3>
 								<h4 class="text-h5 text-center my-5" v-if="meta.hasOwnProperty('streaming_timezone')">Fecha y hora: <br> <span class="secondary--text">{{ formatDate(StartTime) }}, {{ replaceString(meta.streaming_timezone, '_', ' ') }}</span></h4>
 								<h5 class="text-h6 text-center my-5" v-if=" countdown_container.totalMilliseconds > 1800000">30 minutos antes del inicio de la clase se habilitará debajo la sesión en vivo de la clase</h5>
 								<h5 class="text-h6 text-center my-5 primary--text" v-else>Para ver la clase debe tocar el ícono <v-icon color="#151515">mdi-youtube</v-icon> del video </h5>
@@ -68,8 +68,8 @@
 											<?php foreach ($data['course']['course_sponsors'] as $sponsor): ?>
 
 											<v-col cols="4" md="3">
-												<a href="<?php echo $sponsor['website'] ?>">
-													<v-img src="<?php echo $sponsor['logo_url'] ?>" width="100%" style="max-width:300px"></v-img>
+												<a href="<?= $sponsor['website'] ?>">
+													<v-img src="<?= $sponsor['logo_url'] ?>" width="100%" style="max-width:300px"></v-img>
 												</a>
 											</v-col>
 												

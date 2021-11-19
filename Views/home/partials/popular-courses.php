@@ -2,7 +2,7 @@
     <v-col class="mw-lg" cols="12">
         <v-row>
             <v-col class="d-flex justify-end mb-4" cols="12">
-                <v-img src="<?php echo SITE_URL ?>/img/home/bubbles-2.svg" max-width="100px"></v-img>
+                <v-img src="<?= SITE_URL ?>/img/home/bubbles-2.svg" max-width="100px"></v-img>
             </v-col>
 
             <v-col class="d-md-flex align-end" cols="12" md="8">
@@ -14,16 +14,17 @@
             <v-col class="d-flex justify-end" cols="12" md="4">
                 <v-btn color="secondary">Continuă</v-btn>
             </v-col>
-
+        <?php if(!empty($courses)) : ?>
             <v-col cols="12">
                 <v-row justify="center">
-                    <?php for ($i=0; $i < 4; $i++) : ?>
-                    <v-col class="px-md-2 px-lg-6" cols="12" md="4" lg="3">
-                        <?php echo new Controller\Template('courses/course_template') ?>
+                    <?php foreach($courses as $course) : ?>
+                    <v-col class="px-md-2 px-lg-6 d-flex" cols="12" md="4" lg="3">
+                        <?= new Controller\Template('courses/course_template', $course) ?>
                     </v-col>
-                    <?php endfor ?>
+                    <?php endforeach ?>
                 </v-row>
             </v-col>
+        <?php endif ?>
         </v-row>
     </v-col>
 </v-row>

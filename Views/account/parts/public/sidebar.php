@@ -71,10 +71,10 @@
 									<label class="body-1 font-weight-thin pl-1">Confirmați parola</label>
 									<v-text-field type="password" name="password_confirm" v-model="form.password_confirm" class="mt-3 fl-text-input" filled rounded dense></v-text-field>
 								</v-col>
-								<?php echo new Controller\Template('components/alert') ?>
+								<?= new Controller\Template('components/alert') ?>
 								<v-col cols="12">
 									<v-row class="px-10 d-flex align-center">
-										<v-col cols="12" md="4"><a class="secondary--text font-weight-bold" href="<?php ECHO SITE_URL ?>">Volver</a></v-col>
+										<v-col cols="12" md="4"><a class="secondary--text font-weight-bold" href="<?= SITE_URL ?>">Volver</a></v-col>
 										<v-col cols="12" md="4"></v-col>
 										<v-col cols="12" md="4">
 											<v-btn class="white--text secondary font-weight-bold rounded-pill mb-6 mt-4 py-6" @click="save" :disabled="!valid" block>Înregistrare</v-btn>

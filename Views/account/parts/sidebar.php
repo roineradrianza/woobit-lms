@@ -2,7 +2,7 @@
 	      	<v-col class="grey lighten-1 px-6" cols="12" md="2">
 	      		<div class="d-flex justify-center mt-5">
 		      		<v-avatar class="avatar">
-		      			<img src="<?php echo SITE_URL ?>/img/avatar/profesores1.png">
+		      			<img src="<?= SITE_URL ?>/img/avatar/profesores1.png">
 		      		</v-avatar>
 	      		</div>
 	      		<h4 class="font-weight-thin text-h5 mt-4">Alexandra Rincones <v-icon class="secondary--text">mdi-check-circle</v-icon></h4>

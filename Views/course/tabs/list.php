@@ -11,19 +11,19 @@
     </v-tab>
 
     <v-tab-item class="px-3 pt-5" value="users">
-        <?php echo new Controller\Template('course/tabs/list_tabs/users') ?>
+        <?= new Controller\Template('course/tabs/list_tabs/users') ?>
     </v-tab-item>
 
     <v-tab-item class="px-3 py-10" value="classes">
-        <?php echo new Controller\Template('course/tabs/list_tabs/classes') ?>
+        <?= new Controller\Template('course/tabs/list_tabs/classes') ?>
     </v-tab-item>
 
     <v-tab-item class="px-3 py-10" value="quizzes">
-        <?php echo new Controller\Template('course/tabs/list_tabs/quizzes') ?>
+        <?= new Controller\Template('course/tabs/list_tabs/quizzes') ?>
     </v-tab-item>
 
     <v-tab-item class="px-3 py-10" value="orders">
-        <?php echo new Controller\Template('course/tabs/list_tabs/orders') ?>
+        <?= new Controller\Template('course/tabs/list_tabs/orders') ?>
     </v-tab-item>
 
 </v-tabs>

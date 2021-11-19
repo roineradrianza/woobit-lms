@@ -7,12 +7,12 @@
 													<v-expansion-panel-header @keyup.space.prevent>
 														<v-row class="d-flex align-center" no-gutters>
 															<v-col cols="12">
-																<p><?php echo $question['name'] ?></p>
+																<p><?= $question['name'] ?></p>
 															</v-col>
 														</v-row>
 													</v-expansion-panel-header>
 													<v-expansion-panel-content>
-														<?php echo $question['text'] ?>
+														<?= $question['text'] ?>
 													</v-expansion-panel-content>
 												</v-expansion-panel>
 											</v-expansion-panels>

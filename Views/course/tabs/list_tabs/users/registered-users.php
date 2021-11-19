@@ -67,7 +67,7 @@
                                     <v-btn class="primary" v-if="user_selected != '' && rol_selected != ''"
                                         :loading="add_loading" @click="addUser" block>Añadir Utilizator al curso</v-btn>
                                 </v-col>
-                                <?php echo new Controller\Template('components/alert') ?>
+                                <?= new Controller\Template('components/alert') ?>
                             </v-row>
                         </v-container>
                     </v-card-text>

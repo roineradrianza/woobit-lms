@@ -57,7 +57,10 @@ class Routes
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->footer = true;
-                    $this->content = new Template("home", $courses);
+                    $this->content = new Template("home", [
+                            'courses' =>$courses
+                        ]
+                    );
                     break;
 
                 case 'admin':
@@ -224,7 +227,6 @@ class Routes
                             if (!$student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']) && !$course->user_has_access($course_result['course_id'], $_SESSION) || !isset($_SESSION['user_id'])) {
                                 header("Location: " . SITE_URL . '/login/?redirect_url=' . SITE_URL . '/courses/' . $route[1] . '/' . $route[2] . '/');
                             }
-
                             
                             $lesson = new Lesson;
                             $course_sponsor = new CourseSponsors;
@@ -233,8 +235,6 @@ class Routes
                             if (empty($lesson_item[0])) {
                                 header("Location: " . SITE_URL . '/courses/' . $route[1]);
                             }
-
-                            
 
                             $lesson_meta = new LessonMeta;
                             $lesson_view = new LessonViews;
@@ -352,8 +352,9 @@ class Routes
 
                                 $course_result = $course_result[0];
 
-                                $instructor = $member->get($course_result['user_id'], ['first_name', 'last_name', 'avatar']);
+                                $instructor = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar']);
                                 $course_result['instructor'] = $instructor[0];
+                                $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id: $course_result['course_id']);
                                 $course_result['students'] = $course->get_total_students($course_result['course_id']);
                                 $course_result['classes'] = $section->get_total_lessons($course_result['course_id']);
                                 $course_result['instructors'] = $student_course->get_instructors($course_result['course_id']);
@@ -412,6 +413,7 @@ class Routes
 
                                     $course_result['sections'][] = $course_section;
                                 }
+                                $this->title = $course_result['title'];
                                 $this->scripts = [['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'lib/lodash.min']];
                                 if (isset($course_result['manage_course']) && $course_result['manage_course']) {
                                     $this->scripts[] = ['name' => 'vue-components/vue-json-excel.umd'];

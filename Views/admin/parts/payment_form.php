@@ -23,15 +23,15 @@
                           		<v-row>
 		                            
                                 <template v-if="payments.editedItem.name == 'Zelle'">
-                                  <?php echo new Controller\Template('admin/parts/payment/zelle') ?>
+                                  <?= new Controller\Template('admin/parts/payment/zelle') ?>
                                 </template>
 
                                 <template v-else-if="payments.editedItem.name == 'Bank Transfer(Bs)'">
-                                  <?php echo new Controller\Template('admin/parts/payment/bs-bank-transfer') ?>
+                                  <?= new Controller\Template('admin/parts/payment/bs-bank-transfer') ?>
                                 </template>
 
                                 <template v-else-if="payments.editedItem.name == 'PagoMovil'">
-                                  <?php echo new Controller\Template('admin/parts/payment/pagomovil') ?>
+                                  <?= new Controller\Template('admin/parts/payment/pagomovil') ?>
                                 </template>
 
                           		</v-row>

@@ -1,7 +1,7 @@
 <style type="text/css">
     @page {
       margin: 2.5%;
-      background-image: url('<?php echo DIRECTORY; ?>/img/certificado-bg.png');
+      background-image: url('<?= DIRECTORY; ?>/img/certificado-bg.png');
 
     }
     h1, h2, h3, h4, h5, h6 {
@@ -55,11 +55,11 @@
   <div class="container">
     <header>
       <div style="width:100%" align="right">
-          <img src="<?php echo DIRECTORY; ?>/img/logo.png" width="110px">
+          <img src="<?= DIRECTORY; ?>/img/logo.png" width="110px">
       </div>
     </header>
     <div style="margin-top:-40px;margin-bottom: -20px;" align="center">
-      <img src="<?php echo DIRECTORY; ?>/img/SVCC.jpg" width="150px">
+      <img src="<?= DIRECTORY; ?>/img/SVCC.jpg" width="150px">
     </div>
     <div style="width:100%;">
         <h2 class="certified-title text-uppercase text-center" style="margin-bottom: -40px;">Certificado
@@ -70,13 +70,13 @@
         <h3 class="text-center" style="font-size: 20pt;"><b>Otorgado a</b></h3>
     </div>
     <div style="width:100%;margin-bottom: -50px; padding: 0px 15px 0px 15px">
-      <h3 class="full-name text-center"><?php echo $data['first_name'] ?> <?php echo $data['last_name'] ?></h3>
+      <h3 class="full-name text-center"><?= $data['first_name'] ?> <?= $data['last_name'] ?></h3>
     </div>
     <div>
       <div style="width: 100%;">
         <div style="width:100%" align="left">
           <div align="left" style="margin-left: 10%">
-            <img src="<?php echo DIRECTORY; ?>/img/firma-josesvg.png" style="border-bottom: 1.7px solid black" width="140px">          
+            <img src="<?= DIRECTORY; ?>/img/firma-josesvg.png" style="border-bottom: 1.7px solid black" width="140px">          
           </div>
           <div style="margin-left: 6.5%" align="left">
             <h4 style="font-family: arial !important; font-size: 14pt;"><b>Dr. José Ramón Medina</b></h4>          
@@ -86,7 +86,7 @@
       <div style="width: 100%;margin-top:-135px">
         <div style="width:100%" align="right">
           <div align="right" style="width:90%">
-            <img src="<?php echo DIRECTORY; ?>/img/firma-armando.png" style="border-bottom: 1.7px solid black" width="140px">      
+            <img src="<?= DIRECTORY; ?>/img/firma-armando.png" style="border-bottom: 1.7px solid black" width="140px">      
           </div>
           
           <div style="width:91.5%" align="right">
@@ -109,15 +109,15 @@
       <h3 class="text-center text-uppercase" style="font-family: arial !important; margin-top: -15px;"><b>40 horas académicas / 27 horas crédito</b></h3>
     </div>
     <div style="width: 100%;" align="center">
-      <img src="<?php echo DIRECTORY; ?>/img/federacion-venezolana.jpg" width="60px">
+      <img src="<?= DIRECTORY; ?>/img/federacion-venezolana.jpg" width="60px">
     </div>
     <?php if (count(explode(' ', $data['first_name'] . ' ' . $data['last_name'])) > 3): ?>
     <div style="width:100%; margin-top: 20px;">
-        <img src="<?php echo DIRECTORY; ?>/img/hospital-san-juan-de-dios.jpg" width="300px">
+        <img src="<?= DIRECTORY; ?>/img/hospital-san-juan-de-dios.jpg" width="300px">
     </div>
     <?php else: ?>
     <div style="width:100%; margin-top: 110px;">
-        <img src="<?php echo DIRECTORY; ?>/img/hospital-san-juan-de-dios.jpg" width="300px">
+        <img src="<?= DIRECTORY; ?>/img/hospital-san-juan-de-dios.jpg" width="300px">
     </div>
     <?php endif ?>
   </div>

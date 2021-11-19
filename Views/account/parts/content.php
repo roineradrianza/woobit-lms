@@ -39,7 +39,7 @@
         </v-col>
         <v-col cols="12" md="4" v-for="course in new_courses">
             <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="primary"
-                :href="'<?php echo SITE_URL ?>/courses/'+course.slug">
+                :href="'<?= SITE_URL ?>/courses/'+course.slug">
 
                 <v-img width="100vw" class="align-end" :src="course.featured_image">
                 </v-img>
@@ -69,7 +69,7 @@
         </v-col>
         <v-col cols="12" md="4" v-for="course in my_courses">
             <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="secondary"
-                :href="'<?php echo SITE_URL ?>/courses/'+course.slug">
+                :href="'<?= SITE_URL ?>/courses/'+course.slug">
 
                 <v-img width="100vw" class="align-end" :src="course.featured_image">
                 </v-img>
@@ -84,7 +84,7 @@
     
 </v-col>
 
-<?php echo new Controller\Template('account/parts/private/profile_edit') ?>
-<?php echo new Controller\Template('account/parts/private/courses') ?>
-<?php echo new Controller\Template('account/parts/private/orders') ?>
-<?php echo new Controller\Template('account/parts/private/grades') ?>
+<?= new Controller\Template('account/parts/private/profile_edit') ?>
+<?= new Controller\Template('account/parts/private/courses') ?>
+<?= new Controller\Template('account/parts/private/orders') ?>
+<?= new Controller\Template('account/parts/private/grades') ?>

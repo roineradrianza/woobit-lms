@@ -5,14 +5,14 @@
             <v-row justify="center" align="center">
                 <v-col class="d-flex justify-center align-center" cols="12">
                     <v-avatar size="80">
-                        <v-img src="<?php echo $avatar ?>"></v-img>
+                        <v-img src="<?= $avatar ?>"></v-img>
                     </v-avatar>
                     <p class="white--text mb-0 ml-2">
                         <v-row>
                             <v-col cols="12">
                                 <span class="body-1">
-                                    <?php echo $first_name ?>
-                                    <?php echo $last_name ?>
+                                    <?= $first_name ?>
+                                    <?= $last_name ?>
                                 </span>
                                 <br>
                                 <span>

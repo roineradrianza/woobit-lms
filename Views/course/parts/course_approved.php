@@ -12,7 +12,7 @@
         <v-card-text>
             <v-row>
                 <v-col class="d-flex justify-center" cols="12" md="11">
-                    <img src="<?php echo SITE_URL ?>/img/certificate-granted.svg" width="70%">
+                    <img src="<?= SITE_URL ?>/img/certificate-granted.svg" width="70%">
                 </v-col>
                 <v-col cols="12">
                     <h4 class="text-h5 text-center">
@@ -20,7 +20,7 @@
                     </h4>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
-                    <v-btn color="primary" href="<?php echo SITE_URL . "/courses/$slug?course_tab=comments"?>">
+                    <v-btn color="primary" href="<?= SITE_URL . "/courses/$slug?course_tab=comments"?>">
                         Calificar curso</v-btn>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
@@ -43,7 +43,7 @@
         <v-card-text>
             <v-row>
                 <v-col class="d-flex justify-center" cols="12" md="11">
-                    <img src="<?php echo SITE_URL ?>/img/certificate-granted.svg" width="70%">
+                    <img src="<?= SITE_URL ?>/img/certificate-granted.svg" width="70%">
                 </v-col>
                 <v-col cols="12">
                     <h4 class="text-h5 text-center">
@@ -51,11 +51,11 @@
                     </h4>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
-                    <v-btn color="primary" href="<?php echo SITE_URL . "/courses/$slug?course_tab=comments"?>">
+                    <v-btn color="primary" href="<?= SITE_URL . "/courses/$slug?course_tab=comments"?>">
                         Calificar curso</v-btn>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
-                    <v-btn color="secondary" href="<?php echo SITE_URL . "/checkout/?course_id=$course_id&course=$title&extra=certified"?>">Adquirir Certificado</v-btn>
+                    <v-btn color="secondary" href="<?= SITE_URL . "/checkout/?course_id=$course_id&course=$title&extra=certified"?>">Adquirir Certificado</v-btn>
                 </v-col>
             </v-row>
         </v-card-text>

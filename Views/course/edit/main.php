@@ -41,21 +41,21 @@
 						    <v-tab class="py-6 white--text font-weight-light">FAQ</v-tab>
 						    <v-tab class="py-6 white--text font-weight-light">Configuración</v-tab>
 						    <v-tab-item class="px-md-14 px-7 py-10">
-						    <?php echo new Controller\Template('course/edit/tabs/general') ?>
+						    <?= new Controller\Template('course/edit/tabs/general') ?>
 						    </v-tab-item>
 						    <v-tab-item class="px-md-14 px-7 py-10">
-						    <?php echo new Controller\Template('course/edit/tabs/instructors') ?>
+						    <?= new Controller\Template('course/edit/tabs/instructors') ?>
 						    </v-tab-item>
 						    <v-tab-item class="px-md-14 px-7 py-10">
-						    <?php echo new Controller\Template('course/edit/tabs/curriculum') ?>
+						    <?= new Controller\Template('course/edit/tabs/curriculum') ?>
 						    </v-tab-item>
 						    <v-tab-item class="px-md-14 px-7 py-10">
-						    <?php echo new Controller\Template('course/edit/tabs/FAQ') ?>
+						    <?= new Controller\Template('course/edit/tabs/FAQ') ?>
 						    </v-tab-item>
 						    <v-tab-item class="px-md-14 px-7 py-10">
-						    <?php echo new Controller\Template('course/edit/tabs/setup') ?>
+						    <?= new Controller\Template('course/edit/tabs/setup') ?>
 						    </v-tab-item>
 						  </v-tabs>
 					</v-col>
-					<?php echo new Controller\Template('course/edit/parts/sidebar') ?>
+					<?= new Controller\Template('course/edit/parts/sidebar') ?>
 				</v-row>

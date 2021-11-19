@@ -17,7 +17,7 @@
                   <table border='0' cellpadding='0' cellspacing='0' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;'>
                     <tr>
                       <td style='font-size: 16px; vertical-align: top;'>
-                        <p>Solicitaste recientemente el reestablecimiento de tu contraseña, puedes continuar a través del siguiente link <a href="<?php echo SITE_URL ?>/password-reset/?code=<?php echo $data['reset_code'] ?>" style="color: #3d0235;"><?php echo SITE_URL ?>/password-reset?code=<?php echo $data['reset_code'] ?></a>. 
+                        <p>Solicitaste recientemente el reestablecimiento de tu contraseña, puedes continuar a través del siguiente link <a href="<?= SITE_URL ?>/password-reset/?code=<?= $data['reset_code'] ?>" style="color: #3d0235;"><?= SITE_URL ?>/password-reset?code=<?= $data['reset_code'] ?></a>. 
                         <br>
                         <br>
                         <span style="text-align: center;">

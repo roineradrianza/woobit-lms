@@ -19,22 +19,22 @@
                       <td style='font-size: 16px; vertical-align: top;'>
                         <p>
                           Pasos para realizar una inscripción exitosa:
-                          Debe ingresar a <a href="<?php echo SITE_URL ?>"><?php echo SITE_URL ?></a> 
+                          Debe ingresar a <a href="<?= SITE_URL ?>"><?= SITE_URL ?></a> 
                           <br>
                           1- Inicia sesión con los datos que le enviamos en este mail
                           <br>
                           2- Se dirige al curso de este año 
-                          <a href="<?php echo SITE_URL ?>/courses/<?php echo $data['course']['slug'] ?>" style="color: #3d0235;"><b><?php echo SITE_URL ?>/courses/<?php echo $data['course']['slug'] ?></b></a>
+                          <a href="<?= SITE_URL ?>/courses/<?= $data['course']['slug'] ?>" style="color: #3d0235;"><b><?= SITE_URL ?>/courses/<?= $data['course']['slug'] ?></b></a>
                           <br>
-                          3- Coloca el número de cupón <b><?php echo $data['coupon']['coupon_code'] ?></b>
+                          3- Coloca el número de cupón <b><?= $data['coupon']['coupon_code'] ?></b>
                           <br>
                         </p>
                         <?php if (!empty($data['password'])): ?>
                         <p>
                           Para iniciar sesión, utiliza las siguientes credenciales: <br>
-                          <span><b>Email:</b><?php echo $data['email'] ?></span>
+                          <span><b>Email:</b><?= $data['email'] ?></span>
                           <br>
-                          <span><b>Parola:</b><?php echo $data['password'] ?></span>
+                          <span><b>Parola:</b><?= $data['password'] ?></span>
                           <br>
                           <br>
                           <span>Puedes cambiar tu contraseña al iniciar sesión y completar el formulario de registro.</span>   
@@ -44,7 +44,7 @@
                           Debajo de este texto, encontrarás el número del cupón</a>
                         </p>
                         <div style="color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
-                          <p style='text-align: center;'><?php echo $data['coupon']['coupon_code'] ?></p>
+                          <p style='text-align: center;'><?= $data['coupon']['coupon_code'] ?></p>
                         </div>
                       </td>
                     </tr>
@@ -54,7 +54,7 @@
               <?php if (!empty($data['course_sponsors'])): ?>
               <tr>
                 <td style="display: flex;">
-                  <img src='<?php echo $data['course_sponsors']['course_meta_val'] ?>' style="width:100%; max-width: 95%; margin:auto"></img>
+                  <img src='<?= $data['course_sponsors']['course_meta_val'] ?>' style="width:100%; max-width: 95%; margin:auto"></img>
                 </td>
               </tr>
               <?php endif ?>

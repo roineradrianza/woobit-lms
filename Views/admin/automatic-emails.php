@@ -72,7 +72,7 @@
                     <label class="body-1 font-weight-normal pl-1">Archivo a adjuntar (Opcional)</label>
                     <v-file-input type="file" name="email_attachment" v-model="email.attachment" class="mt-3 fl-text-input pt-select" prepend-icon="" filled rounded dense clearable></v-file-input>
                   </v-col>
-                  <?php echo new Controller\Template('components/alert') ?>
+                  <?= new Controller\Template('components/alert') ?>
                   <v-col class="d-flex justify-center" cols="12" v-if="optionSelected == 0">
                     <v-btn class="primary white--text" @click="sendCoupons()" :loading="send_loading">Enviar correo</v-btn>
                   </v-col>

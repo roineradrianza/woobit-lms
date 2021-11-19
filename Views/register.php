@@ -11,11 +11,11 @@
         <p class="text-h6 text-center mb-n1 pr-md-10">Utilizați: </p>
         <v-row class="d-flex justify-center pr-md-10">
             <v-btn class="ma-2 white--text padding- py-6" @click="googleSignIn">
-                <v-img class="myGoogleButton" src="<?php echo SITE_URL ?>/img/google-logo.png" width="1vw">
+                <v-img class="myGoogleButton" src="<?= SITE_URL ?>/img/google-logo.png" width="1vw">
                 </v-img>
             </v-btn>
             <v-btn class="ma-2 white--text py-6" v-if="1 == 2">
-                <v-img src="<?php echo SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
+                <v-img src="<?= SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
             </v-btn>
         </v-row>
         <v-form ref="form" v-model="valid" lazy-validation>
@@ -101,7 +101,7 @@
                     <v-text-field type="password" name="password_confirm" v-model="form.password_confirm"
                         class="mt-3" outlined></v-text-field>
                 </v-col>
-                <?php echo new Controller\Template('components/alert') ?>
+                <?= new Controller\Template('components/alert') ?>
                 <v-col cols="12">
                     <v-row class="px-10 d-flex align-center">
                         <v-col cols="12" md="4"></v-col>

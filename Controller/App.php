@@ -7,10 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-use Controller\Template;
-use Controller\Routes;
-use Controller\Helper;
-use Controller\KeepSession;
+use Controller\{Template, Routes, Helper, KeepSession};
 
 class App
 {

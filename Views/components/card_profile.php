@@ -9,11 +9,11 @@
 			    ></v-img>
 
 			    <v-card-title>
-			     	<?php echo $data['full_name'] ?>
+			     	<?= $data['full_name'] ?>
 			    </v-card-title>
 
 			    <v-card-subtitle>
-			     	<?php echo $data['job_title'] ?>
+			     	<?= $data['job_title'] ?>
 			    </v-card-subtitle>
 			  </v-card>
 			</template>

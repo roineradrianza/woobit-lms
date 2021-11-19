@@ -1,4 +1,4 @@
-<?php echo new Controller\Template('components/loaders/table.php') ?>
+<?= new Controller\Template('components/loaders/table.php') ?>
 <template v-if="!loaders.table">
   <v-data-table
     :headers="headers"
@@ -21,13 +21,13 @@
               <span class="headline">{{ formTitle }}</span>
             </v-card-title>
 
-            <?php echo new Controller\Template('components/forms/'.$data['form'].'.php') ?>
+            <?= new Controller\Template('components/forms/'.$data['form'].'.php') ?>
 
           </v-card>
         </v-dialog>
       </v-toolbar>
     </template>
-    <?php echo new Controller\Template('components/table_actions.php') ?>
+    <?= new Controller\Template('components/table_actions.php') ?>
     <template v-slot:no-data>
       <v-btn
         color="primary"

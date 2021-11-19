@@ -1,5 +1,5 @@
 <v-row>
-    <?php echo new Controller\Template('course/parts/resources/preview') ?>
+    <?= new Controller\Template('course/parts/resources/preview') ?>
     <template v-for="resource in resources">
         <v-col cols="12">
             <v-card class="mx-auto outlined">

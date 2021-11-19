@@ -2,7 +2,7 @@
     <v-col class="mw-md" cols="12">
         <v-row class="d-flex">
             <v-col class="d-flex justify-end mb-4" cols="12">
-                <v-img src="<?php echo SITE_URL ?>/img/home/bubbles.svg" max-width="100px"></v-img>
+                <v-img src="<?= SITE_URL ?>/img/home/bubbles.svg" max-width="100px"></v-img>
             </v-col>
             
             <v-col class="d-md-flex align-end" cols="12" md="8">
@@ -20,7 +20,7 @@
                     <v-col cols="12" md="2">
                         <div class="d-flex justify-center">
                             <v-avatar size="150px">
-                                <img class="mb-6 obj-cover" src="<?php echo SITE_URL ?>/img/avatar/01.jpg"></img>
+                                <img class="mb-6 obj-cover" src="<?= SITE_URL ?>/img/avatar/01.jpg"></img>
                             </v-avatar>
                         </div>
                         <h4 class="text-center font-weight-bold text-h6">Nancy Michel</h4>
@@ -43,7 +43,7 @@
                     <v-col cols="12" md="2">
                         <div class="d-flex justify-center">
                             <v-avatar size="150px">
-                                <img class="mb-6 obj-cover" src="<?php echo SITE_URL ?>/img/avatar/02.jpg"></img>
+                                <img class="mb-6 obj-cover" src="<?= SITE_URL ?>/img/avatar/02.jpg"></img>
                             </v-avatar>
                         </div>
                         <h4 class="text-center font-weight-bold text-h6">Laura Branch</h4>
@@ -63,7 +63,7 @@
                     <v-col cols="12" md="2">
                         <div class="d-flex justify-center">
                             <v-avatar size="150px">
-                                <img class="mb-6 obj-cover" src="<?php echo SITE_URL ?>/img/avatar/03.jpg"></img>
+                                <img class="mb-6 obj-cover" src="<?= SITE_URL ?>/img/avatar/03.jpg"></img>
                             </v-avatar>
                         </div>
                         <h4 class="text-center font-weight-bold text-h6">Randy Alleyne</h4>
@@ -83,7 +83,7 @@
                     <v-col cols="12" md="2">
                         <div class="d-flex justify-center">
                             <v-avatar size="150px">
-                                <img class="mb-6 obj-cover" src="<?php echo SITE_URL ?>/img/avatar/04.jpg"></img>
+                                <img class="mb-6 obj-cover" src="<?= SITE_URL ?>/img/avatar/04.jpg"></img>
                             </v-avatar>
                         </div>
                         <h4 class="text-center font-weight-bold text-h6">Jon Leyba</h4>
@@ -103,7 +103,7 @@
                     <v-col cols="12" md="2">
                         <div class="d-flex justify-center">
                             <v-avatar size="150px">
-                                <img class="mb-6 obj-cover" src="<?php echo SITE_URL ?>/img/avatar/05.jpg"></img>
+                                <img class="mb-6 obj-cover" src="<?= SITE_URL ?>/img/avatar/05.jpg"></img>
                             </v-avatar>
                         </div>
                         <h4 class="text-center font-weight-bold text-h6">Joasia Kamińska</h4>

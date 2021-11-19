@@ -6,8 +6,8 @@
         <vue-editor id="lesson_editor" class="mt-3 fl-text-input" v-model="lessons.item.meta.description" placeholder="Descriere del curso" />
       </v-col>
 
-     <?php echo new Controller\Template('course/edit/parts/resources') ?>
-     <?php echo new Controller\Template('components/alert') ?>
+     <?= new Controller\Template('course/edit/parts/resources') ?>
+     <?= new Controller\Template('components/alert') ?>
 
     </v-row>
     

@@ -10,7 +10,7 @@
 				                    <v-avatar color="white" width="100" height="100">
 				                    	<?php if (!empty($instructor['avatar'])): ?>
 
-												      <img src="<?php echo $instructor['avatar'] ?>">
+												      <img src="<?= $instructor['avatar'] ?>">
 
 	                    				<?php else: ?>
 
@@ -21,7 +21,7 @@
 
 	                    		</v-col>
 	                    		<v-col class="mb-n6" cols="12">
-										    		<p class="text-h5 text-center white--text"><?php echo $instructor['first_name'] . ' ' . $instructor['last_name'] ?></p>
+										    		<p class="text-h5 text-center white--text"><?= $instructor['first_name'] . ' ' . $instructor['last_name'] ?></p>
 	                    		</v-col>
                     		</v-card>
                     	</v-row>

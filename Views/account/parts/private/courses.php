@@ -34,7 +34,7 @@
         </v-col>
         <v-col cols="12" md="4" v-for="course in my_courses">
             <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="secondary"
-                :href="'<?php echo SITE_URL ?>/courses/'+course.slug">
+                :href="'<?= SITE_URL ?>/courses/'+course.slug">
 
                 <v-img width="100vw" class="align-end" :src="course.featured_image">
                 </v-img>
@@ -48,14 +48,14 @@
     </v-row>
     <v-row class="px-16" v-else>
         <v-col class="d-flex justify-center" cols="12">
-            <v-img src="<?php echo SITE_URL ?>/img/no-courses.svg" max-width="50%"></v-img>
+            <v-img src="<?= SITE_URL ?>/img/no-courses.svg" max-width="50%"></v-img>
         </v-col>
         <v-col class="m-0" cols="12">
             <h3 class="text-h4 text-center">Se pare că nu v-ați înscris încă la un curs, vă rugăm să căutați un curs și
                 să vă înscrieți.</h3>
         </v-col>
         <v-col class="m-0 d-flex justify-center" cols="12">
-            <v-btn class="secondary white--text" href="<?php echo SITE_URL ?>/courses">Vezi cursuri</v-btn>
+            <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
         </v-col>
         <v-col class="d-flex justify-end" cols="12">
             <v-btn color="red" @click="courses_container = false" :loading="edit_profile_loading" text>Închideți</v-btn>

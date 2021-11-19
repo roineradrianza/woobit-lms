@@ -39,7 +39,7 @@ class LessonViews extends DB
             return [];
         }
 
-        $sql = "SELECT DISTINCT LV.user_id, video_time, video_view, zoom_view, completed, LV.lesson_id, LV.user_id, LV.registered_at, username, email,  CONCAT(U.first_name, ' ', U.last_name) AS full_name FROM {$this->table} LV INNER JOIN {$this->table_user} U ON U.user_id = LV.user_id INNER JOIN {$this->table_course_user} CU ON CU.user_id = LV.user_id WHERE LV.{$this->lesson_column} = $lesson_id AND CU.course_id = $course_id AND CU.user_rol IN ('estudiante', 'residente')";
+        $sql = "SELECT DISTINCT LV.user_id, video_time, video_view, zoom_view, completed, LV.lesson_id, LV.user_id, LV.registered_at, email,  CONCAT(U.first_name, ' ', U.last_name) AS full_name FROM {$this->table} LV INNER JOIN {$this->table_user} U ON U.user_id = LV.user_id INNER JOIN {$this->table_course_user} CU ON CU.user_id = LV.user_id WHERE LV.{$this->lesson_column} = $lesson_id AND CU.course_id = $course_id AND CU.user_rol IN ('estudiante', 'residente')";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {

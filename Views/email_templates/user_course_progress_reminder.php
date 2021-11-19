@@ -17,8 +17,8 @@
                   <table border='0' cellpadding='0' cellspacing='0' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;'>
                     <tr>
                       <td style='font-size: 16px; vertical-align: top;'>
-                        <p style="text-align: center">Esto es un recordatorio para continuar con el curso al que te has inscrito <b style="color: #3d0235">"<?php echo $course['title'] ?>"</b></p>
-                        <p style="text-align: center">Puede ir directamente al curso a través del siguiente link: <a href="<?php echo SITE_URL ?>/courses/<?php echo $course['slug'] ?>/" style="color: #3d0235"><?php echo SITE_URL ?>/courses/<?php echo $course['slug'] ?>/</a></p>
+                        <p style="text-align: center">Esto es un recordatorio para continuar con el curso al que te has inscrito <b style="color: #3d0235">"<?= $course['title'] ?>"</b></p>
+                        <p style="text-align: center">Puede ir directamente al curso a través del siguiente link: <a href="<?= SITE_URL ?>/courses/<?= $course['slug'] ?>/" style="color: #3d0235"><?= SITE_URL ?>/courses/<?= $course['slug'] ?>/</a></p>
                       </td>
                     </tr>
                   </table>

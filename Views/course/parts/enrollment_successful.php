@@ -15,13 +15,13 @@
                     <v-row>
                         <v-row class="px-16" cols="12">
                             <v-col class="d-flex justify-center" cols="12">
-                                <v-img src="<?php echo SITE_URL ?>/img/white-logo.png" width="150px"
+                                <v-img src="<?= SITE_URL ?>/img/white-logo.png" width="150px"
                                     height="150px" contain></v-img>
                             </v-col>
                             <v-col cols="12">
                                 <div class="text-md-h3 text-h5 text-center white--text">
                                     Felicidades por inscribirte a <br>
-                                    <b><?php echo $data['title'] ?></b>
+                                    <b><?= $data['title'] ?></b>
                                 </div>
                             </v-col>
                         </v-row>
@@ -147,16 +147,16 @@
                 </v-stepper-step>
                 <v-stepper-content step="3">
                     <p>Para nuestras clases en vivos, les estaremos notificando vía correo electrónico, a través de las
-                        notificaciones de la página y en tu <a href="<?php echo SITE_URL ?>/profile/"
+                        notificaciones de la página y en tu <a href="<?= SITE_URL ?>/profile/"
                             target="_blank">perfil</a> podrás tener un apartado de clases en vivo desde la cual podrás
                         acceder como se muestra a continuación:</p>
                     <v-col class="mt-4" cols="12">
                         <v-row class="d-flex align-center gradient">
                             <v-col class="py-0 px-0" cols="12" md="3">
-                                <v-img src="<?php echo $data['featured_image'] ?>"></v-img>
+                                <v-img src="<?= $data['featured_image'] ?>"></v-img>
                             </v-col>
                             <v-col cols="12" md="7">
-                                <span class="text-h5 font-weight-bold white--text"><?php echo $data['title'] ?></span>
+                                <span class="text-h5 font-weight-bold white--text"><?= $data['title'] ?></span>
                                 <br>
                                 <span class="text-h6 white--text">Sección 1</span>
                                 <br>

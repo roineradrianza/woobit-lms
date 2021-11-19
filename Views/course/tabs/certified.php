@@ -12,12 +12,12 @@
                     <v-alert icon="mdi-certificate" prominent type="secondary">
                         <v-row class="d-flex justify-center">
                             <v-col class="grow">
-                                Obtén tu certificado de <b><?php echo $title ?></b> por
-                                <b>$<?php echo $meta['certified_price'] ?></b>
+                                Obtén tu certificado de <b><?= $title ?></b> por
+                                <b>$<?= $meta['certified_price'] ?></b>
                             </v-col>
                             <v-col class="shrink">
                                 <v-btn color="white"
-                                    href="<?php echo SITE_URL ?>/checkout/?course_id=<?php echo $course_id ?>&course=<?php echo $title ?>&extra=certified"
+                                    href="<?= SITE_URL ?>/checkout/?course_id=<?= $course_id ?>&course=<?= $title ?>&extra=certified"
                                     outlined>Pagar certificado</v-btn>
                             </v-col>
                         </v-row>
@@ -26,7 +26,7 @@
                 <?php else: ?>
                 <template v-if="my_progress.certified !== ''">
                     <v-col class="d-flex justify-center" cols="12" md="6">
-                        <img src="<?php echo SITE_URL ?>/img/certificate-granted.svg" width="60%">
+                        <img src="<?= SITE_URL ?>/img/certificate-granted.svg" width="60%">
                     </v-col>
                     <v-col cols="12">
                         <h4 class="text-h5 text-center">
@@ -40,7 +40,7 @@
                 </template>
                 <template v-else>
                     <v-col class="d-flex justify-center" cols="12" md="6">
-                        <img src="<?php echo SITE_URL ?>/img/no-course-approved.svg" width="60%">
+                        <img src="<?= SITE_URL ?>/img/no-course-approved.svg" width="60%">
                     </v-col>
                     <v-col cols="12">
                         <h4 class="text-h5 text-center">
@@ -53,7 +53,7 @@
                 <?php else: ?>
                 <template v-if="my_progress.certified !== ''">
                     <v-col class="d-flex justify-center" cols="12" md="6">
-                        <img src="<?php echo SITE_URL ?>/img/certificate-granted.svg" width="60%">
+                        <img src="<?= SITE_URL ?>/img/certificate-granted.svg" width="60%">
                     </v-col>
                     <v-col cols="12">
                         <h4 class="text-h5 text-center">
@@ -67,7 +67,7 @@
                 </template>
                 <template v-else>
                     <v-col class="d-flex justify-center" cols="12" md="6">
-                        <img src="<?php echo SITE_URL ?>/img/no-course-approved.svg" width="60%">
+                        <img src="<?= SITE_URL ?>/img/no-course-approved.svg" width="60%">
                     </v-col>
                     <v-col cols="12">
                         <h4 class="text-h5 text-center">
@@ -83,8 +83,8 @@
                     <v-alert icon="mdi-certificate" prominent type="secondary">
                         <v-row class="d-flex justify-center">
                             <v-col class="grow">
-                                Obtén tu certificado de <b><?php echo $title ?></b> por
-                                <b>$<?php echo $meta['certified_price'] ?></b>
+                                Obtén tu certificado de <b><?= $title ?></b> por
+                                <b>$<?= $meta['certified_price'] ?></b>
                             </v-col>
                         </v-row>
                     </v-alert>

@@ -14,8 +14,8 @@
                             <v-avatar>
                                 <?php if (!empty($_SESSION['avatar'])): ?>
 
-                                <v-img class="elevation-6" src="<?php echo $_SESSION['avatar'] ?>"
-                                    alt="<?php echo $_SESSION['first_name'] ?>">
+                                <v-img class="elevation-6" src="<?= $_SESSION['avatar'] ?>"
+                                    alt="<?= $_SESSION['first_name'] ?>">
                                 </v-img>
 
                                 <?php else: ?>
@@ -59,8 +59,8 @@
                                     <v-list-item-avatar color="white darken-3">
                                         <?php if (!empty($_SESSION['avatar'])): ?>
 
-                                        <v-img class="elevation-6" src="<?php echo $_SESSION['avatar'] ?>"
-                                            alt="<?php echo $_SESSION['first_name'] ?>">
+                                        <v-img class="elevation-6" src="<?= $_SESSION['avatar'] ?>"
+                                            alt="<?= $_SESSION['first_name'] ?>">
                                         </v-img>
 
                                         <?php else: ?>
@@ -70,8 +70,8 @@
                                     </v-list-item-avatar>
 
                                     <v-list-item-content>
-                                        <v-list-item-title><?php echo $_SESSION['first_name'] ?>
-                                            <?php echo $_SESSION['last_name'] ?></v-list-item-title>
+                                        <v-list-item-title><?= $_SESSION['first_name'] ?>
+                                            <?= $_SESSION['last_name'] ?></v-list-item-title>
                                     </v-list-item-content>
 
                                     <v-row align="center" justify="end">
@@ -100,7 +100,7 @@
             <v-col cols="12" v-if="rating.items.length < 1">
                 <v-row class="d-flex justify-center">
                     <v-col class="d-flex justify-center" cols="12" md="6">
-                        <img src="<?php echo SITE_URL?>/img/no-comments.svg" width="60%">
+                        <img src="<?= SITE_URL?>/img/no-comments.svg" width="60%">
                     </v-col>
                     <v-col cols="12">
                         <h4 class="text-h5 text-center">No hay comentarios aún por parte de los estudiantes del curso</h4>

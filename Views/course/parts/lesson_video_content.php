@@ -9,7 +9,7 @@
         @timeupdate="onPlayerTimeupdate($event)" @canplay="onPlayerCanplay($event)"
         @canplaythrough="onPlayerCanplaythrough($event)" @ready="playerReadied"
         @statechanged="playerStateChanged($event)" v-else></video-player>
-    <h3 class="my-5"><?php echo $data['lesson']['lesson_name'] ?></h3>
+    <h3 class="my-5"><?= $data['lesson']['lesson_name'] ?></h3>
     <?php if (isset($course['manage_course']) && $course['manage_course']):?>
     <v-col class="pl-0" cols="11">
         <template v-if="percent_loading_active">
@@ -40,10 +40,10 @@
         <v-divider class="secondary mb-5"></v-divider>
         <?php if (!empty($data['lesson']['first_name']) && !empty($data['lesson']['last_name'])): ?>
         <v-avatar>
-            <img src="<?php echo $data['lesson']['avatar'] ?>" alt="John">
+            <img src="<?= $data['lesson']['avatar'] ?>" alt="John">
         </v-avatar>
         <span class="font-weight-light">By:
-            <?php echo $data['lesson']['first_name'] . ' ' . $data['lesson']['last_name']?></span>
+            <?= $data['lesson']['first_name'] . ' ' . $data['lesson']['last_name']?></span>
         <?php endif ?>
     </v-col>
     <?php if (!empty($data['course']['course_sponsors'])): ?>
@@ -59,8 +59,8 @@
                     <?php foreach ($data['course']['course_sponsors'] as $sponsor): ?>
 
                     <v-col cols="4" md="3">
-                        <a href="<?php echo $sponsor['website'] ?>">
-                            <v-img src="<?php echo $sponsor['logo_url'] ?>" width="100%" style="max-width:300px">
+                        <a href="<?= $sponsor['website'] ?>">
+                            <v-img src="<?= $sponsor['logo_url'] ?>" width="100%" style="max-width:300px">
                             </v-img>
                         </a>
                     </v-col>

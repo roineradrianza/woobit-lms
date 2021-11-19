@@ -46,7 +46,7 @@
 
                                 <template #item.action="{ item }">
                                     <v-btn color="secondary"
-                                        :href="'<?php echo SITE_URL ?>/courses/'+ grades.course.slug + '/' + item.lesson_id"
+                                        :href="'<?= SITE_URL ?>/courses/'+ grades.course.slug + '/' + item.lesson_id"
                                         text>
                                         Mergeți la test
                                     </v-btn>
@@ -82,7 +82,7 @@
     </v-row>
     <v-row class="px-16" v-else>
         <v-col class="d-flex justify-center" cols="12">
-            <v-img src="<?php echo SITE_URL ?>/img/no-grades.svg" max-width="40%"></v-img>
+            <v-img src="<?= SITE_URL ?>/img/no-grades.svg" max-width="40%"></v-img>
         </v-col>
         <v-col class="m-0" cols="12">
             <h4 class="text-h5 text-center">
@@ -90,7 +90,7 @@
             </h4>
         </v-col>
         <v-col class="m-0 d-flex justify-center" cols="12">
-            <v-btn class="secondary white--text" href="<?php echo SITE_URL ?>/courses">Vezi cursuri</v-btn>
+            <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
         </v-col>
     </v-row>
 </v-col>

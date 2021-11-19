@@ -83,7 +83,7 @@ class StudentCourse extends DB
             return [];
         }
 
-        $sql = "SELECT CU.user_id, username, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE user_rol IN ('estudiante', 'residente') AND course_id = $course_id";
+        $sql = "SELECT CU.user_id, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE user_rol IN ('estudiante', 'residente') AND course_id = $course_id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -98,7 +98,7 @@ class StudentCourse extends DB
             return [];
         }
 
-        $sql = "SELECT CU.user_id, username, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE course_id = $course_id";
+        $sql = "SELECT CU.user_id, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE course_id = $course_id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -128,7 +128,7 @@ class StudentCourse extends DB
             return [];
         }
 
-        $sql = "SELECT CU.user_id, username, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE course_id = $course_id AND user_rol = '$rol'";
+        $sql = "SELECT CU.user_id, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE course_id = $course_id AND user_rol = '$rol'";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -143,7 +143,7 @@ class StudentCourse extends DB
             return [];
         }
 
-        $sql = "SELECT SC.user_id, username, first_name, last_name, email FROM {$this->table_student_coupons} SC INNER JOIN {$this->table_course_coupons} CC ON CC.coupon_id = SC.coupon_id INNER JOIN {$this->table} CU ON CU.course_id = CC.course_id INNER JOIN {$this->table_users} U ON U.user_id = SC.user_id WHERE CC.discount = 100 AND CC.student_rol IN ('estudiante', 'residente') AND CU.course_id = $course_id AND SC.already_used = 0 GROUP BY SC.user_id";
+        $sql = "SELECT SC.user_id, first_name, last_name, email FROM {$this->table_student_coupons} SC INNER JOIN {$this->table_course_coupons} CC ON CC.coupon_id = SC.coupon_id INNER JOIN {$this->table} CU ON CU.course_id = CC.course_id INNER JOIN {$this->table_users} U ON U.user_id = SC.user_id WHERE CC.discount = 100 AND CC.student_rol IN ('estudiante', 'residente') AND CU.course_id = $course_id AND SC.already_used = 0 GROUP BY SC.user_id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -158,7 +158,7 @@ class StudentCourse extends DB
             return [];
         }
 
-        $sql = "SELECT SC.user_id, username, first_name, last_name, email FROM {$this->table_student_coupons} SC INNER JOIN {$this->table_course_coupons} CC ON CC.coupon_id = SC.coupon_id INNER JOIN {$this->table} CU ON CU.course_id = CC.course_id INNER JOIN {$this->table_users} U ON U.user_id = SC.user_id WHERE CC.discount = 100 AND CC.student_rol IN ('profesor') AND CU.course_id = $course_id AND SC.already_used = 0 GROUP BY SC.user_id";
+        $sql = "SELECT SC.user_id, first_name, last_name, email FROM {$this->table_student_coupons} SC INNER JOIN {$this->table_course_coupons} CC ON CC.coupon_id = SC.coupon_id INNER JOIN {$this->table} CU ON CU.course_id = CC.course_id INNER JOIN {$this->table_users} U ON U.user_id = SC.user_id WHERE CC.discount = 100 AND CC.student_rol IN ('profesor') AND CU.course_id = $course_id AND SC.already_used = 0 GROUP BY SC.user_id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -173,7 +173,7 @@ class StudentCourse extends DB
             return [];
         }
 
-        $sql = "SELECT CU.user_id, username, avatar, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE user_rol = 'profesor' AND course_id = $course_id";
+        $sql = "SELECT CU.user_id, avatar, first_name, last_name, email FROM {$this->table} CU INNER JOIN {$this->table_users} U ON U.user_id = CU.user_id WHERE user_rol = 'profesor' AND course_id = $course_id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {

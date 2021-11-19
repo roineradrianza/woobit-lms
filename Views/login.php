@@ -14,11 +14,11 @@
                     </v-text-field>
                 </v-col>
                 <v-row>
-                    <?php echo new Controller\Template('components/alert') ?>
+                    <?= new Controller\Template('components/alert') ?>
                 </v-row>
                 <v-btn class="white--text secondary mb-6 mt-4 py-6" :loading="loading" @click="signIn"
                     :disabled="email == '' || password == ''" block>Autentificare</v-btn>
-                <v-btn class="mb-4 secondary--text font-weight-bold" href="<?php echo SITE_URL ?>/register" block text>
+                <v-btn class="mb-4 secondary--text font-weight-bold" href="<?= SITE_URL ?>/register" block text>
 					Înregistrare
 				</v-btn>
                 <v-row justify="center">
@@ -27,11 +27,11 @@
                         <p class="text-h6 mt-2 text-center primary--text">Conectați-vă cu</p>
                     </v-col>
                     <v-btn class="ma-2 white--text padding- py-6" @click="googleSignIn">
-                        <v-img class="myGoogleButton" src="<?php echo SITE_URL ?>/img/google-logo.png" width="1vw">
+                        <v-img class="myGoogleButton" src="<?= SITE_URL ?>/img/google-logo.png" width="1vw">
                         </v-img>
                     </v-btn>
                     <v-btn class="ma-2 white--text py-6" v-if="1 == 2">
-                        <v-img src="<?php echo SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
+                        <v-img src="<?= SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
                     </v-btn>
                 </v-row>
                 <v-col class="mt-6" cols="12">
@@ -41,7 +41,7 @@
 					</a>
                 </v-col>
             </v-row>
-            <?php echo new Controller\Template('components/reset_password') ?>
+            <?= new Controller\Template('components/reset_password') ?>
         </v-form>
     </v-col>
 </v-row>

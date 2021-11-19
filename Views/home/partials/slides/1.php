@@ -8,11 +8,11 @@
                         interactive.</h2>
                 </v-col>
                 <v-col cols="12" md="10">
-                    <form :action="'<?php echo SITE_URL ?>/courses/?search=' + search" method="GET">
+                    <form :action="'<?= SITE_URL ?>/courses/?search=' + search" method="GET">
                         <v-text-field v-model="search" label="Ce dorești să înveți?" light flat dense solo>
                             <template #append>
                                 <v-btn class="my-4 mx-6 mx-md-0" color="secondary"
-                                    :href="'<?php echo SITE_URL ?>/courses/?search=' + search" text icon>
+                                    :href="'<?= SITE_URL ?>/courses/?search=' + search" text icon>
                                     <v-icon size="35px">mdi-magnify</v-icon>
                                 </v-btn>
                             </template>
@@ -22,7 +22,7 @@
             </v-row>
         </v-col>
         <v-col class="d-flex justify-center mb-n3 mb-lg-n0" cols="12" md="6" lg="6">
-            <img src="<?php echo SITE_URL ?>/img/home/slider/1/image-1.png" class="img-slide-1 d-block d-md-none"></img>
+            <img src="<?= SITE_URL ?>/img/home/slider/1/image-1.png" class="img-slide-1 d-block d-md-none"></img>
         </v-col>
     </v-row>
 </v-sheet>

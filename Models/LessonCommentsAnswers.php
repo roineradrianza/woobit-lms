@@ -20,7 +20,7 @@ class LessonCommentsAnswers extends DB
             return false;
         }
 
-        $sql = "SELECT lesson_comment_answer_id, comment, LC.user_id, published_at, avatar, first_name, last_name, username FROM {$this->table} LC INNER JOIN users U ON U.user_id = LC.user_id WHERE {$this->id_lesson_comment_column} = $id";
+        $sql = "SELECT lesson_comment_answer_id, comment, LC.user_id, published_at, avatar, first_name, last_name FROM {$this->table} LC INNER JOIN users U ON U.user_id = LC.user_id WHERE {$this->id_lesson_comment_column} = $id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {

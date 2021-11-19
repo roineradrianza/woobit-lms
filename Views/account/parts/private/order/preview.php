@@ -49,11 +49,11 @@
                                     </v-col>
 
                                     <template v-if="orders.editedItem.payment_method == 'Zelle'">
-                                        <?php echo new Controller\Template('account/parts/private/order/preview/zelle') ?>
+                                        <?= new Controller\Template('account/parts/private/order/preview/zelle') ?>
                                     </template>
 
                                     <template v-else-if="orders.editedItem.payment_method == 'Bank Transfer(Bs)'">
-                                        <?php echo new Controller\Template('account/parts/private/order/preview/bs-bank-transfer') ?>
+                                        <?= new Controller\Template('account/parts/private/order/preview/bs-bank-transfer') ?>
                                     </template>
                                     
                                 </v-row>

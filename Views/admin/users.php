@@ -24,7 +24,7 @@
                       </v-toolbar>
                       
                       <v-divider></v-divider>
-                      <?php echo new Controller\Template('admin/parts/user_form') ?>
+                      <?= new Controller\Template('admin/parts/user_form') ?>
                     </v-card>
                   </v-dialog>
                   <v-dialog v-model="dialogDelete" max-width="1200px">

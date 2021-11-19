@@ -7,7 +7,7 @@
           <div class='content' style='box-sizing: border-box; display: block; Margin: 0 auto; max-width: 580px; padding: 10px;'>
 
             <!-- START CENTERED WHITE CONTAINER -->
-            <span class='preheader' style='color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;'><?php echo $data['content'] ?></span>
+            <span class='preheader' style='color: transparent; display: none; height: 0; max-height: 0; max-width: 0; opacity: 0; overflow: hidden; mso-hide: all; visibility: hidden; width: 0;'><?= $data['content'] ?></span>
             <table class='main' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;'>
               <td style="display: flex;">
                 <img src='https://full-learning.com/img/logo.png' style="width:35%; max-width: 200px; margin:auto;"></img>                
@@ -18,7 +18,7 @@
                   <table border='0' cellpadding='0' cellspacing='0' style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;'>
                     <tr>
                       <td style='font-size: 16px; vertical-align: top;'>
-                        <?php echo $data['content'] ?>
+                        <?= $data['content'] ?>
                       </td>
                     </tr>
                   </table>
