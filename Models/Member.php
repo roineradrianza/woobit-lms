@@ -50,11 +50,11 @@ class Member extends DB
         return $arr;
     }
 
-    public function search_user($username = '')
+    public function search_user($email = '')
     {
-        $sql = "SELECT user_id, avatar, username, first_name, last_name, email FROM {$this->table} WHERE username LIKE '%{$username}%' OR email = '$username' ORDER BY username ASC";
-        if (empty($username)) {
-            $sql = "SELECT user_id, avatar, username, first_name, last_name, email FROM {$this->table} ORDER BY username ASC";
+        $sql = "SELECT user_id, avatar, first_name, last_name, email FROM {$this->table} WHERE email = '$email'";
+        if (empty($email)) {
+            $sql = "SELECT user_id, avatar, first_name, last_name, email FROM {$this->table} ORDER BY email ASC";
         }
 
         $result = $this->execute_query($sql);
@@ -65,11 +65,10 @@ class Member extends DB
         return $arr;
     }
 
-    public function check_user($login, $password, $encrypt_password = true)
+    public function check_user($email, $password, $encrypt_password = true)
     {
         $password = $encrypt_password ? md5($password) : $password;
-        $column = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $sql = "SELECT * FROM {$this->table} WHERE $column = '$login' AND `password` = '$password'";
+        $sql = "SELECT * FROM {$this->table} WHERE 'email' = '$email' AND `password` = '$password'";
         $result = $this->execute_query($sql);
         if ($result) {
             return $result->fetch_object();
@@ -78,10 +77,9 @@ class Member extends DB
         return null;
     }
 
-    public function check_exist_credential($credential)
+    public function check_exist_credential($email)
     {
-        $column = filter_var($credential, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        $sql = "SELECT * FROM {$this->table} WHERE $column = '$credential'";
+        $sql = "SELECT * FROM {$this->table} WHERE email = '$email'";
         $result = $this->execute_query($sql);
         if ($result->fetch_object() != null) {
             return true;
@@ -136,7 +134,7 @@ class Member extends DB
         $columns = implode(',', $columns);
         extract($data);
         $password = md5($password);
-        $sql = "INSERT INTO {$this->table} ($columns) VALUES('$username','$first_name', '$last_name', '$email', '$gender', '$birthdate', '$user_type', '$password')";
+        $sql = "INSERT INTO {$this->table} ($columns) VALUES('$first_name', '$last_name', '$email', '$gender', '$birthdate', '$user_type', '$password')";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
@@ -176,7 +174,7 @@ class Member extends DB
 
         extract($data);
         $user_type = empty($user_type) ? 'miembro' : $user_type;
-        $sql = "UPDATE {$this->table} SET username = '$username', first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate', user_type = '$user_type' WHERE {$this->id_column} = $id;";
+        $sql = "UPDATE {$this->table} SET first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate', user_type = '$user_type' WHERE {$this->id_column} = $id;";
         if (isset($data['password'])) {
             $password = md5($password);
             $sql = "UPDATE {$this->table} SET first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate', user_type = '$user_type', password = '$password' WHERE {$this->id_column} = $id;";
@@ -192,10 +190,10 @@ class Member extends DB
         }
 
         extract($data);
-        $sql = "UPDATE {$this->table} SET username = '$username', first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate' WHERE {$this->id_column} = $id;";
+        $sql = "UPDATE {$this->table} SET first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate' WHERE {$this->id_column} = $id;";
         if (isset($data['password']) and $data['password'] != "") {
             $password = md5($password);
-            $sql = "UPDATE {$this->table} SET username = '$username', first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate', password = '$password' WHERE {$this->id_column} = $id;";
+            $sql = "UPDATE {$this->table} SET first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate', password = '$password' WHERE {$this->id_column} = $id;";
         }
         $result = $this->execute_query($sql);
         return $result;

@@ -38,9 +38,6 @@ box-shadow: -2px 15px 107px -15px rgba(0,0,0,0.16) !important;
 .upload-button{
 	font-size: .875rem;
 }
-.pt-select .v-input__slot{
-	padding-top: 13px !important;
-}
 #tel-input.vue-tel-input-vuetify .country-code{
 	width:90px;
 	margin-right: 15px;

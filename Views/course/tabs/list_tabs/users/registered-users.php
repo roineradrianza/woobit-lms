@@ -48,15 +48,13 @@
                                                 rounded dense>
                                                 <template #item="{ item }">
                                                     {{ item.first_name }} {{ item.last_name }} <span
-                                                        class="secondary--text" v-if="null === item.username">
-                                                        ({{ item.email }})</span><span class="secondary--text" v-else>
-                                                        ({{ item.username }})</span>
+                                                        class="secondary--text">
+                                                        ({{ item.email }})</span>
                                                 </template>
                                                 <template #selection="{ item }">
                                                     {{ item.first_name }} {{ item.last_name }} <span
-                                                        class="secondary--text" v-if="null === item.username">
-                                                        ({{ item.email }})</span><span class="secondary--text" v-else>
-                                                        ({{ item.username }})</span>
+                                                        class="secondary--text">
+                                                        ({{ item.email }})</span>
                                                 </template>
                                             </v-select>
                                         </v-col>

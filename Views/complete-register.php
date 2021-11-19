@@ -24,12 +24,6 @@
                 </v-col>
 
                 <v-col cols="12" md="6">
-                    <label class="body-1 font-weight-thin pl-1">Utilizator</label>
-                    <v-text-field type="text" name="username" v-model="form.username" class="mt-3 fl-text-input"
-                        :rules="validations.usernameRules" filled rounded dense></v-text-field>
-                </v-col>
-
-                <v-col cols="12" md="6">
                     <label class="body-1 font-weight-thin pl-1">Email</label>
                     <v-text-field type="email" name="email" v-model="form.email" class="mt-3 fl-text-input"
                         :rules="validations.emailRules" filled rounded dense></v-text-field>

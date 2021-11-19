@@ -8,11 +8,6 @@
                                 <v-select class="mt-3 fl-text-input" v-model="editedItem.user_type" :items="user_types" :rules="validations.selectRules" filled rounded dense></v-select>
                               </v-col>
                               <v-col cols="12" md="6">
-                                <label class="body-1 font-weight-thin pl-1">Utilizator</label>
-                                <v-text-field type="text" name="username" v-model="editedItem.username" class="mt-3 fl-text-input" :rules="validations.usernameRules" filled rounded dense></v-text-field>
-                              </v-col>
-
-                              <v-col cols="12" md="6">
                                 <label class="body-1 font-weight-thin pl-1">Înregistrare</label>
                                 <v-text-field type="text" name="first_name" v-model="editedItem.first_name" class="mt-3 fl-text-input" :rules="validations.nameRules" filled rounded dense></v-text-field>
                               </v-col>

@@ -64,12 +64,6 @@
 																			</v-col>
 																			<v-col cols="12" md="6" v-if="instructors.items.length > 0">
 																				<v-select class="v-normal-input" v-model="lesson.user_id" label="Profesor encargado" :items="instructors.items" @change="lesson.old_lesson_name += ' '" item-value="user_id" clearable dense>
-									                      	<template #item="{item}">
-									                      		{{ item.first_name }} {{ item.last_name }}  <span class="secondary--text"> ({{ item.username }})</span>
-									                      	</template>
-											                    <template #selection="{ item }">
-											                      {{ item.first_name }} {{ item.last_name }} <span class="secondary--text"> ({{ item.username }})</span>
-											                    </template>
 																				</v-select>
 																			</v-col>
 																		</v-row>

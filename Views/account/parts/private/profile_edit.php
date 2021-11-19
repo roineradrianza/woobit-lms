@@ -2,7 +2,7 @@
 	      	<v-col class="white px-12 py-md-8 info-container mx-md-6" cols="12" md="7" v-if="profile_container">
 	      		<v-row>
 							<v-col cols="12" md="6">
-		            <label class="body-1 font-weight-thin pl-1">Înregistrare</label>
+		            <label class="body-1 font-weight-thin pl-1">Nume</label>
 		            <v-text-field type="text" name="first_name" v-model="profile.first_name" class="mt-3" :rules="validations.nameRules" outlined></v-text-field>
 		          </v-col>
 

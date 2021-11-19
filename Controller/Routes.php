@@ -479,7 +479,7 @@ class Routes
                     $this->content = new Template("404");
                     break;
             }
-            if (isset($_SESSION['user_id']) and empty($_SESSION['username']) || empty($_SESSION['meta']['telephone']) || empty($_SESSION['meta']['country'])) {
+            if (isset($_SESSION['user_id']) && empty($_SESSION['meta']['country'])) {
                 $this->header = true;
                 $this->admin_header = false;
                 $this->styles = [];

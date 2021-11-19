@@ -44,13 +44,6 @@
             class="secondary--text">mdi-check-circle</v-icon>
     </h4>
     <v-list color="transparent">
-        <v-list-item class="pl-0 pb-0 pt-0">
-
-            <v-list-item-content>
-                <v-list-item-title class="font-weight-thin">@{{ profile.username }}</v-list-item-title>
-            </v-list-item-content>
-
-        </v-list-item>
         <v-list-item class="pl-0 pb-0 pt-0" v-if="parseInt(profile.meta.become_teacher)">
 
             <v-list-item-content>

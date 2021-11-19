@@ -19,7 +19,6 @@ class KeepSession
 				$result = $member->check_user($helper->decrypt($_COOKIE["u"]), $_COOKIE["p"], false);
 				if (!empty($result)) {
 					$_SESSION['user_id'] = $result->user_id;
-					$_SESSION['username'] = $result->username;
 					$_SESSION['avatar'] = $result->avatar;
 					$_SESSION['first_name'] = $result->first_name;
 					$_SESSION['last_name'] = $result->last_name;

@@ -205,7 +205,7 @@ let vm = new Vue({
             app.save_loading = false
             app.alert = true
             app.alert_type = 'error'
-            app.alert_message = 'Eroare neașteptată, încercați din nou'.        
+            app.alert_message = 'Eroare neașteptată, încercați din nou'  
           })
         }
       },

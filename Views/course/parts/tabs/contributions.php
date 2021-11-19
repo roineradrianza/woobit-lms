@@ -12,7 +12,7 @@
 			    								<v-img :src="item.avatar" v-if="null != item.avatar"></v-img>
 					          			<v-icon color="primary" size="50px" v-else>mdi-account-circle</v-icon>			          		
 					          		</v-avatar>
-					          		<span class="primary--text">{{ getFullName(item) }} <b class="secondary--text">({{ item.username }})</b></span>
+					          		<span class="primary--text">{{ getFullName(item) }}</span>
 					          		<div class="mt-4" v-html="item.comment">
 					          		</div>
 					          		<v-row class="d-flex align-center">
@@ -43,7 +43,7 @@
 	    								<v-img :src="item.avatar" v-if="null != item.avatar"></v-img>
 			          			<v-icon color="primary" size="50px" v-else>mdi-account-circle</v-icon>			          		
 			          		</v-avatar>
-			          		<span class="primary--text">{{ getFullName(item) }} <b class="secondary--text">({{ item.username }})</b></span>
+			          		<span class="primary--text">{{ getFullName(item) }}</span>
 			          		<div class="mt-4" v-html="item.comment">
 			          		</div>
 			          		<v-row class="d-flex align-center">

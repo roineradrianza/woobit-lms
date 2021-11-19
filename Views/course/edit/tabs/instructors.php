@@ -14,10 +14,10 @@
 							          <label class="body-1 font-weight-thin pl-1">Seleccione el Utilizator</label>
 	                      <v-select class="mt-3 fl-text-input" v-model="instructors.user_selected" :items="instructors.users" item-text="item => item.first_name + ' ' + item.last_name"  :rules="validations.requiredRules" @change="filterSubcategories" :disabled="instructors.add_loading" return-object filled rounded dense>
 	                      	<template #item="{item}">
-	                      		{{ item.first_name }} {{ item.last_name }}  <span class="secondary--text"> ({{ item.username }})</span>
+	                      		{{ item.first_name }} {{ item.last_name }}
 	                      	</template>	
 			                    <template #selection="{ item }">
-			                      {{ item.first_name }} {{ item.last_name }} <span class="secondary--text"> ({{ item.username }})</span>
+			                      {{ item.first_name }} {{ item.last_name }}
 			                    </template>
 	                      </v-select>
 						          </template >

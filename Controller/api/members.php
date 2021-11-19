@@ -30,7 +30,7 @@ switch ($method) {
         if ($results > 0) {
             foreach ($results as $member) {
                 $result['user_id'] = $member['user_id'];
-                $result['username'] = $member['username'];
+                
                 $result['avatar'] = $member['avatar'];
                 $result['first_name'] = $member['first_name'];
                 $result['last_name'] = $member['last_name'];
@@ -56,7 +56,7 @@ switch ($method) {
         if ($results > 0) {
             foreach ($results as $member) {
                 $result['user_id'] = $member['user_id'];
-                $result['username'] = $member['username'];
+                
                 $result['avatar'] = $member['avatar'];
                 $result['first_name'] = $member['first_name'];
                 $result['last_name'] = $member['last_name'];
@@ -86,13 +86,13 @@ switch ($method) {
             die(403);
         }
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
-        $columns = ['username', 'first_name', 'last_name', 'email', 'gender', 'birthdate', 'user_type', 'password'];
+        $columns = ['first_name', 'last_name', 'email', 'gender', 'birthdate', 'user_type', 'password'];
         $result = $member->create(sanitize($data), $columns);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo registrar el miembro correctamente', 'error');
+            $helper->response_message('Error', 'Membrul nu a putut fi înregistrat corect', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -101,24 +101,22 @@ switch ($method) {
                 $user_meta->create($meta);
             }
         }
-        $helper->response_message('Éxito', 'Se registró el miembro correctamente', data:['user_id' => $result]);
+        $helper->response_message('Succes', 'Membru înregistrat cu succes', data:['user_id' => $result]);
         break;
 
     case 'register':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
-        $columns = ['username', 'first_name', 'last_name', 'email', 'gender', 'birthdate', 'user_type', 'password'];
+        $columns = ['first_name', 'last_name', 'email', 'gender', 'birthdate', 'user_type', 'password'];
         $data['user_type'] = 'miembro';
-        if ($member->check_exist_credential($data['username'])) {
-            $helper->response_message('Error', 'Ya el nombre de usuario se encuentra registrado, utilice otro nombre de usuario', 'error');
-        } else if ($member->check_exist_credential($data['email'])) {
-            $helper->response_message('Error', 'El correo electrónico ya se encuentra registrado, revise en su correo electrónico si sus credenciales fueron enviadas con anterioridad.', 'error');
+        if ($member->check_exist_credential($data['email'])) {
+            $helper->response_message('Error', 'Acest e-mail este deja înregistrat', 'error');
         }
         $result = $member->create(sanitize($data), $columns);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo registrar completar el registro', 'error');
+            $helper->response_message('Error', 'Imposibilitatea de a vă înregistra Înregistrare completă', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -139,12 +137,12 @@ switch ($method) {
         $cookie_password = md5($data['password']);
         setcookie('u', "$cookie_email", time() + 60 * 60 * 24 * 365, '/');
         setcookie('p', "$cookie_password", time() + 60 * 60 * 24 * 365, '/');
-        $helper->response_message('Éxito', 'Te haz registrado correctamente, espera unos momentos para continuar');
+        $helper->response_message('Succes', 'V-ați înregistrat cu succes, vă rugăm să așteptați câteva momente pentru a continua.');
         break;
 
     case 'update':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
         if (strlen($data['user_id']) > 40) {
@@ -153,7 +151,7 @@ switch ($method) {
         $id = intval($data['user_id']);
         $result = $member->edit($id, sanitize($data));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo editar el miembro correctamente', 'error');
+            $helper->response_message('Error', 'Membrul nu a putut fi editat corect', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -162,11 +160,11 @@ switch ($method) {
                 $user_meta->edit($id, $meta);
             }
         }
-        $helper->response_message('Éxito', 'Se editó el miembro correctamente');
+        $helper->response_message('Succes', 'Se editó el miembro correctamente');
         break;
     case 'sign-in':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $result = null;
@@ -186,7 +184,7 @@ switch ($method) {
                 $columns = ['google_id', 'avatar', 'first_name', 'last_name', 'email', 'gender', 'user_type', 'password'];
                 $result = $member->create_with_google($credentials, $columns);
                 if (!$result) {
-                    $helper->response_message('Error', 'No se logró procesar el registro correctamente, intente de nuevo', 'error');
+                    $helper->response_message('Error', 'Nu s-a reușit procesarea corectă a înregistrării, încercați din nou', 'error');
                 }
 
                 if (isset($data['meta']) && !empty($data['meta'])) {
@@ -214,7 +212,6 @@ switch ($method) {
         if (!empty($result)) {
             //We declare the session variables
             $_SESSION['user_id'] = $result->user_id;
-            $_SESSION['username'] = $result->username;
             $_SESSION['avatar'] = $result->avatar;
             $_SESSION['first_name'] = $result->first_name;
             $_SESSION['last_name'] = $result->last_name;
@@ -233,31 +230,30 @@ switch ($method) {
             setcookie('p', "$cookie_password", time() + 60 * 60 * 24 * 365, '/');
             $_COOKIE['u'] = $cookie_email;
             $_COOKIE['p'] = $cookie_password;
-            $helper->response_message('Éxito', 'Has iniciado sesión exitosamente, espera un momento', 'success', $_SESSION['redirect_url']);
+            $helper->response_message('Succes', 'V-ați autentificat cu succes, vă rugăm să așteptați un moment', 'success', $_SESSION['redirect_url']);
         } else {
-            $helper->response_message('Error', 'Credenciales incorrectas, por favor, intente de nuevo', 'error');
+            $helper->response_message('Error', 'Acreditare incorectă, vă rugăm să încercați din nou.', 'error');
         }
         break;
 
     case 'delete':
         $result = $member->delete(intval($data['user_id']));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo eliminar el miembro correctamente', 'error');
+            $helper->response_message('Error', 'Membrul nu a putut fi șters corect', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se eliminó el miembro correctamente');
+        $helper->response_message('Succes', 'Membru șters corect');
         break;
 
     case 'update-profile':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $id = $_SESSION['user_id'];
-        $data['username'] = isset($data['username']) ? $data['username'] : $_SESSION['username'];
         $result = $member->edit_profile($id, sanitize($data));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo editar tu información correctamente', 'error');
+            $helper->response_message('Error', 'Informațiile dumneavoastră nu au putut fi editate corect', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -272,19 +268,18 @@ switch ($method) {
         $_SESSION['gender'] = $data['gender'];
         $_SESSION['birthdate'] = $data['birthdate'];
         $_SESSION['meta'] = $data['meta'];
-        $helper->response_message('Éxito', 'Tu información ha sido actualizada correctamente', 'success');
+        $helper->response_message('Succes', 'Informațiile dvs. au fost actualizate corect', 'success');
         break;
 
     case 'complete-register':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $id = $_SESSION['user_id'];
-        $data['username'] = isset($data['username']) ? $data['username'] : $_SESSION['username'];
         $result = $member->edit_profile($id, sanitize($data));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo editar tu información correctamente', 'error');
+            $helper->response_message('Error', 'Informațiile dumneavoastră nu au putut fi editate corect', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -298,14 +293,13 @@ switch ($method) {
                 $user_meta->edit($id, $meta);
             }
         }
-        $_SESSION['username'] = $data['username'];
         $_SESSION['first_name'] = $data['first_name'];
         $_SESSION['last_name'] = $data['last_name'];
         $_SESSION['email'] = $data['email'];
         $_SESSION['gender'] = $data['gender'];
         $_SESSION['birthdate'] = $data['birthdate'];
         $_SESSION['meta'] = $data['meta'];
-        $helper->response_message('Éxito', 'Tu información ha sido actualizada correctamente', 'success');
+        $helper->response_message('Succes', 'Informațiile dvs. au fost actualizate corect', 'success');
         break;
 
     case 'update-member-avatar':
@@ -316,18 +310,18 @@ switch ($method) {
 
         $avatar_file = $_FILES['avatar'];
         $ext = explode(".", $_FILES['avatar']['name']);
-        $file_name = 'siac_avatar_' . time() . '.' . end($ext);
+        $file_name = 'avatar' . time() . '.' . end($ext);
         if (!move_uploaded_file($_FILES["avatar"]["tmp_name"], DIRECTORY . "/public/img/avatars/" . $file_name)) {
-            $helper->response_message('Error', 'No se pudo guardar correctamente la imágen de perfil del miembro', 'error');
+            $helper->response_message('Error', 'Nu s-a putut salva corect imaginea de profil a membrului', 'error');
         }
 
         $result = $member->update_avatar($id, $file_name);
-        $helper->response_message('Éxito', 'Tu imágen de perfil ha sido actualizada correctamente', 'success');
+        $helper->response_message('Succes', 'Imaginea profilului dvs. a fost actualizată cu succes.', 'success');
         break;
 
     case 'update-avatar':
         if (empty($_POST) || empty($_SESSION['user_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = $_POST;
@@ -356,11 +350,13 @@ switch ($method) {
                 $data['avatar'] = $result['ObjectURL'];
             } catch (Aws\S3\Exception\S3Exception$e) {
                 unlink($path);
-                $helper->response_message('Error', 'No se pudo subir la imágen de perfil a S3, intente nuevamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.\n']);
+                $helper->response_message('Error', 'Nu s-a putut încărca imaginea profilului pe Amazon S3, vă rugăm să încercați din nou.', 'error', 
+                    ['err' => 'S-a produs o eroare în încercarea de a încărca fișierul pe Amazon S3.']
+                );
             }
         } else {
             if (!$result) {
-                $helper->response_message('Error', 'No se pudo subir la imágen de perfil, intente nuevamente', 'error');
+                $helper->response_message('Error', 'Nu s-a putut încărca imaginea profilului, vă rugăm să încercați din nou.', 'error');
             }
 
         }
@@ -377,7 +373,7 @@ switch ($method) {
         }
         $result = $member->update_avatar($id, $data['avatar']);
         $_SESSION['avatar'] = $data['avatar'];
-        $helper->response_message('Éxito', 'Tu imágen de perfil ha sido actualizada correctamente', data:['avatar' => $data['avatar']]);
+        $helper->response_message('Succes', 'Imaginea profilului dvs. a fost actualizată cu succes.', data:['avatar' => $data['avatar']]);
         break;
 
     case 'logout':
