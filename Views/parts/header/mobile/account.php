@@ -11,26 +11,30 @@
         </v-btn>
     </template>
     <v-list>
+
+        <v-list-item class="d-flex justify-center">
+            <v-icon>mdi-magnify</v-icon>
+        </v-list-item>
         <?php if ($_SESSION['user_type'] == 'administrador'): ?>
         <v-list-item class="d-flex justify-center">
-            <v-btn href="<?php SITE_URL ?>" text>Inicio</v-btn>
+            <v-btn href="<?php SITE_URL ?>" text>Acasă</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center">
-            <v-btn href="<?php SITE_URL ?>/admin/" text>Panel Administrativo</v-btn>
+            <v-btn href="<?php SITE_URL ?>/admin/" text>Meniul administrativ</v-btn>
         </v-list-item>
         <?php endif ?>
         <v-list-item class="d-flex justify-center">
-            <v-btn href="<?php SITE_URL ?>/profile/" text>Perfil</v-btn>
+            <v-btn href="<?php SITE_URL ?>/profile/" text>Profil</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center" v-if="1 == 2">
             <v-btn href="<?php SITE_URL ?>/become-teacher" text>Conviértete en profesor</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center" v-if="1 == 2">
-            <v-btn href="<?php SITE_URL ?>/my-courses" text>Mis cursos</v-btn>
+            <v-btn href="<?php SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center">
             <v-btn color="red" href="<?php SITE_URL ?>/api/members/logout" text
-                onclick="gapi.auth2.getAuthInstance().signOut()">Cerrar sesión</v-btn>
+                onclick="gapi.auth2.getAuthInstance().signOut()">Deconectați-vă</v-btn>
         </v-list-item>
     </v-list>
 </v-menu>

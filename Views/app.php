@@ -42,16 +42,15 @@
             <!-- Provides the application the proper gutter -->
             <?php if ($data['header']): ?>
             <?php echo new Controller\Template('parts/header') ?>
-            <?php echo new Controller\Template('parts/subheader') ?>
             <?php endif ?>
             <?php if ($data['admin_header']): ?>
             <?php echo new Controller\Template('admin/parts/header') ?>
             <?php endif ?>
-            <v-main class="bg-white">
+            <v-content class="bg-white" tag="main">
                 <v-container fluid>
                     <?php echo $content; ?>
                 </v-container fluid>
-            </v-main>
+            </v-content>
             <?php if ($data['footer']): ?>
             <?php echo new Controller\Template('parts/footer') ?>
             <?php endif ?>

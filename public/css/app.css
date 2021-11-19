@@ -37,6 +37,13 @@ h6 {
 a {
   text-decoration: none;
 }
+.v-main{
+  margin-top: 129px;
+}
+.menu {
+  position: fixed;
+  z-index: 10;
+}
 .obj-cover{
   object-fit: cover;
 }
@@ -315,8 +322,8 @@ video[poster] {
   width: 30vw;
 }
 #slide-1 {
-  background-image: url("../img/home/slider/1/bg-image.png");
-  background-size: contain;
+  background-image: url("../img/home/slider/1/bg-image-1-2.png");
+  background-size: cover;
   background-position: center;
 }
 #slide-4 {
@@ -325,11 +332,6 @@ video[poster] {
   background-position: center;
 }
 /*END CAROUSEL*/
-@media (min-width: 960px) and (max-width: 1500px) {
-  .img-slide-1 {
-    width: 100vw;
-  }
-}
 @media (min-width: 600px) and (max-width: 900px) {
   .v-avatar.teacher-highlight-avatar {
     width: 15vw !important;
@@ -350,12 +352,20 @@ video[poster] {
   }
 }
 @media only screen and (max-width: 599px) {
+
+  #slide-1 {
+    background-image: url("../img/home/slider/1/bg-image.png");
+    background-size: contain;
+  }
+
   .no-ha {
     height: 100% !important;
   }
+
   .no-ha .v-carousel__item {
     height: 100% !important;
   }
+  
   .v-avatar.teacher-highlight-avatar {
     width: 20vw !important;
     height: 20vw !important;

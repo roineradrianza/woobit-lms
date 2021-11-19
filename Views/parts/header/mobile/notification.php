@@ -11,7 +11,7 @@
     </template>
     <v-row></v-row>
     <v-list>
-        <p class="text-center secondary--text font-weight-bold mb-n1">Notificaciones</p>
+        <p class="text-center secondary--text font-weight-bold mb-n1">Notificări</p>
         <v-row class="d-flex justify-center align-center">
             <template v-for="notification in notifications" v-if="notifications.length > 0">
                 <v-col cols="12">
@@ -30,7 +30,7 @@
                     <br>
                 </v-col>
                 <v-col cols="12" class="d-flex justify-end p-0 mt-n8" v-if="notification.redirect_url != null">
-                    <v-btn class="px-6" color="secondary" :href="notification.redirect_url" right light>Ver</v-btn>
+                    <v-btn class="px-6" color="secondary" :href="notification.redirect_url" right light>A se vedea</v-btn>
                 </v-col>
             </template>
             <template v-IF="notifications.length == 0">
@@ -38,7 +38,7 @@
                     <img class="ml-n4" src="<?php echo SITE_URL ?>/img/empty-notifications.svg" width="70%"></img>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12" md="9">
-                    <h5 class="text-h6 text-center secondary--text font-weight-bold">No tienes notificaciones aún</h5>
+                    <h5 class="text-h6 text-center secondary--text font-weight-bold">Nu aveți încă notificări</h5>
                 </v-col>
             </template>
         </v-row>
