@@ -88,3 +88,4 @@
 <?= new Controller\Template('account/parts/private/courses') ?>
 <?= new Controller\Template('account/parts/private/orders') ?>
 <?= new Controller\Template('account/parts/private/grades') ?>
+<?= new Controller\Template('account/parts/private/children') ?>

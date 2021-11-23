@@ -13904,9 +13904,6 @@ html.overflow-y-hidden {
 .theme--light.v-btn.v-btn--disabled:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
     background-color: rgba(0, 0, 0, .12)!important
 }
-.theme--light.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
-    background-color: #f5f5f5
-}
 .theme--light.v-btn.v-btn--outlined.v-btn--text {
     border-color: rgba(0, 0, 0, .12)
 }

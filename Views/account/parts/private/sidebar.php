@@ -60,37 +60,61 @@
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item-group>
-            <v-list-item class="pl-0 pb-0 pt-0" @click="courses_container = true">
+
+            <v-list-item class="pl-0 pb-0 pt-0" @click="courses_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Cursuri</v-list-item-title>
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                        Cursuri
+                    </v-list-item-title>
                 </v-list-item-content>
 
             </v-list-item>
-            <v-list-item class="pl-0 pb-0 pt-0" @click="orders_container = true">
+
+            <v-list-item class="pl-0 pb-0 pt-0" @click="orders_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Plăți</v-list-item-title>
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                        Plăți
+                    </v-list-item-title>
                 </v-list-item-content>
 
             </v-list-item>
+
             <v-divider></v-divider>
-            <v-list-item class="pl-0 pb-0 pt-0" @click="grades_container = true">
+            
+            <v-list-item class="pl-0 pb-0 pt-0" @click="grades_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Calificările mele
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                        Calificările mele
                     </v-list-item-title>
                 </v-list-item-content>
 
             </v-list-item>
-            <v-list-item class="pl-0 pb-0 pt-0" @click="profile_container = true">
+
+            <v-list-item class="pl-0 pb-0 pt-0" @click="profile_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">Editează profilul
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                        Editează profilul
                     </v-list-item-title>
                 </v-list-item-content>
 
             </v-list-item>
+
+            <v-divider></v-divider>
+       
+            <v-list-item class="pl-0 pb-0 pt-0" @click="children_container = true; main_container = false">
+
+                <v-list-item-content>
+                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                        Copii
+                    </v-list-item-title>
+                </v-list-item-content>
+
+            </v-list-item>
+            
         </v-list-item-group>
     </v-list>
 </v-col>

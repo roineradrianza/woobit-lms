@@ -95,6 +95,7 @@
 
     <script src="<?= SITE_URL ?>/js/components/vuetify.min.js"></script>
     <script src="<?= SITE_URL ?>/js/components/vue-resource.min.js"></script>
+    <script src="<?= SITE_URL ?>/js/Classes/Http.min.js"></script>
     <script src="<?= SITE_URL ?>/js/theme.js"></script>
     <script src="<?= SITE_URL ?>/js/setup.js"></script>
     <?php if (!empty($data['scripts'])): ?>

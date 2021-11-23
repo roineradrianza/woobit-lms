@@ -1,5 +1,4 @@
-<v-container class="mb-0 pb-0 d-flex justify-center menu" :class="{white: carousel == undefined || carousel != 3 ? true: false,
-    'bg-yellow': carousel != undefined && carousel == 3 ? true: false}" tag="header" fluid>
+<v-container class="mb-0 pb-0 d-flex justify-center menu white" tag="header" fluid>
     <v-row class="px-md-4 mt-n3 d-flex align-center mw-lg">
         <v-col class="px-8 d-flex justify-center justify-md-start pb-10 pb-md-0" cols="12" md="3">
             <a class="py-md-2" href="/">
@@ -13,7 +12,7 @@
         </v-col>
         <v-col cols="12" md="9" class="mt-md-2 mt-n8 d-none d-md-flex justify-center justify-md-end align-center">
             <v-tabs v-model="nav_tab" class="menu-items" background-color="transparent" right>
-                <v-tab class="black--text font-weight-bold subtitle-1" key="courses">
+                <v-tab class="black--text font-weight-bold subtitle-1" key="search_courses">
                     <v-icon>mdi-magnify</v-icon>
                 </v-tab>
                 <v-tab class="black--text font-weight-bold subtitle-1" key="courses">

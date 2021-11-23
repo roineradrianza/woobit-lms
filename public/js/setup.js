@@ -13,7 +13,10 @@ const current_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + da
 const vuetify_opts = {    
   theme: {
     themes: theme_setup,
-  }
+  },
+  lang: {
+    current: 'ro',
+  },
 };
 
 const vuetify = new Vuetify(vuetify_opts);

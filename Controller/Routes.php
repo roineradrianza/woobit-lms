@@ -439,9 +439,11 @@ class Routes
                 case 'profile':
                     $this->styles = [['name' => 'login'], ['name' => 'profile']];
                     $this->scripts = [
+                        ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
+                        ['name' => 'Classes/Children.min'],
                         ['name' => 'profile.min', 'version' => '1.0.5'],
                     ];
                     $this->content = new Template("account/profile");
