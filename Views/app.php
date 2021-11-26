@@ -36,7 +36,7 @@
 
 <body class="body-preload">
     <?= new Controller\Template('parts/preloader') ?>
-    <div id="full-learning-container">
+    <div id="app-container">
         <!-- Sizes your content based upon application components -->
         <v-app class="preloading" light>
             <!-- Provides the application the proper gutter -->

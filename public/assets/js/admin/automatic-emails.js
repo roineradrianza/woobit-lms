@@ -1,7 +1,7 @@
 /*VUE INSTANCE*/
 let vm = new Vue({
     vuetify,
-    el: '#full-learning-container',
+    el: '#app-container',
     data: {
       alert: false,
       loading: false,

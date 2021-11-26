@@ -2,7 +2,7 @@
 /*VUE INSTANCE*/
 let vm = new Vue({
     vuetify,
-    el: '#full-learning-container',
+    el: '#app-container',
     data: {
       tab: null,
       nav_tab: null,

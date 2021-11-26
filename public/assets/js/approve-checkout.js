@@ -6,7 +6,7 @@ moment.locale('es');
 /*VUE INSTANCE*/
 let vm = new Vue({
     vuetify,
-    el: '#full-learning-container',
+    el: '#app-container',
     data: {     
       previewImage: '',
       loading: false,

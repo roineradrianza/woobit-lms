@@ -16,7 +16,7 @@ window.addEventListener("load", (e) => {
 
 let vm = new Vue({
   vuetify,
-  el: '#full-learning-container',
+  el: '#app-container',
   data: {
     drawer: false,
     tab: null,

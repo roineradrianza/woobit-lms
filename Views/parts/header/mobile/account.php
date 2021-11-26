@@ -27,10 +27,10 @@
             <v-btn href="<?php SITE_URL ?>/profile/" text>Profil</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center" v-if="1 == 2">
-            <v-btn href="<?php SITE_URL ?>/become-teacher" text>Conviértete en profesor</v-btn>
-        </v-list-item>
-        <v-list-item class="d-flex justify-center" v-if="1 == 2">
             <v-btn href="<?php SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>
+        </v-list-item>
+        <v-list-item>
+            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplică</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center">
             <v-btn color="red" href="<?php SITE_URL ?>/api/members/logout" text

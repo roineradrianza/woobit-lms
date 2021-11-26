@@ -3,7 +3,7 @@ const resetCode = params.get('code');
 /*VUE INSTANCE*/
 let vm = new Vue({
     vuetify,
-    el: '#full-learning-container',
+    el: '#app-container',
     data: {
       valid: false,
       tab: null,

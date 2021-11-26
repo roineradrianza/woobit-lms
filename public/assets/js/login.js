@@ -2,7 +2,7 @@
 /*VUE INSTANCE*/
 let vm = new Vue({
     vuetify,
-    el: '#full-learning-container',
+    el: '#app-container',
     data: {
       redirect_url: url_params.get('redirect_url'),
       tab: null,

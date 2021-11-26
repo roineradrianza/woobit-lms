@@ -34,6 +34,9 @@
             </v-list-item-content>
         </v-list-item>
         <v-list-item>
+            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplică</v-btn>
+        </v-list-item>
+        <v-list-item>
             <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text
                 onclick="gapi.auth2.getAuthInstance().signOut()">Deconectați-vă</v-btn>
         </v-list-item>

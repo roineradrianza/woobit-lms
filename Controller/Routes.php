@@ -483,6 +483,26 @@ class Routes
                     $this->content = new Template("checkout/approve-checkout");
                     break;
 
+                case 'how-become-teacher':
+                    $this->styles = [['name' => 'login']];
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'home.min', 'version' => '1.0.0'],
+                    ];
+                    $this->content = new Template("how-to-become-teacher");
+                    break;
+/*
+                case 'become-teacher':
+                    $this->styles = [['name' => 'login']];
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'become-teacher.min', 'version' => '1.0.0'],
+                    ];
+                    $this->content = new Template("how-to-become-teacher");
+                    break;
+*/
                 case 'terms-and-conditions':
                     $this->styles = [['name' => 'login']];
                     $this->scripts = [

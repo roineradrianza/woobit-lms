@@ -2,7 +2,7 @@
 Vue.component("gchart", VueGoogleCharts.GChart);
 let vm = new Vue({
     vuetify,
-    el: '#full-learning-container',
+    el: '#app-container',
     data: {
       loading: false,
       drawer: true,
