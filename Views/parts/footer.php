@@ -2,7 +2,7 @@
     <v-container class="mw-md">
         <v-row justify="center" no-gutters>
             <v-col cols="12" md="3">
-                <p class="text-center white--text">
+                <p class="text-center text-md-right white--text">
                     hello@woobit.ro
                 </p>
                 <div class="d-flex justify-center">

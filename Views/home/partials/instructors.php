@@ -1,5 +1,5 @@
 <v-row class="px-16 mt-4 d-flex justify-center">
-    <v-col class="mw-md" cols="12">
+    <v-col class="mw-lg" cols="12">
         <v-row class="d-flex">
             <v-col class="d-flex justify-end mb-4" cols="12">
                 <v-img src="<?= SITE_URL ?>/img/home/bubbles.svg" max-width="100px"></v-img>

@@ -26,11 +26,11 @@
                         <v-divider></v-divider>
                         <p class="text-h6 mt-2 text-center primary--text">Conectați-vă cu</p>
                     </v-col>
-                    <v-btn class="ma-2 white--text padding- py-6" @click="googleSignIn">
+                    <v-btn class="ma-2 white--text py-6" @click="googleSignIn">
                         <v-img class="myGoogleButton" src="<?= SITE_URL ?>/img/google-logo.png" width="1vw">
                         </v-img>
                     </v-btn>
-                    <v-btn class="ma-2 white--text py-6" v-if="1 == 2">
+                    <v-btn class="ma-2 white--text py-6">
                         <v-img src="<?= SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
                     </v-btn>
                 </v-row>

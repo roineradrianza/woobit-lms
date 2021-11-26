@@ -33,12 +33,17 @@
                     <label class="body-1 font-weight-thin pl-1">Data nașterii</label>
                     <v-dialog ref="birthdate_dialog" v-model="birthdate_modal" :return-value.sync="form.birthdate"
                         width="20vw">
-                        <template v-slot:activator="{ on, attrs }">
-                            <v-text-field class="mt-3 fl-text-input pt-select" v-model="form.birthdate"
-                                append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
-                                :rules="validations.birthdateRules" filled rounded dense></v-text-field>
+                        <template #activator="{ on, attrs }">
+                            <v-text-field class="mt-3 fl-text-input pt-select" v-model="form.birthdate" readonly
+                                v-bind="attrs" v-on="on" :rules="validations.birthdateRules" filled rounded dense>
+                                <template #append>
+                                    <v-icon v-bind="attrs" v-on="on">
+                                        mdi-calendar
+                                    </v-icon>
+                                </template>
+                            </v-text-field>
                         </template>
-                        <v-date-picker v-model="form.birthdate" locale="es" scrollable>
+                        <v-date-picker v-model="form.birthdate" scrollable>
                             <v-spacer></v-spacer>
                             <v-btn text color="primary" @click="birthdate_modal = false">
                                 Cancelar
@@ -96,16 +101,16 @@
                     <v-checkbox v-model="form.agreement" :rules="validations.requiredRules">
                         <template #label>
                             <div>
-                            Sunt de acord că
+                                Sunt de acord că
                                 <v-tooltip bottom>
                                     <template #activator="{ on }">
-                                        <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop v-on="on">
-                                        Teme & Condiții
+                                        <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop
+                                            v-on="on">
+                                            Teme & Condiții
                                         </a>
                                     </template>
                                     Deschideți într-o fereastră nouă
                                 </v-tooltip>
-                                is awesome
                             </div>
                         </template>
                     </v-checkbox>
