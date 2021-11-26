@@ -1,10 +1,19 @@
 <?php
 namespace Controller;
 
-use Model\{
-    Course, StudentCourse, Lesson, CourseSponsors, LessonMeta, LessonViews,
-    Section, CourseMeta, Category, SubCategory, Member, Orders
-};
+use Model\Category;
+use Model\Course;
+use Model\CourseMeta;
+use Model\CourseSponsors;
+use Model\Lesson;
+use Model\LessonMeta;
+use Model\LessonViews;
+use Model\Member;
+use Model\Orders;
+use Model\Section;
+use Model\StudentCourse;
+use Model\SubCategory;
+
 /**
  *
  */
@@ -48,7 +57,7 @@ class Routes
             $this->footer = true;
             switch ($route[0]) {
                 case '':
-                    
+
                     $course = new Course;
                     $courses = $course->get_enabled(4);
                     $this->styles = [['name' => 'videojs-7.8.4', 'url' => 'https://vjs.zencdn.net/7.8.4/video-js.css'], ['external' => true, 'url' => 'https://unpkg.com/vue2-animate/dist/vue2-animate.min.css']];
@@ -58,8 +67,8 @@ class Routes
                     ];
                     $this->footer = true;
                     $this->content = new Template("home", [
-                            'courses' =>$courses
-                        ]
+                        'courses' => $courses,
+                    ]
                     );
                     break;
 
@@ -149,7 +158,6 @@ class Routes
                     $base_asset = ['name' => 'login.min', 'version' => '1.0.0'];
                     $this->styles = [$base_asset];
                     $this->scripts = [$base_asset];
-                    $this->footer = false;
                     $this->content = new Template("login");
                     break;
 
@@ -161,7 +169,6 @@ class Routes
                     $base_asset = ['name' => 'register.min', 'version' => '1.0.0'];
                     $this->styles = [['name' => 'login']];
                     $this->scripts = [['name' => 'vue-components/vue-tel-input-vuetify.min'], ['name' => 'register-validations'], $base_asset];
-                    $this->footer = false;
                     $this->content = new Template("register");
                     break;
 
@@ -214,7 +221,7 @@ class Routes
                             $courses = $course->search(clean_string($_GET['search']));
                             $this->content = new Template("courses_search_result", ['courses' => $courses, 'search_item' => $_GET['search']]);
                         } else if (!empty($route[2])) {
-                            
+
                             $student_course = new StudentCourse;
                             $course = new Course;
 
@@ -227,7 +234,7 @@ class Routes
                             if (!$student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']) && !$course->user_has_access($course_result['course_id'], $_SESSION) || !isset($_SESSION['user_id'])) {
                                 header("Location: " . SITE_URL . '/login/?redirect_url=' . SITE_URL . '/courses/' . $route[1] . '/' . $route[2] . '/');
                             }
-                            
+
                             $lesson = new Lesson;
                             $course_sponsor = new CourseSponsors;
 
@@ -296,7 +303,7 @@ class Routes
                                             break;
 
                                         default:
-                                            
+
                                             $student_course = new StudentCourse;
                                             $data['course']['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
                                             $this->styles = [
@@ -338,7 +345,6 @@ class Routes
 
                             $course_result = $course->get_by_slug(explode('?', $route[1])[0]);
                             if (!empty($course_result)) {
-                                
 
                                 $category = new Category;
                                 $subcategory = new SubCategory;
@@ -354,7 +360,7 @@ class Routes
 
                                 $instructor = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar']);
                                 $course_result['instructor'] = $instructor[0];
-                                $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id: $course_result['course_id']);
+                                $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id:$course_result['course_id']);
                                 $course_result['students'] = $course->get_total_students($course_result['course_id']);
                                 $course_result['classes'] = $section->get_total_lessons($course_result['course_id']);
                                 $course_result['instructors'] = $student_course->get_instructors($course_result['course_id']);
@@ -370,7 +376,7 @@ class Routes
                                     $course_result['current_user_has_enroll'] = $student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']);
                                     $course_result['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
                                     if (!empty($course_result['meta']['paid_certified']) && intval($course_result['meta']['paid_certified'])) {
-                                        
+
                                         $order = new Orders;
                                         $course_result['current_user_has_paid_certified'] =
                                         !empty($order->get_course_orders($_SESSION['user_id'], $course_result['course_id'], status:1)) ?
@@ -426,7 +432,7 @@ class Routes
                             }
                         }
                     } else {
-                        
+
                         $category = new Category;
                         $this->scripts = $base_asset;
                         $this->styles = $base_asset;
@@ -453,7 +459,7 @@ class Routes
                     $this->styles = [['name' => 'login']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
-                        ['name' => 'https://www.paypal.com/sdk/js?client-id='. PAYPAL_CLIENT_ID .'&currency=USD', 'external' => true],
+                        ['name' => 'https://www.paypal.com/sdk/js?client-id=' . PAYPAL_CLIENT_ID . '&currency=USD', 'external' => true],
                         ['name' => 'checkout.min', 'version' => '1.0.2'],
                     ];
                     $this->content = new Template("checkout/main");
@@ -477,6 +483,16 @@ class Routes
                     $this->content = new Template("checkout/approve-checkout");
                     break;
 
+                case 'terms-and-conditions':
+                    $this->styles = [['name' => 'login']];
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'home.min', 'version' => '1.0.0'],
+                    ];
+                    $this->content = new Template("tos");
+                    break;
+
                 default:
                     $this->scripts = [['name' => 'check-gsignin'], ['name' => 'home.min', 'version' => '1.0.0']];
                     $this->title = 'Página no encontrada';
@@ -488,7 +504,6 @@ class Routes
                 $this->admin_header = false;
                 $this->styles = [];
                 $this->scripts = [];
-                $footer = true;
                 $base_asset = ['name' => 'complete-register.min', 'version' => '1.0.0'];
                 $this->styles = [['name' => 'login']];
                 $this->scripts = [

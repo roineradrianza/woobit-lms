@@ -31,7 +31,7 @@
                 </v-tab>
                 <v-btn href="<?= SITE_URL ?>/login"
                     class="white--text px-12 py-3 mt-1 text-uppercase font-weight-bold" color="#e70f66">
-                    Autentificare
+                    Login
                 </v-btn>
                 <?php endif ?>
             </v-tabs>

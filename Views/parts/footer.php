@@ -31,7 +31,9 @@
                     <v-col cols="12" md="4">
                         <h3 class="text-center">Informații</h3>
                         <p class="text-center">Siguranța cursanților</p>
-                        <p class="text-center">Termeni și Condiții</p>
+                        <a href="<?= SITE_URL ?>/terms-and-conditions" class="text-center white--text">
+                            <p>Termeni și Condiții</p>
+                        </a>
                         <p class="text-center">Politica de utilizare a cookie-uri</p>
                         <p class="text-center">Politica datelor cu caracter personal</p>
                     </v-col>
