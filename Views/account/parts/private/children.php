@@ -95,7 +95,7 @@
                                 Da
                             </v-btn>
 
-                            <v-btn @click="children.delete_dialog;children.reset()" :loading="children.loading">
+                            <v-btn @click="children.delete_dialog = false;children.reset()" :loading="children.loading">
                                 Nu
                             </v-btn>
                         </v-col>
