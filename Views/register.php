@@ -1,5 +1,6 @@
 <v-row class="register-container gradient" justify="center">
-    <v-col class="px-md-16 pt-16 white my-12 rounded-xl register-container mb-16" cols="11" md="8" md="7" v-if="loading">
+    <v-col class="px-md-16 pt-16 white my-12 rounded-xl register-container mb-16" cols="11" md="8" md="7"
+        v-if="loading">
         <v-row>
             <v-col cols="6" v-for="i in 20">
                 <v-skeleton-loader class="mt-3" type="text"></v-skeleton-loader>
@@ -20,7 +21,7 @@
         </v-row>
         <v-form ref="form" v-model="valid" lazy-validation>
             <v-row class="pr-md-10">
-				
+
                 <v-col cols="12" md="6">
                     <label class="body-1 font-weight-thin pl-1">Nume</label>
                     <v-text-field type="text" name="first_name" v-model="form.first_name" class="mt-3"
@@ -44,9 +45,9 @@
                     <v-dialog ref="birthdate_dialog" class="" v-model="birthdate_modal"
                         :return-value.sync="form.birthdate" width="20vw">
                         <template v-slot:activator="{ on, attrs }">
-                            <v-text-field class="mt-3 pt-select" v-model="form.birthdate"
-                                append-icon="mdi-calendar" readonly v-bind="attrs" v-on="on"
-                                :rules="validations.birthdateRules" outlined></v-text-field>
+                            <v-text-field class="mt-3 pt-select" v-model="form.birthdate" append-icon="mdi-calendar"
+                                readonly v-bind="attrs" v-on="on" :rules="validations.birthdateRules" outlined>
+                            </v-text-field>
                         </template>
                         <v-date-picker v-model="form.birthdate" locale="es" scrollable>
                             <v-spacer></v-spacer>
@@ -62,25 +63,25 @@
 
                 <v-col cols="12" md="6">
                     <label class="body-1 font-weight-thin pl-1">Sex</label>
-                    <v-select class="mt-3 pt-select" v-model="form.gender" :items="gender"
-                        item-text="text" item-value="value" :rules="validations.genderRules" outlined>
+                    <v-select class="mt-3 pt-select" v-model="form.gender" :items="gender" item-text="text"
+                        item-value="value" :rules="validations.genderRules" outlined>
                     </v-select>
                 </v-col>
 
                 <v-col cols="12" md="6">
                     <label class="body-1 font-weight-thin pl-1">Telefon</label>
-                    <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select"
-                        v-model="form.meta.telephone" label='' mode="international" :inputoptions="{showDialCode: true}"
-                        :rules="validations.telephoneRules" placeholder="Ingresa un número de télefono"
-                        hint="Ej: +58 4245887477" persistent-hint @input="getInput" outlined>
+                    <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select" v-model="form.meta.telephone" label=''
+                        mode="international" :inputoptions="{showDialCode: true}" :rules="validations.telephoneRules"
+                        placeholder="Ingresa un número de télefono" hint="Ej: +58 4245887477" persistent-hint
+                        @input="getInput" outlined>
                     </vue-tel-input-vuetify>
                 </v-col>
 
                 <v-col cols="12" md="6">
                     <label class="body-1 font-weight-thin pl-1">Țara</label>
-                    <v-select class="mt-3 pt-select" v-model="form.country_selected" :items="countries"
-                        item-text="name" item-value="id" v-on:change="filterStates" :rules="validations.countryRules"
-                        outlined></v-select>
+                    <v-select class="mt-3 pt-select" v-model="form.country_selected" :items="countries" item-text="name"
+                        item-value="id" v-on:change="filterStates" :rules="validations.countryRules" outlined>
+                    </v-select>
                 </v-col>
 
                 <v-col cols="12" md="6">
@@ -98,8 +99,27 @@
 
                 <v-col cols="12" md="6">
                     <label class="body-1 font-weight-thin pl-1">Confirmați parola</label>
-                    <v-text-field type="password" name="password_confirm" v-model="form.password_confirm"
-                        class="mt-3" outlined></v-text-field>
+                    <v-text-field type="password" name="password_confirm" v-model="form.password_confirm" class="mt-3"
+                        outlined></v-text-field>
+                </v-col>
+
+                <v-col cols="12">
+                    <v-checkbox v-model="form.agreement" :rules="validations.requiredRules">
+                        <template #label>
+                            <div>
+                            Sunt de acord că
+                                <v-tooltip bottom>
+                                    <template #activator="{ on }">
+                                        <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop v-on="on">
+                                        Teme & Condiții
+                                        </a>
+                                    </template>
+                                    Deschideți într-o fereastră nouă
+                                </v-tooltip>
+                                is awesome
+                            </div>
+                        </template>
+                    </v-checkbox>
                 </v-col>
                 <?= new Controller\Template('components/alert') ?>
                 <v-col cols="12">

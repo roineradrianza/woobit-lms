@@ -91,6 +91,26 @@
                     <v-text-field type="password" name="password_confirm" v-model="form.password_confirm"
                         class="mt-3 fl-text-input" filled rounded dense></v-text-field>
                 </v-col>
+
+                <v-col cols="12">
+                    <v-checkbox v-model="form.agreement" :rules="validations.requiredRules">
+                        <template #label>
+                            <div>
+                            Sunt de acord că
+                                <v-tooltip bottom>
+                                    <template #activator="{ on }">
+                                        <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop v-on="on">
+                                        Teme & Condiții
+                                        </a>
+                                    </template>
+                                    Deschideți într-o fereastră nouă
+                                </v-tooltip>
+                                is awesome
+                            </div>
+                        </template>
+                    </v-checkbox>
+                </v-col>
+
                 <?= new Controller\Template('components/alert') ?>
                 <v-col cols="12">
                     <v-row class="px-10 d-flex align-center">
