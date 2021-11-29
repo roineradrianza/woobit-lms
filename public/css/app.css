@@ -105,6 +105,9 @@ a {
 .v-expansion-panel-header .col {
   line-height: 1.6;
 }
+.custom-tabs [role='tablist'] {
+  border-bottom: 3px solid #13adff;
+}
 /*END*/
 .menu-color,
 .gradient {

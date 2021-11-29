@@ -484,7 +484,6 @@ class Routes
                     break;
 
                 case 'how-become-teacher':
-                    $this->styles = [['name' => 'login']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
