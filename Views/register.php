@@ -57,7 +57,7 @@
                         <v-date-picker v-model="form.birthdate" scrollable>
                             <v-spacer></v-spacer>
                             <v-btn text color="primary" @click="birthdate_modal = false">
-                                Cancelar
+                                Anulează
                             </v-btn>
                             <v-btn text color="primary" @click="$refs.birthdate_dialog.save(form.birthdate)">
                                 OK
