@@ -78,7 +78,7 @@ let vm = new Vue({
       last_name: '',
       id_file: new File([], ''),
       video_file: new File([], ''),
-      status: Number,
+      status: -1,
       meta: {
         teacher_address: '',
         teacher_email: '',
