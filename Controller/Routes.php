@@ -40,14 +40,14 @@ class Routes
             if (isset($controller) and $controller !== "") {
                 $method = isset($route[2]) ? $route[2] : '';
                 $query = isset($route[3]) ? $route[3] : '';
-                require_once DIRECTORY . "/../Controller/api/$controller.php";
+                require_once DIRECTORY . "/Controller/api/$controller.php";
             }
         } else if ($route[0] == "cron") {
             $controller = $route[1];
             if (isset($controller) and $controller !== "") {
                 $method = isset($route[2]) ? $route[2] : '';
                 $query = isset($route[3]) ? $route[3] : '';
-                require_once DIRECTORY . "/../Controller/cron/$controller.php";
+                require_once DIRECTORY . "/Controller/cron/$controller.php";
             }
         } else {
             $this->header = true;
@@ -491,17 +491,22 @@ class Routes
                     ];
                     $this->content = new Template("how-to-become-teacher");
                     break;
-/*
+
                 case 'become-teacher':
+                    if (!isset($_SESSION['user_id'])) {
+                        header("Location: " . SITE_URL . "/login/?redirect_url=" . SITE_URL . "/become-teacher");
+                    }
                     $this->styles = [['name' => 'login']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
+                        ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                        ['name' => 'register-validations'],
                         ['name' => 'become-teacher.min', 'version' => '1.0.0'],
                     ];
-                    $this->content = new Template("how-to-become-teacher");
+                    $this->content = new Template("become-teacher");
                     break;
-*/
+
                 case 'terms-and-conditions':
                     $this->styles = [['name' => 'login']];
                     $this->scripts = [

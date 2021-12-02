@@ -14,6 +14,8 @@
 Mockups/
 vendor/
 public/certified-assets/
+public/docs/*
+public/media/*
 Views/document_templates/certified_templates/
 Views/document_templates/certifieds.php
 

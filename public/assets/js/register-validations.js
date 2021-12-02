@@ -1,3 +1,6 @@
+const expressions = {
+  url: /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
+}
 const validations = {
   selectRules: [
 		v => !!v || 'Selectați o opțiune',
@@ -45,6 +48,22 @@ const validations = {
 
   countryStateRules: [
     v => !!v || 'Selectați provincia',
+  ],
+
+  descriptionRules: [
+    v => (v == '' || v.length <= 2000) || 'Nu poate depăși 2000 de caractere',
+  ],
+
+  urlRules: [
+    v => (v == '' || expressions.url.test(v)) || 'Trebuie să includă o adresă URL validă',
+  ],
+
+  imageRules: [
+    v => !v || v.size < 5000000 || 'Imaginea nu trebuie să fie mai mare de 5 MB!'
+  ],
+
+  videoRules: [
+    v => !v || v.size < 2000000000 || 'Videoclipul nu trebuie să depășească 200 MB!'
   ],
 
   passwordRules: [

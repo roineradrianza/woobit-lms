@@ -21,10 +21,7 @@ $query = empty($query) ? 0 : clean_string($query);
 
 switch ($method) {
     case 'get':
-        if (strlen($query) > 40) {
-            $query = $helper->decrypt($query);
-        }
-        $query = intval($query);
+        $query = is_numeric($query) ? $query : $helper->decrypt($query);
         $results = $member->get($query);
         $members = [];
         if ($results > 0) {
@@ -42,7 +39,7 @@ switch ($method) {
                 $meta = $user_meta->get($result['user_id']);
                 $result['meta'] = [];
                 foreach ($meta as $i => $e) {
-                    $result['meta'][$e['meta_name']] = $e['meta_val'];
+                    $result['meta'][$e['meta_name']] = $helper->is_json($e['meta_val']) ? json_decode($e['meta_val']) : $e['meta_val'];;
                 }
                 $members[] = $result;
             }
@@ -97,7 +94,11 @@ switch ($method) {
 
         if (isset($data['meta']) && !empty($data['meta'])) {
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['meta_name' => $meta_key, 'meta_val' => $meta_value, 'user_id' => $result];
+                $meta = [
+                    'meta_name' => $meta_key, 
+                    'meta_val' => $meta_value, 
+                    'user_id' => $result
+                ];
                 $user_meta->create($meta);
             }
         }
@@ -121,7 +122,10 @@ switch ($method) {
 
         if (isset($data['meta']) && !empty($data['meta'])) {
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['meta_name' => $meta_key, 'meta_val' => $meta_value, 'user_id' => $result];
+                $meta = [
+                    'meta_name' => $meta_key, 
+                    'meta_val' => $meta_value, 'user_id' => $result
+                ];
                 $user_meta->create($meta);
             }
         }
@@ -145,7 +149,7 @@ switch ($method) {
             $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
         }
 
-        if (strlen($data['user_id']) > 40) {
+        if (!is_numeric($data['user_id'])) {
             $data['user_id'] = Helper::decrypt($data['user_id']);
         }
         $id = intval($data['user_id']);
@@ -156,7 +160,10 @@ switch ($method) {
 
         if (isset($data['meta']) && !empty($data['meta'])) {
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['meta_name' => $meta_key, 'meta_val' => $meta_value];
+                $meta = [
+                    'meta_name' => $meta_key, 
+                    'meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value
+                ];
                 $user_meta->edit($id, $meta);
             }
         }

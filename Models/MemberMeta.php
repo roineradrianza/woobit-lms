@@ -56,7 +56,7 @@ class MemberMeta extends DB
 
     public function edit($id, $data = [])
     {
-        if (empty($data) or empty($id)) {
+        if (empty($data) || empty($id)) {
             return false;
         }
 
