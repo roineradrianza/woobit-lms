@@ -16,7 +16,21 @@ class Helper
 
     }
 
-    public static function remove_accents($string)
+    public static function is_json($str) : Bool
+    {
+        $str = preg_replace('/[[:cntrl:]]/', '', $str);
+        $json = json_decode($str, true);
+        return $json && $str != $json;
+    }
+
+    public static function clean_json($str) : Mixed
+    {
+        $str = preg_replace('/[[:cntrl:]]/', '', $str);
+        $json = json_decode($str, true);
+        return $json;
+    }
+
+    public static function remove_accents($string) : String
     {
         $string = str_replace(
             array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
@@ -51,7 +65,7 @@ class Helper
         return $string;
     }
 
-    public static function video_resolution()
+    public static function video_resolution() : Array
     {
         $video_resolution = [
             [
@@ -83,7 +97,7 @@ class Helper
         return $video_resolution;
     }
 
-    public static function array_sort($array, $on, $order = SORT_ASC)
+    public static function array_sort($array, $on, $order = SORT_ASC) : Array
     {
         $new_array = array();
         $sortable_array = array();
@@ -116,7 +130,7 @@ class Helper
         return $new_array;
     }
 
-    public static function response_message($title = '', $message = '', $status = 'success', $data = '')
+    public static function response_message($title = '', $message = '', $status = 'success', $data = '') : Array
     {
         $res = [
             'title' => $title,
@@ -128,14 +142,14 @@ class Helper
         die();
     }
 
-    public static function date_formated($date_parts = ['year' => '', 'mon' => '', 'mday' => ''])
+    public static function date_formated($date_parts = ['year' => '', 'mon' => '', 'mday' => '']) : String
     {
         $date = getdate();
         $current_date = $date['year'] . "-" . $date['mon'] . "-" . $date['mday'];
         return $current_date;
     }
 
-    public static function generate_pdf($template = '', $file_name = '', $folder = '/')
+    public static function generate_pdf($template = '', $file_name = '', $folder = '/') : Mixed
     {
         set_time_limit(3600);
         $file_name = empty($file_name) ? time() : $file_name;
@@ -165,7 +179,7 @@ class Helper
         $mpdf->Output($temp_dir, \Mpdf\Output\Destination::FILE);
     }
 
-    public static function convert_slug($text)
+    public static function convert_slug($text) : String
     {
         $table = array(
             'Š' => 'S', 'š' => 's', 'Đ' => 'Dj', 'đ' => 'dj', 'Ž' => 'Z', 'ž' => 'z', 'Č' => 'C', 'č' => 'c', 'Ć' => 'C', 'ć' => 'c',
@@ -185,7 +199,7 @@ class Helper
         return strtolower(strtr($text, $table));
     }
 
-    public static function send_mail($subject = '', $recipients = [], $message = '', $files = [])
+    public static function send_mail($subject = '', $recipients = [], $message = '', $files = []) : Mixed
     {
         $mail = new PHPMailer(true);
         try {
@@ -228,7 +242,7 @@ class Helper
         return $mail;
     }
 
-    public static function rand_string($length = 16)
+    public static function rand_string($length = 16) : String
     {
         $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $input_length = strlen($input);
@@ -240,7 +254,7 @@ class Helper
         return $random_string;
     }
 
-    public static function encrypt($string = '')
+    public static function encrypt($string = '') : Mixed
     {
         if (empty($string)) {
             return $string;
@@ -250,7 +264,7 @@ class Helper
         return Crypto::encrypt($string, $key);
     }
 
-    public static function decrypt($string = '')
+    public static function decrypt($string = '') : Mixed
     {
         if (empty($string)) {
             return $string;
