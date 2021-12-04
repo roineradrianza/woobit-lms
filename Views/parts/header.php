@@ -18,7 +18,7 @@
                 <v-tab class="black--text font-weight-bold subtitle-1" key="courses">
                     Cursuri
                 </v-tab>
-                <v-tab class="black--text font-weight-bold subtitle-1" key="instructors">
+                <v-tab href="<?= SITE_URL ?>/how-become-teacher" class="black--text font-weight-bold subtitle-1" key="instructors">
                     Lectori
                 </v-tab>
                 <v-tab class="black--text font-weight-bold subtitle-1" key="about">
