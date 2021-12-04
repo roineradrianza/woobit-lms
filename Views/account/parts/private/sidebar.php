@@ -83,16 +83,6 @@
 
             <v-divider></v-divider>
             
-            <v-list-item class="pl-0 pb-0 pt-0" @click="grades_container = true; main_container = false">
-
-                <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
-                        Calificările mele
-                    </v-list-item-title>
-                </v-list-item-content>
-
-            </v-list-item>
-
             <v-list-item class="pl-0 pb-0 pt-0" @click="profile_container = true; main_container = false">
 
                 <v-list-item-content>
