@@ -85,10 +85,10 @@
                             <v-list-item-title class="text-center">Înregistrare</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-                    <v-list-item href="<?= SITE_URL ?>/register">
+                    <v-list-item href="<?= SITE_URL ?>/login">
                         <v-list-item-content>
                             <v-list-item-title class="text-center">
-                                <v-btn href="<?= SITE_URL ?>/register"
+                                <v-btn href="<?= SITE_URL ?>/login"
                                     class="white--text px-12 py-3 mt-1 text-uppercase font-weight-light" color="#e70f66">
                                     Autentificare</v-btn>
                             </v-list-item-title>

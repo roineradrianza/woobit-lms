@@ -12,11 +12,18 @@
                 </p>
                 <p class="white--text text-center text-md-right">Brâncuși</p>
                 <p class="d-flex justify-center justify-md-end">
-                    <v-icon class="mx-4 mx-md-0 ml-md-7" color="grey lighten-2">mdi-facebook</v-icon>
-                    <v-icon class="mx-4 mx-md-0 ml-md-7" color="grey lighten-2">mdi-instagram</v-icon>
+                    <v-btn class="mx-4 mx-md-0 ml-md-7" href="https://www.facebook.com/woobit.ro" icon>
+                        <v-icon color="grey lighten-2">mdi-facebook</v-icon>
+                    </v-btn>
+                    <v-btn class="mx-4 mx-md-0 ml-md-7" href="https://www.instagram.com/woobit.ro/" icon>
+                        <v-icon color="grey lighten-2">mdi-instagram</v-icon>
+                    </v-btn>
                     <v-icon class="mx-4 mx-md-0 ml-md-7" color="grey lighten-2">mdi-pinterest</v-icon>
                     <v-icon class="mx-4 mx-md-0 ml-md-7" color="grey lighten-2">mdi-twitter</v-icon>
-                    <v-icon class="mx-4 mx-md-0 ml-md-7" color="grey lighten-2">mdi-youtube</v-icon>
+                    <v-btn class="mx-4 mx-md-0 ml-md-7" href="https://www.youtube.com/channel/UCaxrbp94GMqbcw-d6YIIZnQ"
+                        icon>
+                        <v-icon color="grey lighten-2">mdi-youtube</v-icon>
+                    </v-btn>
                 </p>
             </v-col>
             <v-col class="d-flex justify-center" cols="12" md="9">
@@ -25,7 +32,9 @@
                         <h3 class="text-center">Link-uri</h3>
                         <p class="text-center">Ofertă cursuri</p>
                         <p class="text-center">Sugestii cursuri</p>
-                        <p class="text-center">Aplică aici</p>
+                        <a href="<?= SITE_URL ?>/how-become-a-teacher" class="text-center white--text">
+                            <p>Aplică aici</p>
+                        </a>
                         <p class="text-center">Domenii</p>
                     </v-col>
                     <v-col cols="12" md="4">
