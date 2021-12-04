@@ -1,5 +1,5 @@
-<v-row class="login-container gradient pb-0 mb-0 py-16" justify="center">
-    <v-col class="px-16 bg-white rounded" cols="11" md="8" lg="6">
+<v-row class="login-container gradient py-16" justify="center">
+    <v-col class="px-md-16 mt-16 mt-md-0 bg-white rounded" cols="11" md="8" lg="6">
         <h2 class="text-h2 pt-md-8 text-center">Conectați-vă.</h2>
         <v-form>
             <v-row class="px-8">

@@ -27,10 +27,10 @@
                 <?php if (!isset($_SESSION['user_id'])): ?>
                 <v-tab href="<?= SITE_URL ?>/register" class="black--text font-weight-bold subtitle-1"
                     key="register">
-                    Inregistreaza-te
+                    Înregistrează-te
                 </v-tab>
                 <v-btn href="<?= SITE_URL ?>/login"
-                    class="white--text px-12 py-3 mt-1 text-uppercase font-weight-bold" color="#e70f66">
+                    class="white--text px-6 py-2 mt-1 text-uppercase font-weight-bold" color="#e70f66">
                     Login
                 </v-btn>
                 <?php endif ?>
@@ -82,14 +82,14 @@
                     </v-list-item>
                     <v-list-item href="<?= SITE_URL ?>/register">
                         <v-list-item-content>
-                            <v-list-item-title class="text-center">Înregistrare</v-list-item-title>
+                            <v-list-item-title class="text-center">Înregistrează-te</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
                     <v-list-item href="<?= SITE_URL ?>/login">
                         <v-list-item-content>
                             <v-list-item-title class="text-center">
                                 <v-btn href="<?= SITE_URL ?>/login"
-                                    class="white--text px-12 py-3 mt-1 text-uppercase font-weight-light" color="#e70f66">
+                                    class="white--text px-6 py-2 mt-1 text-uppercase font-weight-light" color="#e70f66">
                                     Autentificare</v-btn>
                             </v-list-item-title>
                         </v-list-item-content>

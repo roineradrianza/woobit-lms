@@ -47,7 +47,7 @@
             <?= new Controller\Template('admin/parts/header') ?>
             <?php endif ?>
             <v-content class="bg-white" tag="main">
-                <v-container fluid>
+                <v-container class="pt-0" fluid>
                     <?= $content; ?>
                 </v-container fluid>
             </v-content>

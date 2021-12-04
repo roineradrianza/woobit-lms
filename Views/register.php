@@ -1,4 +1,4 @@
-<v-row class="register-container gradient" justify="center">
+<v-row class="register-container gradient py-16" justify="center">
     <v-col class="px-md-16 pt-16 white my-12 rounded-xl register-container mb-16" cols="11" md="8" md="7"
         v-if="loading">
         <v-row>
@@ -45,8 +45,8 @@
                     <v-dialog ref="birthdate_dialog" class="" v-model="birthdate_modal"
                         :return-value.sync="form.birthdate" width="20vw">
                         <template #activator="{ on, attrs }">
-                            <v-text-field class="mt-3 pt-select" v-model="form.birthdate" 
-                                readonly v-bind="attrs" v-on="on" :rules="validations.birthdateRules" outlined>
+                            <v-text-field class="mt-3 pt-select" v-model="form.birthdate" readonly v-bind="attrs"
+                                v-on="on" :rules="validations.birthdateRules" outlined>
                                 <template #append>
                                     <v-icon v-bind="attrs" v-on="on">
                                         mdi-calendar
@@ -77,7 +77,7 @@
                     <label class="body-1 font-weight-thin pl-1">Telefon</label>
                     <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select" v-model="form.meta.telephone" label=''
                         mode="international" :inputoptions="{showDialCode: true}" :rules="validations.telephoneRules"
-                        placeholder="Introduceți un număr de telefon" hint="Ej: +58 4245887477" persistent-hint
+                        placeholder="Adăugați numărul de telefon" hint="Ej: +58 4245887477" persistent-hint
                         @input="getInput" outlined>
                     </vue-tel-input-vuetify>
                 </v-col>
@@ -90,7 +90,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6">
-                    <label class="body-1 font-weight-thin pl-1">Provincie sau oraș</label>
+                    <label class="body-1 font-weight-thin pl-1">Oraș</label>
                     <v-select class="mt-3 pt-select" v-model="form.state_selected" :items="country_states"
                         item-text="name" item-value="id" v-on:change='getLocation'
                         :rules="validations.countryStateRules" outlined></v-select>
@@ -117,11 +117,12 @@
                                     <template #activator="{ on }">
                                         <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop
                                             v-on="on">
-                                            Teme & Condiții
+                                            Termenii și condițiile
                                         </a>
                                     </template>
                                     Deschideți într-o fereastră nouă
                                 </v-tooltip>
+                                Woobit și cu Politica datelor cu caracter
                             </div>
                         </template>
                     </v-checkbox>

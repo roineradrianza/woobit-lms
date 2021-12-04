@@ -1,4 +1,4 @@
-<v-row class="register-container">
+<v-row class="register-container gradient py-16">
     <v-col class="px-md-16 pt-16 white my-12 rounded-xl register-container mb-16" cols="8" offset="2" v-if="loading">
         <v-row>
             <v-col cols="6" v-for="i in 20">
@@ -66,7 +66,7 @@
                     <label class="body-1 font-weight-thin pl-1">Telefon</label>
                     <vue-tel-input-vuetify id="tel-input" class="mt-3 fl-text-input pt-select"
                         v-model="form.meta.telephone" label='' mode="international" :inputoptions="{showDialCode: true}"
-                        :rules="validations.telephoneRules" placeholder="Introduceți un număr de telefon"
+                        :rules="validations.telephoneRules" placeholder="Adăugați numărul de telefon"
                         hint="Ej: +58 4245887477" persistent-hint @input="getInput" outlined>
                     </vue-tel-input-vuetify>
                 </v-col>
@@ -79,7 +79,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6">
-                    <label class="body-1 font-weight-thin pl-1">Provincie sau oraș</label>
+                    <label class="body-1 font-weight-thin pl-1">Oraș</label>
                     <v-select class="mt-3 fl-text-input pt-select" v-model="form.state_selected" :items="country_states"
                         item-text="name" item-value="id" v-on:change='getLocation'
                         :rules="validations.countryStateRules" outlined></v-select>
@@ -101,16 +101,17 @@
                     <v-checkbox v-model="form.agreement" :rules="validations.requiredRules">
                         <template #label>
                             <div>
-                                Sunt de acord că
+                                Sunt de acord cu
                                 <v-tooltip bottom>
                                     <template #activator="{ on }">
                                         <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop
                                             v-on="on">
-                                            Teme & Condiții
+                                            Termenii și condițiile
                                         </a>
                                     </template>
                                     Deschideți într-o fereastră nouă
                                 </v-tooltip>
+                                Woobit și cu Politica datelor cu caracter
                             </div>
                         </template>
                     </v-checkbox>
