@@ -1,8 +1,8 @@
 <?php
 namespace Model;
 
-use Model\Helper\DB;
 use Model\Category;
+use Model\Helper\DB;
 
 /**
  *
@@ -19,15 +19,10 @@ class Course extends DB
 
     public function get($id = 0)
     {
-        if ($id != 0) {
-            $sql = "SELECT C.course_id, active, duration, price, featured_image, certified_template,
-            level, published_at, slug, title, category_id, subcategory_id, user_id, platform_owner, hide_avatar_preview
-            FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id WHERE C.{$this->id_column} = $id";
-        } else {
-            $sql = "SELECT C.course_id, active, duration, price, featured_image, certified_template,
-            level, published_at, slug, title, category_id, subcategory_id, user_id, platform_owner, hide_avatar_preview
+        $sql = "SELECT C.course_id, active, duration, price, featured_image,
+            certified_template, published_at, slug, title, category_id, C.user_id, platform_owner
             FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id";
-        }
+        $sql .= !empty($id) ? " WHERE C.{$this->id_column} = $id" : '';
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -41,9 +36,9 @@ class Course extends DB
         if (empty($id)) {
             return [];
         }
-            $sql = "SELECT C.course_id, active, duration, price, featured_image, certified_template,
-            level, published_at, slug, title, category_id, user_id, platform_owner, hide_avatar_preview
-            FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
+        $sql = "SELECT C.course_id, active, duration, price, featured_image, certified_template,
+         published_at, slug, title, category_id, user_id, platform_owner, min_students, max_students, min_age, max_age
+            FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
             WHERE C.{$this->id_user_column} = $id AND active = 1";
         $sql .= !empty($course_id) ? " AND C.course_id != $course_id" : '';
         $result = $this->execute_query($sql);
@@ -62,7 +57,8 @@ class Course extends DB
             return [];
         }
 
-        $sql = "SELECT C.course_id, active, duration, price, featured_image, level, C.published_at, slug, title, C.user_id, platform_owner, certified_template,
+        $sql = "SELECT C.course_id, active, duration, price, featured_image, C.published_at,
+        slug, title, C.user_id, platform_owner, certified_template, min_students, max_students, min_age, max_age
         (SELECT course_meta_val FROM {$this->table_meta}
 		WHERE course_id = C.course_id AND course_meta_name = 'paid_certified' LIMIT 1) paid_certified
         FROM lessons L INNER JOIN sections S ON S.section_id = L.section_id
@@ -77,7 +73,9 @@ class Course extends DB
             return [];
         }
 
-        $sql = "SELECT C.course_id, active, duration, price, featured_image, level, published_at, slug, title, category_id, subcategory_id, user_id, platform_owner FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id WHERE slug = '$slug' LIMIT 1";
+        $sql = "SELECT C.course_id, active, duration, price, featured_image,
+        published_at, slug, title, category_id, subcategory_id, user_id, platform_owner, min_students, max_students, min_age, max_age
+        FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id WHERE slug = '$slug' LIMIT 1";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -104,11 +102,32 @@ class Course extends DB
 
     public function get_my_courses($id = 0)
     {
-        if ($id == 0) {
+        if (empty($id)) {
             return [];
         }
 
-        $sql = "SELECT C.course_id, title, featured_image, slug FROM {$this->table_student_courses} SC INNER JOIN {$this->table} C ON C.course_id = SC.course_id WHERE SC.{$this->id_user_column} = $id";
+        $sql = "SELECT C.course_id, title, featured_image, slug, min_students, max_students, min_age, max_age
+        FROM {$this->table_student_courses} SC INNER JOIN {$this->table} C
+        ON C.course_id = SC.course_id WHERE SC.{$this->id_user_column} = $id";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
+    public function get_own_courses($id = 0)
+    {
+        if (empty($id)) {
+            return [];
+        }
+
+        $sql = "SELECT C.course_id, title, featured_image, slug, duration, sale_price, price,
+        min_students, max_students, min_age, max_age, CCS.name category
+        FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
+		LEFT JOIN course_categories CCS ON CCS.category_id = CC.category_id
+         WHERE {$this->id_user_column} = $id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -123,7 +142,8 @@ class Course extends DB
         $last_month = date('Y-m-d', strtotime($current_date . "- 1 month"));
         $current_date .= ' 00:00:00';
         $last_month .= ' 23:59:59';
-        $sql = "SELECT title, featured_image, slug, price FROM {$this->table} WHERE published_at BETWEEN '$last_month' AND '$current_date' AND active = 1";
+        $sql = "SELECT title, featured_image, slug, price, min_students, max_students, min_age, max_age FROM
+        {$this->table} WHERE published_at BETWEEN '$last_month' AND '$current_date' AND active = 1";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -135,11 +155,11 @@ class Course extends DB
     public function get_enabled($rows = 100000)
     {
         $sql = "SELECT title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name,
-		CCS.name category, platform_owner, (SELECT course_meta_val FROM {$this->table_meta}
+		CCS.name category, platform_owner, min_students, max_students, min_age, max_age, (SELECT course_meta_val FROM {$this->table_meta}
 		WHERE course_id = C.course_id AND course_meta_name = 'description' LIMIT 1) description, (SELECT course_meta_val FROM {$this->table_meta}
 		WHERE course_id = C.course_id AND course_meta_name = 'certified_by' LIMIT 1) certified_by, (SELECT COUNT(user_id)
 		FROM {$this->table_student_courses} WHERE course_id = C.course_id
-		AND user_rol NOT IN ('profesor', 'oyente') ) total_enrolled, hide_avatar_preview FROM {$this->table} C INNER JOIN
+		AND user_rol NOT IN ('profesor', 'oyente') ) total_enrolled FROM {$this->table} C INNER JOIN
 		users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
 		INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id WHERE active = 1 ORDER BY published_at DESC LIMIT $rows";
         $result = $this->execute_query($sql);
@@ -152,7 +172,8 @@ class Course extends DB
 
     public function get_total_students($course_id)
     {
-        $sql = "SELECT COUNT(user_id) as total FROM {$this->table_student_courses} WHERE course_id = $course_id AND user_rol NOT IN ('profesor', 'oyente')";
+        $sql = "SELECT COUNT(user_id) as total FROM
+        {$this->table_student_courses} WHERE course_id = $course_id AND user_rol NOT IN ('profesor', 'oyente')";
         $result = $this->execute_query($sql);
         return $result->fetch_assoc();
     }
@@ -184,7 +205,13 @@ class Course extends DB
         }
 
         extract($data);
-        $sql = "INSERT INTO {$this->table} ($columns) VALUES('$featured_image', '$title', '$slug', '$duration', $price,'$level', $user_id, $active, $platform_owner)";
+        $sql = "INSERT INTO {$this->table} (
+            featured_image, title, slug,
+        duration, price, user_id, active, min_students,
+        max_students, min_age, max_age) VALUES(
+            '$featured_image', '$title', '$slug', '$duration',
+            $price, $user_id, $active, $min_students, $max_students, $min_age, $max_age
+        )";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
@@ -196,7 +223,10 @@ class Course extends DB
         }
 
         extract($data);
-        $sql = "UPDATE {$this->table} SET featured_image = '$featured_image', title = '$title', slug = '$slug', duration = '$duration', price = $price, level = '$level', user_id = $user_id, active = $active, platform_owner = $platform_owner WHERE {$this->id_column} = $id";
+        $sql = "UPDATE {$this->table} SET featured_image = '$featured_image', title = '$title', slug = '$slug',
+        duration = '$duration', price = $price, user_id = $user_id, active = $active, min_students = $min_students,
+        max_students = $max_students, min_age = $min_age, max_age = $max_age
+        WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         return $result;
     }

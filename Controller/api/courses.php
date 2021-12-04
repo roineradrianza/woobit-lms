@@ -39,17 +39,7 @@ switch ($method) {
         $courses = [];
         if (count($results) > 0) {
             foreach ($results as $course) {
-                $result['active'] = $course['active'];
-                $result['course_id'] = $course['course_id'];
-                $result['duration'] = $course['duration'];
-                $result['price'] = $course['price'];
-                $result['featured_image'] = $course['featured_image'];
-                $result['level'] = $course['level'];
-                $result['published_at'] = $course['published_at'];
-                $result['slug'] = $course['slug'];
-                $result['title'] = $course['title'];
-                $result['user_id'] = $course['user_id'];
-                $result['platform_owner'] = $course['platform_owner'];
+                $result = $course;
                 $result['category_id'] = isset($course['category_id']) ? $course['category_id'] : '';
                 $result['subcategory_id'] = isset($course['subcategory_id']) ? $course['subcategory_id'] : '';
 
@@ -66,7 +56,7 @@ switch ($method) {
 
     case 'get-instructors':
         if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $instructors = $student_course->get_instructors($query);
@@ -82,7 +72,7 @@ switch ($method) {
 
     case 'get-my-courses':
         if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $query = $helper->decrypt($query);
@@ -91,6 +81,16 @@ switch ($method) {
         echo json_encode($results);
         break;
 
+    case 'get-own-courses':
+        if (empty($query)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $query = $helper->decrypt($query);
+        $results = $course->get_own_courses($query);
+        echo json_encode($results);
+        break;
+    
     case 'get-new-courses':
         $results = $course->get_recent_courses();
         echo json_encode($results);
@@ -171,79 +171,93 @@ switch ($method) {
 
     case 'create':
         if (empty($_POST)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = $_POST;
-        $data['slug'] = $helper->convert_slug($data['title']);
+        $data['user_id'] = empty($data['user_id']) ? $_SESSION['user_id'] : $data['user_id'];
+        $data['slug'] = $helper->convert_slug($data['title']) . "-{$data['user_id']}";
         $tmp_file = $_FILES['featured_image']['tmp_name'];
         $ext = explode(".", $_FILES['featured_image']['name']);
-        $file_name = time() . '.' . $ext[1];
-        $path = DIRECTORY . "/public/img/featured_image/$file_name";
-        $data['featured_image'] = null;
-        if (move_uploaded_file($tmp_file, $path)) {
-            $source = @fopen($path, 'r');
-            try {
-                $result = $s3->putObject([
-                    'Bucket' => AWS_S3_BUCKET,
-                    'Key' => AWS_CFI_FOLDER . $data['slug'] . '.' . $ext[1],
-                    'Body' => $source,
-                    'ACL' => 'public-read',
-                ]);
-                unlink($path);
-                $data['featured_image'] = $result['ObjectURL'];
-            } catch (Aws\S3\Exception\S3Exception$e) {
-                unlink($path);
-                $helper->response_message('Error', 'No se pudo subir la portada del curso, intente nuevamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.\n']);
-            }
-        } else {
-            if (!$result) {
-                $helper->response_message('Error', 'No se pudo subir la portada del curso, intente nuevamente', 'error');
-            }
+        $file_name = "{$data['slug']}-" . time() . "." . end($ext);
+        $path = DIRECTORY . "/public/img/featured-images/$file_name";
 
-        }
-        $columns = ['featured_image', 'title', 'slug', 'duration', 'price', 'level', 'user_id', 'active', 'platform_owner'];
-        if (empty($data['user_id'])) {
-            $data['user_id'] = $_SESSION['user_id'];
+        if (!move_uploaded_file($tmp_file, $path)) {
+            $helper->response_message('Error', 'Nu s-a putut încărca coperta cursului, vă rugăm să încercați din nou.', 'error');
         }
 
+        $data['featured_image'] = "/img/featured-images/$file_name";
         $data['price'] = floatval($data['price']);
-        $result = $course->create($data, $columns);
+        $result = $course->create($data);
+
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo crear el curso correctamente', 'error');
+            $helper->response_message('Error', 'Cursul nu a putut fi creat corect', 'error');
         }
 
         if (isset($data['category_id'])) {
             $data['course_id'] = $result;
             $course_category->create($data);
         }
+
         if (isset($data['meta']) && !empty($data['meta'])) {
             $data['meta'] = json_decode($data['meta'], true);
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['course_meta_name' => $meta_key, 'course_meta_val' => $meta_value, 'course_id' => $result];
+                $meta = [
+                    'course_meta_name' => $meta_key, 
+                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
+                    'course_id' => $result
+                ];
                 $course_meta->create($meta);
             }
         }
-        $helper->response_message('Éxito', 'Se creó el curso correctamente', data:['featured_image' => $data['featured_image'], 'user_id' => $data['user_id'], 'course_id' => $result, 'slug' => $data['slug']]);
+        if (!empty($data['section'])) {
+            $data['section'] = json_decode($data['section'], true);
+            foreach ($data['section'] as $item) {
+                $item['course_id'] = $result;
+                $section_result = $section->create($item, $data['course_id']);
+                if (!$result) {
+                    continue;
+                }
+                foreach($item['items'] as $lesson_item) {
+                    $lesson_item['section_id'] = $section_result;
+                    $lesson_item['user_id'] = $data['user_id'];
+                    $lesson_result = $lesson->create($lesson_item);
+                    if (!$lesson_result) {
+                        continue;
+                    }
+                    if (!empty($lesson_item['meta'])) {
+                        foreach ($lesson_item['meta'] as $meta_key => $meta_value) {
+                            $meta = [
+                                'lesson_meta_name' => $meta_key, 
+                                'lesson_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
+                                'lesson_id' => $lesson_result
+                            ];
+                            $lesson_meta->create($meta);
+                        }
+                    }
+                }
+            }
+        }
+        $helper->response_message('Succes', 'Cursul a fost creat cu succes', data:['featured_image' => $data['featured_image'], 'user_id' => $data['user_id'], 'course_id' => $result, 'slug' => $data['slug']]);
         break;
 
     case 'add-instructor':
         if (empty($data) || empty($data['user_id']) || empty($data['course_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data['user_rol'] = 'profesor';
         $result = $student_course->create($data);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo añadir el profesor al curso', 'error');
+            $helper->response_message('Error', 'Profesorul nu a putut fi adăugat la curs', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se añadió el profesor correctamente');
+        $helper->response_message('Succes', 'Profesorul a adăugat corect');
         break;
 
     case 'add-student':
         if (empty($data) || empty($data['user_id']) || empty($data['course_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $result = $student_course->create(sanitize($data));
@@ -251,45 +265,35 @@ switch ($method) {
             $helper->response_message('Error', 'No se pudo añadir el estudiante al curso', 'error');
         }
 
-        $helper->response_message('Éxito', "Se añadió el {$data['user_rol']} correctamente");
+        $helper->response_message('Succes', "Se añadió el {$data['user_rol']} correctamente");
         break;
 
     case 'update':
         if (empty($_POST)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = $_POST;
         $id = intval($data['course_id']);
-        $data['slug'] = $helper->convert_slug($data['title']);
+        $data['user_id'] = intval($data['user_id']);
+        $data['slug'] = $helper->convert_slug($data['title']) . "-{$data['user_id']}";
         if (isset($_FILES['featured_image'])) {
             $tmp_file = $_FILES['featured_image']['tmp_name'];
             $ext = explode(".", $_FILES['featured_image']['name']);
-            $file_name = time() . '.' . $ext[1];
-            $path = DIRECTORY . "/public/img/featured_image/$file_name";
-            if (move_uploaded_file($tmp_file, $path)) {
-                $source = fopen($path, 'r');
-                try {
-                    $result = $s3->putObject([
-                        'Bucket' => AWS_S3_BUCKET,
-                        'Key' => AWS_CFI_FOLDER . $data['slug'] . '.' . $ext[1],
-                        'Body' => $source,
-                        'ACL' => 'public-read',
-                    ]);
-                    unlink($path);
-                    $data['featured_image'] = $result['ObjectURL'];
-                } catch (Aws\S3\Exception\S3Exception$e) {
-                    unlink($path);
-                    $helper->response_message('Error', 'No se pudo subir la portada del curso, intente nuevamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.']);
-                }
+            $file_name = "{$data['slug']}-" . time() . "." . end($ext);
+            $path = DIRECTORY . "/public/img/featured-images/$file_name";
+            if (!move_uploaded_file($tmp_file, $path)) {
+                $helper->response_message('Error', 'Nu s-a putut încărca coperta cursului, vă rugăm să încercați din nou.', 'error');
             }
+            $old_file = DIRECTORY . $data['featured_image'];
+            !empty($data['featured_image']) && file_exists($old_file) ? unlink($old_file) : ''; 
+            $data['featured_image'] = "/img/featured-images/$file_name";
         }
         $data['active'] = intval($data['active']);
-        $data['user_id'] = intval($data['user_id']);
         $data['price'] = floatval($data['price']);
         $result = $course->edit($id, $data);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo editar el curso correctamente', 'error');
+            $helper->response_message('Error', 'Cursul nu a putut fi editat corect', 'error');
         }
 
         if (isset($data['category_id'])) {
@@ -305,44 +309,38 @@ switch ($method) {
         if (isset($data['meta']) && !empty($data['meta'])) {
             $data['meta'] = json_decode($data['meta'], true);
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['course_meta_name' => $meta_key, 'course_meta_val' => $meta_value];
+                $meta = [
+                    'course_meta_name' => $meta_key, 
+                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value
+                ];
                 if (isset($_FILE[$meta_key])) {
                     $tmp_file = $_FILES[$meta_key]['tmp_name'];
                     $ext = explode(".", $_FILES[$meta_key]['name']);
                     $file_name = time() . '.' . $ext[1];
-                    $path = DIRECTORY . "/public/img/$file_name";
+                    $path = DIRECTORY . "/public/media/$file_name";
                     if (move_uploaded_file($tmp_file, $path)) {
-                        $source = fopen($path, 'r');
-                        try {
-                            $result = $s3->putObject([
-                                'Bucket' => AWS_S3_BUCKET,
-                                'Key' => AWS_MEDIA_FOLDER . $data['slug'] . '-certified-by.' . $ext[1],
-                                'Body' => $source,
-                                'ACL' => 'public-read',
-                            ]);
-                            unlink($path);
-                            $meta_value = $result['ObjectURL'];
-                        } catch (Aws\S3\Exception\S3Exception$e) {
-                            unlink($path);
-                            $helper->response_message('Error', 'No se pudo subir el archivo, intente nuevamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.']);
-                        }
+                        $meta_value = "/media/$file_name";
                     }
                 }
                 $check_meta = $course_meta->get_meta($id, $meta_key);
                 if (empty($check_meta)) {
-                    $meta_data = ['course_meta_name' => $meta_key, 'course_meta_val' => $meta_value, 'course_id' => $id];
+                    $meta_data = [
+                        'course_meta_name' => $meta_key, 
+                        'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
+                        'course_id' => $id
+                    ];
                     $course_meta->create($meta_data);
                     continue;
                 }
                 $course_meta->edit($id, $meta);
             }
         }
-        $helper->response_message('Éxito', 'Se editó el curso correctamente', data:['featured_image' => $data['featured_image'], 'slug' => $data['slug']]);
+        $helper->response_message('Succes', 'Cursul a fost editat corect', data:['featured_image' => $data['featured_image'], 'slug' => $data['slug']]);
         break;
 
     case 'update-meta':
         if (empty($_POST)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = $_POST;
@@ -354,7 +352,10 @@ switch ($method) {
                     $meta_value = json_encode($meta_value, JSON_UNESCAPED_UNICODE);
                 }
 
-                $meta = ['course_meta_name' => $meta_key, 'course_meta_val' => $meta_value, 'course_id' => $id];
+                $meta = [
+                    'course_meta_name' => $meta_key, 
+                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
+                    'course_id' => $id];
                 $check_meta = $course_meta->get_meta($id, $meta_key);
                 if (empty($check_meta)) {
                     $meta_data = ['course_meta_name' => $meta_key, 'course_meta_val' => $meta_value, 'course_id' => $id];
@@ -364,12 +365,12 @@ switch ($method) {
                 $course_meta->edit($id, $meta);
             }
         }
-        $helper->response_message('Éxito', 'Se actualizó la información correctamente');
+        $helper->response_message('Succes', 'Se actualizó la información correctamente');
         break;
 
     case 'update-cover':
         if (empty($_POST)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = $_POST;
@@ -377,96 +378,41 @@ switch ($method) {
         if (isset($_FILES['featured_image'])) {
             $tmp_file = $_FILES['featured_image']['tmp_name'];
             $ext = explode(".", $_FILES['featured_image']['name']);
-            $file_name = time() . '.' . $ext[1];
-            $path = DIRECTORY . "/public/img/featured_image/$file_name";
-            if (move_uploaded_file($tmp_file, $path)) {
-                $source = fopen($path, 'r');
-                try {
-                    $result = $s3->putObject([
-                        'Bucket' => AWS_S3_BUCKET,
-                        'Key' => AWS_CFI_FOLDER . $data['slug'] . '.' . $ext[1],
-                        'Body' => $source,
-                        'ACL' => 'public-read',
-                    ]);
-                    unlink($path);
-                    $data['featured_image'] = $result['ObjectURL'];
-                } catch (Aws\S3\Exception\S3Exception$e) {
-                    unlink($path);
-                    $helper->response_message('Error', 'No se pudo subir la portada del curso, intente nuevamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.']);
-                }
+            $file_name = "{$data['slug']}-" . time() . '.' . end($ext);
+            $path = DIRECTORY . "/public/img/featured-images/$file_name";
+            if (!move_uploaded_file($tmp_file, $path)) {
+                    $helper->response_message('Error', 'Nu s-a putut încărca coperta cursului, vă rugăm să încercați din nou.', 'error');
             }
+            $data['featured_image'] = "/img/featured-images/$file_name";
         }
         $result = $course->edit_cover($id, $data);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo actualizar la portada del curso correctamente', 'error');
+            $helper->response_message('Error', 'Nu s-a putut actualiza corect pagina de prezentare a cursului', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se editó la portada del curso correctamente', data:['featured_image' => $data['featured_image']]);
-        break;
-
-    case 'update-certified-by':
-        if (empty($_POST)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
-        }
-
-        $data = $_POST;
-        $course_id = intval($data['course_id']);
-        if (isset($_FILES['certified_by_image'])) {
-            $tmp_file = $_FILES['certified_by_image']['tmp_name'];
-            $ext = explode(".", $_FILES['certified_by_image']['name']);
-            $file_name = time() . '.' . $ext[1];
-            $path = DIRECTORY . "/public/img/certified_by/$file_name";
-            if (move_uploaded_file($tmp_file, $path)) {
-                $source = fopen($path, 'r');
-                try {
-                    $result = $s3->putObject([
-                        'Bucket' => AWS_S3_BUCKET,
-                        'Key' => AWS_CCBI_FOLDER . $data['slug'] . '-certified-by.' . $ext[1],
-                        'Body' => $source,
-                        'ACL' => 'public-read',
-                    ]);
-                    unlink($path);
-                    $data['certified_by_image'] = $result['ObjectURL'];
-                } catch (Aws\S3\Exception\S3Exception$e) {
-                    unlink($path);
-                    $helper->response_message('Error', 'No se pudo subir la imágen, intente nuevamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.']);
-                }
-            }
-        }
-        $check_meta = $course_meta->get_meta($course_id, 'certified_by');
-        $meta_data = ['course_meta_name' => 'certified_by', 'course_meta_val' => $data['certified_by_image'], 'course_id' => $course_id];
-        if (empty($check_meta)) {
-            $result = $course_meta->create($meta_data);
-        } else {
-            $result = $course_meta->edit($course_id, $meta_data);
-        }
-        if (!$result) {
-            $helper->response_message('Error', 'No se pudo actualizar la imágen de la institución certificada correctamente', 'error');
-        }
-
-        $helper->response_message('Éxito', 'Se editó la imágen de la institución certificada correctamente', data:['certified_by_image' => $data['certified_by_image']]);
+        $helper->response_message('Succes', 'Coperta cursului a fost editată corect', data:['featured_image' => $data['featured_image']]);
         break;
 
     case 'delete':
         $result = $course->delete(intval($data['course_id']));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo eliminar el curso correctamente', 'error');
+            $helper->response_message('Error', 'Cursul nu a putut fi șters corect', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se eliminó el curso correctamente');
+        $helper->response_message('Succes', 'Cursul a fost șters corect');
         break;
 
     case 'remove-instructor':
         if (empty($data) || empty($data['user_id']) || empty($data['course_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $result = $student_course->delete($data['user_id'], $data['course_id']);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo eliminar el profesor del curso', 'error');
+            $helper->response_message('Error', 'Nu s-a putut elimina profesorul din curs', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se eliminó el profesor correctamente');
+        $helper->response_message('Succes', 'Profesorul a fost îndepărtat corect');
         break;
 
 }

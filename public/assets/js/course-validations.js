@@ -1,24 +1,29 @@
 const validations = {
-  selectRules: [
-		v => !!v || 'Seleccione una opción',
-	],
 
   titleRules: [
-    v => !!v || 'Este campo es requerido',
-    v => (v && v.length <= 250) || 'El usuario debe ser menor a 250 caracteres',
+    v => !!v || 'Acest câmp este obligatoriu',
+    v => (v && v.length <= 100) || 'Nu poate depăși 100 de caractere',
   ],
 
-  emailRules: [
-    v => !!v || 'El correo electrónico es valido',
-    v => /.+@.+\..+/.test(v) || 'Debe ser un correo electrónico',
+  featuredImageRules: [
+    v => v.size > 0 || 'Trebuie să selectați o imagine',
+    v => !v || v.size < 4000000 || 'Imaginea nu trebuie să fie mai mare de 4 MB!'
   ],
 
   requiredRules: [
-    v => !!v || 'Este campo es requerido',
+    v => !!v || 'Acest câmp este obligatoriu',
   ],
 
-  telephoneRules: [
-    v => !!v || 'Ingrese un número de télefono',
+  descriptionRules: [
+    v => !!v || 'Acest câmp este obligatoriu',
+    v => (v && v.length <= 65) || 'Nu poate depăși 65 de caractere',
   ],
 
+  minRules: [
+    v => (v > 0) || 'Nu poate fi 0',
+  ],
+
+  maxRules: [
+    v => (v > 1) || 'Nu poate fi 1',
+  ],
 }
