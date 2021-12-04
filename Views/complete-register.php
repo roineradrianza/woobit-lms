@@ -66,7 +66,7 @@
                     <label class="body-1 font-weight-thin pl-1">Telefon</label>
                     <vue-tel-input-vuetify id="tel-input" class="mt-3 fl-text-input pt-select"
                         v-model="form.meta.telephone" label='' mode="international" :inputoptions="{showDialCode: true}"
-                        :rules="validations.telephoneRules" placeholder="Ingresa un número de télefono"
+                        :rules="validations.telephoneRules" placeholder="Introduceți un număr de telefon"
                         hint="Ej: +58 4245887477" persistent-hint @input="getInput" outlined>
                     </vue-tel-input-vuetify>
                 </v-col>

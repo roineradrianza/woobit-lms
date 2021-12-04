@@ -34,7 +34,7 @@
             <label class="body-1 font-weight-thin pl-1">Telefon</label>
             <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select" v-model="form.meta.teacher_telephone" label=''
                 mode="international" :inputoptions="{showDialCode: true}" :rules="validations.telephoneRules"
-                placeholder="Ingresa un número de télefono" hint="folosit doar în caz de comunicare urgentă."
+                placeholder="Introduceți un număr de telefon" hint="folosit doar în caz de comunicare urgentă."
                 persistent-hint @input="getInput" outlined
                 :disabled="form.hasOwnProperty('status') && !parseInt(form.status)">
             </vue-tel-input-vuetify>
