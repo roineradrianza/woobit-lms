@@ -79,7 +79,7 @@ class Routes
                         header("Location: " . SITE_URL . "/login");
                     }
 
-                    if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'miembro') {
+                    if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'membru') {
                         header("Location: " . SITE_URL . "/");
                     }
 
@@ -464,7 +464,7 @@ class Routes
                     $member = new Member;
                     $user_meta = new MemberMeta;
                     $results = $application->get($_SESSION['user_id']);
-                    if ($results > 0) {
+                    if (count($results) > 0) {
                         $item = $results[0];
                         $user = $member->get($item['user_id'])[0];
 
@@ -547,7 +547,7 @@ class Routes
                         header("Location: " . SITE_URL . "/login");
                     }
 
-                    if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'miembro') {
+                    if (isset($_SESSION['user_id']) && $_SESSION['user_type'] == 'membru') {
                         header("Location: " . SITE_URL . "/");
                     }
 

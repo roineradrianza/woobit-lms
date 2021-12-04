@@ -16,7 +16,7 @@
         <v-list-item class="d-flex justify-center" href="<?= SITE_URL ?>">
             <v-icon>mdi-magnify</v-icon>
         </v-list-item>
-        <?php if ($_SESSION['user_type'] == 'administrador'): ?>
+        <?php if ($_SESSION['user_type'] == 'administrator'): ?>
         <v-list-item href="<?= SITE_URL ?>">
             <v-list-item-content>
                 <v-list-item-title class="text-center">Acasă</v-list-item-title>

@@ -22,7 +22,7 @@ switch ($method) {
 		break;
 
 	case 'create':
-		if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrador') {
+		if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrator') {
 			die(403);
 		}
 		if (empty($data)) $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
@@ -33,7 +33,7 @@ switch ($method) {
 		break;
 
 	case 'update':
-		if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrador') {
+		if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrator') {
 			die(403);
 		}
 		if (empty($data)) $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');;
@@ -44,7 +44,7 @@ switch ($method) {
 		break;	
 
 	case 'delete':
-		if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrador') {
+		if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrator') {
 			die(403);
 		}
 		$result = $category->delete(intval($data['category_id']));

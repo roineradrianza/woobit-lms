@@ -131,7 +131,7 @@
                             </v-list-item-content>
 
                             <v-row align="center" justify="end">
-                                <?php if (!empty($_SESSION['user_id']) && $_SESSION['user_type'] == 'administrador'): ?>
+                                <?php if (!empty($_SESSION['user_id']) && $_SESSION['user_type'] == 'administrator'): ?>
                                 <v-icon class="mr-1" @click="deleteRating(item, i)">
                                     mdi-trash-can
                                 </v-icon>

@@ -39,7 +39,7 @@ switch ($method) {
             $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
         }
 
-        if ($_SESSION['user_type'] != 'administrador') {
+        if ($_SESSION['user_type'] != 'administrator') {
             $data['zoom_view'] = 1;
             $data['video_view'] = 0;
             $data['completed'] = 1;
@@ -169,7 +169,7 @@ switch ($method) {
             $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
         }
         $query = clean_string($query);
-        if ($_SESSION['user_type'] != 'administrador') {
+        if ($_SESSION['user_type'] != 'administrator') {
             $data['video_view'] = 1;
             $total_percent = 100 - $data['video_missing'];
             $data['completed'] = $total_percent > 60 ? 1 : 0;

@@ -4,7 +4,7 @@
                           <v-container>
                             <v-row>
                               <v-col cols="12" md="6">
-                                <label>Tipo de miembro</label>
+                                <label>Tipo de membru</label>
                                 <v-select class="mt-3 fl-text-input" v-model="editedItem.user_type" :items="user_types" :rules="validations.selectRules" filled rounded dense></v-select>
                               </v-col>
                               <v-col cols="12" md="6">

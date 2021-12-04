@@ -95,7 +95,7 @@ switch ($method) {
 
         $data['user_id'] = $user_id;
         $data['status'] = 0;
-        $application_result = $application->create(sanitize($data));
+        $application_result = $application->create($data);
 
         if (!$application_result) {
             $helper->response_message('Error', 'Cererea nu a putut fi procesată, vă rugăm să încercați din nou.', 'error');
@@ -117,8 +117,8 @@ switch ($method) {
         $data['meta'] = isset($data['meta']) ? json_decode($data['meta'], true) : [];
         
         $id = $data['user_id'];
-        if($_SESSION['user_type'] == 'administrador' && !empty($data['status'])) {
-            $result = $application->update($id, sanitize($data));
+        if($_SESSION['user_type'] == 'administrator' && !empty($data['status'])) {
+            $result = $application->update($id, $data);
 
             if (!$result) {
                 $helper->response_message('Error', 'Membrul nu a putut fi editat corect', 'error');

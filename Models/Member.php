@@ -30,7 +30,7 @@ class Member extends DB
 
     public function get_by_members()
     {
-        $sql = "SELECT * FROM {$this->table} WHERE user_type = 'miembro'";
+        $sql = "SELECT * FROM {$this->table} WHERE user_type = 'membru'";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -41,7 +41,7 @@ class Member extends DB
 
     public function get_by_admins()
     {
-        $sql = "SELECT * FROM {$this->table} WHERE user_type = 'administrador'";
+        $sql = "SELECT * FROM {$this->table} WHERE user_type = 'administrator'";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -173,7 +173,7 @@ class Member extends DB
         }
 
         extract($data);
-        $user_type = empty($user_type) ? 'miembro' : $user_type;
+        $user_type = empty($user_type) ? 'membru' : $user_type;
         $sql = "UPDATE {$this->table} SET first_name = '$first_name', last_name = '$last_name', email = '$email', gender = '$gender', birthdate = '$birthdate', user_type = '$user_type' WHERE {$this->id_column} = $id;";
         if (isset($data['password'])) {
             $password = md5($password);

@@ -252,7 +252,7 @@ class Course extends DB
         $user_id = $user['user_id'];
         $hasAccess = false;
         switch ($user['user_type']) {
-            case 'administrador':
+            case 'administrator':
                 $hasAccess = true;
                 break;
 

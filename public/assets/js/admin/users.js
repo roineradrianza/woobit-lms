@@ -41,7 +41,7 @@ let vm = new Vue({
         { text: 'Acciones', value: 'actions', align:'center', sortable: false },
       ],
       members: [],
-      user_types: ['administrador', 'miembro'],
+      user_types: ['administrator', 'membru'],
       editedIndex: -1,
       editedItem: {},
       defaultItem: {

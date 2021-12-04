@@ -79,7 +79,7 @@ switch ($method) {
         break;
 
     case 'create':
-        if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrador') {
+        if (!isset($_SESSION['user_type']) && $_SESSION['user_type'] != 'administrator') {
             die(403);
         }
         if (empty($data)) {
@@ -111,7 +111,7 @@ switch ($method) {
         }
 
         $columns = ['first_name', 'last_name', 'email', 'gender', 'birthdate', 'user_type', 'password'];
-        $data['user_type'] = 'miembro';
+        $data['user_type'] = 'membru';
         if ($member->check_exist_credential($data['email'])) {
             $helper->response_message('Error', 'Acest e-mail este deja înregistrat', 'error');
         }
@@ -167,7 +167,7 @@ switch ($method) {
                 $user_meta->edit($id, $meta);
             }
         }
-        $helper->response_message('Succes', 'Se editó el miembro correctamente');
+        $helper->response_message('Succes', 'Se editó el membru correctamente');
         break;
     case 'sign-in':
         if (empty($data)) {
@@ -185,7 +185,7 @@ switch ($method) {
                     'last_name' => clean_string($data['last_name']),
                     'email' => clean_string($data['email']),
                     'gender' => clean_string($data['gender']),
-                    'user_type' => 'miembro',
+                    'user_type' => 'membru',
                     'password' => $helper->rand_string(),
                 ];
                 $columns = ['google_id', 'avatar', 'first_name', 'last_name', 'email', 'gender', 'user_type', 'password'];
@@ -230,7 +230,7 @@ switch ($method) {
             foreach ($user_meta->get($result->user_id) as $meta) {
                 $_SESSION['meta'][$meta['meta_name']] = $meta['meta_val'];
             }
-            $_SESSION['redirect_url'] = $result->user_type == 'administrador' ? SITE_URL . '/admin/' : SITE_URL . '/profile/';
+            $_SESSION['redirect_url'] = $result->user_type == 'administrator' ? SITE_URL . '/admin/' : SITE_URL . '/profile/';
             $cookie_email = $helper->encrypt($_SESSION['email']);
             $cookie_password = $result->password;
             setcookie('u', "$cookie_email", time() + 60 * 60 * 24 * 365, '/');

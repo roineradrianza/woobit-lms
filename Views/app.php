@@ -59,7 +59,7 @@
     </div>
     <?php if (isset($_SESSION['user_id'])): ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <?php if ($_SESSION['user_type'] !== 'administrador' && 1 == 2 ) : ?>
+    <?php if ($_SESSION['user_type'] !== 'administrator' && 1 == 2 ) : ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?= GOOGLE_APP_ID ?>"></script>
     <script>
     /*
