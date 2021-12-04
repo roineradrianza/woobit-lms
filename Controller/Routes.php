@@ -67,11 +67,18 @@ class Routes
                         ['name' => 'check-gsignin'], ['name' => 'lib/videojs-7.8.4.min'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
-                    $this->footer = true;
                     $this->content = new Template("home", [
                         'courses' => $courses,
                     ]
                     );
+                    break;
+
+                case 'about-us':
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'], 
+                        ['name' => 'home.min', 'version' => '1.0.0'],
+                    ];
+                    $this->content = new Template("about-us");
                     break;
 
                 case 'admin':
@@ -197,7 +204,7 @@ class Routes
 
                 case 'new-class-guide':
                     $this->scripts = [
-                        ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], 
+                        ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'],
                         ['name' => 'home.min', 'version' => '1.10.4'],
                     ];
                     $this->content = new Template("new-class-guide");
@@ -209,7 +216,7 @@ class Routes
                     if (!empty($route[1]) && $route[1] == 'create') {
                         if (!isset($_SESSION['user_id'])) {
                             header("Location: " . SITE_URL . '/login/?redirect_url=' . SITE_URL . '/courses/create/');
-                        } 
+                        }
                         $this->styles = [['name' => 'login.min'], ...$base_asset];
                         $this->scripts = [
                             ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'vue-components/vue2-editor.min'],
@@ -217,8 +224,7 @@ class Routes
                             ['name' => 'course-validations'], ['name' => 'course/create/main.min', 'version' => '1.10.4'],
                         ];
                         $this->content = new Template("course/create/main");
-                    }
-                    else if (!empty($route[1]) && $route[1] == 'edit') {
+                    } else if (!empty($route[1]) && $route[1] == 'edit') {
                         if (empty($route[2]) || !isset($_SESSION['user_id'])) {
                             header("Location: " . SITE_URL);
                         } else {
