@@ -1,4 +1,4 @@
-<v-container>
+<v-container class="pt-16 pt-md-0 px-6 px-md-0">
     <v-row>
         <v-col cols="12">
             <h1 class="text-h2 text-center">Termeni și Condiții</h1>
@@ -7,6 +7,13 @@
             </p>
         </v-col>
         <v-col cols="12">
+            <h3 class="text-h4">Introducere</h3>
+            <p>
+                Acest document descrie termenii și condițiile pentru folosirea website-ului <a
+                    href="<?php echo SITE_URL?>">www.woobit.ro</a> și a
+                serviciilor oferite de acesta. Woobit este un serviciu oferit de McGee Creative LLC, SUA.
+            </p>
+
             <h3 class="text-h4">Acceptarea termenilor</h3>
             <p>
                 Înainte de a utiliza <a href="<?= SITE_URL?>">www.woobit.ro</a> este obligatoriu să citiți, înțelegeți
