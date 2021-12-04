@@ -17,14 +17,14 @@
                     <v-form ref="child_form" v-model="children.form" lazy-validation>
                         <v-row>
                             <v-col cols="12" md="6">
-                                <v-text-field v-model="children.child.first_name" name="first_name" label="Nume"
+                                <v-text-field v-model="children.child.first_name" name="first_name" label="Prenumele adultului"
                                     :rules="validations.nameRules" outlined>
                                 </v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="6">
                                 <v-text-field v-model="children.child.last_name" name="last_name"
-                                    :rules="validations.nameRules" label="Numele de familie" outlined></v-text-field>
+                                    :rules="validations.nameRules" label="Numele de familie a adultului" outlined></v-text-field>
                             </v-col>
 
                             <v-col cols="12" md="6">

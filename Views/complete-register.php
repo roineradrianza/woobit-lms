@@ -18,7 +18,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6">
-                    <label class="body-1 font-weight-thin pl-1">Numele de familie</label>
+                    <label class="body-1 font-weight-thin pl-1">Numele de familie a adultului</label>
                     <v-text-field type="text" name="last_name" v-model="form.last_name" class="mt-3 fl-text-input"
                         :rules="validations.nameRules" outlined></v-text-field>
                 </v-col>

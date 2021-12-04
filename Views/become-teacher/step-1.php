@@ -9,14 +9,14 @@
 <v-form ref="step1_form" v-model="forms.step1" lazy-validation>
     <v-row>
         <v-col cols="12" md="4">
-            <label class="body-1 font-weight-thin pl-1">Nume</label>
+            <label class="body-1 font-weight-thin pl-1">Prenumele adultului</label>
             <v-text-field type="text" name="first_name" v-model="form.first_name" class="mt-3"
                 :rules="validations.nameRules" outlined
                 :disabled="form.hasOwnProperty('status') && !parseInt(form.status)"></v-text-field>
         </v-col>
 
         <v-col cols="12" md="4">
-            <label class="body-1 font-weight-thin pl-1">Numele de familie</label>
+            <label class="body-1 font-weight-thin pl-1">Numele de familie a adultului</label>
             <v-text-field type="text" name="last_name" v-model="form.last_name" class="mt-3"
                 :rules="validations.nameRules" outlined
                 :disabled="form.hasOwnProperty('status') && !parseInt(form.status)"></v-text-field>

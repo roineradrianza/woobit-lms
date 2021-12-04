@@ -5,7 +5,7 @@
                 <p class="text-center text-md-right white--text">
                     hello@woobit.ro
                 </p>
-                <div class="d-flex justify-center">
+                <div class="d-flex justify-end">
                     <v-img src="<?= SITE_URL ?>/img/woobit-white-logo.png" max-width="150px"></v-img>
                 </div>
                 <p class="white--text font-weight-bold mt-10 text-center text-md-right">"Eu nu creez păsări-ci zboruri"
