@@ -16,9 +16,9 @@ let vm = new Vue({
     validations,
     interest: '',
     student_interest: '',
-    min: 5,
-    max: 17,
-    range: [5, 17],
+    min: 4,
+    max: 18,
+    range: [4, 18],
     application_form: true,
     forms: {
       step1: true,
@@ -102,8 +102,8 @@ let vm = new Vue({
         pesonal_video: '',
         availability: [],
         students_interests: [],
-        min_students_age: 5,
-        max_students_age: 17
+        min_students_age: 4,
+        max_students_age: 18
       }
     },
     search: '',
