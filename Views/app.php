@@ -46,7 +46,7 @@
             <?php if ($data['admin_header']): ?>
             <?= new Controller\Template('admin/parts/header') ?>
             <?php endif ?>
-            <v-content class="bg-white" tag="main">
+            <v-content class="bg-white no-mt" tag="main">
                 <v-container class="pt-0" fluid>
                     <?= $content; ?>
                 </v-container fluid>

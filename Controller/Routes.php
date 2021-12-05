@@ -95,11 +95,26 @@ class Routes
                     $this->footer = false;
                     $this->title = 'Panoul de administrare';
 
+                    if (empty($route[1])) {
+                        $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
+                            $this->scripts = [
+                                ['name' => 'lib/moment.min'], 
+                                ['name' => 'vue-components/vue2-editor.min'], 
+                                ['name' => 'lib/sortable.min'], 
+                                ['name' => 'vue-components/vue-draggable.min.umd'],
+                                ['name' => 'check-gsignin'], 
+                                ['name' => 'course-validations'], $base_asset
+                            ];
+
+                            $this->content = new Template("admin/courses");
+                        break;
+                    }
                     switch ($route[1]) {
 
                         case 'courses':
                             $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'], 
                                 ['name' => 'vue-components/vue2-editor.min'], 
@@ -114,7 +129,7 @@ class Routes
 
                         case 'users':
                             $base_asset = ['name' => 'admin/users.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
                                 ['name' => 'vue-components/vue-tel-input-vuetify.min'],
@@ -128,21 +143,21 @@ class Routes
 
                         case 'coupons':
                             $base_asset = ['name' => 'admin/coupons.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [['name' => 'coupon-validations'], ['name' => 'check-gsignin'], $base_asset];
                             $this->content = new Template("admin/coupons");
                             break;
 
                         case 'email-messages':
                             $base_asset = ['name' => 'admin/automatic-emails.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [['name' => 'lib/sheetJS.min'], ['name' => 'check-gsignin'], ['name' => 'vue-components/vue2-editor.min'], $base_asset];
                             $this->content = new Template("admin/automatic-emails");
                             break;
 
                         case 'payments':
                             $base_asset = ['name' => 'admin/payments.min', 'version' => '1.0.3'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
                                 ['name' => 'vue-components/vue2-editor.min'],
@@ -157,7 +172,7 @@ class Routes
 
                         case 'courses':
                             $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
                                 ['name' => 'lib/sortable.min'], 

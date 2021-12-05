@@ -4,3 +4,6 @@ background: linear-gradient(to right, #13ADFF 0%, #0976c2 100%);
 .v-application--wrap{
 	min-height: 100vh !important;
 }
+.no-mt{
+	margin-top: 0px !important;
+}
