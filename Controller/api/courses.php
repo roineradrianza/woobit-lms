@@ -7,7 +7,7 @@ if (empty($method)) {
     die(403);
 }
 
-use Aws\S3\S3Client;use Controller\Helper;
+use Controller\Helper;
 use Model\Course;
 use Model\CourseCategory;
 use Model\CourseMeta;
@@ -18,13 +18,6 @@ use Model\Member;
 use Model\Section;
 
 use Model\StudentCourse;
-
-$credentials = new Aws\Credentials\Credentials(AWS_S3_KEY, AWS_S3_SECRET);
-$s3 = new S3Client([
-    'version' => 'latest',
-    'region' => 'us-east-2',
-    'credentials' => $credentials,
-]);
 
 $course = new Course;
 $section = new Section;
@@ -43,6 +36,7 @@ switch ($method) {
     case 'get':
         $results = $course->get($query);
         $courses = [];
+
         if (count($results) > 0) {
             foreach ($results as $course) {
                 $result = $course;

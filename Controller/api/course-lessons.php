@@ -12,15 +12,6 @@ use Model\{Course, StudentCourse, Lesson, LessonMeta, Media, Notification};
 use Controller\Helper;
 use Controller\ZoomInstance;
 
-use Aws\S3\S3Client;
-
-$credentials = new Aws\Credentials\Credentials(AWS_S3_KEY, AWS_S3_SECRET);
-$s3 = new S3Client([
-    'version' => 'latest',
-    'region' => 'us-east-2',
-    'credentials' => $credentials,
-]);
-
 $course = new Course;
 $student_course = new StudentCourse;
 $lesson = new Lesson;
@@ -66,92 +57,7 @@ switch ($method) {
         $data = $_POST;
         $data_vars = [];
         $notify = !empty($data['send_publish_email']) ? $data['send_publish_email'] : false;
-        if ($data['class_type'] == 'video') {
-            set_time_limit(25600);
-            if (isset($_FILES['video']['tmp_name'])) {
-                $tmp_video_file = $_FILES['video']['tmp_name'];
-                $ext_video = explode(".", $tmp_video_file);
-                $main_video_name = "fl-{$data['course_id']}-{$data['lesson_id']}";
-                $data['video_url'] = '';
-                $media_data = ['course_id' => $data['course_id'], 'lesson_id' => $data['lesson_id'], 'user_id' => $_SESSION['user_id'], 'main_url' => ''];
-                $ffmpeg = FFMpeg\FFMpeg::create(['timeout' => 25600]);
-                $codec = new FFMpeg\Format\Video\X264();
-                $video = $ffmpeg->open($tmp_video_file);
-                $video
-                    ->filters()
-                    ->synchronize();
-                foreach ($helper->array_sort($helper->video_resolution(), 'order', SORT_DESC) as $resolution) {  
-                    $temp_path = "public/media/video-{$resolution['name']}-". time() .".mp4";
-                    $absolute_temp_path = DIRECTORY . "/$temp_path";
-                    $codec
-                        ->setKiloBitrate($resolution['bitrate']);
-                    $video
-                        ->save($codec, $temp_path);
-                    if (file_exists($absolute_temp_path)) {
-                        $source = fopen($absolute_temp_path, 'r');
-                        try {
-                            $video_upload = $s3->putObject([
-                                'Bucket' => AWS_S3_BUCKET,
-                                'Key' => AWS_MEDIA_FOLDER . "fl-{$data['course_id']}-{$data['lesson_id']}-{$resolution['name']}.mp4",
-                                'Body' => $source,
-                                'ACL' => 'public-read',
-                            ]);
-                            unlink($absolute_temp_path);
-                            $media_data['url'] = $video_upload['ObjectURL'];
-                            if ($resolution['name'] == '1080p') {
-                                $data['video_url'] = $media_data['url'];
-                                $media_data['main_url'] = $media_data['url'];
-                            }
-                            $media_data['resource_type'] = 'class';
-                            $media_update = $media->update($media_data);
-                            if ($media_update) {
-                                $meta_name = "video_url_{$resolution['name']}";
-                                $meta_val = $media_data['url'];
-                                $check_meta = $lesson_meta->get_meta($data['lesson_id'], $meta_name);
-                                $meta_data = ['lesson_meta_name' => $meta_name, 'lesson_meta_val' => $meta_val, 'lesson_id' => $data['lesson_id']];
-                                if (empty($check_meta)) {
-                                    $result = $lesson_meta->create($meta_data);
-                                } else {
-                                    $result = $lesson_meta->edit($check_meta['lesson_id'], $meta_data);
-                                }
-                                if (!$result) {
-                                    $helper->response_message('Error', "No se pudo actualizar el siguiente campo: $meta_name", 'error');
-                                }
-                            }
-                        } catch (Aws\S3\Exception\S3Exception$e) {
-                            unlink($absolute_temp_path);
-                            $helper->response_message('Error', "No se pudo subir el video en resolución {$resolution['name']} correctamente", 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.\n']);
-                        }
-                    }
-                }
-            }
-            if (isset($_FILES['poster']['tmp_name'])) {
-                $tmp_poster_file = $_FILES['poster']['tmp_name'];
-                $ext_poster = explode(".", $_FILES['poster']['name']);
-                $file_poster_name = 'poster-' . time() . '.' . end($ext_poster);
-                $poster_path = DIRECTORY . "/public/media/$file_poster_name";
-                if (move_uploaded_file($tmp_poster_file, $poster_path)) {
-                    try {
-                        $source = fopen($poster_path, 'r');
-                        $poster_upload = $s3->putObject([
-                            'Bucket' => AWS_S3_BUCKET,
-                            'Key' => AWS_MEDIA_FOLDER . "fl-poster-{$data['course_id']}-{$data['lesson_id']}." . end($ext_poster),
-                            'Body' => $source,
-                            'ACL' => 'public-read',
-                        ]);
-                        unlink($poster_path);
-                        $data['poster_url'] = $poster_upload['ObjectURL'];
-                        $media_data['url'] = $data['poster_url'];
-                        $media_data['resource_type'] = 'general';
-                        $media_update = $media->update($media_data);
-                        $data_vars = ['video_url' => $data['video_url'], 'poster_url' => $data['poster_url']];
-                    } catch (Aws\S3\Exception\S3Exception$e) {
-                        unlink($poster_path);
-                        $helper->response_message('Error', 'No se pudo subir el poster del video correctamente', 'error', ['err' => 'Hubo un error al intentar subir el archivo a Amazon S3.\n']);
-                    }
-                }
-            }
-        } else if ($data['class_type'] == 'zoom_meeting') {
+        if ($data['class_type'] == 'zoom_meeting') {
             $meeting_data = [
                 'zoom_jwt' => $data['zoom_jwt'],
                 'zoom_host' => $data['zoom_host'],

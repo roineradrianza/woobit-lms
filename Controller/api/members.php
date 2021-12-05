@@ -7,7 +7,7 @@ if (empty($method)) {
     die(403);
 }
 
-use Aws\S3\S3Client;
+
 use Model\{Member, MemberMeta, StudentCourse};
 
 use Controller\Helper;
@@ -332,51 +332,20 @@ switch ($method) {
         }
 
         $data = $_POST;
-        $credentials = new Aws\Credentials\Credentials(AWS_S3_KEY, AWS_S3_SECRET);
-        $s3 = new S3Client([
-            'version' => 'latest',
-            'region' => 'us-east-2',
-            'credentials' => $credentials,
-        ]);
         $id = $_SESSION['user_id'];
         $ext = explode(".", $_FILES['avatar']['name']);
         $tmp_file = $_FILES['avatar']['tmp_name'];
         $file_name = "avatar-$id-" . time() . '.' . end($ext);
         $path = DIRECTORY . "/public/img/avatar/$file_name";
         if (move_uploaded_file($tmp_file, $path)) {
-            $source = @fopen($path, 'r');
-            $keyname = AWS_A_FOLDER . $file_name;
-            try {
-                $result = $s3->putObject([
-                    'Bucket' => AWS_S3_BUCKET,
-                    'Key' => AWS_A_FOLDER . $file_name,
-                    'Body' => $source,
-                    'ACL' => 'public-read',
-                ]);
-                unlink($path);
-                $data['avatar'] = $result['ObjectURL'];
-            } catch (Aws\S3\Exception\S3Exception$e) {
-                unlink($path);
-                $helper->response_message('Error', 'Nu s-a putut încărca imaginea profilului pe Amazon S3, vă rugăm să încercați din nou.', 'error', 
-                    ['err' => 'S-a produs o eroare în încercarea de a încărca fișierul pe Amazon S3.']
-                );
-            }
+            $data['avatar'] = "/img/avatar/$file_name";
         } else {
             if (!$result) {
                 $helper->response_message('Error', 'Nu s-a putut încărca imaginea profilului, vă rugăm să încercați din nou.', 'error');
             }
-
         }
         if (!empty($data['old_avatar'])) {
-            $old_avatar_url = explode('/', $data['old_avatar']);
-            try {
-                $result = $s3->deleteObject([
-                    'Bucket' => AWS_S3_BUCKET,
-                    'Key' => AWS_A_FOLDER . end($old_avatar_url),
-                ]);
-            } catch (S3Exception $e) {
-
-            }
+            unlink($data['old_avatar']);
         }
         $result = $member->update_avatar($id, $data['avatar']);
         $_SESSION['avatar'] = $data['avatar'];

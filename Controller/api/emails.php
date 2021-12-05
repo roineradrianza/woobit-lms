@@ -9,15 +9,6 @@ use Model\{Course, Member, Coupon, StudentCoupon, CourseMeta, CourseCertified};
 
 use Controller\{Helper, Template};
 
-use Aws\S3\S3Client;
-
-$credentials = new Aws\Credentials\Credentials(AWS_S3_KEY, AWS_S3_SECRET);
-$s3 = new S3Client([
-  'version' => 'latest',
-  'region'  => 'us-east-2',
-  'credentials' => $credentials
-]);
-
 $course = New Course;
 $coupon = New Coupon;
 $member = New Member;
@@ -201,102 +192,7 @@ switch ($method) {
 		}
 		$helper->response_message('Éxito', 'Se procesó la solicitud correctamente', data: ['errors' => $errors]);
 		break;
-	
-	case 'send-certifieds':
-		if (empty($_POST) && !empty($_POST['students'])) $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
-		$data = $_POST;
-		$files = [];
-		$data['students'] = json_decode($data['students'], true);
-		$data['course'] = json_decode($data['course'], true);
-		$errors = [];
-		if (!empty($_FILES)) {
-			$tmp_file = $_FILES['attachment']['tmp_name'];
-			$ext = explode(".", $_FILES['attachment']['name']);
-			$file_name = $helper->convert_slug($ext[0]) . '-' . time() .'.' . $ext[1];
-			$path = DIRECTORY . "/public/uploads/$file_name";
-			if (!move_uploaded_file($tmp_file, $path)) $helper->response_message('Error', 'No se pudo subir el archivo ' . $_FILES['attachment']['name'], 'error');
-			$files[] = ['url' => $path, 'name' => $_FILES['attachment']['name']];
-		}
-		foreach ($data['students'] as $student) {
-			$already_registered = $member->search_user($student['email']);
-			if (!empty($already_registered[0])) {
-				$full_name = !empty($student['full_name']) ? $member->get_full_name($student['full_name']) : $member->get_full_name();
-				$student['first_name'] = isset($full_name['first_name']) ? $full_name['first_name'] : '';
-				$student['last_name'] = isset($full_name['last_name']) ? $full_name['last_name'] : '';
-				$student['recent_registered'] = false;
-				$user_id = $already_registered[0]['user_id'];
-			}
-			else {
-				$full_name = !empty($student['full_name']) ? $member->get_full_name($student['full_name']) : $member->get_full_name();
-				$student['first_name'] = isset($full_name['first_name']) ? $full_name['first_name'] : '';
-				$student['last_name'] = isset($full_name['last_name']) ? $full_name['last_name'] : '';
-				$student['password'] = '1234';
-				$register = $member->create_just_email($student);
-				if (!$register) {
-					$errors[] = "No se pudo registrar a " . $student['first_name'] . " " . $student['last_name'] . '(' . $student['email'] .')';
-					continue;
-				}
-				$student['recent_registered'] = true;
-				$user_id = $register;
-			}
-			$file_name = $helper->convert_slug($student['first_name'] . ' ' . $student['last_name']) . '-' . $data['course']['course_id'] . '-' . time();
-			$tmp_dir = DIRECTORY . "/public/course-certifieds/";
-			$helper->generate_pdf(new Template('document_templates/certified_templates/masterclass-china', ['first_name' => $student['first_name'], 'last_name' => $student['last_name']]), $file_name, $tmp_dir);
-			$file_name .= '.pdf';
-			$path = $tmp_dir . $file_name;
-			$source = @fopen($path, 'r');
-			if (!empty($source)) {
-				try {
-			    $result = $s3->putObject([
-			        'Bucket' => AWS_S3_BUCKET,
-			        'Key'    => AWS_CC_FOLDER . $file_name,
-			        'Body'   => $source,
-			        'ACL'    => 'public-read',
-			    ]);
-			    unlink($path);
-					$data['certified_url'] = $result['ObjectURL'];
-				} catch (Aws\S3\Exception\S3Exception $e) {
-					unlink($path);
-					$errors[] = 'No se pudo subir el certificado a Amazon S3 ('. $student['first_name'] .' '. $student['last_name'] .') ('. $student['email'] .')';
-					continue;
-				}
-			}
-			else{
-				$errors[] = 'No se pudo subir el certificado ('. $student['first_name'] .' '. $student['last_name'] .') ('. $student['email'] .')';
-				continue;
-			}
-			$student_data = [
-				'user_id' => $user_id,
-				'certified_url' => $data['certified_url'],
-				'course_id' => $data['course']['course_id'],
-			];
-			if($course_certified->create($student_data)) {
-				$template_data = [
-					'full_name' => $student['first_name'] . ' ' . $student['last_name'],
-					'email' => $student['email'],
-					'recent_registered' => $student['recent_registered'],
-					'password' => $student['recent_registered'] ? $student['password'] :  '',
-					'certified_url' => $student_data['certified_url'],
-					'course' => $data['course'],
-					'course_sponsors' => $course_meta->get_meta($data['course']['course_id'], 'sponsors_logo_email_url'),
-					'content' => $data['content']
-				];
-				$template = new Template('email_templates/certified', $template_data);
-				$sendEmail = $helper->send_mail($data['title'], [['email' => $template_data['email'], 'full_name' => $template_data['full_name']]], $template, $files);
-				if (!$sendEmail ) $errors[] = 'No se pudo enviar el certificado a ('. $template_data['full_name'].') ('. $template_data['email'] .')';
-			}
-			else {
-				$errors[] = 'No se pudo crear el registro del certificado a ('. $student['first_name'].' '. $student['last_name'] .') ('. $student['email'] .')';
-			}
-		}
-		if (!empty($files)) {
-			foreach ($files as $file) {
-				unlink($file['url']);
-			}
-		}
-		$helper->response_message('Éxito', 'Se procesó la solicitud correctamente', data: ['errors' => $errors]);
-		break;
-	
+
 	case 'remind-users-pending':
 		if (empty($data) || empty($data['course_id']) || empty($data['students'])) $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
 		$course_selected = $course->get(clean_string($data['course_id']));
