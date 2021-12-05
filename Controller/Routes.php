@@ -134,7 +134,6 @@ class Routes
                                 ['name' => 'lib/moment.min'],
                                 ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                                 ['name' => 'register-validations'],
-                                ['name' => 'check-gsignin'],
                                 ['name' => 'check-gsignin'], $base_asset,
                             ];
 
@@ -168,6 +167,18 @@ class Routes
                             $this->content = new Template("admin/payments");
                             break;
 
+                        case 'teachers-application':
+                            $base_asset = ['name' => 'admin/teachers-application.min', 'version' => '1.0.0'];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
+                            $this->scripts = [
+                                ['name' => 'lib/moment.min'],
+                                ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                                ['name' => 'register-validations'],
+                                ['name' => 'check-gsignin'], $base_asset,
+                            ];
+
+                            $this->content = new Template("admin/teachers-application");
+                            break;
                         default:
 
                         case 'courses':
@@ -613,7 +624,7 @@ class Routes
                         ['name' => 'lib/moment.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'become-teacher.min', 'version' => '1.0.0'],
+                        ['name' => 'become-teacher.min', 'version' => '1.0.1'],
                     ];
                     $this->content = new Template("become-teacher");
                     break;

@@ -73,7 +73,7 @@ let vm = new Vue({
       },
     ],
     form: {
-      application_id: Number,
+      application_id: -1,
       first_name: '',
       last_name: '',
       id_file: new File([], ''),
@@ -106,6 +106,20 @@ let vm = new Vue({
         max_students_age: 18
       }
     },
+    status: [
+      {
+        text: 'Prelucrare',
+        value: '0'
+      },
+      {
+        text: 'Aprobat',
+        value: '1'
+      },
+      {
+        text: 'Respins',
+        value: '3'
+      }
+    ],
     search: '',
     notifications: [],
   },
@@ -259,6 +273,27 @@ let vm = new Vue({
 
     getInput(text, data) {
       this.form.meta.teacher_telephone = data.number.international
+    },
+
+    getStatusType(val) {
+      var item = this.status.find(e => e.value == val)
+      var type = 'info'
+      if (item != null) {
+        switch (item.value) {
+          case '0':
+            type = "info"
+            break;
+
+          case '1':
+            type = "success"
+            break;
+
+          case '3':
+            type = "error"
+            break;
+        }
+      }
+      return type
     },
 
     response(type = '', message = '') {

@@ -97,7 +97,7 @@
     <v-card-actions class="px-8">
         <v-spacer></v-spacer>
         <v-btn color="secondary white--text" block @click="save" :disabled="!valid">
-            Guardar
+            Salvați
         </v-btn>
     </v-card-actions>
 </v-form>

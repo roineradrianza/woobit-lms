@@ -6,45 +6,47 @@
     de student. Vorbitor nativ al limbii române*. Pentru a fi remunerat trebuie să ai un cont de PayPal.
     Trebuie să fii confortabil cu aplicația Zoom. Pentru mai multe detalii citește
 </p>
-<v-form ref="step1_form" v-model="forms.step1" lazy-validation>
+<v-form ref="step1_form" v-model="forms.step1"
+    :<?= !empty($form_mode) ? $form_mode : 'disabled' ?>="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
+    && <?= !empty($object) ? $object : 'form' ?>.status != undefined
+    && <?= !empty($object) ? $object : 'form' ?>.application_id > 0"
+    lazy-validation>
     <v-row>
         <v-col cols="12" md="4">
             <label class="body-1 font-weight-thin pl-1">Prenumele adultului</label>
-            <v-text-field type="text" name="first_name" v-model="form.first_name" class="mt-3"
-                :rules="validations.nameRules" outlined
-                :disabled="form.hasOwnProperty('status') && !parseInt(form.status)"></v-text-field>
+            <v-text-field type="text" name="first_name" v-model="<?= !empty($object) ? $object : 'form' ?>.first_name"
+                class="mt-3" :rules="validations.nameRules" outlined></v-text-field>
         </v-col>
 
         <v-col cols="12" md="4">
             <label class="body-1 font-weight-thin pl-1">Numele de familie a adultului</label>
-            <v-text-field type="text" name="last_name" v-model="form.last_name" class="mt-3"
-                :rules="validations.nameRules" outlined
-                :disabled="form.hasOwnProperty('status') && !parseInt(form.status)"></v-text-field>
+            <v-text-field type="text" name="last_name" v-model="<?= !empty($object) ? $object : 'form' ?>.last_name"
+                class="mt-3" :rules="validations.nameRules" outlined></v-text-field>
         </v-col>
 
         <v-col cols="12" md="4">
             <label class="body-1 font-weight-thin pl-1">Email</label>
-            <v-text-field type="email" name="email" v-model="form.meta.teacher_email" class="mt-3"
+            <v-text-field type="email" name="email"
+                v-model="<?= !empty($object) ? $object : 'form' ?>.meta.teacher_email" class="mt-3"
                 hint="nu va fi publicată--folosită doar pentru comunicare internă." persistent-hint
-                :rules="validations.emailRules" outlined
-                :disabled="form.hasOwnProperty('status') && !parseInt(form.status)"></v-text-field>
+                :rules="validations.emailRules" outlined></v-text-field>
         </v-col>
 
         <v-col cols="12" md="4">
             <label class="body-1 font-weight-thin pl-1">Telefon</label>
-            <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select" v-model="form.meta.teacher_telephone" label=''
-                mode="international" :inputoptions="{showDialCode: true}" :rules="validations.telephoneRules"
+            <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select"
+                v-model="<?= !empty($object) ? $object : 'form' ?>.meta.teacher_telephone" label='' mode="international"
+                :inputoptions="{showDialCode: true}" :rules="validations.telephoneRules"
                 placeholder="Adăugați numărul de telefon" hint="folosit doar în caz de comunicare urgentă."
-                persistent-hint @input="getInput" outlined
-                :disabled="form.hasOwnProperty('status') && !parseInt(form.status)">
+                persistent-hint @input="getInput" outlined>
             </vue-tel-input-vuetify>
         </v-col>
 
         <v-col cols="12" md="4">
             <label class="body-1 font-weight-thin pl-1">Locația</label>
-            <v-text-field type="text" name="last_name" v-model="form.meta.teacher_address" class="mt-3"
-                hint="orașul și țara." persistent-hint :rules="validations.nameRules" outlined
-                :disabled="form.hasOwnProperty('status') && !parseInt(form.status)">
+            <v-text-field type="text" name="last_name"
+                v-model="<?= !empty($object) ? $object : 'form' ?>.meta.teacher_address" class="mt-3"
+                hint="orașul și țara." persistent-hint :rules="validations.nameRules" outlined>
             </v-text-field>
         </v-col>
 
@@ -54,7 +56,7 @@
 
         <v-col cols="12">
             <v-row>
-                <?= new Controller\Template('become-teacher/partials/education') ?>
+                <?= new Controller\Template('become-teacher/partials/education', $data) ?>
             </v-row>
         </v-col>
 
@@ -63,7 +65,7 @@
         </v-col>
 
         <v-col cols="12">
-            <?= new Controller\Template('become-teacher/partials/experience') ?>
+            <?= new Controller\Template('become-teacher/partials/experience', $data) ?>
         </v-col>
 
         <v-col cols="12">
@@ -84,8 +86,9 @@
 
                 <v-col cols="12" md="4">
                     <label class="body-1 font-weight-thin pl-1">Facebook</label>
-                    <v-text-field type="url" name="facebook" v-model="form.meta.facebook" :rules="validations.urlRules"
-                        outlined :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+                    <v-text-field type="url" name="facebook"
+                        v-model="<?= !empty($object) ? $object : 'form' ?>.meta.facebook" :rules="validations.urlRules"
+                        outlined reactive>
                         <template #append>
                             <v-icon>mdi-facebook</v-icon>
                         </template>
@@ -94,9 +97,9 @@
 
                 <v-col cols="12" md="4">
                     <label class="body-1 font-weight-thin pl-1">Instagram</label>
-                    <v-text-field type="url" name="instagram" v-model="form.meta.instagram"
-                        :rules="validations.urlRules" outlined
-                        :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+                    <v-text-field type="url" name="instagram"
+                        v-model="<?= !empty($object) ? $object : 'form' ?>.meta.instagram" :rules="validations.urlRules"
+                        outlined reactive>
                         <template #append>
                             <v-icon>mdi-instagram</v-icon>
                         </template>
@@ -105,8 +108,9 @@
 
                 <v-col cols="12" md="4">
                     <label class="body-1 font-weight-thin pl-1">LinkedIn</label>
-                    <v-text-field type="url" name="linkedin" v-model="form.meta.linkedin" :rules="validations.urlRules"
-                        outlined :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+                    <v-text-field type="url" name="linkedin"
+                        v-model="<?= !empty($object) ? $object : 'form' ?>.meta.linkedin" :rules="validations.urlRules"
+                        outlined reactive>
                         <template #append>
                             <v-icon>mdi-linkedin</v-icon>
                         </template>
@@ -134,8 +138,9 @@
 
                 <v-col cols="12" md="4">
                     <label class="body-1 font-weight-thin pl-1">Email paypal</label>
-                    <v-text-field type="url" name="facebook" v-model="form.meta.paypal" :rules="validations.emailRules"
-                        outlined :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+                    <v-text-field type="url" name="facebook"
+                        v-model="<?= !empty($object) ? $object : 'form' ?>.meta.paypal" :rules="validations.emailRules"
+                        outlined reactive>
                     </v-text-field>
                 </v-col>
 

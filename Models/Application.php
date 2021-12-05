@@ -45,7 +45,7 @@ class Application extends DB
 
         extract($data);
         $sql = "UPDATE {$this->table} SET status = $status 
-        WHERE {$this->application_id} = $id";
+        WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         return $result;
     }

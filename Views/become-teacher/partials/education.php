@@ -16,16 +16,16 @@
         </v-list-item-content>
     </v-list-item>
 </v-col>
-<template v-for="certificate, i in form.meta.certificates">
-    <v-col class="d-flex justify-end" cols="12" v-if="form.hasOwnProperty('status') && parseInt(form.status) != 0">
-        <v-btn color="error" @click="removeItem(form.meta.certificates, i)">Eliminați
+<template v-for="certificate, i in <?= !empty($object) ? $object : 'form' ?>.meta.certificates">
+    <v-col class="d-flex justify-end" cols="12" v-if="<?= !empty($object) ? $object : 'form' ?>.status < 0 && <?= !empty($object) ? $object : 'form' ?>.application_id < 0">
+        <v-btn color="error" @click="removeItem(<?= !empty($object) ? $object : 'form' ?>.meta.certificates, i)">Eliminați
         </v-btn>
     </v-col>
 
     <v-col cols="12" md="4">
         <label class="body-1 font-weight-thin pl-1">Anul</label>
         <v-text-field type="text" name="degree_year" v-model="certificate.year" :rules="validations.requiredRules"
-            outlined :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+            outlined  reactive>
         </v-text-field>
     </v-col>
 
@@ -33,18 +33,18 @@
         <label class="body-1 font-weight-thin pl-1">Instituția</label>
         <v-text-field type="text" name="degree_institution" :rules="validations.requiredRules"
             v-model="certificate.institution" outlined
-            :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+             reactive>
         </v-text-field>
     </v-col>
 
     <v-col cols="12" md="4">
         <label class="body-1 font-weight-thin pl-1">Materiile abordate</label>
         <v-text-field type="text" name="degree_title" v-model="certificate.degree" :rules="validations.requiredRules"
-            outlined :disabled="form.hasOwnProperty('status') && !parseInt(form.status)" reactive>
+            outlined  reactive>
         </v-text-field>
     </v-col>
 </template>
-<v-col class="d-flex justify-center py-0" cols="12" v-if="form.hasOwnProperty('status') && parseInt(form.status) != 0">
+<v-col class="d-flex justify-center py-0" cols="12" v-if="<?= !empty($object) ? $object : 'form' ?>.status < 0 && <?= !empty($object) ? $object : 'form' ?>.application_id < 0">
     <v-btn color="primary" @click="addDegree">
         Adăugați
     </v-btn>

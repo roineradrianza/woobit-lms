@@ -13,10 +13,19 @@
             </template>
             <template v-else>
 
-                <v-col class="d-flex justify-center" cols="12"
-                    v-if="form.hasOwnProperty('status') && !parseInt(form.status)">
-                    <v-alert border="top" colored-border type="info" elevation="2">
-                        Cererea dumneavoastră de a deveni profesor este în curs de examinare.
+                <v-col class="d-flex justify-center" cols="12" v-if="form.status >= 0">
+                    <v-alert border="top" colored-border :type="getStatusType(form.status)" elevation="2">
+                        <template v-if="form.status == '1'">
+                            Cererea sa a fost aprobată
+                        </template>
+
+                        <template v-else-if="form.status == '3'">
+                            Cererea dumneavoastră a fost respinsă
+                        </template>
+
+                        <template v-else>
+                            Cererea dumneavoastră de a deveni profesor este în curs de examinare.
+                        </template>
                     </v-alert>
                 </v-col>
 
@@ -42,13 +51,22 @@
 
                 <v-col class="d-flex justify-center" cols="12">
                     <v-btn class="white--text" :disabled="!application_form" :loading="loading" color="#a500a4"
-                        @click="$refs.application_form.validate ? save() : ''"
-                        v-if="form.hasOwnProperty('status') && parseInt(form.status) != 0">
+                        @click="$refs.application_form.validate ? save() : ''" v-if="form.hasOwnProperty.status < 0">
                         Trimiteți
                         aplicația
                     </v-btn>
-                    <v-alert border="top" colored-border type="info" elevation="2" v-else>
-                        Cererea dumneavoastră de a deveni profesor este în curs de examinare.
+                    <v-alert border="top" colored-border :type="getStatusType(form.status)" elevation="2" v-else>
+                        <template v-if="form.status == '1'">
+                            Cererea sa a fost aprobată!
+                        </template>
+
+                        <template v-else-if="form.status == '3'">
+                            Cererea dumneavoastră a fost respinsă
+                        </template>
+
+                        <template v-else>
+                            Cererea dumneavoastră de a deveni profesor este în curs de examinare.
+                        </template>
                     </v-alert>
                 </v-col>
 

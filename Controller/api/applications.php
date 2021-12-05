@@ -8,8 +8,9 @@ if (empty($method)) {
 }
 
 use Controller\Helper;
-use Model\{Application, Member};
 
+use Model\Application;
+use Model\Member;
 use Model\MemberMeta;
 
 $application = new Application;
@@ -107,68 +108,16 @@ switch ($method) {
     case 'update':
         if (empty($_SESSION['user_id'])) {
             die(403);
-        } else if (empty($_POST)) {
+        } else if (empty($data) || empty($data['user_id'])) {
             $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
-
-        $data = $_POST;
-
-        $data['user_id'] = empty($data['user_id']) ? $_SESSION['user_id'] : $data['user_id'];
-        $data['meta'] = isset($data['meta']) ? json_decode($data['meta'], true) : [];
-        
         $id = $data['user_id'];
-        if($_SESSION['user_type'] == 'administrator' && !empty($data['status'])) {
-            $result = $application->update($id, $data);
+        $_SESSION['user_type'] == 'administrator' && isset($data['status']) ? 
+        (!$application->update($id, $data) ? $helper->response_message('Error', 'Statutul nu poate fi actualizat', 'error') : '')
+        : $helper->response_message('Error', 'Nu sunteți autorizat să efectuați această acțiune', 'error');
 
-            if (!$result) {
-                $helper->response_message('Error', 'Membrul nu a putut fi editat corect', 'error');
-            }
-    
-        }
-
-        if (!empty($_FILES['id_file']['name'])) {
-            $old_file = DIRECTORY . $data['meta']['id_url'];
-            $ext = explode(".", $_FILES['id_file']['name']);
-            $file_name = "{$helper->convert_slug($ext[0])}-" . time() . '.' . end($ext);
-            if (!move_uploaded_file($_FILES["id_file"]["tmp_name"], DIRECTORY . "/public/docs/ids/$file_name")) {
-                $helper->response_message('Error', 'Documentul de identitate nu a putut fi salvat corect, vă rugăm să încercați din nou.', 'error');
-            }
-            !empty($data['meta']['id_url']) && file_exists($old_file) ? unlink($old_file) : ''; 
-            $data['meta']['id_url'] = "/docs/ids/$file_name";
-        }
-
-        if (!empty($_FILES['video_file']['name'])) {
-            $old_file = DIRECTORY . $data['meta']['video_url'];
-            $ext = explode(".", $_FILES['video_file']['name']);
-            $file_name = "{$helper->convert_slug($ext[0])}-" . time() . '.' . end($ext);
-            if (!move_uploaded_file($_FILES["video_file"]["tmp_name"], DIRECTORY . "/public/docs/personal-videos/$file_name")) {
-                $helper->response_message('Error', 'Videoclipul personal nu a putut fi procesat corect, vă rugăm să încercați din nou.', 'error');
-            }
-            !empty($data['meta']['video_url']) && file_exists($old_file) ? unlink($old_file) : ''; 
-            $data['meta']['video_url'] = "/docs/personal-videos/$file_name";
-        }
-
-        if (isset($data['meta']) && !empty($data['meta'])) {
-            foreach ($data['meta'] as $meta_key => $meta_value) {
-                $check_meta = $user_meta->get_meta($id, $meta_key);
-
-                $meta = [
-                    'meta_name' => $meta_key,
-                    'meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
-                    'user_id' => $id,
-                ];
-
-                if (empty($check_meta)) {
-                    $user_meta->create($meta);
-                } else {
-                    $user_meta->edit($id, $meta);
-                }
-
-            }
-        }
         $helper->response_message('Succes', 'Aplicația a fost actualizată cu succese');
         break;
-
     case 'delete':
         $result = $member->delete(intval($data['user_id']));
         if (!$result) {

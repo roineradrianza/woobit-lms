@@ -53,12 +53,12 @@
         </v-dialog>
         <v-dialog v-model="dialogDelete" max-width="50%">
             <v-card>
-                <v-card-title class="headline d-flex justify-center">¿Estás seguro de que quieres eliminar este curso?
+                <v-card-title class="headline d-flex justify-center">¿Sunteți sigur că doriți să ștergeți acest curs?
                 </v-card-title>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="primary" text @click="closeDelete">Cancelar</v-btn>
-                    <v-btn color="secondary" text @click="deleteItemConfirm">Continuar</v-btn>
+                    <v-btn color="primary" text @click="closeDelete">Anulează</v-btn>
+                    <v-btn color="secondary" text @click="deleteItemConfirm">Continuă</v-btn>
                     <v-spacer></v-spacer>
                 </v-card-actions>
             </v-card>
