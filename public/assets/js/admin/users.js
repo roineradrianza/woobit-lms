@@ -6,6 +6,7 @@ let vm = new Vue({
     vuetify,
     el: '#app-container',
     data: {
+      search: '',
       loading: false,
       table_loading: false,
       drawer: true,
@@ -22,23 +23,19 @@ let vm = new Vue({
       validations,
       gender: [
         {
-          text: 'Hombre',
+          text: 'Omul',
           value: 'M'
         },
         {
-          text: 'Mujer',
+          text: 'Femeie',
           value: 'F'
-        },
-        {
-          text: 'Prefiero no especificar',
-          value: 'N'
         },
       ],
       headers: [
-        { text: 'Nombre completo', align: 'start', value: 'full_name' },
-        { text: 'Tipo de usuario', value: 'user_type' },
-        { text: 'Correo electrónico', value: 'email' },
-        { text: 'Acciones', value: 'actions', align:'center', sortable: false },
+        { text: 'Nume și prenume', align: 'start', value: 'full_name' },
+        { text: 'Tipul de utilizator', value: 'user_type' },
+        { text: 'Adresa de e-mail', value: 'email' },
+        { text: 'Acțiuni', value: 'actions', align:'center', sortable: false },
       ],
       members: [],
       user_types: ['administrator', 'membru'],
@@ -63,7 +60,7 @@ let vm = new Vue({
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'Registrar usuario' : 'Editar usuario'
+        return this.editedIndex === -1 ? 'Înregistrare utilizator' : 'Editare utilizator'
       },
     },
 
@@ -92,6 +89,9 @@ let vm = new Vue({
         this.table_loading = true
         this.$http.get(url).then(res => {
           this.table_loading = false
+          res.body.forEach(user => {
+            user.full_name = user.first_name + ' ' + user.last_name
+          });
           this.members = res.body;
         }, err => {
 
@@ -144,6 +144,7 @@ let vm = new Vue({
         var app = this
         var editedIndex = app.editedIndex
         var member = app.editedItem
+        member.full_name = member.first_name + ' ' + member.last_name
         if (app.editedIndex > -1) {
           var url = api_url + 'members/update'
           app.$http.post(url, member).then(res => {
@@ -234,6 +235,10 @@ let vm = new Vue({
           return state.name == state_selected
         });
         return app.editedItem.state_selected = results[0].id;
+      },
+
+      getInput (text, data) {
+        this.telephone = data.number.international
       },
 
       getLocation() {

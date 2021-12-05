@@ -259,7 +259,10 @@ let vm = new Vue({
 
     getCurriculum() {
       var url = api_url + 'course-sections/get'
-      this.$http.post(url, {course_id: this.editedItem.course_id}).then(res => {
+      var data = {
+        course_id: this.editedItem.course_id
+      }
+      this.$http.post(url, data).then(res => {
         this.curriculum.sections = res.body
       }, err => {
 

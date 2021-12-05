@@ -1,60 +1,59 @@
-			
-			<!-- Sizes your content based upon application components -->
-			  <v-row >
-			  	<v-col class="px-10" cols="12">
-              <template>
-                <v-toolbar class="bg-transparent" flat>
-                  <v-spacer></v-spacer>
-                  <v-dialog v-model="dialog" max-width="1200px" >
-                      <template v-slot:activator="{ on, attrs }">
-                          <v-btn color="secondary" dark pill class="mb-2" v-bind="attrs" v-on="on">
-                            <v-icon>mdi-plus</v-icon>
-                            Añadir Utilizator
-                          </v-btn>
-                      </template>
-                    <v-card>
-                      <v-toolbar class="gradient" elevation="0">
+<v-row>
+    <v-col class="px-10" cols="12">
+        <v-toolbar class="bg-transparent" flat>
+            <v-spacer></v-spacer>
+            <v-dialog v-model="dialog" max-width="1200px">
+                <template #activator="{ on, attrs }">
+                    <v-btn color="secondary" class="mb-2" v-bind="attrs" v-on="on" pill>
+                        <v-icon>mdi-plus</v-icon>
+                        Añadir Utilizator
+                    </v-btn>
+                </template>
+                <v-card>
+                    <v-toolbar class="gradient" elevation="0">
                         <v-toolbar-title class="white--text">{{ formTitle }}</v-toolbar-title>
                         <v-spacer></v-spacer>
                         <v-toolbar-items>
-                        <v-btn icon dark @click="dialog = false">
-                          <v-icon color="white">mdi-close</v-icon>
-                        </v-btn>
+                            <v-btn icon @click="dialog = false">
+                                <v-icon color="white">mdi-close</v-icon>
+                            </v-btn>
                         </v-toolbar-items>
-                      </v-toolbar>
-                      
-                      <v-divider></v-divider>
-                      <?= new Controller\Template('admin/parts/user_form') ?>
-                    </v-card>
-                  </v-dialog>
-                  <v-dialog v-model="dialogDelete" max-width="1200px">
-                    <v-card>
-                      <v-card-title class="headline">¿Estás seguro de que quieres eliminar este membru?</v-card-title>
-                      <v-card-actions>
+                    </v-toolbar>
+
+                    <v-divider></v-divider>
+                    <?= new Controller\Template('admin/parts/user_form') ?>
+                </v-card>
+            </v-dialog>
+            <v-dialog v-model="dialogDelete" max-width="1200px">
+                <v-card>
+                    <v-card-title class="headline">¿Sunteți sigur că doriți să eliminați acest membru?
+                    </v-card-title>
+                    <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="blue darken-1" text @click="closeDelete">Cancelar</v-btn>
-                        <v-btn color="blue darken-1" text @click="deleteItemConfirm">Continuar</v-btn>
+                        <v-btn color="blue darken-1" text @click="closeDelete">Anulează</v-btn>
+                        <v-btn color="blue darken-1" text @click="deleteItemConfirm">Continuă</v-btn>
                         <v-spacer></v-spacer>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                </v-toolbar>
-              </template>
-            <v-data-table :headers="headers" :items="members" sort-by="full_name" class="elevation-1" :loading="table_loading">
-              <template v-slot:item.actions="{ item }">
+                    </v-card-actions>
+                </v-card>
+            </v-dialog>
+        </v-toolbar>
+        <v-data-table :headers="headers" :items="members" sort-by="full_name" class="elevation-1" :search="search"
+            :loading="table_loading">
+            <template #top>
+                <v-text-field type="text" placeholder="Căutați..." v-model="search" append-icon="mdi-magnify"
+                    outlined></v-text-field>
+            </template>
+            <template #item.actions="{ item }">
                 <v-icon md @click="editItem(item)" color="primary" v-if="1 == 2">
-                  mdi-eye
+                    mdi-eye
                 </v-icon>
                 <v-icon md @click="editItem(item)" color="#00BFA5">
-                  mdi-pencil
+                    mdi-pencil
                 </v-icon>
                 <v-icon md @click="deleteItem(item)" color="#F44336">
-                  mdi-delete
+                    mdi-delete
                 </v-icon>
-              </template>
-              <template v-slot:item.full_name="{ item }">
-                {{ item.first_name }} {{ item.last_name }}
-              </template>
-            </v-data-table>
-			  	</v-col>			  	
-			  </v-row>
+            </template>
+        </v-data-table>
+    </v-col>
+</v-row>
