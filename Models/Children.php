@@ -16,7 +16,7 @@ class Children extends DB
     public function get($id = 0, $user_id = 0) : Array
     {
         $sql = "SELECT * FROM {$this->table}";
-        if (empty($id != 0)) {
+        if (!empty($id)) {
             $sql .= " WHERE {$this->id_column} = $id";
         } else if (!empty($user_id)) {
             $sql .= " WHERE {$this->id_user_column} = $user_id";

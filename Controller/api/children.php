@@ -20,7 +20,7 @@ switch ($method) {
 
     case 'get':
         $query = !is_numeric($query) ? $helper->decrypt($query) : $query;
-        echo json_encode($children->get($query));
+        echo json_encode($children->get(user_id: $query));
         break;
 
     case 'create':
