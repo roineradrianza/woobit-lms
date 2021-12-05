@@ -44,10 +44,6 @@ switch ($method) {
                 $l['old_lesson_order'] = $l['lesson_order'];
                 $l['resources'] = $media->get_by_lesson($l['lesson_id'], 'material');
                 $l['quizzes'] = [];
-                foreach ($question->get($l['lesson_id']) as $quiz) {
-                    $quiz['question_answers'] = json_decode($quiz['question_answers']);
-                    $l['quizzes'][] = $quiz;
-                }
                 $l['meta'] = [];
                 $lesson_metas = $lesson_meta->get($l['lesson_id']);
                 foreach ($lesson_metas as $meta_val) {

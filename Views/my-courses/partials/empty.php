@@ -4,8 +4,8 @@
         <v-row>
             <v-col class="d-flex justify-center align-center d-md-inline" cols="12">
                 <v-btn color="primary" text>Ghid curs nou</v-btn>
-                <v-btn class="my-6" color="primary" href="<?php echo SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
-                <v-btn class="my-6" color="primary" href="<?php echo SITE_URL ?>/my-courses">Cursurile tale</v-btn>
+                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
+                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/my-courses">Cursurile tale</v-btn>
             </v-col>
         </v-row>
         <h3 class="text-h5">Titlul</h3>
@@ -129,6 +129,6 @@
     </v-col>
 
     <v-col class="d-flex justify-center">
-        <v-btn color="primary" href="<?php echo SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
+        <v-btn color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
     </v-col>
 </v-row>

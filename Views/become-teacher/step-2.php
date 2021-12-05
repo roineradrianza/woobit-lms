@@ -24,7 +24,7 @@
 
         <template v-else>
             <v-col cols="12">
-                <v-img :src="'<?php echo SITE_URL ?>' + form.meta.id_url" max-width="600px"
+                <v-img :src="'<?= SITE_URL ?>' + form.meta.id_url" max-width="600px"
                     v-if="form.meta.id_url != ''" contain>
                 </v-img>
             </v-col>

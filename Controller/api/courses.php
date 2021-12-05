@@ -7,11 +7,17 @@ if (empty($method)) {
     die(403);
 }
 
-use Model\{Course, CourseMeta, CourseCategory, LessonMeta, StudentCourse, Section, Lesson, Member};
+use Aws\S3\S3Client;use Controller\Helper;
+use Model\Course;
+use Model\CourseCategory;
+use Model\CourseMeta;
+use Model\Lesson;
+use Model\LessonMeta;
+use Model\Member;
 
-use Controller\Helper;
+use Model\Section;
 
-use Aws\S3\S3Client;
+use Model\StudentCourse;
 
 $credentials = new Aws\Credentials\Credentials(AWS_S3_KEY, AWS_S3_SECRET);
 $s3 = new S3Client([
@@ -90,7 +96,7 @@ switch ($method) {
         $results = $course->get_own_courses($query);
         echo json_encode($results);
         break;
-    
+
     case 'get-new-courses':
         $results = $course->get_recent_courses();
         echo json_encode($results);
@@ -203,22 +209,23 @@ switch ($method) {
             $data['meta'] = json_decode($data['meta'], true);
             foreach ($data['meta'] as $meta_key => $meta_value) {
                 $meta = [
-                    'course_meta_name' => $meta_key, 
-                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
-                    'course_id' => $result
+                    'course_meta_name' => $meta_key,
+                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
+                    'course_id' => $result,
                 ];
                 $course_meta->create($meta);
             }
         }
+
         if (!empty($data['section'])) {
             $data['section'] = json_decode($data['section'], true);
             foreach ($data['section'] as $item) {
                 $item['course_id'] = $result;
                 $section_result = $section->create($item, $data['course_id']);
-                if (!$result) {
+                if (!$section_result) {
                     continue;
                 }
-                foreach($item['items'] as $lesson_item) {
+                foreach ($item['items'] as $lesson_item) {
                     $lesson_item['section_id'] = $section_result;
                     $lesson_item['user_id'] = $data['user_id'];
                     $lesson_result = $lesson->create($lesson_item);
@@ -228,9 +235,9 @@ switch ($method) {
                     if (!empty($lesson_item['meta'])) {
                         foreach ($lesson_item['meta'] as $meta_key => $meta_value) {
                             $meta = [
-                                'lesson_meta_name' => $meta_key, 
-                                'lesson_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
-                                'lesson_id' => $lesson_result
+                                'lesson_meta_name' => $meta_key,
+                                'lesson_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
+                                'lesson_id' => $lesson_result,
                             ];
                             $lesson_meta->create($meta);
                         }
@@ -277,16 +284,17 @@ switch ($method) {
         $id = intval($data['course_id']);
         $data['user_id'] = intval($data['user_id']);
         $data['slug'] = $helper->convert_slug($data['title']) . "-{$data['user_id']}";
-        if (isset($_FILES['featured_image'])) {
-            $tmp_file = $_FILES['featured_image']['tmp_name'];
-            $ext = explode(".", $_FILES['featured_image']['name']);
+        if (isset($_FILES['new_featured_image']) && $_FILES['new_featured_image']['size'] > 0) {
+            $file = $_FILES['new_featured_image'];
+            $tmp_file = $file['tmp_name'];
+            $ext = explode(".", $file['name']);
             $file_name = "{$data['slug']}-" . time() . "." . end($ext);
             $path = DIRECTORY . "/public/img/featured-images/$file_name";
             if (!move_uploaded_file($tmp_file, $path)) {
                 $helper->response_message('Error', 'Nu s-a putut încărca coperta cursului, vă rugăm să încercați din nou.', 'error');
             }
             $old_file = DIRECTORY . $data['featured_image'];
-            !empty($data['featured_image']) && file_exists($old_file) ? unlink($old_file) : ''; 
+            !empty($data['featured_image']) && file_exists($old_file) ? unlink($old_file) : '';
             $data['featured_image'] = "/img/featured-images/$file_name";
         }
         $data['active'] = intval($data['active']);
@@ -310,8 +318,8 @@ switch ($method) {
             $data['meta'] = json_decode($data['meta'], true);
             foreach ($data['meta'] as $meta_key => $meta_value) {
                 $meta = [
-                    'course_meta_name' => $meta_key, 
-                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value
+                    'course_meta_name' => $meta_key,
+                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
                 ];
                 if (isset($_FILE[$meta_key])) {
                     $tmp_file = $_FILES[$meta_key]['tmp_name'];
@@ -325,14 +333,44 @@ switch ($method) {
                 $check_meta = $course_meta->get_meta($id, $meta_key);
                 if (empty($check_meta)) {
                     $meta_data = [
-                        'course_meta_name' => $meta_key, 
-                        'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
-                        'course_id' => $id
+                        'course_meta_name' => $meta_key,
+                        'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
+                        'course_id' => $id,
                     ];
                     $course_meta->create($meta_data);
                     continue;
                 }
                 $course_meta->edit($id, $meta);
+            }
+        }
+        if (!empty($data['section'])) {
+            $data['section'] = json_decode($data['section'], true);
+            foreach ($data['section'] as $item) {
+                $item['course_id'] = $data['course_id'];
+                $section_result = empty($item['section_id']) ? $section->create($item, $data['course_id']) : $section->edit($item['section_id'], $item);
+                if (!$section_result) {
+                    continue;
+                }
+                foreach ($item['items'] as $lesson_item) {
+                    $lesson_item['section_id'] = empty($item['section_id']) ? $section_result : $item['section_id'];
+                    $lesson_item['user_id'] = $data['user_id'];
+                    $lesson_result = empty($lesson_item['lesson_id']) ? $lesson->create($lesson_item) : $lesson->edit($lesson_item);
+                    if (!$lesson_result) {
+                        continue;
+                    }
+                    $id = $lesson_item['lesson_id'] = empty($lesson_item['lesson_id']) ? $lesson_result : $lesson_item['lesson_id'];
+                    if (!empty($lesson_item['meta'])) {
+                        foreach ($lesson_item['meta'] as $meta_key => $meta_value) {
+                            $meta = [
+                                'lesson_meta_name' => $meta_key,
+                                'lesson_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
+                                'lesson_id' => $lesson_item['lesson_id'],
+                            ];
+                            $check_meta = $lesson_meta->get_meta($lesson_item['lesson_id'], $meta_key);
+                            empty($check_meta) ? $lesson_meta->create($meta) : $lesson_meta->edit($lesson_item['lesson_id'], $meta);
+                        }
+                    }
+                }
             }
         }
         $helper->response_message('Succes', 'Cursul a fost editat corect', data:['featured_image' => $data['featured_image'], 'slug' => $data['slug']]);
@@ -353,8 +391,8 @@ switch ($method) {
                 }
 
                 $meta = [
-                    'course_meta_name' => $meta_key, 
-                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
+                    'course_meta_name' => $meta_key,
+                    'course_meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value,
                     'course_id' => $id];
                 $check_meta = $course_meta->get_meta($id, $meta_key);
                 if (empty($check_meta)) {
@@ -381,7 +419,7 @@ switch ($method) {
             $file_name = "{$data['slug']}-" . time() . '.' . end($ext);
             $path = DIRECTORY . "/public/img/featured-images/$file_name";
             if (!move_uploaded_file($tmp_file, $path)) {
-                    $helper->response_message('Error', 'Nu s-a putut încărca coperta cursului, vă rugăm să încercați din nou.', 'error');
+                $helper->response_message('Error', 'Nu s-a putut încărca coperta cursului, vă rugăm să încercați din nou.', 'error');
             }
             $data['featured_image'] = "/img/featured-images/$file_name";
         }

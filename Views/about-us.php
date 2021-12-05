@@ -1,7 +1,7 @@
 <v-container class="pt-16 pt-md-0 px-0 px-md-0">
     <v-row>
         <v-col class="d-flex justify-center" cols="12">
-            <v-img src="<?php echo SITE_URL ?>/img/woobit-logo.png" max-width="100px"></v-img>
+            <v-img src="<?= SITE_URL ?>/img/woobit-logo.png" max-width="100px"></v-img>
         </v-col>
         <v-col cols="12">
             <h1 class="text-h4 text-center">

@@ -14,7 +14,7 @@
                 <v-col cols="12" md="4">
                     <v-card elevation="0">
                         <div class="d-flex justify-center">
-                            <v-img src="<?php echo SITE_URL ?>/img/teacher-application-info/icon-1.svg"
+                            <v-img src="<?= SITE_URL ?>/img/teacher-application-info/icon-1.svg"
                                 max-width="100px">
                             </v-img>
                         </div>
@@ -34,7 +34,7 @@
                 <v-col cols="12" md="4">
                     <v-card elevation="0">
                         <div class="d-flex justify-center">
-                            <v-img src="<?php echo SITE_URL ?>/img/teacher-application-info/icon-2.svg"
+                            <v-img src="<?= SITE_URL ?>/img/teacher-application-info/icon-2.svg"
                                 max-width="100px">
                             </v-img>
                         </div>
@@ -53,7 +53,7 @@
                 <v-col cols="12" md="4">
                     <v-card elevation="0">
                         <div class="d-flex justify-center">
-                            <v-img src="<?php echo SITE_URL ?>/img/teacher-application-info/icon-3.svg"
+                            <v-img src="<?= SITE_URL ?>/img/teacher-application-info/icon-3.svg"
                                 max-width="100px">
                             </v-img>
                         </div>
@@ -107,7 +107,7 @@
                             </v-col>
 
                             <v-col class="d-flex justify-center" cols="12" md="4" order="1" order-md="2">
-                                <v-img src="<?php echo SITE_URL ?>/img/teacher-application-info/tab/1.svg"
+                                <v-img src="<?= SITE_URL ?>/img/teacher-application-info/tab/1.svg"
                                     max-width="250px" contain></v-img>
                             </v-col>
                         </v-row>
@@ -116,7 +116,7 @@
                     <v-tab-item>
                         <v-row justify="start">
                             <v-col class="d-flex justify-center" cols="12" md="4">
-                                <v-img src="<?php echo SITE_URL ?>/img/teacher-application-info/tab/2.svg"
+                                <v-img src="<?= SITE_URL ?>/img/teacher-application-info/tab/2.svg"
                                     max-width="200px" contain></v-img>
                             </v-col>
 
@@ -136,7 +136,7 @@
                     <v-tab-item>
                         <v-row justify="end">
                             <v-col class="d-flex justify-center" cols="12" md="4">
-                                <v-img src="<?php echo SITE_URL ?>/img/teacher-application-info/tab/3.svg"
+                                <v-img src="<?= SITE_URL ?>/img/teacher-application-info/tab/3.svg"
                                     max-width="200px" contain></v-img>
                             </v-col>
 

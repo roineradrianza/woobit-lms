@@ -16,14 +16,14 @@ class Section extends DB
     private $id_column = "section_id";
     private $id_course_column = "course_id";
 
-    public function get($id = 0, $course_id = 0)
+    public function get($id = 0, $course_id = 0) : Array
     {
-        if ($id != 0) {
-            $sql = "SELECT * FROM {$this->table} WHERE {$this->id_column} = $id";
+        if (!empty($id)) {
+            $sql = "SELECT * FROM {$this->table} WHERE {$this->id_column} = $id ORDER BY section_order ASC";
         } else if ($id == 0 && $course_id != 0) {
-            $sql = "SELECT * FROM {$this->table} WHERE {$this->id_course_column} = $course_id";
+            $sql = "SELECT * FROM {$this->table} WHERE {$this->id_course_column} = $course_id ORDER BY section_order ASC";
         } else {
-            return false;
+            return [];
         }
         $result = $this->execute_query($sql);
         $arr = [];
@@ -33,7 +33,7 @@ class Section extends DB
         return $arr;
     }
 
-    public function get_total_lessons($course_id = 0, $class_type = 1)
+    public function get_total_lessons($course_id = 0, $class_type = 1) : Mixed
     {
         if (empty($course_id)) {
             return [];
@@ -45,7 +45,7 @@ class Section extends DB
         return $result->fetch_assoc();
     }
 
-    public function get_section_by_order($course_id = 0, $order = 0)
+    public function get_section_by_order($course_id = 0, $order = 0) : Array
     {
         if ($course_id == 0 || $order == 0) {
             return false;
@@ -60,7 +60,7 @@ class Section extends DB
         return $arr;
     }
 
-    public function get_total_views($section_id = 0, $course_id = 0)
+    public function get_total_views($section_id = 0, $course_id = 0) : Array
     {
         if (empty($section_id) || empty($course_id)) {
             return false;
@@ -81,25 +81,7 @@ class Section extends DB
         return $arr;
     }
 
-    public function get_total_quizzes_done($section_id = 0, $course_id = 0)
-    {
-        if (empty($section_id) || empty($course_id)) {
-            return false;
-        }
-
-        $sql = "SELECT lesson_id as id, lesson_name, (SELECT COUNT(LV.user_id) FROM {$this->table_lesson_views} LV
-		INNER JOIN {$this->table_course_users} CU ON CU.user_id = LV.user_id
-		WHERE CU.course_id = $course_id AND lesson_id = id AND user_rol IN ('residente', 'estudiante')) AS students
-		 FROM {$this->table_lesson} WHERE section_id = $section_id AND lesson_type = 2;";
-        $result = $this->execute_query($sql);
-        $arr = [];
-        while ($row = $result->fetch_assoc()) {
-            $arr[] = $row;
-        }
-        return $arr;
-    }
-
-    public function create($data = [], $id = 0)
+    public function create($data = [], $id = 0) : Mixed
     {
         if (empty($data) || $id == 0) {
             return false;
@@ -111,7 +93,7 @@ class Section extends DB
         return $result;
     }
 
-    public function edit($id, $data = [])
+    public function edit($id, $data = []) : Bool
     {
         if (empty($data) or empty($id)) {
             return false;
@@ -119,11 +101,12 @@ class Section extends DB
 
         extract($data);
         $sql = "UPDATE {$this->table} SET section_name = '$section_name', section_order = $section_order WHERE {$this->id_column} = $id AND {$this->id_course_column} = $course_id";
+        var_dump($sql);
         $result = $this->execute_query($sql);
         return $result;
     }
 
-    public function delete($id, $course_id)
+    public function delete($id, $course_id) : Bool
     {
         if (empty($id)) {
             return false;

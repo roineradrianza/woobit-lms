@@ -19,7 +19,7 @@
 
     <v-col cols="12">
         <v-row>
-            <?php echo new Controller\Template('become-teacher/partials/experience/work') ?>
+            <?= new Controller\Template('become-teacher/partials/experience/work') ?>
         </v-row>
     </v-col>
 
@@ -29,7 +29,7 @@
 
     <v-col cols="12">
         <v-row>
-            <?php echo new Controller\Template('become-teacher/partials/experience/volunteer') ?>
+            <?= new Controller\Template('become-teacher/partials/experience/volunteer') ?>
         </v-row>
     </v-col>
 
@@ -39,7 +39,7 @@
 
     <v-col cols="12">
         <v-row>
-            <?php echo new Controller\Template('become-teacher/partials/experience/projects') ?>
+            <?= new Controller\Template('become-teacher/partials/experience/projects') ?>
         </v-row>
     </v-col>
 
@@ -49,7 +49,7 @@
 
     <v-col cols="12">
         <v-row>
-            <?php echo new Controller\Template('become-teacher/partials/experience/books') ?>
+            <?= new Controller\Template('become-teacher/partials/experience/books') ?>
         </v-row>
     </v-col>
 

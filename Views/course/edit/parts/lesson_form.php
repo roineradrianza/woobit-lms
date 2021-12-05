@@ -1,12 +1,13 @@
 <template>
     <v-toolbar class="bg-transparent" flat>
-        <v-dialog v-model="dialog" max-width="95%" @click:outside="dialog = false">
+        <v-dialog v-model="<?= !empty($dialog) ? $dialog: 'dialog' ?>" max-width="95%"
+            @click:outside="<?= !empty($dialog) ? $dialog: 'dialog' ?> = false">
             <v-card>
                 <v-toolbar class="gradient" elevation="0">
                     <v-toolbar-title class="white--text">Editați clasa</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                        <v-btn icon @click="dialog = false">
+                        <v-btn icon @click="<?= !empty($dialog) ? $dialog: 'dialog' ?> = false">
                             <v-icon color="white">mdi-close</v-icon>
                         </v-btn>
                     </v-toolbar-items>

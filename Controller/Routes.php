@@ -75,7 +75,7 @@ class Routes
 
                 case 'about-us':
                     $this->scripts = [
-                        ['name' => 'check-gsignin'], 
+                        ['name' => 'check-gsignin'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->content = new Template("about-us");
@@ -93,19 +93,23 @@ class Routes
                     $this->header = false;
                     $this->admin_header = true;
                     $this->footer = false;
+                    $this->title = 'Panoul de administrare';
+
                     switch ($route[1]) {
-                        case '':
-                            $base_asset = ['name' => 'admin/dashboard.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'quill-editor.min'], $base_asset];
+
+                        case 'courses':
+                            $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
                             $this->scripts = [
-                                ['name' => 'lib/moment.min'],
-                                ['name' => 'vue-components/vue-googlechart.min'],
-                                ['name' => 'check-gsignin'],
-                                ['name' => 'course-validations'],
-                                $base_asset,
+                                ['name' => 'lib/moment.min'], 
+                                ['name' => 'vue-components/vue2-editor.min'], 
+                                ['name' => 'lib/sortable.min'], 
+                                ['name' => 'vue-components/vue-draggable.min.umd'],
+                                ['name' => 'check-gsignin'], 
+                                ['name' => 'course-validations'], $base_asset
                             ];
 
-                            $this->content = new Template("admin/dashboard");
+                            $this->content = new Template("admin/courses");
                             break;
 
                         case 'users':
@@ -136,14 +140,6 @@ class Routes
                             $this->content = new Template("admin/automatic-emails");
                             break;
 
-                        case 'courses':
-                            $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
-                            $this->scripts = [['name' => 'lib/moment.min'], ['name' => 'vue-components/vue2-editor.min'], ['name' => 'check-gsignin'], ['name' => 'course-validations'], $base_asset];
-
-                            $this->content = new Template("admin/courses");
-                            break;
-
                         case 'payments':
                             $base_asset = ['name' => 'admin/payments.min', 'version' => '1.0.3'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
@@ -155,6 +151,23 @@ class Routes
                             ];
 
                             $this->content = new Template("admin/payments");
+                            break;
+
+                        default:
+
+                        case 'courses':
+                            $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard']];
+                            $this->scripts = [
+                                ['name' => 'lib/moment.min'],
+                                ['name' => 'lib/sortable.min'], 
+                                ['name' => 'vue-components/vue-draggable.min.umd'],
+                                ['name' => 'vue-components/vue2-editor.min'],
+                                ['name' => 'check-gsignin'], ['name' => 'course-validations'],
+                                $base_asset,
+                            ];
+
+                            $this->content = new Template("admin/courses");
                             break;
                     }
                     break;

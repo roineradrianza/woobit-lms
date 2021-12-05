@@ -176,8 +176,8 @@
             placeholder="Descrierea clasei" />
     </v-col>
 
-    <?php echo !empty($mode) && $mode == 'edit' ? new Controller\Template('course/edit/parts/resources' ) : '' ?>
+    <?= !empty($mode) && $mode == 'edit' ? new Controller\Template('course/edit/parts/resources' ) : '' ?>
 
-    <?php echo new Controller\Template('components/alert') ?>
+    <?= new Controller\Template('components/alert') ?>
 
 </v-row>

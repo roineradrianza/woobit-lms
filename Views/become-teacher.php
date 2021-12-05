@@ -21,23 +21,23 @@
                 </v-col>
 
                 <v-col cols="12">
-                    <?php echo new Controller\Template('become-teacher/step-1') ?>
+                    <?= new Controller\Template('become-teacher/step-1') ?>
                 </v-col>
 
                 <v-col cols="12">
-                    <?php echo new Controller\Template('become-teacher/step-2') ?>
+                    <?= new Controller\Template('become-teacher/step-2') ?>
                 </v-col>
 
                 <v-col cols="12">
-                    <?php echo new Controller\Template('become-teacher/step-3') ?>
+                    <?= new Controller\Template('become-teacher/step-3') ?>
                 </v-col>
 
                 <v-col cols="12">
-                    <?php echo new Controller\Template('become-teacher/step-4') ?>
+                    <?= new Controller\Template('become-teacher/step-4') ?>
                 </v-col>
 
                 <v-col cols="12">
-                    <?php echo new Controller\Template('become-teacher/step-5') ?>
+                    <?= new Controller\Template('become-teacher/step-5') ?>
                 </v-col>
 
                 <v-col class="d-flex justify-center" cols="12">
@@ -53,7 +53,7 @@
                 </v-col>
 
                 <v-col cols="12">
-                    <?php echo new Controller\Template('components/alert') ?>
+                    <?= new Controller\Template('components/alert') ?>
                 </v-col>
             </template>
 

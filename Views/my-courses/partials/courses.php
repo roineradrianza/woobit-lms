@@ -29,10 +29,10 @@
                     </v-row>
                     <v-row justify="center">
                         <v-btn-toggle>
-                            <v-btn class="secondary" :href="'<?php echo SITE_URL?>/courses/' + course.slug" icon>
+                            <v-btn class="secondary" :href="'<?= SITE_URL?>/courses/' + course.slug" icon>
                                 <v-icon>mdi-eye</v-icon>
                             </v-btn>
-                            <v-btn class="primary" :href="'<?php echo SITE_URL?>/courses/edit/' + course.course_id" icon>
+                            <v-btn class="primary" :href="'<?= SITE_URL?>/courses/edit/' + course.course_id" icon>
                                 <v-icon>mdi-pencil</v-icon>
                             </v-btn>
                             <v-btn class="error" icon>

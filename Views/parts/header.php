@@ -21,7 +21,7 @@
                 <v-tab href="<?= SITE_URL ?>/how-become-teacher" class="black--text font-weight-bold subtitle-1" key="instructors">
                     Lectori
                 </v-tab>
-                <v-tab href="<?php echo SITE_URL ?>/about-us" class="black--text font-weight-bold subtitle-1" key="about">
+                <v-tab href="<?= SITE_URL ?>/about-us" class="black--text font-weight-bold subtitle-1" key="about">
                     Despre noi
                 </v-tab>
                 <?php if (!isset($_SESSION['user_id'])): ?>
@@ -70,12 +70,12 @@
                             <v-list-item-title class="text-center">Cursuri</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-                    <v-list-item href="<?php echo SITE_URL ?>/how-become-teacher">
+                    <v-list-item href="<?= SITE_URL ?>/how-become-teacher">
                         <v-list-item-content>
                             <v-list-item-title class="text-center">Lectori</v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
-                    <v-list-item href="<?php echo SITE_URL ?>/about-us">
+                    <v-list-item href="<?= SITE_URL ?>/about-us">
                         <v-list-item-content>
                             <v-list-item-title class="text-center">Despre noi</v-list-item-title>
                         </v-list-item-content>

@@ -10,7 +10,7 @@
             <h3 class="text-h4">Introducere</h3>
             <p>
                 Acest document descrie termenii și condițiile pentru folosirea website-ului <a
-                    href="<?php echo SITE_URL?>">www.woobit.ro</a> și a
+                    href="<?= SITE_URL?>">www.woobit.ro</a> și a
                 serviciilor oferite de acesta. Woobit este un serviciu oferit de McGee Creative LLC, SUA.
             </p>
 

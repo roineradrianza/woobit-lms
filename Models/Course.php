@@ -17,10 +17,11 @@ class Course extends DB
     private $id_column = "course_id";
     private $id_user_column = "user_id";
 
-    public function get($id = 0)
+    public function get($id = 0) : Array
     {
         $sql = "SELECT C.course_id, active, duration, price, featured_image,
-            certified_template, published_at, slug, title, category_id, C.user_id, platform_owner
+            min_age, max_age, min_students, max_students, certified_template, 
+            published_at, slug, title, category_id, C.user_id, platform_owner
             FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id";
         $sql .= !empty($id) ? " WHERE C.{$this->id_column} = $id" : '';
         $result = $this->execute_query($sql);
@@ -31,7 +32,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_by_user($id = 0, $rows = 4, $course_id = 0)
+    public function get_by_user($id = 0, $rows = 4, $course_id = 0) : Array
     {
         if (empty($id)) {
             return [];
@@ -51,7 +52,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_by_lesson_id($lesson_id = 0)
+    public function get_by_lesson_id($lesson_id = 0) : Array
     {
         if (empty($lesson_id)) {
             return [];
@@ -67,7 +68,7 @@ class Course extends DB
         return $result->fetch_assoc();
     }
 
-    public function get_by_slug($slug = '')
+    public function get_by_slug($slug = '') : Array
     {
         if (empty($slug)) {
             return [];
@@ -84,7 +85,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_courses($id = 0, $columns = [])
+    public function get_courses($id = 0, $columns = []) : Array
     {
         $columns = empty($columns) ? implode(',', $columns) : '*';
         if ($id == 0) {
@@ -100,7 +101,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_my_courses($id = 0)
+    public function get_my_courses($id = 0) : Array
     {
         if (empty($id)) {
             return [];
@@ -117,7 +118,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_own_courses($id = 0)
+    public function get_own_courses($id = 0) : Array
     {
         if (empty($id)) {
             return [];
@@ -136,7 +137,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_recent_courses()
+    public function get_recent_courses() : Array
     {
         $current_date = date('Y-m-d');
         $last_month = date('Y-m-d', strtotime($current_date . "- 1 month"));
@@ -152,7 +153,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_enabled($rows = 100000)
+    public function get_enabled($rows = 100000) : Array
     {
         $sql = "SELECT title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name,
 		CCS.name category, platform_owner, min_students, max_students, min_age, max_age, (SELECT course_meta_val FROM {$this->table_meta}
@@ -170,7 +171,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function get_total_students($course_id)
+    public function get_total_students($course_id) : Mixed
     {
         $sql = "SELECT COUNT(user_id) as total FROM
         {$this->table_student_courses} WHERE course_id = $course_id AND user_rol NOT IN ('profesor', 'oyente')";
@@ -189,7 +190,7 @@ class Course extends DB
         return $arr;
     }
 
-    public function create($data = [], $columns = [])
+    public function create($data = [], $columns = []) : Mixed
     {
         if (empty($data)) {
             return false;
@@ -216,7 +217,7 @@ class Course extends DB
         return $result;
     }
 
-    public function edit($id, $data = [])
+    public function edit($id, $data = []) : Bool
     {
         if (empty($data) or empty($id)) {
             return false;
@@ -231,7 +232,7 @@ class Course extends DB
         return $result;
     }
 
-    public function edit_cover($id, $data = [])
+    public function edit_cover($id, $data = []) : Bool
     {
         if (empty($data) or empty($id)) {
             return false;
@@ -243,9 +244,9 @@ class Course extends DB
         return $result;
     }
 
-    public function user_has_access($course_id = 0, $user = [])
+    public function user_has_access($course_id = 0, $user = []) : Bool
     {
-        if ($course_id == 0 or empty($user)) {
+        if ($course_id == 0 || empty($user)) {
             return false;
         }
 
@@ -273,7 +274,7 @@ class Course extends DB
         return $hasAccess;
     }
 
-    public function delete($id)
+    public function delete($id) : Bool
     {
         if (empty($id)) {
             return false;

@@ -128,12 +128,6 @@ let vm = new Vue({
   },
 
   watch: {
-    dialog(val) {
-      val || this.close()
-    },
-    dialogDelete(val) {
-      val || this.closeDelete()
-    },
     age_range() {
       this.course.min_age = this.age_range[0]
       this.course.max_age = this.age_range[1]

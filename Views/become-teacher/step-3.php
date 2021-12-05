@@ -27,7 +27,7 @@
 
         <template v-else>
             <v-col class="pr-12 pr-md-0" cols="12">
-                <video :src="'<?php echo SITE_URL ?>' + form.meta.video_url" width="600" style="max-width: 100%" controls
+                <video :src="'<?= SITE_URL ?>' + form.meta.video_url" width="600" style="max-width: 100%" controls
                     v-if="form.meta.id_url != ''">
                 </video>
             </v-col>
