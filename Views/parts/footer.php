@@ -39,7 +39,9 @@
                     </v-col>
                     <v-col cols="12" md="4">
                         <h3 class="text-center">Informații</h3>
-                        <p class="text-center">Siguranța cursanților</p>
+                        <a href="<?= SITE_URL ?>/learners-safety" class="text-center white--text">
+                            <p>Siguranța cursanților</p>
+                        </a>
                         <a href="<?= SITE_URL ?>/terms-and-conditions" class="text-center white--text">
                             <p>Termeni și Condiții</p>
                         </a>

@@ -655,6 +655,17 @@ class Routes
                     $this->content = new Template("tos");
                     break;
 
+                case 'learners-safety':
+                    $this->styles = [['name' => 'login.min']];
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'home.min', 'version' => '1.0.0'],
+                    ];
+                    $this->title = 'Siguranța cursanților';
+                    $this->content = new Template("learners-safety");
+                    break;
+    
                 default:
                     $this->scripts = [['name' => 'check-gsignin'], ['name' => 'home.min', 'version' => '1.0.0']];
                     $this->title = 'Página no encontrada';
