@@ -20,7 +20,7 @@
         rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/material-design-icons.min.css" rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/vuetify.min.css" rel="stylesheet">
-    <link href="<?= SITE_URL ?>/css/app.min.css" rel="stylesheet">
+    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.0" rel="stylesheet">
     <?php if (!empty($data['styles'])): ?>
     <?php foreach ($data['styles'] as $style): ?>
     <?php if (isset($style['external']) AND $style['external']): ?>
@@ -46,7 +46,7 @@
             <?php if ($data['admin_header']): ?>
             <?= new Controller\Template('admin/parts/header') ?>
             <?php endif ?>
-            <v-content class="bg-white no-mt" tag="main">
+            <v-content class="bg-white pt-12" tag="main">
                 <v-container class="pt-0" fluid>
                     <?= $content; ?>
                 </v-container fluid>

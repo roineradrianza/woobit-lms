@@ -38,7 +38,7 @@ a {
   text-decoration: none;
 }
 .v-main{
-  margin-top: 129px;
+  margin-top: 100px;
 }
 .menu {
   position: fixed;
@@ -95,7 +95,7 @@ a {
   border-right: 1px solid rgba(128, 128, 128, 0.2);
 }
 .theme--light.v-application {
-  background: #f6f6f6;
+  background: white;
 }
 .v-application--wrap {
   min-height: 100% !important;
