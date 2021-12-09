@@ -45,8 +45,13 @@
                         <a href="<?= SITE_URL ?>/terms-and-conditions" class="text-center white--text">
                             <p>Termeni și Condiții</p>
                         </a>
-                        <p class="text-center">Politica de utilizare a cookie-uri</p>
-                        <p class="text-center">Politica datelor cu caracter personal</p>
+                        <a href="<?= SITE_URL ?>/cookie-policy" class="text-center white--text">
+                            <p>Politica de utilizare a cookie-uri</p>
+                        </a>
+                        
+                        <a href="<?= SITE_URL ?>/personal-data" class="text-center white--text">
+                            <p>Politica datelor cu caracter personal</p>
+                        </a>
                     </v-col>
                     <v-col cols="12" md="4">
                         <h3 class="text-center">Companie</h3>

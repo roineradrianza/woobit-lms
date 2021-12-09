@@ -646,17 +646,16 @@ class Routes
                     break;
 
                 case 'terms-and-conditions':
-                    $this->styles = [['name' => 'login.min']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
+                    $this->title = "Termeni și condiții de utilizare";
                     $this->content = new Template("tos");
                     break;
 
                 case 'learners-safety':
-                    $this->styles = [['name' => 'login.min']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
@@ -666,6 +665,26 @@ class Routes
                     $this->content = new Template("learners-safety");
                     break;
     
+                case 'cookie-policy':
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'home.min', 'version' => '1.0.0'],
+                    ];
+                    $this->title = 'Politica de utilizare a cookie-uri';
+                    $this->content = new Template("cookie-policy");
+                    break;
+      
+                case 'personal-data':
+                    $this->scripts = [
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'home.min', 'version' => '1.0.0'],
+                    ];
+                    $this->title = 'Date cu caracter personal';
+                    $this->content = new Template("personal-data");
+                    break;
+                  
                 default:
                     $this->scripts = [['name' => 'check-gsignin'], ['name' => 'home.min', 'version' => '1.0.0']];
                     $this->title = 'Página no encontrada';
