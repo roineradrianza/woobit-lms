@@ -11,7 +11,7 @@
         <?php else: ?>
         <v-col cols="12">
             <v-btn class="secondary white--text py-6"
-                href="<?= SITE_URL ?>/checkout/?<?= "course_id=${course_id}&course=${title}" ?>" block>
+                href="<?= SITE_URL ?>/checkout/get?<?= "course_id=${course_id}&course=${title}" ?>" block>
                 Obțineți Cursuri <?= $data['price'] ?> RON </v-btn>
         </v-col>
         <v-col class="mt-n4" cols="12">

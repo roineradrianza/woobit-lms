@@ -542,7 +542,21 @@ class Routes
                         $this->content = new Template("account/profile");
                     }
                     break;
+                case 'panel':
+                    if (!isset($_SESSION['user_id'])) {
+                        header("Location: " . SITE_URL . "/login");
+                    }
 
+                    $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
+                    $this->scripts = [
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'Classes/Children.min'],
+                        ['name' => 'panel.min', 'version' => '1.0.5'],
+                    ];
+                    $this->content = new Template("account/panel");
+                    break;
+    
                 case 'my-profile':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
@@ -578,12 +592,14 @@ class Routes
                     break;
 
                 case 'checkout':
-                    $this->styles = [['name' => 'login.min']];
+                    $this->styles = [['name' => 'login.min'], ['name' => 'checkout.min']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'https://www.paypal.com/sdk/js?client-id=' . PAYPAL_CLIENT_ID . '&currency=USD', 'external' => true],
+                        ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'checkout.min', 'version' => '1.0.2'],
                     ];
+                    $this->title = 'Checkout';
                     $this->content = new Template("checkout/main");
                     break;
 

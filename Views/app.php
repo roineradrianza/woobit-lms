@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="description"
-        content="Si tu propósito es aprender el nuestro es que lo hagas excelente. Aprende desde cero a crear el futuro web con nuestros Cursos Online Profesionales." />
+        content="<?= !empty($meta) ? $meta : '' ?>" />
     <meta property="og:site_name" content="<?= $title ?>">
     <meta property="og:title" content="<?= $title ?>" />
-    <meta property="og:description" content="Si tu propósito es aprender el nuestro es que lo hagas excelente." />
+    <meta property="og:description" content="<?= !empty($meta) ? $meta : '' ?>" />
     <meta property="og:image" itemprop="image" content="<?= SITE_URL ?>/img/og-cover-2.jpg">
     <meta property="og:type" content="website" />
     <title><?= $title; ?></title>
@@ -59,7 +59,7 @@
     </div>
     <?php if (isset($_SESSION['user_id'])): ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <?php if ($_SESSION['user_type'] !== 'administrator' && 1 == 2 ) : ?>
+    <?php if ($_SESSION['user_type'] !== 'administrator') : ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?= GOOGLE_APP_ID ?>"></script>
     <script>
     /*
@@ -97,7 +97,7 @@
     <script src="<?= SITE_URL ?>/js/components/vue-resource.min.js"></script>
     <script src="<?= SITE_URL ?>/js/Classes/Http.min.js"></script>
     <script src="<?= SITE_URL ?>/js/theme.js"></script>
-    <script src="<?= SITE_URL ?>/js/setup.js"></script>
+    <script src="<?= SITE_URL ?>/js/setup.js?v=1.0.0"></script>
     <?php if (!empty($data['scripts'])): ?>
     <?php foreach ($data['scripts'] as $script): ?>
     <?php if (isset($script['external']) && $script['external']): ?>
