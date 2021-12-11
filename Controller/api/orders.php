@@ -5,9 +5,14 @@ if (empty($method)) {
     die(403);
 }
 
-use Model\{Member, StudentCourse, Orders, Notification, OrdersMeta, Course};
-
 use Controller\Helper;
+use Model\Course;
+use Model\Member;
+use Model\Notification;
+use Model\Orders;
+use Model\OrdersMeta;
+
+use Model\StudentCourse;
 
 $member = new Member;
 $student_course = new StudentCourse;
@@ -31,7 +36,7 @@ switch ($method) {
                 $datetime = new DateTime($order['registered_at']);
                 $datetime = $datetime->setTimezone($timezone);
                 $meta = $order_meta->get($order['order_id']);
-                $order['amount'] = '$ ' . number_format($order['total_pay'], 2, '.', '');
+                $order['amount'] = number_format($order['total_pay'], 2, '.', '') . " RON";
                 $order['registered_at'] = $datetime->format('Y-m-d H:i:s');
                 $order['meta'] = [];
                 foreach ($meta as $i => $e) {
@@ -45,7 +50,7 @@ switch ($method) {
 
     case 'get-my-orders':
         if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $query = $helper->decrypt($query);
@@ -58,7 +63,7 @@ switch ($method) {
                 $datetime = new DateTime($order['registered_at']);
                 $datetime = $datetime->setTimezone($timezone);
                 $meta = $order_meta->get($order['order_id']);
-                $order['amount'] = '$ ' . number_format($order['total_pay'], 2, '.', '');
+                $order['amount'] = number_format($order['total_pay'], 2, '.', '') . " RON";
                 $order['registered_at'] = $datetime->format('Y-m-d H:i:s');
                 $order['meta'] = [];
                 foreach ($meta as $i => $e) {
@@ -72,10 +77,10 @@ switch ($method) {
 
     case 'get-course-orders':
         if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
         $query = clean_string($query);
-        $results = $order->get_course_orders(course_id: $query, order_type: '', status: 1);
+        $results = $order->get_course_orders(course_id:$query, order_type:'', status:1);
         $orders = [];
         $timezone = new DateTimeZone($data['timezone']);
         if (count($results) > 0) {
@@ -94,23 +99,17 @@ switch ($method) {
         }
         echo json_encode($orders);
         break;
-    
+
     case 'create':
         if (empty($data) || empty($data['course_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
-        $data = sanitize($data);
         $data['user_id'] = $_SESSION['user_id'];
-        $data['status'] = $data['payment_method'] == 'Zelle' 
-        || $data['payment_method'] == 'Bank Transfer(Bs)' 
-        || $data['payment_method'] == 'PagoMovil' ? 0 : 1;
-        $data['total_pay_bs_formatted'] = $data['payment_method'] == 'Bank Transfer(Bs)' 
-            || $data['payment_method'] == 'PagoMovil' ? 
-            number_format($data['meta']['total_pay_bs'] + ($data['meta']['total_pay_bs'] * 0.16), 2) . ' Bs.S' : '';
-        $result = $order->create($data);
+        $data['status'] = 1;
+        $result = $order->create(sanitize($data));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo crear la orden correctamente', 'error');
+            $helper->response_message('Error', 'Ordinul de plată nu a putut fi creat corect', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -119,55 +118,32 @@ switch ($method) {
                 $order_meta->create($meta);
             }
         }
-        if ($data['payment_method'] == 'Zelle' || $data['payment_method'] == 'Bank Transfer(Bs)' || $data['payment_method'] == 'PagoMovil') {
-            
-            $admins = $member->get_by_admins();
-            $recipients = [];
-            $data['order_id'] = $result;
-            foreach ($admins as $admin) {
-                $recipient = ['email' => $admin['email'],
-                    'full_name' => $admin['first_name']
-                    . " " . $admin['last_name']];
-                $recipients[] = $recipient;
-            }
-            $template = new Template('email_templates/order_processing', $data);
-            $sendEmail = $helper->send_mail(
-                'Nueva Orden Pendiente',
-                $recipients,
-                $template
-            );
-        } else if ($data['payment_method'] == 'Paypal') {
+        if ($data['payment_method'] == 'Paypal' && $data['type'] == 1) {
             $user_id = $_SESSION['user_id'];
-            $has_enroll = $student_course->has_enroll($data['course_id'], $user_id);
-            if ($data['type'] == 1) {
+            foreach ($data['children'] as $child) {
+                $has_enroll = $student_course->has_enroll($data['course_id'], $child['children_id']);
                 if (empty($has_enroll)) {
-                    $enrollment = $student_course->create(['user_rol' => 'estudiante', 'course_id' => $data['course_id'], 'user_id' => $user_id]);
+                    $enrollment = $student_course->create(['course_id' => $data['course_id'], 'children_id' => $child['children_id']]);
                     if ($enrollment) {
+                        $full_name = "{$child['first_name']} {$child['last_name']}";
                         $notification_data = [
-                            'description' => "Te has inscrito correctamente al curso:
-							<b>{$data['meta']['course']}</b>",
+                            'description' => "$full_name a fost înscrisă la curs:
+                                <b>{$data['meta']['course']}</b>",
                             'course_id' => $data['course_id'],
                             'user_id' => $user_id,
                         ];
                         $notification->create($notification_data);
                     }
                 }
-            } else if ($data['type'] == 2) {
-                $notification_data = [
-                    'description' => "Pago procesado exitosamente:
-					<b>{$data['meta']['course']}</b>",
-                    'course_id' => $data['course_id'],
-                    'user_id' => $user_id,
-                ];
-                $notification->create($notification_data);
             }
+
         }
-        $helper->response_message('Éxito', 'Se creó la orden correctamente');
+        $helper->response_message('Succes', 'Plata a fost efectuată corect');
         break;
 
     case 'update':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $id = intval($data['order_id']);
@@ -177,7 +153,7 @@ switch ($method) {
         $data['price'] = floatval($data['price']);
         $result = $order->edit($id, $data);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo editar la orden correctamente', 'error');
+            $helper->response_message('Error', 'Ordinul de plată nu a putut fi editat corect', 'error');
         }
 
         if (isset($data['meta']) && !empty($data['meta'])) {
@@ -193,12 +169,12 @@ switch ($method) {
                 $order_meta->edit($id, $meta);
             }
         }
-        $helper->response_message('Éxito', 'Se editó la orden correctamente');
+        $helper->response_message('Succes', 'Ordinul de plată a fost editat corect');
         break;
 
     case 'update-meta':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $id = intval($data['order_id']);
@@ -219,105 +195,15 @@ switch ($method) {
                 $order_meta->edit($id, $meta);
             }
         }
-        $helper->response_message('Éxito', 'Se actualizó la información correctamente');
+        $helper->response_message('Succes', 'Informațiile au fost actualizate corect');
         break;
 
-    case 'approve':
-        if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
-        }
-
-        $id = clean_string($query);
-        $result = $order->change_status($id, 1);
-        if (!$result) {
-            $helper->response_message('Error', 'No se pudo aprobar la orden, intente de nuevo.');
-        }
-        if (intval($data['type']) == 1) {
-            $has_enroll = $student_course->has_enroll($data['course_id'], $data['user_id']);
-            if (empty($has_enroll)) {
-                $enrollment = $student_course->create(['user_rol' => 'estudiante', 'course_id' => $data['course_id'], 'user_id' => $data['user_id']]);
-                if ($enrollment) {
-                    $notification_data = [
-                        'description' => "Te has inscrito correctamente al curso: <b>{$data['course_title']}</b>",
-                        'course_id' => $data['course_id'],
-                        'user_id' => $data['user_id'],
-                    ];
-                    $notification->create($notification_data);
-                }
-            }
-        } else if ($data['type'] == 2) {
-            $notification_data = [
-                'description' => "Pago procesado exitosamente:
-                <b>{$data['course_title']}</b>",
-                'course_id' => $data['course_id'],
-                'user_id' => $data['user_id'],
-            ];
-            $notification->create($notification_data);
-        }
-        $course_info = $course->get($data['course_id']);
-        $data['course'] = $course_info[0];
-        $template = new Template('email_templates/order_approved', $data);
-        $sendEmail = $helper->send_mail(
-            'Orden de Pago Aprobada',
-            [
-                [
-                    'full_name' => "{$data['meta']['first_name']} {$data['meta']['first_name']}",
-                    'email' => $data['meta']['user_email'],
-                ]
-            ],
-            $template
-        );
-        $helper->response_message('Éxito', 'Se aprobó la orden correctamente');
-        break;
-
-    case 'reject':
-        if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
-        }
-
-        $id = clean_string($query);
-        $result = $order->change_status($id, 2);
-        $order->edit_note($id, $data);
-        if (!$result) {
-            $helper->response_message('Error', 'No se pudo rechazar la orden, intente de nuevo.');
-        }
-        if (intval($data['type']) == 1) {
-            $notification_data = [
-                'description' => "Se ha rechazado el pago de la inscripción al curso: <b>{$data['course_title']}</b>",
-                'course_id' => $data['course_id'],
-                'user_id' => $data['user_id'],
-            ];
-            $notification->create($notification_data);
-        } else if ($data['type'] == 2) {
-            $notification_data = [
-                'description' => "Pago rechazado:
-                <b>{$data['course_title']}</b>",
-                'course_id' => $data['course_id'],
-                'user_id' => $data['user_id'],
-            ];
-            $notification->create($notification_data);
-        }
-        $course_info = $course->get($data['course_id']);
-        $data['course'] = $course_info[0];
-        $template = new Template('email_templates/order_rejected', $data);
-        $sendEmail = $helper->send_mail(
-            'Orden de Pago Rechazada',
-            [
-                [
-                    'full_name' => "{$data['meta']['first_name']} {$data['meta']['first_name']}",
-                    'email' => $data['meta']['user_email'],
-                ]
-            ],
-            $template
-        );
-        $helper->response_message('Éxito', 'Se rechazó la orden correctamente');
-        break;       
     case 'delete':
         $result = $order->delete(intval($data['order_id']));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo eliminar la orden correctamente', 'error');
+            $helper->response_message('Error', 'Ordinul de plată nu a putut fi șters corect', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se eliminó la orden correctamente');
+        $helper->response_message('Succes', 'Ordinul de plată a fost șters corect');
         break;
 }

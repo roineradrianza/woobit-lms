@@ -21,46 +21,16 @@ let vm = new Vue({
       drawer: true,
       modal: false,
       selectedItem: 5,
-      validations: {
-        email: [
-          v => !!v || 'El correo electrónico es valido',
-          v => /.+@.+\..+/.test(v) || 'Debe ser un correo electrónico',
-        ],
-      },
-      true_false: [
-        {
-          text: 'Activo',
-          value: '1'
-        },
-        {
-          text: 'Inactivo',
-          value: '0'
-        },
-      ],
-      payments: {
-        items: [],
-        processing_items: [],
-        headers: [
-          { text: 'Nombre', align: 'start', value: 'name' },
-          { text: 'Acciones', value: 'actions', align:'center', sortable: false },
-        ],
-        editedIndex: -1,
-        editedItem: {},
-        defaultItem: {
-          name: '',
-          meta: {},
-        },
-      },
       orders: {
         search: '',
         items: [],
         headers: [
           { text: 'ID', align: 'start', value: 'order_id' },
-          { text: 'Fecha', align: 'start', value: 'registered_at' },
-          { text: 'Monto', align: 'start', value: 'amount' },
-          { text: 'Método de Pago', align: 'start', value: 'payment_method' },
-          { text: 'Estado', align: 'start', value: 'status' },
-          { text: 'Acciones', value: 'actions', align:'center', sortable: false },
+          { text: 'Data', align: 'start', value: 'registered_at' },
+          { text: 'Suma', align: 'start', value: 'amount' },
+          { text: 'Metoda de plată', align: 'start', value: 'payment_method' },
+          { text: 'Stat', align: 'start', value: 'status' },
+          { text: 'Acțiuni', value: 'actions', align:'center', sortable: false },
         ],
         editedIndex: -1,
         editedItem: {},
@@ -75,21 +45,6 @@ let vm = new Vue({
 
       FullName () {
         return this.orders.editedItem.meta.first_name + ' ' + this.orders.editedItem.meta.last_name
-      },
-
-      formTitle () {
-        return this.editedIndex === -1 ? 'Crear método de pago' : 'Editar método de pago'
-      },   
-
-      AmountInBs () {
-        var amount = this.orders.editedItem.meta.tax_day * this.orders.editedItem.total_pay 
-        var percent = amount * 0.16
-        amount = amount + percent
-        var formatter = new Intl.NumberFormat('es-ES', {
-          style: 'currency',
-          currency: 'VES',
-        });
-        return formatter.format(amount)
       },
 
     },
@@ -262,15 +217,15 @@ let vm = new Vue({
       getStatus (status) {
         switch (parseInt(status)) {
           case 0:
-            return {color: 'warning', name: 'Procesando'}
+            return {color: 'warning', name: 'Prelucrare'}
             break;
 
           case 1:
-            return {color: 'success', name: 'Aprobada'}
+            return {color: 'success', name: 'Aprobat'}
             break;
 
           case 2:
-            return {color: 'error', name: 'Rechazada'}
+            return {color: 'error', name: 'Respins'}
             break;
 
         }

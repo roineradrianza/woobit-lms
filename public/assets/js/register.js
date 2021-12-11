@@ -22,7 +22,7 @@ let vm = new Vue({
       validations,
       gender: [
         {
-          text: 'Omul',
+          text: 'Bărbat',
           value: 'M'
         },
         {

@@ -2,6 +2,7 @@
 Vue.use(VueTelInputVuetify, {
   vuetify,
 });
+moment.locale('ru')
 /*VUE INSTANCE*/
 let vm = new Vue({
   vuetify,
@@ -21,6 +22,8 @@ let vm = new Vue({
     extra: url_params.get('extra'),
     personal_info: basic_info,
     paypal: {},
+    children: new Children({uid: uid}),
+    initial_pay: 0,
     info: {
       course_id: '',
       total_pay: 0,
@@ -38,9 +41,9 @@ let vm = new Vue({
       return this.personal_info.first_name + ' ' + this.personal_info.last_name
     },
 
-    AmountInBs() {
-      var amount = this.info.meta.tax_day * this.info.total_pay
-      var formatter = new Intl.NumberFormat('es-ES', {
+    AmountInUSD() {
+      var amount = this.info.total_pay / this.info.meta.usd_tax_day
+      var formatter = new Intl.NumberFormat('ru-RU', {
         style: 'currency',
         currency: 'RON',
       });
@@ -55,7 +58,6 @@ let vm = new Vue({
 
   mounted() {
     this.initialize()
-    this.getRONtoUSDTax()
   },
 
   methods: {
@@ -64,14 +66,15 @@ let vm = new Vue({
       var app = this
       var url = api_url + 'courses/get/' + app.course_id
       app.checkout_loading = true
+      app.children.load()
       app.$http.get(url).then(res => {
         app.checkout_loading = false
         if (res.body.length > 0) {
           var course = res.body[0]
           app.info.course_id = app.course_id
           app.info.type = 1
-          app.info.total_pay = course.price
-
+          app.initial_pay = course.price
+          app.getRONtoUSDTax()
         }
       }, err => {
 
@@ -82,52 +85,45 @@ let vm = new Vue({
       var app = this
       total_pay = app.info.total_pay
       pp_pay = app.info.meta.USD
-      paypal.Buttons({
-        style: {
-          color: 'blue',
-          shape: 'pill',
-          label: 'pay',
-          height: 40
-        },
-        createOrder(data, actions) {
-          // This function sets up the details of the transaction, including the amount and line item details.
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: pp_pay,
-                breakdown: {
-                  item_total: { value: pp_pay, currency_code: 'USD' }
-                }
-              },
-              items: [{
-                name: app.title,
-                unit_amount: { value: pp_pay, currency_code: 'USD' },
-                quantity: '1',
+      app.$refs.paypal_container != undefined ? app.$refs.paypal_container.innerHTML = '' : ''
+      if (app.info.total_pay >= app.initial_pay) {
+        paypal.Buttons({
+          style: {
+            color: 'blue',
+            shape: 'pill',
+            label: 'pay',
+            height: 40
+          },
+          createOrder(data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+              purchase_units: [{
+                amount: {
+                  value: pp_pay,
+                  breakdown: {
+                    item_total: { value: pp_pay, currency_code: 'USD' }
+                  }
+                },
+                items: [{
+                  name: app.title,
+                  unit_amount: { value: pp_pay, currency_code: 'USD' },
+                  quantity: '1',
+                }]
               }]
-            }]
-          });
-        },
-        onApprove(data, actions) {
-          // This function captures the funds from the transaction.
-          return actions.order.capture().then((details) => {
-            app.info.meta.pp_order_id = details.id
-            app.info.meta.pp_transaction_id = details.purchase_units[0].payments.captures[0].id
-            app.info.meta.pp_state = 1
-            app.info.meta.total_paid = pp_pay
-            app.pay()
-          });
-        }
-      }).render('#paypal-button-container');
-    },
-
-    fillPayUCheckout() {
-      var url = `sandbox.api.payulatam.com`
-      var data = {
+            });
+          },
+          onApprove(data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then((details) => {
+              app.info.meta.pp_order_id = details.id
+              app.info.meta.pp_transaction_id = details.purchase_units[0].payments.captures[0].id
+              app.info.meta.pp_state = 1
+              app.info.meta.total_paid = pp_pay
+              app.pay()
+            });
+          }
+        }).render('#paypal-button-container');
       }
-      app.$http.get(url).then(res => {
-      }, err => {
-
-      })
     },
 
     getInput(text, data) {
@@ -153,7 +149,7 @@ let vm = new Vue({
         app.alert_type = res.body.status
         if (res.body.status == 'success') {
           app.already_paid = true
-          window.location = domain + '/profile/?tab=orders_container'
+          window.location = domain + '/profile/view?tab=orders_container'
         }
       }, err => {
         app.loading_btn = false
@@ -163,15 +159,21 @@ let vm = new Vue({
     getRONtoUSDTax() {
       var app = this
       var url = `https://freecurrencyapi.net/api/v2/latest?apikey=${free_currency_api_key}&base_currency=USD`
-      app.$http.get(url).then(res => {
-        if (res.body.data.hasOwnProperty('RON')) {
-          app.info.meta.usd_tax_day = res.body.data.RON
-          app.info.meta.USD = (parseInt(app.info.total_pay) / app.info.meta.tax_day).toFixed(2)
-          app.fillPpCheckout()
-        }
-      }, err => {
+      if (app.info.meta.usd_tax_day <= 0) {
+        app.$http.get(url).then(res => {
+          if (res.body.data.hasOwnProperty('RON')) {
+            app.info.meta.usd_tax_day = res.body.data.RON
+            app.info.meta.USD = (app.info.total_pay / app.info.meta.usd_tax_day).toFixed(2)
+            app.fillPpCheckout()
+          }
+        }, err => {
 
-      })
+        })
+      }
+      else {
+        app.info.meta.USD = (app.info.total_pay / app.info.meta.usd_tax_day).toFixed(2)
+        app.fillPpCheckout()
+      }
     },
 
   }

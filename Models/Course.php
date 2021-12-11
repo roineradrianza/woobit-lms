@@ -159,8 +159,7 @@ class Course extends DB
 		CCS.name category, platform_owner, min_students, max_students, min_age, max_age, (SELECT course_meta_val FROM {$this->table_meta}
 		WHERE course_id = C.course_id AND course_meta_name = 'description' LIMIT 1) description, (SELECT course_meta_val FROM {$this->table_meta}
 		WHERE course_id = C.course_id AND course_meta_name = 'certified_by' LIMIT 1) certified_by, (SELECT COUNT(user_id)
-		FROM {$this->table_student_courses} WHERE course_id = C.course_id
-		AND user_rol NOT IN ('profesor', 'oyente') ) total_enrolled FROM {$this->table} C INNER JOIN
+		FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C INNER JOIN
 		users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
 		INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id WHERE active = 1 ORDER BY published_at DESC LIMIT $rows";
         $result = $this->execute_query($sql);
@@ -174,7 +173,7 @@ class Course extends DB
     public function get_total_students($course_id) : Mixed
     {
         $sql = "SELECT COUNT(user_id) as total FROM
-        {$this->table_student_courses} WHERE course_id = $course_id AND user_rol NOT IN ('profesor', 'oyente')";
+        {$this->table_student_courses} WHERE course_id = $course_id";
         $result = $this->execute_query($sql);
         return $result->fetch_assoc();
     }

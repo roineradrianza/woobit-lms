@@ -10,7 +10,7 @@ function clean_string($input): Mixed
         '@<![\s\S]*?--[ \t\n\r]*>@', // Delete multiline comments
     );
 
-    $output = preg_replace($search, '', $input);
+    $output = is_array($input) ? sanitize($input) : preg_replace($search, '', $input);
     return $output;
 
 }

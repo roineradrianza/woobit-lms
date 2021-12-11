@@ -214,7 +214,7 @@ class Routes
                         header("Location: " . $_SESSION['redirect_url']);
                     }
 
-                    $base_asset = ['name' => 'register.min', 'version' => '1.0.0'];
+                    $base_asset = ['name' => 'register.min', 'version' => '1.0.1'];
                     $this->styles = [['name' => 'login.min']];
                     $this->scripts = [['name' => 'vue-components/vue-tel-input-vuetify.min'], ['name' => 'register-validations'], $base_asset];
                     $this->content = new Template("register");
@@ -420,7 +420,6 @@ class Routes
                                 $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id:$course_result['course_id']);
                                 $course_result['students'] = $course->get_total_students($course_result['course_id']);
                                 $course_result['classes'] = $section->get_total_lessons($course_result['course_id']);
-                                $course_result['instructors'] = $student_course->get_instructors($course_result['course_id']);
                                 $course_result['meta'] = [];
                                 $course_result['category'] = !empty($course_result['category_id']) ? $category->get($course_result['category_id']) : [];
                                 $course_result['subcategory'] = !empty($course_result['subcategory_id']) ? $subcategory->get($course_result['subcategory_id']) : [];
@@ -527,7 +526,7 @@ class Routes
                             ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                             ['name' => 'register-validations'],
                             ['name' => 'Classes/Children.min'],
-                            ['name' => 'profile.min', 'version' => '1.0.5'],
+                            ['name' => 'profile.min', 'version' => '1.0.6'],
                         ];
                         $this->content = new Template("account/teacher");
                     } else {
@@ -537,7 +536,7 @@ class Routes
                             ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                             ['name' => 'register-validations'],
                             ['name' => 'Classes/Children.min'],
-                            ['name' => 'profile.min', 'version' => '1.0.5'],
+                            ['name' => 'profile.min', 'version' => '1.0.6'],
                         ];
                         $this->content = new Template("account/profile");
                     }
@@ -569,7 +568,7 @@ class Routes
                         ['name' => 'Classes/Children.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'profile.min', 'version' => '1.0.5'],
+                        ['name' => 'profile.min', 'version' => '1.0.6'],
                     ];
                     $this->content = new Template("account/profile");
                     break;
@@ -595,9 +594,11 @@ class Routes
                     $this->styles = [['name' => 'login.min'], ['name' => 'checkout.min']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'Classes/Children.min'],
                         ['name' => 'https://www.paypal.com/sdk/js?client-id=' . PAYPAL_CLIENT_ID . '&currency=USD', 'external' => true],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                        ['name' => 'checkout.min', 'version' => '1.0.2'],
+                        ['name' => 'checkout.min', 'version' => '1.0.3'],
                     ];
                     $this->title = 'Checkout';
                     $this->content = new Template("checkout/main");
@@ -696,7 +697,7 @@ class Routes
                 $this->admin_header = false;
                 $this->styles = [];
                 $this->scripts = [];
-                $base_asset = ['name' => 'complete-register.min', 'version' => '1.0.0'];
+                $base_asset = ['name' => 'complete-register.min', 'version' => '1.0.1'];
                 $this->styles = [['name' => 'login.min']];
                 $this->scripts = [
                     ['name' => 'check-gsignin'],

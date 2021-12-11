@@ -1,13 +1,13 @@
 <template>
     <v-toolbar class="bg-transparent" flat>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialogOrderPreview" max-width="95%" @click:outside="dialogOrderPreview = false">
+        <v-dialog v-model="dialogOrderPreview" max-width="1200px" @click:outside="dialogOrderPreview = false">
             <v-card>
                 <v-toolbar class="gradient" elevation="0">
                     <v-toolbar-title class="white--text">Informații de plată</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                        <v-btn icon dark @click="dialogOrderPreview = false">
+                        <v-btn icon @click="dialogOrderPreview = false">
                             <v-icon color="white">mdi-close</v-icon>
                         </v-btn>
                     </v-toolbar-items>
@@ -23,7 +23,15 @@
                                     <v-col cols="4">
                                         <p class="body-1 primary--text">Suma:
                                             <span class="font-weight-light black--text">
-                                                ${{ orders.editedItem.total_pay }}
+                                                {{ orders.editedItem.total_pay }} RON
+                                            </span>
+                                        </p>
+                                    </v-col>
+
+                                    <v-col cols="4">
+                                        <p class="body-1 primary--text">Suma (USD):
+                                            <span class="font-weight-light black--text">
+                                                $ {{ orders.editedItem.meta.USD }}
                                             </span>
                                         </p>
                                     </v-col>
@@ -48,14 +56,6 @@
                                         </p>
                                     </v-col>
 
-                                    <template v-if="orders.editedItem.payment_method == 'Zelle'">
-                                        <?= new Controller\Template('account/parts/private/order/preview/zelle') ?>
-                                    </template>
-
-                                    <template v-else-if="orders.editedItem.payment_method == 'Bank Transfer(Bs)'">
-                                        <?= new Controller\Template('account/parts/private/order/preview/bs-bank-transfer') ?>
-                                    </template>
-                                    
                                 </v-row>
                             </v-col>
                         </v-row>

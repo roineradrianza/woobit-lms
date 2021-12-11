@@ -15,6 +15,7 @@ let vm = new Vue({
     image_upload_btn: false,
     profile_container: false,
     courses_container: false,
+    courses_container: false,
     orders_container: false,
     grades_container: false,
     children_container: false,
@@ -85,7 +86,7 @@ let vm = new Vue({
     validations,
     genders: [
       {
-        text: 'Omul',
+        text: 'Bărbat',
         value: 'M'
       },
       {

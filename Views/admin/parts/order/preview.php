@@ -4,7 +4,7 @@
         <v-dialog v-model="rejectDialog" max-width="600">
             <v-card>
                 <v-toolbar class="gradient" elevation="0">
-                    <v-toolbar-title class="white--text">Motivo del rechazo</v-toolbar-title>
+                    <v-toolbar-title class="white--text">Motivul respingerii</v-toolbar-title>
                 </v-toolbar>
                 <v-card-text>
                     <v-form>
@@ -19,7 +19,7 @@
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="error white--text" @click="processOrder(2)" :loading="approve_loading" block>
-                        Rechazar Orden
+                        Ordine de respingere
                     </v-btn>
                 </v-card-actions>
             </v-card>
@@ -43,16 +43,16 @@
                             <v-col cols="12">
                                 <v-row>
                                     <v-col cols="4">
-                                        <p class="body-1 primary--text">Înregistrare completo: <span
+                                        <p class="body-1 primary--text">Nume și prenume: <span
                                                 class="font-weight-light black--text">{{ FullName }}</span></p>
                                     </v-col>
                                     <v-col cols="4">
-                                        <p class="body-1 primary--text">Correo electrónico: <span
+                                        <p class="body-1 primary--text">Adresa de e-mail: <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.meta.user_email }}</span>
                                         </p>
                                     </v-col>
                                     <v-col cols="4">
-                                        <p class="body-1 primary--text">Teléfono: <span
+                                        <p class="body-1 primary--text">Telefon: <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.meta.telephone }}</span>
                                         </p>
                                     </v-col>
@@ -60,7 +60,15 @@
                                     <v-col cols="4">
                                         <p class="body-1 primary--text">Suma:
                                             <span class="font-weight-light black--text">
-                                                ${{ orders.editedItem.total_pay }}
+                                                {{ orders.editedItem.total_pay }} RON
+                                            </span>
+                                        </p>
+                                    </v-col>
+
+                                    <v-col cols="4">
+                                        <p class="body-1 primary--text">Suma (USD):
+                                            <span class="font-weight-light black--text">
+                                                $ {{ orders.editedItem.meta.USD }}
                                             </span>
                                         </p>
                                     </v-col>
@@ -68,7 +76,7 @@
                                     <v-col cols="4">
                                         <p class="body-1 primary--text">
                                             <template v-if="parseInt(orders.editedItem.type) == 1">
-                                                Curso:
+                                                Curs:
                                             </template>
                                             <template v-else>
                                                 Descriere:
@@ -86,19 +94,7 @@
                                         </p>
                                     </v-col>
 
-                                    <template v-if="orders.editedItem.payment_method == 'Zelle'">
-                                        <?= new Controller\Template('admin/parts/order/preview/zelle') ?>
-                                    </template>
-
-                                    <template v-else-if="orders.editedItem.payment_method == 'Bank Transfer(Bs)'">
-                                        <?= new Controller\Template('admin/parts/order/preview/bs-bank-transfer') ?>
-                                    </template>
-
-                                    <template v-else-if="orders.editedItem.payment_method == 'PagoMovil'">
-                                        <?= new Controller\Template('admin/parts/order/preview/pagomovil') ?>
-                                    </template>
-
-                                    <template v-else-if="orders.editedItem.payment_method == 'Paypal'">
+                                    <template v-if="orders.editedItem.payment_method == 'Paypal'">
                                         <?= new Controller\Template('admin/parts/order/preview/paypal') ?>
                                     </template>
                                 </v-row>
@@ -108,10 +104,10 @@
                 </v-card-text>
                 <v-card-actions class="px-4 d-flex justify-center" v-if="parseInt(orders.editedItem.status) == 0">
                     <v-btn color="error white--text" @click="rejectDialog = true" :loading="approve_loading">
-                        Rechazar Orden
+                        Refuzul plății
                     </v-btn>
                     <v-btn color="success white--text" @click="processOrder(1)" :loading="approve_loading">
-                        Aprobar Orden
+                        Aprobarea plății
                     </v-btn>
                 </v-card-actions>
             </v-card>

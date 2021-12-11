@@ -31,7 +31,7 @@ class Template
             /*['name' => 'Medios', 'icon' => 'mdi-image-multiple', 'url' => 'library'],*/
             ['name' => 'Cursuri', 'icon' => 'mdi-library', 'url' => 'courses'],
             ['name' => 'Aplicație pentru profesori', 'icon' => 'mdi-file', 'url' => 'teachers-application'],
-            /*['name' => 'Pagos', 'icon' => 'mdi-credit-card-outline', 'url' => 'payments'],*/
+            ['name' => 'Plăți', 'icon' => 'mdi-credit-card-outline', 'url' => 'payments'],
 /*['name' => 'Cupones', 'icon' => 'mdi-ticket-percent', 'url' => 'coupons'],*/
             /*['name' => 'Calendario', 'icon' => 'mdi-calendar', 'url' => 'calendar'],*/
             /*['name' => 'Correos automatizados', 'icon' => 'mdi-email', 'url' => 'email-messages'],*/
