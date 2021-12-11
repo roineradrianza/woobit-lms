@@ -35948,29 +35948,29 @@ __webpack_require__.r(__webpack_exports__);
   badge: 'Badge',
   close: 'Close',
   dataIterator: {
-    noResultsText: 'No matching records found',
-    loadingText: 'Loading items...'
+    noResultsText: 'Nu s-au găsit înregistrări corespunzătoare',
+    loadingText: 'Încărcarea articolelor...'
   },
   dataTable: {
-    itemsPerPageText: 'Rows per page:',
+    itemsPerPageText: 'Rânduri pe pagină:',
     ariaLabel: {
-      sortDescending: 'Sorted descending.',
-      sortAscending: 'Sorted ascending.',
-      sortNone: 'Not sorted.',
-      activateNone: 'Activate to remove sorting.',
-      activateDescending: 'Activate to sort descending.',
-      activateAscending: 'Activate to sort ascending.'
+      sortDescending: 'Sortate descrescător.',
+      sortAscending: 'Sortate crescător.',
+      sortNone: 'Nu este sortat.',
+      activateNone: 'Activați pentru a elimina sortarea.',
+      activateDescending: 'Activați pentru a sorta descrescător.',
+      activateAscending: 'Activați pentru a sorta în ordine crescătoare.'
     },
     sortBy: 'Sort by'
   },
   dataFooter: {
     itemsPerPageText: 'Items per page:',
-    itemsPerPageAll: 'All',
-    nextPage: 'Next page',
-    prevPage: 'Previous page',
-    firstPage: 'First page',
-    lastPage: 'Last page',
-    pageText: '{0}-{1} of {2}'
+    itemsPerPageAll: 'Toate',
+    nextPage: 'Pagina următoare',
+    prevPage: 'Pagina precedentă',
+    firstPage: 'Prima pagină',
+    lastPage: 'Ultima pagină',
+    pageText: '{0}-{1} din {2}'
   },
   datePicker: {
     itemsSelected: '{0} selected',
@@ -35991,8 +35991,8 @@ __webpack_require__.r(__webpack_exports__);
     moreEvents: '{0} more'
   },
   fileInput: {
-    counter: '{0} files',
-    counterSize: '{0} files ({1} in total)'
+    counter: '{0} fișiere',
+    counterSize: '{0} fișiere ({1} în total)'
   },
   timePicker: {
     am: 'AM',

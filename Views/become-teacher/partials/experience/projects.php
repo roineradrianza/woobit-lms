@@ -33,7 +33,7 @@
                 <v-dialog ref="project_start_dialog" v-model="modals.experience.project.start"
                     :return-value.sync="project.start_date" persistent width="290px">
                     <template #activator="{ on, attrs }">
-                        <label class="body-1 font-weight-thin pl-1">Acasă</label>
+                        <label class="body-1 font-weight-thin pl-1">Data începerii </label>
                         <v-text-field v-model="project.start_date" :rules="validations.requiredRules" readonly
                             v-bind="attrs" v-on="on" reactive outlined>
                             <template #append>
@@ -57,7 +57,7 @@
                 <v-dialog ref="project_end_dialog" v-model="modals.experience.project.end"
                     :return-value.sync="project.end_date" persistent width="290px">
                     <template #activator="{ on, attrs }">
-                        <label class="body-1 font-weight-thin pl-1">Culminare</label>
+                        <label class="body-1 font-weight-thin pl-1">Data terminării</label>
                         <v-text-field v-model="project.end_date" readonly v-bind="attrs" v-on="on" reactive outlined>
                             <template #append>
                                 <v-icon v-bind="attrs" v-on="on">mdi-calendar</v-icon>

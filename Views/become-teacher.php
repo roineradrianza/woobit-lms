@@ -24,7 +24,7 @@
                         </template>
 
                         <template v-else>
-                            Cererea dumneavoastră de a deveni profesor este în curs de examinare.
+                            Cererea dumneavoastră de a deveni lector este în curs de examinare.
                         </template>
                     </v-alert>
                 </v-col>

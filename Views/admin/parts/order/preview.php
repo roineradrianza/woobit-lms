@@ -30,7 +30,7 @@
                     <v-toolbar-title class="white--text">Informații de plată</v-toolbar-title>
                     <v-spacer></v-spacer>
                     <v-toolbar-items>
-                        <v-btn icon dark @click="dialogOrderPreview = false">
+                        <v-btn icon @click="dialogOrderPreview = false">
                             <v-icon color="white">mdi-close</v-icon>
                         </v-btn>
                     </v-toolbar-items>

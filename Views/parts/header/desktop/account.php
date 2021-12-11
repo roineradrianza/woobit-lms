@@ -34,7 +34,7 @@
             </v-list-item-content>
         </v-list-item>
         <v-list-item>
-            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplică</v-btn>
+            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplicație lector</v-btn>
         </v-list-item>
         <v-list-item>
             <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text

@@ -93,7 +93,7 @@
     <script src="<?= SITE_URL ?>/js/vue.pmin.js"></script>
     <?PHP endif ?>
 
-    <script src="<?= SITE_URL ?>/js/components/vuetify.min.js"></script>
+    <script src="<?= SITE_URL ?>/js/components/vuetify.min.js?v=1.0.0"></script>
     <script src="<?= SITE_URL ?>/js/components/vue-resource.min.js"></script>
     <script src="<?= SITE_URL ?>/js/Classes/Http.min.js"></script>
     <script src="<?= SITE_URL ?>/js/theme.js"></script>

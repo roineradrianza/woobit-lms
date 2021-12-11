@@ -47,14 +47,14 @@
         <v-list-item class="pl-0 pb-0 pt-0" v-if="parseInt(profile.meta.become_teacher)">
 
             <v-list-item-content>
-                <v-list-item-title class="font-weight-thin">{{ teacher_gender }}</v-list-item-title>
+                <v-list-item-title>{{ teacher_gender }}</v-list-item-title>
             </v-list-item-content>
 
         </v-list-item>
         <v-list-item class="pl-0 pb-0 pt-0">
 
             <v-list-item-content>
-                <v-list-item-title class="font-weight-thin">{{ location }}</v-list-item-title>
+                <v-list-item-title>{{ location }}</v-list-item-title>
             </v-list-item-content>
 
         </v-list-item>
@@ -64,7 +64,7 @@
             <v-list-item class="pl-0 pb-0 pt-0" @click="courses_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                    <v-list-item-title class="grey--text text--darken-1">
                         Cursuri
                     </v-list-item-title>
                 </v-list-item-content>
@@ -74,7 +74,7 @@
             <v-list-item class="pl-0 pb-0 pt-0" @click="orders_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                    <v-list-item-title class="grey--text text--darken-1">
                         Plăți
                     </v-list-item-title>
                 </v-list-item-content>
@@ -86,7 +86,7 @@
             <v-list-item class="pl-0 pb-0 pt-0" @click="profile_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                    <v-list-item-title class="grey--text text--darken-1">
                         Editează profilul
                     </v-list-item-title>
                 </v-list-item-content>
@@ -98,7 +98,7 @@
             <v-list-item class="pl-0 pb-0 pt-0" @click="children_container = true; main_container = false">
 
                 <v-list-item-content>
-                    <v-list-item-title class="grey--text text--darken-1 font-weight-thin">
+                    <v-list-item-title class="grey--text text--darken-1">
                         Copii
                     </v-list-item-title>
                 </v-list-item-content>

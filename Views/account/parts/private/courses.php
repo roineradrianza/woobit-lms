@@ -57,8 +57,5 @@
         <v-col class="m-0 d-flex justify-center" cols="12">
             <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
         </v-col>
-        <v-col class="d-flex justify-end" cols="12">
-            <v-btn color="red" @click="courses_container = false" :loading="edit_profile_loading" text>Închideți</v-btn>
-        </v-col>
     </v-row>
 </v-col>

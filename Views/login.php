@@ -4,7 +4,7 @@
         <v-form>
             <v-row class="px-8">
                 <v-col cols="12">
-                    <label class="body-1 font-weight-thin pl-1">Utilizator o Email</label>
+                    <label class="body-1 font-weight-thin pl-1">Adresa de email</label>
                     <v-text-field v-model="email" name="email" class="mt-3" outlined>
                     </v-text-field>
                 </v-col>
@@ -24,7 +24,7 @@
                 <v-row justify="center">
                     <v-col class="p-0 mb-n4" cols="12">
                         <v-divider></v-divider>
-                        <p class="text-h6 mt-2 text-center primary--text">Conectați-vă cu</p>
+                        <p class="text-h6 mt-2 text-center primary--text">Conectați-vă cu:</p>
                     </v-col>
                     <v-btn class="ma-2 white--text py-6" @click="googleSignIn">
                         <v-img class="myGoogleButton" src="<?= SITE_URL ?>/img/google-logo.png" width="1vw">

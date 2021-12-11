@@ -4,13 +4,12 @@
 <p>
     Toate câmpurile sunt obligatorii. Minimum absolvent de facultate (în orice domeniu) sau curent cu statut
     de student. Vorbitor nativ al limbii române*. Pentru a fi remunerat trebuie să ai un cont de PayPal.
-    Trebuie să fii confortabil cu aplicația Zoom. Pentru mai multe detalii citește
+    Trebuie să fii confortabil cu aplicația Zoom. Pentru mai multe detalii citește <v-btn class="white--text"
+        href="<?= SITE_URL?>/terms-and-conditions" color="#a500a4">Termeni și condiții</v-btn>
 </p>
-<v-form ref="step1_form" v-model="forms.step1"
-    :<?= !empty($form_mode) ? $form_mode : 'disabled' ?>="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
+<v-form ref="step1_form" v-model="forms.step1" :<?= !empty($form_mode) ? $form_mode : 'disabled' ?>="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
     && <?= !empty($object) ? $object : 'form' ?>.status != undefined
-    && <?= !empty($object) ? $object : 'form' ?>.application_id > 0"
-    lazy-validation>
+    && <?= !empty($object) ? $object : 'form' ?>.application_id > 0" lazy-validation>
     <v-row>
         <v-col cols="12" md="4">
             <label class="body-1 font-weight-thin pl-1">Prenumele adultului</label>
@@ -28,7 +27,7 @@
             <label class="body-1 font-weight-thin pl-1">Email</label>
             <v-text-field type="email" name="email"
                 v-model="<?= !empty($object) ? $object : 'form' ?>.meta.teacher_email" class="mt-3"
-                hint="nu va fi publicată--folosită doar pentru comunicare internă." persistent-hint
+                hint="Nu va fi publicată--folosită doar pentru comunicare internă." persistent-hint
                 :rules="validations.emailRules" outlined></v-text-field>
         </v-col>
 
@@ -37,7 +36,7 @@
             <vue-tel-input-vuetify id="tel-input" class="mt-3 pt-select"
                 v-model="<?= !empty($object) ? $object : 'form' ?>.meta.teacher_telephone" label='' mode="international"
                 :inputoptions="{showDialCode: true}" :rules="validations.telephoneRules"
-                placeholder="Adăugați numărul de telefon" hint="folosit doar în caz de comunicare urgentă."
+                placeholder="Adăugați numărul de telefon" hint="Folosit doar în caz de comunicare urgentă."
                 persistent-hint @input="getInput" outlined>
             </vue-tel-input-vuetify>
         </v-col>
@@ -46,7 +45,7 @@
             <label class="body-1 font-weight-thin pl-1">Locația</label>
             <v-text-field type="text" name="last_name"
                 v-model="<?= !empty($object) ? $object : 'form' ?>.meta.teacher_address" class="mt-3"
-                hint="orașul și țara." persistent-hint :rules="validations.nameRules" outlined>
+                hint="Orașul și țara." persistent-hint :rules="validations.nameRules" outlined>
             </v-text-field>
         </v-col>
 

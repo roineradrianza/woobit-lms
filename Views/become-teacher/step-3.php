@@ -9,8 +9,8 @@
             <v-list-item>
                 <v-list-item-content>
                     <v-list-item-title class="no-white-space">
-                        Upload aici un scurt video în care te prezinți, spui o glumă, descrii pe scurt
-                        interesele tale și cursul pe care îl vei preda. Arată-ne camera în care vei ține cursurile. Nu
+                        Uploadează aici un scurt video în care te prezinți, spui o glumă, descrii pe scurt
+                        interesele tale și cursul pe care îl vei preda. Arată-ne camera în care vei preda ține cursurile. Nu
                         uita sa zâmbești!
                     </v-list-item-title>
                 </v-list-item-content>

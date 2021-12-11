@@ -30,7 +30,7 @@
             <v-btn href="<?php SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>
         </v-list-item>
         <v-list-item>
-            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplică</v-btn>
+            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplicație lector</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center">
             <v-btn color="red" href="<?php SITE_URL ?>/api/members/logout" text

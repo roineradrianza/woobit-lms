@@ -9,7 +9,7 @@
                     <v-list-item-title class="no-white-space">
                         Descrie domeniile tale de interes și subiectele pe care le stăpânești cel mai bine. Fă o listă
                         cu diferite cursuri pe care ți le-ai dori să le predai și disponibilitatea ta. Nu uita, fii cât
-                        se poate de creativ și gândește în afara restricțiilor impuse de sistemul convențional.
+                        se poate de creativ și gândește în afara restricțiilor impuse de sistemul convențional!
                         Creativitatea e contagioasă!
                     </v-list-item-title>
                 </v-list-item-content>

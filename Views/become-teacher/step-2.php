@@ -8,7 +8,7 @@
         <v-col class="px-0" cols="12">
             <v-list-item>
                 <v-list-item-content>
-                    <v-list-item-title class="no-white-space">Upload o copie a cazierului și a CI aici
+                    <v-list-item-title class="no-white-space">Uploadează o copie a cazierului și a CI aici
                     </v-list-item-title>
                 </v-list-item-content>
             </v-list-item>

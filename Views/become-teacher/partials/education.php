@@ -1,7 +1,7 @@
 <v-col cols="12">
     <v-list-item class="px-0" three-line>
         <v-list-item-content>
-            <v-list-item-title class="no-white-space">Diplome academic</v-list-item-title>
+            <v-list-item-title class="no-white-space">Diplome academice</v-list-item-title>
             <v-list-item-subtitle class="no-white-space">Pe când o diplomă în domeniul în
                 care predai nu e
                 necesară, te rog enumerează

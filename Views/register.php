@@ -35,7 +35,7 @@
                 </v-col>
 
                 <v-col cols="12" md="6">
-                    <label class="body-1 font-weight-thin pl-1">Email</label>
+                    <label class="body-1 font-weight-thin pl-1">Adresa de email</label>
                     <v-text-field type="email" name="email" v-model="form.email" class="mt-3"
                         :rules="validations.emailRules" outlined></v-text-field>
                 </v-col>
@@ -122,7 +122,7 @@
                                     </template>
                                     Deschideți într-o fereastră nouă
                                 </v-tooltip>
-                                Woobit și cu Politica datelor cu caracter
+                                Woobit și cu Politica datelor cu caracter personal.
                             </div>
                         </template>
                     </v-checkbox>
