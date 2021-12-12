@@ -62,9 +62,11 @@ class Routes
 
                     $course = new Course;
                     $courses = $course->get_enabled(4);
-                    $this->styles = [['name' => 'videojs-7.8.4', 'url' => 'https://vjs.zencdn.net/7.8.4/video-js.css'], ['external' => true, 'url' => 'https://unpkg.com/vue2-animate/dist/vue2-animate.min.css']];
+                    $this->styles = [
+                        ['name' => 'home.min']
+                    ];
                     $this->scripts = [
-                        ['name' => 'check-gsignin'], ['name' => 'lib/videojs-7.8.4.min'],
+                        ['name' => 'check-gsignin'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->content = new Template("home", [

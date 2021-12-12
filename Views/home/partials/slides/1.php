@@ -2,9 +2,9 @@
     <v-row class="fill-height px-4 px-md-16">
         <v-col class="d-flex align-center" cols="12" md="5" lg="6">
             <v-row class="pt-md-15" justify="center">
-                <v-col cols="12">
-                    <h1 class="text-center black--text text-h3">Toate visurile au un început.</h1>
-                    <h2 class="text-center black--text font-weight-light text-h4">De la noi ai cursuri online
+                <v-col class="slide_1_text" cols="12">
+                    <h1 class="text-center black--text">Toate visurile au un început.</h1>
+                    <h2 class="text-center black--text font-weight-normal">De la noi ai cursuri online
                         interactive.</h2>
                 </v-col>
                 <v-col cols="12" md="10">

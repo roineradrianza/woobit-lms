@@ -1,4 +1,4 @@
-<v-row class="px-16 mt-4 d-flex justify-center">
+<v-row class="px-4 px-md-16 mt-4 d-flex justify-center">
     <v-col cols="12">
         <h2 class="text-h3 primary--text text-center">
             Cum funcționează?

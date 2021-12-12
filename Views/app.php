@@ -20,7 +20,7 @@
         rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/material-design-icons.min.css" rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/vuetify.min.css" rel="stylesheet">
-    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.0" rel="stylesheet">
+    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.1" rel="stylesheet">
     <?php if (!empty($data['styles'])): ?>
     <?php foreach ($data['styles'] as $style): ?>
     <?php if (isset($style['external']) AND $style['external']): ?>

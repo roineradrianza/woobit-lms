@@ -155,13 +155,11 @@ class Course extends DB
 
     public function get_enabled($rows = 100000) : Array
     {
-        $sql = "SELECT title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name,
-		CCS.name category, platform_owner, min_students, max_students, min_age, max_age, (SELECT course_meta_val FROM {$this->table_meta}
-		WHERE course_id = C.course_id AND course_meta_name = 'description' LIMIT 1) description, (SELECT course_meta_val FROM {$this->table_meta}
-		WHERE course_id = C.course_id AND course_meta_name = 'certified_by' LIMIT 1) certified_by, (SELECT COUNT(user_id)
-		FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C INNER JOIN
-		users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
-		INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id WHERE active = 1 ORDER BY published_at DESC LIMIT $rows";
+        $sql = "SELECT title, featured_image, slug, price, CCS.name category, platform_owner, min_students, 
+        max_students, min_age, max_age, (SELECT COUNT(user_id)
+		FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
+        LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
+		LEFT JOIN course_categories CCS ON CCS.category_id = CC.category_id WHERE active = 1 ORDER BY published_at DESC LIMIT $rows";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
