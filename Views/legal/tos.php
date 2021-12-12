@@ -1,21 +1,21 @@
 <v-container class="pt-16 pt-md-0 px-6 px-md-0">
     <v-row>
         <v-col cols="12">
-            <h1 class="text-h2 text-center">Termeni și Condiții</h1>
+            <h1 class="text-h2">Termeni și Condiții</h1>
             <p class="subtitle-1">
                 Ultima actualizare: 13/9/2021
             </p>
         </v-col>
         <v-col cols="12">
             <h3 class="text-h4">Introducere</h3>
-            <p>
+            <p class="text-justify">
                 Acest document descrie termenii și condițiile pentru folosirea website-ului <a
                     href="<?= SITE_URL?>">www.woobit.ro</a> și a
                 serviciilor oferite de acesta. Woobit este un serviciu oferit de McGee Creative LLC, SUA.
             </p>
 
             <h3 class="text-h4">Acceptarea termenilor</h3>
-            <p>
+            <p class="text-justify">
                 Înainte de a utiliza <a href="<?= SITE_URL?>">www.woobit.ro</a> este obligatoriu să citiți, înțelegeți
                 și să
                 fiți de acord cu Termenii și
@@ -36,7 +36,7 @@
             </p>
 
             <h3 class="text-h4">Descrierea Website-ului</h3>
-            <p>
+            <p class="text-justify">
                 Website-ul Woobit este <b>platformă educațională ce mijlocește interacțiunea în direct între creatorii
                     și
                     ofertanții de cursuri și copiii cu vârstele între 4 și 18 ani cu domiciliul în Romania și în
@@ -66,7 +66,7 @@
             </p>
 
             <h3 class="text-h4">Accesarea website-ului</h3>
-            <p>
+            <p class="text-justify">
                 Accesul și abilitatea dumneavoastră de a accesa și utiliza website-ul <a
                     href="<?= SITE_URL?>">www.woobit.ro</a> pot fi întrerupte din
                 când în când ca urmare a unor dificultăți tehnice, actualizări, reparații sau mentenanță a site-ului,
@@ -89,7 +89,7 @@
             </p>
 
             <h3 class="text-h4">Înregistrarea</h3>
-            <p>
+            <p class="text-justify">
                 Pentru a beneficia de serviciile website-ului Woobit este nevoie să vă înregistrați. Astfel, va trebui
                 să
                 alegeți un username și o parolă și să completați câmpurile cerute. Informațiile pe care le completați
@@ -115,7 +115,7 @@
             </p>
 
             <h3 class="text-h4">Cursurile</h3>
-            <p>
+            <p class="text-justify">
                 Toate cursurile Woobit sunt înregistrate și păstrate în baza noastră de date pentru 2 luni, respectiv 60
                 de
                 zile. După aceste 60 de zile, cursurile sunt șterse. Cursurile înregistrate sunt disponibile lectorilor
@@ -140,7 +140,7 @@
             </p>
 
             <h3 class="text-h4">Plățile</h3>
-            <p>
+            <p class="text-justify">
                 Fiecare părinte se angajează să plătească suma corespunzătoare cursului ales, iar prețurile sunt
                 comunicate
                 pe paginile individuale ale fiecărui curs în parte. Plata se va putea face online cu cardul și se achită
@@ -150,7 +150,7 @@
             </p>
 
             <h3 class="text-h4">Plățile către lectori</h3>
-            <p>
+            <p class="text-justify">
                 Woobit se angajează să plătească lectorului într-o perioadă rezonabilă de timp suma corespunzătoare
                 cursului
                 predat, mai puțin comisionul pentru folosirea platformei (30%.) Plata se va face în contul de PaypPal al
@@ -164,7 +164,7 @@
             </p>
 
             <h3 class="text-h4">Obligațiile lectorilor</h3>
-            <p>
+            <p class="text-justify">
                 Lectorii se obligă să completeze formularul de înscriere cu informații corecte, actuale și adevărate.
                 Abaterea de la această regulă va face ca orice colaborare prezentă și viitoare între persoană și Woobit
                 să
@@ -214,7 +214,7 @@
             </p>
 
             <h3 class="text-h4">Clauza de neconcurență</h3>
-            <p>
+            <p class="text-justify">
                 Lectorul garantează şi răspunde că nu va intra, în mod direct sau indirect, în concurenţă cu activitatea
                 website-ului woobit.ro. Se angajează totodată că nu va desfășura, în mod direct sau indirect, el însuși
                 sau
@@ -228,7 +228,7 @@
             </p>
 
             <h3 class="text-h4">Siguranța cursantilor</h3>
-            <p>
+            <p class="text-justify">
                 Fiecare lector se obligă să comunice imediat cu echipa Woobit dacă are suspiciunea, este martor/ă sau
                 observă orice activitate de abuz sau de posibil abuz în timpul colaborării cu Woobit. Dacă este nevoie,
                 lectorii se angajează să comunice cu autoritățile în cercetarea sau disputarea unor cazuri de abuz.
@@ -259,7 +259,7 @@
 
             <h3 class="text-h4">Termenii de plată
             </h3>
-            <p>
+            <p class="text-justify">
             <h4 class="text-h5">Termenii generali:</h4>fiecare părinte se angajează să plătească prețurile afișate pe
             website pentru
             cursurile dorite. Toate prețurile trebuie plătite în moneda specificată în timpul tranzacției. Ești
@@ -271,7 +271,7 @@
             intervin modificări în orarul cursantului, lectorul va încerca să facă ajustări dacă programul și oferta
             acestuia i-o permite însă fără nici o garanție sau promisiune.)
             </p>
-            <p>
+            <p class="text-justify">
             <h4 class="text-h5">Plați către lectori:</h4>Fiecare lector îi oferă temporar companiei McGee Creative
             abilitatea de a colecta
             sumele plătite de părinți. Trebuie înțeles că această interacțiune între părinte și lector este supusă
@@ -282,7 +282,7 @@
             </p>
 
             <h3 class="text-h4">Condiții de utilizare:</h3>
-            <p>
+            <p class="text-justify">
                 Fiecare utilizator și participant la activități via woobit.ro este responsabil pentru toate videourile,
                 imaginile, informația, textul, software, muzica, sunetele, fotografiile, graficele, statisticile și
                 orice

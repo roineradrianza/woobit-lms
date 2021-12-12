@@ -1,9 +1,9 @@
 <v-container class="pt-16 pt-md-0 px-6 px-md-0">
-    <h1 class="text-h3 text-center">
-        <strong>SIGURANȚA CURSANȚILOR</strong>
+    <h1 class="text-h3">
+        SIGURANȚA CURSANȚILOR
     </h1>
     <br>
-    <p>
+    <p class="text-justify">
         Cursurile Woobit sunt destinate copiilor cu vârste între 4 și 18 ani,
         vorbitori de limbă română. Aceste cursuri nu sunt destinate adulților!
         Siguranța cursanților este prioritatea noastră numărul unu și de aceea vă
@@ -31,7 +31,7 @@
         </li>
     </ol>
     <br>
-    <p>
+    <p class="text-justify">
         În același timp, fiecare lector se obligă să comunice imediat cu echipa
         Woobit dacă are suspiciunea, este martor/ă sau observă orice activitate de
         abuz sau de posibil abuz în timpul colaborării cu Woobit. Dacă este nevoie,
@@ -39,7 +39,7 @@
         disputarea unor cazuri de abuz. Woobit se angajează să raporteze
         autorităților suspiciuni sau observații ale unor abuzuri.
     </p>
-    <p>
+    <p class="text-justify">
         Toate cursurile Woobit sunt înregistrate și păstrate în baza noastră de
         date pentru 2 luni, respectiv 60 de zile. După aceste 60 de zile, cursurile
         sunt șterse. Cursurile înregistrate sunt disponibile lectorilor pentru a fi
@@ -54,7 +54,7 @@
         în scopuri publicitare sau alte scopuri fără a avea acordul expres al
         părinților sau al lectorilor.
     </p>
-    <p>
+    <p class="text-justify">
         Lectorul se angajează să mențină camera computerului deschisă pe durata
         cursului. La începutul cursului, lectorul se angajează să se asigure că
         toți cursanții înscriși sunt cei care participă la curs. Părinții pot să

@@ -32,24 +32,26 @@
                         <h3 class="text-center">Link-uri</h3>
                         <p class="text-center">Ofertă cursuri</p>
                         <p class="text-center">Sugestii cursuri</p>
-                        <a href="<?= SITE_URL ?>/how-become-a-teacher" class="text-center white--text">
+                        <a href="<?= SITE_URL ?>/how-become-a-teacher" class="text-center white--text" target="_blank">
                             <p>Aplică aici</p>
                         </a>
                         <p class="text-center">Domenii</p>
                     </v-col>
                     <v-col cols="12" md="4">
                         <h3 class="text-center">Informații</h3>
-                        <a href="<?= SITE_URL ?>/learners-safety" class="text-center white--text">
+                        <a href="<?= SITE_URL ?>/siguranta-cursantilor" class="text-center white--text" target="_blank">
                             <p>Siguranța cursanților</p>
                         </a>
-                        <a href="<?= SITE_URL ?>/terms-and-conditions" class="text-center white--text">
+                        <a href="<?= SITE_URL ?>/terms-and-conditions" class="text-center white--text" target="_blank">
                             <p>Termeni și Condiții</p>
                         </a>
-                        <a href="<?= SITE_URL ?>/cookie-policy" class="text-center white--text">
+                        <a href="<?= SITE_URL ?>/politica-de-utilizare-cookie-uri"
+                            class="text-center white--text" target="_blank">
                             <p>Politica de utilizare a cookie-uri</p>
                         </a>
-                        
-                        <a href="<?= SITE_URL ?>/personal-data" class="text-center white--text">
+
+                        <a href="<?= SITE_URL ?>/politica-privind-protectia-datelor-cu-caracter-personal"
+                            class="text-center white--text" target="_blank">
                             <p>Politica datelor cu caracter personal</p>
                         </a>
                     </v-col>

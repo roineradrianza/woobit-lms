@@ -653,37 +653,37 @@ class Routes
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->title = "Termeni și condiții de utilizare";
-                    $this->content = new Template("tos");
+                    $this->content = new Template("legal/tos");
                     break;
-
-                case 'learners-safety':
+                //Students safety
+                case 'siguranta-cursantilor':
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->title = 'Siguranța cursanților';
-                    $this->content = new Template("learners-safety");
+                    $this->content = new Template("legal/learners-safety");
                     break;
-    
-                case 'cookie-policy':
+                // Cookie policy
+                case 'politica-de-utilizare-cookie-uri':
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->title = 'Politica de utilizare a cookie-uri';
-                    $this->content = new Template("cookie-policy");
+                    $this->content = new Template("legal/cookie-policy");
                     break;
-      
-                case 'personal-data':
+                // Personal data privacy
+                case 'politica-privind-protectia-datelor-cu-caracter-personal':
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->title = 'Date cu caracter personal';
-                    $this->content = new Template("personal-data");
+                    $this->content = new Template("legal/personal-data");
                     break;
                   
                 default:
