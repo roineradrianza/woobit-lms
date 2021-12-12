@@ -51,7 +51,7 @@
                     <v-card-title class="headline d-flex justify-center">¿Estás seguro de que quieres eliminar esta subcategoría?</v-card-title>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn color="primary" text @click="closeSubCategoryDelete">Cancelar</v-btn>
+                      <v-btn color="primary" text @click="closeSubCategoryDelete">Anulează</v-btn>
                       <v-btn color="secondary" text @click="deleteSubCategoryItemConfirm">Continuar</v-btn>
                       <v-spacer></v-spacer>
                     </v-card-actions>

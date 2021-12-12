@@ -63,7 +63,7 @@
 	      	        </v-col>
 
 	      	        <v-col cols="12" md="6">
-	      	            <label class="body-1 font-weight-thin pl-1">Orașul</label>
+	      	            <label class="body-1 font-weight-thin pl-1">State</label>
 	      	            <v-select class="mt-3" v-model="profile.state_selected" :items="country_states" item-text="name"
 	      	                item-value="id" v-on:change='getLocation' :rules="validations.countryStateRules" outlined>
 	      	            </v-select>
