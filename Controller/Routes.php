@@ -628,7 +628,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
-                        ['name' => 'home.min', 'version' => '1.0.0'],
+                        ['name' => 'default.min', 'version' => '1.0.0'],
                     ];
                     $this->content = new Template("how-to-become-teacher");
                     break;
@@ -652,7 +652,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
-                        ['name' => 'home.min', 'version' => '1.0.0'],
+                        ['name' => 'default.min', 'version' => '1.0.0'],
                     ];
                     $this->title = "Termeni și condiții de utilizare";
                     $this->content = new Template("legal/tos");
@@ -662,7 +662,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
-                        ['name' => 'home.min', 'version' => '1.0.0'],
+                        ['name' => 'default.min', 'version' => '1.0.0'],
                     ];
                     $this->title = 'Siguranța cursanților';
                     $this->content = new Template("legal/learners-safety");
@@ -672,7 +672,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
-                        ['name' => 'home.min', 'version' => '1.0.0'],
+                        ['name' => 'default.min', 'version' => '1.0.0'],
                     ];
                     $this->title = 'Politica de utilizare a cookie-uri';
                     $this->content = new Template("legal/cookie-policy");
@@ -682,7 +682,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
-                        ['name' => 'home.min', 'version' => '1.0.0'],
+                        ['name' => 'default.min', 'version' => '1.0.0'],
                     ];
                     $this->title = 'Date cu caracter personal';
                     $this->content = new Template("legal/personal-data");

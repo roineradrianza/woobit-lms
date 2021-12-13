@@ -1,4 +1,4 @@
-header.bg-white, #hero {
+header.bg-white, header.bg-white .v-toolbar__content, #hero {
     background: #E4E3E1;
 }
 

@@ -30,7 +30,7 @@
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item>
-                    <v-btn color="red" href="<?php SITE_URL ?>/api/members/logout" text
+                    <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text
                         onclick="gapi.auth2.getAuthInstance().signOut()">Cerrar sesión</v-btn>
                 </v-list-item>
             </v-list>

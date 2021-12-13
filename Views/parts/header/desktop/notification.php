@@ -29,11 +29,16 @@
                     <br>
                     <br>
                 </v-col>
-                <v-col cols="12" class="d-flex justify-end p-0 mt-n8" v-if="notification.redirect_url != null">
-                    <v-btn class="px-6" color="secondary" :href="notification.redirect_url" right light>A se vedea</v-btn>
+                <v-col cols="12" class="d-flex justify-end p-md-0 pr-6 mt-n7 mt-md-n8"
+                    v-if="notification.redirect_url != null">
+                    <v-btn color="secondary" :href="notification.redirect_url" fab small right light>
+                        <v-icon>
+                            mdi-arrow-top-right
+                        </v-icon>
+                    </v-btn>
                 </v-col>
             </template>
-            <template v-IF="notifications.length == 0">
+            <template v-if="notifications.length == 0">
                 <v-col class="d-flex justify-center" cols="12" md="8">
                     <img class="ml-n4" src="<?= SITE_URL ?>/img/empty-notifications.svg" width="70%"></img>
                 </v-col>

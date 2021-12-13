@@ -85,7 +85,7 @@
                 <v-col cols="12" md="4">
                     <v-row>
                         <v-col class="d-flex justify-center justify-md-end" cols="12">
-                            <v-img src="<?php SITE_URL ?>/img/about-us/founder-veronica.jpg" max-width="220px"></v-img>
+                            <v-img src="<?= SITE_URL ?>/img/about-us/founder-veronica.jpg" max-width="220px"></v-img>
 
                         </v-col>
                         <v-col cols="12">

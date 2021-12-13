@@ -81,7 +81,7 @@
                 înregistrată a fiecărui curs va fi menținută în arhive pentru două luni în cazul în care apar
                 nemulțumiri. Orice situație neplăcută trebuie comunicată rapid conducerii Woobit. Pentru mai multe
                 detalii cu privire la politicile și siguranța lectorilor și a cursanților, te rog sa citești aici
-                <v-btn class="white--text" color="#a500a4" href="<?php SITE_URL ?>/terms-and-conditions">Termeni și
+                <v-btn class="white--text" color="#a500a4" href="<?= SITE_URL ?>/terms-and-conditions">Termeni și
                     Condiții</v-btn>
             </li>
         </ul>

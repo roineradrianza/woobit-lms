@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta name="description"
-        content="<?= !empty($meta) ? $meta : '' ?>" />
+    <meta name="description" content="<?= !empty($meta) ? $meta : '' ?>" />
     <meta property="og:site_name" content="<?= $title ?>">
     <meta property="og:title" content="<?= $title ?>" />
     <meta property="og:description" content="<?= !empty($meta) ? $meta : '' ?>" />
@@ -20,7 +19,7 @@
         rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/material-design-icons.min.css" rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/vuetify.min.css" rel="stylesheet">
-    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.1" rel="stylesheet">
+    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.2" rel="stylesheet">
     <?php if (!empty($data['styles'])): ?>
     <?php foreach ($data['styles'] as $style): ?>
     <?php if (isset($style['external']) AND $style['external']): ?>

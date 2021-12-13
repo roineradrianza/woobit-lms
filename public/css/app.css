@@ -64,7 +64,7 @@ a {
   background: #fde86a;
   transition: .5s background;
 }
-.bg-white {
+.bg-white, .bg-white.theme--light.v-app-bar.v-toolbar.v-sheet {
   background: white;
 }
 .overlay-img .v-image__image--cover {
@@ -312,7 +312,7 @@ video[poster] {
 /*END*/
 /*NOTIFICATIONS SECTION*/
 .notification, .menu_logged_mobile {
-  top: 90px !important;
+  top: 130px !important;
 }
 .notification .row, .menu_logged_mobile .row {
   max-width: 450px;
@@ -355,8 +355,13 @@ video[poster] {
   }
 }
 @media only screen and (max-width: 599px) {
+
+  header.v-app-bar, header.v-app-bar .v-toolbar__content {
+    max-height: 100px;
+  }
+
   .notification, .menu_logged_mobile {
-    top: 163px !important;
+    top: 100px !important;
   }
   .menu_logged_mobile {
     left: 24vw !important;

@@ -1,4 +1,4 @@
-<v-menu content-class="notification" right bottom>
+<v-menu content-class=".menu_logged_mobile" right bottom>
     <template #activator="{ on, attrs }">
         <v-btn icon v-bind="attrs" v-on="on">
             <?php if ($_SESSION['avatar'] == null): ?>
@@ -17,23 +17,23 @@
         </v-list-item>
         <?php if ($_SESSION['user_type'] == 'administrator'): ?>
         <v-list-item class="d-flex justify-center">
-            <v-btn href="<?php SITE_URL ?>" text>Acasă</v-btn>
+            <v-btn href="<?= SITE_URL ?>" text>Acasă</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center">
-            <v-btn href="<?php SITE_URL ?>/admin/" text>Meniul administrativ</v-btn>
+            <v-btn href="<?= SITE_URL ?>/admin/" text>Meniul administrativ</v-btn>
         </v-list-item>
         <?php endif ?>
         <v-list-item class="d-flex justify-center">
-            <v-btn href="<?php SITE_URL ?>/profile/" text>Profil</v-btn>
+            <v-btn href="<?= SITE_URL ?>/profile/" text>Profil</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center" v-if="1 == 2">
-            <v-btn href="<?php SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>
+            <v-btn href="<?= SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>
         </v-list-item>
         <v-list-item>
             <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher"block>Aplicație lector</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center">
-            <v-btn color="red" href="<?php SITE_URL ?>/api/members/logout" text
+            <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text
                 onclick="gapi.auth2.getAuthInstance().signOut()">Deconectați-vă</v-btn>
         </v-list-item>
     </v-list>

@@ -1,4 +1,4 @@
-<v-row id="hero" class="mt-n8 pt-6 pb-16">
+<v-row id="hero" class="mt-n12 mt-md-n8 pt-6 pb-16">
     <?= new Controller\Template('home/partials/carousel') ?>
 </v-row>
 
