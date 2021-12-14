@@ -63,7 +63,7 @@ class Routes
                     $course = new Course;
                     $courses = $course->get_enabled(4);
                     $this->styles = [
-                        ['name' => 'home.min']
+                        ['name' => 'home.min'],
                     ];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
@@ -99,17 +99,17 @@ class Routes
 
                     if (empty($route[1])) {
                         $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
-                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
-                            $this->scripts = [
-                                ['name' => 'lib/moment.min'], 
-                                ['name' => 'vue-components/vue2-editor.min'], 
-                                ['name' => 'lib/sortable.min'], 
-                                ['name' => 'vue-components/vue-draggable.min.umd'],
-                                ['name' => 'check-gsignin'], 
-                                ['name' => 'course-validations'], $base_asset
-                            ];
+                        $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
+                        $this->scripts = [
+                            ['name' => 'lib/moment.min'],
+                            ['name' => 'vue-components/vue2-editor.min'],
+                            ['name' => 'lib/sortable.min'],
+                            ['name' => 'vue-components/vue-draggable.min.umd'],
+                            ['name' => 'check-gsignin'],
+                            ['name' => 'course-validations'], $base_asset,
+                        ];
 
-                            $this->content = new Template("admin/courses");
+                        $this->content = new Template("admin/courses");
                         break;
                     }
                     switch ($route[1]) {
@@ -118,12 +118,12 @@ class Routes
                             $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
-                                ['name' => 'lib/moment.min'], 
-                                ['name' => 'vue-components/vue2-editor.min'], 
-                                ['name' => 'lib/sortable.min'], 
+                                ['name' => 'lib/moment.min'],
+                                ['name' => 'vue-components/vue2-editor.min'],
+                                ['name' => 'lib/sortable.min'],
                                 ['name' => 'vue-components/vue-draggable.min.umd'],
-                                ['name' => 'check-gsignin'], 
-                                ['name' => 'course-validations'], $base_asset
+                                ['name' => 'check-gsignin'],
+                                ['name' => 'course-validations'], $base_asset,
                             ];
 
                             $this->content = new Template("admin/courses");
@@ -188,7 +188,7 @@ class Routes
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
-                                ['name' => 'lib/sortable.min'], 
+                                ['name' => 'lib/sortable.min'],
                                 ['name' => 'vue-components/vue-draggable.min.umd'],
                                 ['name' => 'vue-components/vue2-editor.min'],
                                 ['name' => 'check-gsignin'], ['name' => 'course-validations'],
@@ -219,9 +219,9 @@ class Routes
                     $base_asset = ['name' => 'register.min', 'version' => '1.0.3'];
                     $this->styles = [['name' => 'login.min']];
                     $this->scripts = [
-                        ['name' => 'vue-components/vue-tel-input-vuetify.min'], 
-                        ['name' => 'register-validations'], 
-                        $base_asset
+                        ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                        ['name' => 'register-validations'],
+                        $base_asset,
                     ];
                     $this->content = new Template("register");
                     break;
@@ -561,7 +561,7 @@ class Routes
                     ];
                     $this->content = new Template("account/panel");
                     break;
-    
+
                 case 'my-profile':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
@@ -691,18 +691,45 @@ class Routes
                     $this->title = 'Date cu caracter personal';
                     $this->content = new Template("legal/personal-data");
                     break;
-                  
+
+                case 'verify-account':
+                    if (!isset($_SESSION['user_id'])) {
+                        header("Location: " . SITE_URL);
+                    }
+                    break;
+
                 default:
                     $this->scripts = [['name' => 'check-gsignin'], ['name' => 'home.min', 'version' => '1.0.0']];
                     $this->title = 'Página no encontrada';
                     $this->content = new Template("404");
                     break;
             }
-            if (isset($_SESSION['user_id']) && empty($_SESSION['meta']['country'])) {
+            if (isset($_SESSION['user_id']) && empty($_SESSION['validated']) && $route[0] == 'verify-account') {
                 $this->header = true;
                 $this->admin_header = false;
-                $this->styles = [];
-                $this->scripts = [];
+                $this->footer = true;
+                $this->styles = [['name' => 'login.min']];
+                $this->scripts = [
+                    ['name' => 'check-gsignin'],
+                    ['name' => 'validate-user.min', 'version' => '1.0.0'],
+                ];
+                $this->title = "Verifică contul";
+                $this->content = new Template("validate-user");
+            } else if (isset($_SESSION['user_id']) && empty($_SESSION['validated'])) {
+                $this->header = true;
+                $this->admin_header = false;
+                $this->footer = true;
+                $this->styles = [['name' => 'login.min']];
+                $this->scripts = [
+                    ['name' => 'check-gsignin'],
+                    ['name' => 'non-validated.min', 'version' => '1.0.0'],
+                ];
+                $this->title = "Contul dvs. trebuie să fie verificat";
+                $this->content = new Template("non-validated");
+            } else if (isset($_SESSION['user_id']) && empty($_SESSION['meta']['country'])) {
+                $this->header = true;
+                $this->admin_header = false;
+                $this->footer = true;
                 $base_asset = ['name' => 'complete-register.min', 'version' => '1.0.2'];
                 $this->styles = [['name' => 'login.min']];
                 $this->scripts = [

@@ -10,7 +10,7 @@ if (empty($method)) {
 
 use Model\{Member, MemberMeta, StudentCourse};
 
-use Controller\Helper;
+use Controller\{Helper, Template};
 
 $member = new Member;
 $user_meta = new MemberMeta;
@@ -136,7 +136,15 @@ switch ($method) {
             $student_course->create($enroll_data);
         }
         $_SESSION = $data;
+        $_SESSION['verified'] = 0;
         $_SESSION['user_id'] = $result;
+
+        $verification_code = "{$_SESSION['user_id']}{$helper->rand_string(25)}" . time();
+        $member->set_verification_code($_SESSION['email'], $verification_code);
+        $template_data = ['verification_code' => $verification_code];
+        $template = new Template('email_templates/verification_code', $template_data);
+
+        $sendEmail = $helper->send_mail('Verifică adresa de e-mail', [['email' => $_SESSION['email'], 'full_name' => '']], $template);
         $cookie_email = $helper->encrypt($_SESSION['email']);
         $cookie_password = md5($data['password']);
         setcookie('u', "$cookie_email", time() + 60 * 60 * 24 * 365, '/');
@@ -188,7 +196,7 @@ switch ($method) {
                     'user_type' => 'membru',
                     'password' => $helper->rand_string(),
                 ];
-                $columns = ['google_id', 'avatar', 'first_name', 'last_name', 'email', 'gender', 'user_type', 'password'];
+                $columns = ['google_id', 'avatar', 'first_name', 'last_name', 'email', 'gender', 'user_type', 'verified', 'password'];
                 $result = $member->create_with_google($credentials, $columns);
                 if (!$result) {
                     $helper->response_message('Error', 'Nu s-a reușit procesarea corectă a înregistrării, încercați din nou', 'error');
@@ -200,14 +208,9 @@ switch ($method) {
                         $user_meta->create($meta);
                     }
                 }
-                $result = json_encode($member->get($result));
-                $result = json_decode($result);
+                $result = json_decode(json_encode($member->get($result)));
                 $result = $result[0];
-                if (isset($data['register_to_course'])) {
-                    $student_course = new StudentCourse;
-                    $enroll_data = ['course_id' => $data['register_to_course']['course_id'], 'user_id' => $result->user_id, 'user_rol' => $data['register_to_course']['user_rol']];
-                    $student_course->create($enroll_data);
-                }
+                $result['verified'] = 1;
             } else {
                 $result = $existsGid;
             }
@@ -236,14 +239,9 @@ switch ($method) {
                         $user_meta->create($meta);
                     }
                 }
-                $result = json_encode($member->get($result));
-                $result = json_decode($result);
+                $result = json_decode(json_encode($member->get($result)));
                 $result = $result[0];
-                if (isset($data['register_to_course'])) {
-                    $student_course = new StudentCourse;
-                    $enroll_data = ['course_id' => $data['register_to_course']['course_id'], 'user_id' => $result->user_id, 'user_rol' => $data['register_to_course']['user_rol']];
-                    $student_course->create($enroll_data);
-                }
+                $result->verified = 1;
             } else {
                 $result = $existsFid;
             }
@@ -263,6 +261,7 @@ switch ($method) {
             $_SESSION['gender'] = $result->gender;
             $_SESSION['birthdate'] = $result->birthdate;
             $_SESSION['user_type'] = $result->user_type;
+            $_SESSION['verified'] = $result->verified;
             $_SESSION['meta'] = [];
             foreach ($user_meta->get($result->user_id) as $meta) {
                 $_SESSION['meta'][$meta['meta_name']] = $meta['meta_val'];
@@ -312,6 +311,7 @@ switch ($method) {
         $_SESSION['gender'] = $data['gender'];
         $_SESSION['birthdate'] = $data['birthdate'];
         $_SESSION['meta'] = $data['meta'];
+        
         $helper->response_message('Succes', 'Informațiile dvs. au fost actualizate corect', 'success');
         break;
 

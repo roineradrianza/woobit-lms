@@ -103,6 +103,21 @@ class Member extends DB
         return false;
     }
 
+    public function check_exist_verification_code($verification_code = '') : Bool
+    {
+        if (empty($verification_code)) {
+            return false;
+        }
+
+        $sql = "SELECT user_id FROM {$this->table} WHERE verification_code = '$verification_code'";
+        $result = $this->execute_query($sql);
+        if ($result->fetch_object() != null) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function set_reset_code($email = '', $reset_code = '') : Bool
     {
         if (empty($reset_code) || empty($email)) {
@@ -110,6 +125,17 @@ class Member extends DB
         }
 
         $sql = "UPDATE {$this->table} SET reset_code = '$reset_code' WHERE email = '$email'";
+        $result = $this->execute_query($sql);
+        return $result;
+    }
+
+    public function set_verification_code($email = '', $verification_code = '') : Bool
+    {
+        if (empty($verification_code) || empty($email)) {
+            return false;
+        }
+
+        $sql = "UPDATE {$this->table} SET verification_code = '$verification_code' WHERE email = '$email'";
         $result = $this->execute_query($sql);
         return $result;
     }
@@ -159,7 +185,10 @@ class Member extends DB
         $columns = implode(',', $columns);
         extract($data);
         $password = md5($password);
-        $sql = "INSERT INTO {$this->table} ($columns) VALUES('$google_id', '$avatar','$first_name', '$last_name', '$email', '$gender', '$user_type', '$password')";
+        $sql = "INSERT INTO {$this->table} ($columns) VALUES(
+            '$google_id', '$avatar','$first_name', '$last_name', 
+            '$email', '$gender', '$user_type', 1, '$password'
+        )";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
@@ -173,7 +202,10 @@ class Member extends DB
         $columns = implode(',', $columns);
         extract($data);
         $password = md5($password);
-        $sql = "INSERT INTO {$this->table} ($columns) VALUES('$facebook_id', '$avatar','$first_name', '$last_name', '$email', '$user_type', '$password')";
+        $sql = "INSERT INTO {$this->table} ($columns) VALUES(
+            '$facebook_id', '$avatar','$first_name', '$last_name', 
+            '$email', '$user_type', 1, '$password'
+        )";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
@@ -244,6 +276,16 @@ class Member extends DB
 
         $password = md5($password);
         $sql = "UPDATE {$this->table} SET password = '$password' WHERE reset_code = '$reset_code'";
+        $result = $this->execute_query($sql);
+        return $result;
+    }
+
+    public function activate($id) : Bool
+    {
+        if (empty($id)) {
+            return false;
+        }
+        $sql = "UPDATE {$this->table} SET verified = 1 WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         return $result;
     }
