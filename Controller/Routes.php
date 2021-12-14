@@ -260,7 +260,7 @@ class Routes
                     $course = new Course;
                     if (!empty($route[1]) && $route[1] == 'create') {
                         if (!isset($_SESSION['user_id'])) {
-                            header("Location: " . SITE_URL . '/login/?redirect_url=' . SITE_URL . '/courses/create/');
+                            header("Location: " . SITE_URL . '/login/go?redirect_url=' . SITE_URL . '/courses/create/');
                         }
                         $this->styles = [['name' => 'login.min'], ...$base_asset];
                         $this->scripts = [
@@ -305,7 +305,7 @@ class Routes
 
                             $course_result = $course_result[0];
                             if (!$student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']) && !$course->user_has_access($course_result['course_id'], $_SESSION) || !isset($_SESSION['user_id'])) {
-                                header("Location: " . SITE_URL . '/login/?redirect_url=' . SITE_URL . '/courses/' . $route[1] . '/' . $route[2] . '/');
+                                header("Location: " . SITE_URL . '/login/go?redirect_url=' . SITE_URL . '/courses/' . $route[1] . '/' . $route[2] . '/');
                             }
 
                             $lesson = new Lesson;
@@ -639,7 +639,7 @@ class Routes
 
                 case 'become-teacher':
                     if (!isset($_SESSION['user_id'])) {
-                        header("Location: " . SITE_URL . "/login/?redirect_url=" . SITE_URL . "/become-teacher");
+                        header("Location: " . SITE_URL . "/login/go?redirect_url=" . SITE_URL . "/become-teacher");
                     }
                     $this->styles = [['name' => 'login.min']];
                     $this->scripts = [

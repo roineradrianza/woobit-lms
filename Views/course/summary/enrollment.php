@@ -35,7 +35,7 @@
                         autentificați.</p>
                 </v-col>
                 <v-btn class="secondary white--text py-6 px-6"
-                    :href="'<?= SITE_URL ?>/login/?redirect_url=' + current_url">
+                    :href="'<?= SITE_URL ?>/login/go?redirect_url=' + current_url">
                     conectați-vă <br></v-btn>
             </v-row>
 
