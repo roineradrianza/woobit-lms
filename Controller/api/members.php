@@ -211,7 +211,44 @@ switch ($method) {
             } else {
                 $result = $existsGid;
             }
-        } else {
+        } else if (isset($data['facebook_id']) && !empty($data['facebook_id'])) {
+            $data['email'] = !empty($data['email']) ? clean_string($data['email']) : null;
+            $existsFid = $member->check_facebook_id($data['facebook_id'], $data['email']);
+            if (empty($existsFid)) {
+                $credentials = [
+                    'facebook_id' => clean_string($data['facebook_id']),
+                    'avatar' => clean_string($data['avatar']),
+                    'first_name' => clean_string($data['first_name']),
+                    'last_name' => clean_string($data['last_name']),
+                    'email' => $data['email'],
+                    'user_type' => 'membru',
+                    'password' => $helper->rand_string(),
+                ];
+                $columns = ['facebook_id', 'avatar', 'first_name', 'last_name', 'email', 'user_type', 'password'];
+                $result = $member->create_with_facebook($credentials, $columns);
+                if (!$result) {
+                    $helper->response_message('Error', 'Nu s-a reușit procesarea corectă a înregistrării, încercați din nou', 'error');
+                }
+
+                if (isset($data['meta']) && !empty($data['meta'])) {
+                    foreach ($data['meta'] as $meta_key => $meta_value) {
+                        $meta = ['meta_name' => $meta_key, 'meta_val' => $meta_value, 'user_id' => $result];
+                        $user_meta->create($meta);
+                    }
+                }
+                $result = json_encode($member->get($result));
+                $result = json_decode($result);
+                $result = $result[0];
+                if (isset($data['register_to_course'])) {
+                    $student_course = new StudentCourse;
+                    $enroll_data = ['course_id' => $data['register_to_course']['course_id'], 'user_id' => $result->user_id, 'user_rol' => $data['register_to_course']['user_rol']];
+                    $student_course->create($enroll_data);
+                }
+            } else {
+                $result = $existsFid;
+            }
+        }
+        else {
             $email = clean_string($data['email']);
             $password = clean_string($data['password']);
             $result = $member->check_user($email, $password);

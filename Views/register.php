@@ -15,7 +15,7 @@
                 <v-img class="myGoogleButton" src="<?= SITE_URL ?>/img/google-logo.png" width="1vw">
                 </v-img>
             </v-btn>
-            <v-btn class="ma-2 white--text py-6">
+            <v-btn @click="fbLogin" class="ma-2 white--text py-6">
                 <v-img src="<?= SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
             </v-btn>
         </v-row>

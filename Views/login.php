@@ -19,8 +19,8 @@
                 <v-btn class="white--text secondary mb-6 mt-4 py-6" :loading="loading" @click="signIn"
                     :disabled="email == '' || password == ''" block>Autentificare</v-btn>
                 <v-btn class="mb-4 secondary--text font-weight-bold" href="<?= SITE_URL ?>/register" block text>
-					Înregistrare
-				</v-btn>
+                    Înregistrare
+                </v-btn>
                 <v-row justify="center">
                     <v-col class="p-0 mb-n4" cols="12">
                         <v-divider></v-divider>
@@ -30,15 +30,14 @@
                         <v-img class="myGoogleButton" src="<?= SITE_URL ?>/img/google-logo.png" width="1vw">
                         </v-img>
                     </v-btn>
-                    <v-btn class="ma-2 white--text py-6">
+                    <v-btn @click="fbLogin" class="ma-2 white--text py-6">
                         <v-img src="<?= SITE_URL ?>/img/facebook-logo.svg" width="1vw"></v-img>
                     </v-btn>
                 </v-row>
                 <v-col class="mt-6" cols="12">
-                    <a class="mb-13 secondary--text font-weight-bold d-block text-center" 
-					@click="dialog = true">
-						Mi-am uitat parola
-					</a>
+                    <a class="mb-13 secondary--text font-weight-bold d-block text-center" @click="dialog = true">
+                        Mi-am uitat parola
+                    </a>
                 </v-col>
             </v-row>
             <?= new Controller\Template('components/reset_password') ?>

@@ -56,6 +56,7 @@
 
         </v-app>
     </div>
+    <div id="fb-root"></div>
     <?php if (isset($_SESSION['user_id'])): ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <?php if ($_SESSION['user_type'] !== 'administrator') : ?>
@@ -85,6 +86,24 @@
     </script>
     <?php endif ?>
     <script src="https://apis.google.com/js/api.js"></script>
+    <script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId: '<?= FACEBOOK_APP_ID ?>',
+            oauth: true,
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true // parse XFBML
+        });
+
+    };
+    (function() {
+        var e = document.createElement('script');
+        e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+        e.async = true;
+        document.getElementById('fb-root').appendChild(e);
+    }());
+    </script>
     <script src="<?= SITE_URL ?>/js/preload.js"></script>
     <?php if (DEV_ENV) : ?>
     <script src="<?= SITE_URL ?>/js/vue.js"></script>

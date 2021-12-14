@@ -205,7 +205,7 @@ class Routes
                         header("Location: " . $_SESSION['redirect_url']);
                     }
 
-                    $base_asset = ['name' => 'login.min', 'version' => '1.0.0'];
+                    $base_asset = ['name' => 'login.min', 'version' => '1.0.1'];
                     $this->styles = [$base_asset];
                     $this->scripts = [$base_asset];
                     $this->content = new Template("login");
@@ -216,9 +216,13 @@ class Routes
                         header("Location: " . $_SESSION['redirect_url']);
                     }
 
-                    $base_asset = ['name' => 'register.min', 'version' => '1.0.1'];
+                    $base_asset = ['name' => 'register.min', 'version' => '1.0.3'];
                     $this->styles = [['name' => 'login.min']];
-                    $this->scripts = [['name' => 'vue-components/vue-tel-input-vuetify.min'], ['name' => 'register-validations'], $base_asset];
+                    $this->scripts = [
+                        ['name' => 'vue-components/vue-tel-input-vuetify.min'], 
+                        ['name' => 'register-validations'], 
+                        $base_asset
+                    ];
                     $this->content = new Template("register");
                     break;
 
@@ -699,7 +703,7 @@ class Routes
                 $this->admin_header = false;
                 $this->styles = [];
                 $this->scripts = [];
-                $base_asset = ['name' => 'complete-register.min', 'version' => '1.0.1'];
+                $base_asset = ['name' => 'complete-register.min', 'version' => '1.0.2'];
                 $this->styles = [['name' => 'login.min']];
                 $this->scripts = [
                     ['name' => 'check-gsignin'],

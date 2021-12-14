@@ -137,6 +137,79 @@ let vm = new Vue({
         });
       },
 
+      
+      fbLogin() {
+        var app = this
+        var user = {}
+        var url = api_url + 'members/sign-in'
+        if (FB.getUserID() != '') {
+          FB.api('/me?locale=ro_RO&fields=id, gender, name,email, first_name, last_name, picture.width(600)', (r) => {
+            app.loading = true
+            user = r
+            user.facebook_id = user.id; // get FB UID
+            user.avatar = user.picture.data.url; // get avatar
+            app.$http.post(url, user).then(res => {
+              app.alert = true
+              app.alert_message = res.body.message
+              app.alert_type = res.body.status
+              app.loading = false
+              if (res.body.status == 'success') {
+                if (app.redirect_url != null) {
+                  window.location = app.redirect_url
+                }
+                else {
+                  window.location = res.body.data
+                }
+              }
+            }, err => {
+              app.loading = false
+              app.alert = true
+              app.alert_message = 'A apărut o eroare neașteptată, vă rugăm să încercați din nou.'
+              app.alert_type = 'error'
+            })
+            // you can store this data into your database             
+          });
+        }
+        else {
+          FB.login((response) => {
+
+            if (response.authResponse) {
+
+              FB.api('/me?locale=ro_RO&fields=id, gender, name,email, first_name, last_name, picture.width(600)', (r) => {
+                app.loading = true
+                user = r
+                user.facebook_id = user.id; // get FB UID
+                user.avatar = user.picture.data.url; // get avatar
+                app.$http.post(url, user).then(res => {
+                  app.alert = true
+                  app.alert_message = res.body.message
+                  app.alert_type = res.body.status
+                  if (res.body.status == 'success') {
+                app.loading = false
+                    if (app.redirect_url != null) {
+                      window.location = app.redirect_url
+                    }
+                    else {
+                      window.location = res.body.data
+                    }
+                  }
+                }, err => {
+                  app.loading = false
+                  app.alert = true
+                  app.alert_message = 'A apărut o eroare neașteptată, vă rugăm să încercați din nou.'
+                  app.alert_type = 'error'
+                })
+                // you can store this data into your database             
+              });
+
+            } else {
+              //user hit cancel button
+              console.log('User cancelled login or did not fully authorize.')
+            }
+          });
+        }
+      },
+
       googleSignIn () {
         var app = this
         gapi.auth2.getAuthInstance().signIn().then(res => {
