@@ -49,10 +49,10 @@
                 <v-col class="px-4 py-0 m-0 mb-4" cols="12">
                     <v-chip class="white primary--text" dark>
                         <template v-if="course.price == 0">
-                            GRATIS
+                            FREE
                         </template>
                         <template v-else>
-                            $ {{ course.price }} USD
+                            {{ course.price }} RON
                         </template>
                     </v-chip>
                 </v-col>
