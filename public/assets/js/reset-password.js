@@ -34,7 +34,7 @@ let vm = new Vue({
         var app = this
         app.alert = false
         if(app.password != app.password_confirm) {
-          app.alert_message = 'Las contraseñas deben ser iguales'
+          app.alert_message = 'Parolele trebuie să fie aceleași'
           app.alert_type = 'warning'
           app.alert = true          
           return false

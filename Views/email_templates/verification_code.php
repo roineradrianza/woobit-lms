@@ -13,7 +13,7 @@
                     <table class='main'
                         style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%; background: #ffffff; border-radius: 3px;'>
                         <td style="display: flex;">
-                            <img src='https://full-learning.com/img/logo.png'
+                            <img src='https://woobit.ro/img/woobit-logo.png'
                                 style="width:35%; max-width: 200px; margin:auto;"></img>
                         </td>
                         <!-- START MAIN CONTENT AREA -->
@@ -24,42 +24,21 @@
                                     style='border-collapse: separate; mso-table-lspace: 0pt; mso-table-rspace: 0pt; width: 100%;'>
                                     <tr>
                                         <td style='font-size: 16px; vertical-align: top;'>
-                                            <p style="text-align: center">
-                                                La orden de pago ha sido aprobada. 
-                                            </p>
-                                            <p style="text-align: center">
-                                                <span
-                                                    style="color: #3d0235;font-weight: bold;">
-                                                        Orden: 
+                                            <p>Bine ați venit la Woobit! Pentru a finaliza înregistrarea, avem nevoie de
+                                                verificați-vă adresa de e-mail, puteți continua prin următoarele link <a
+                                                    href="<?= SITE_URL ?>/password-reset/?code=<?= $data['verification_code'] ?>"
+                                                    style="color: #3d0235;"><?= SITE_URL ?>/verify-account?code=<?= $data['verification_code'] ?></a>.
+                                                <br>
+                                                <br>
+                                                <span style="text-align: center;">
+                                                    Dacă nu v-ați înregistrat, puteți ignora acest e-mail. e-mail
                                                 </span>
-                                                <?= $order_id ?>
                                             </p>
-                                            <p style="text-align: center">
-                                                <span
-                                                    style="color: #3d0235;font-weight: bold;">
-                                                    <?php if ($type == 1) : ?>
-                                                        Curso: 
-                                                    <?php elseif ($type == 2) : ?>
-                                                        Descriere: 
-                                                    <?php endif ?>
-                                                </span>
-                                                <?= $meta['course'] ?>
-                                            </p>
-
-                                            <p style="text-align: center"><span
-                                                    style="color: #3d0235;font-weight: bold;">Suma:</span>
-                                                <?= '$' . $total_pay ?></p>
-
-                                            <a href="<?= SITE_URL . "/courses/{$course['slug']}"?>"
-                                                style="display: block; color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
-                                                <p style='text-align: center;'>Ir al curso</p>
-                                            </a>
                                         </td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
-
                         <!-- END MAIN CONTENT AREA -->
                     </table>
 
