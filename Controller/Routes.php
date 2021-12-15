@@ -115,7 +115,7 @@ class Routes
                     switch ($route[1]) {
 
                         case 'courses':
-                            $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
+                            $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.1'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
