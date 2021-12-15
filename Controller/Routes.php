@@ -704,7 +704,7 @@ class Routes
                     $this->content = new Template("404");
                     break;
             }
-            if (isset($_SESSION['user_id']) && empty($_SESSION['validated']) && $route[0] == 'verify-account') {
+            if (isset($_SESSION['user_id']) && empty($_SESSION['verified']) && $route[0] == 'verify-account') {
                 $this->header = true;
                 $this->admin_header = false;
                 $this->footer = true;
@@ -715,7 +715,7 @@ class Routes
                 ];
                 $this->title = "Verifică contul";
                 $this->content = new Template("validate-user");
-            } else if (isset($_SESSION['user_id']) && empty($_SESSION['validated'])) {
+            } else if (isset($_SESSION['user_id']) && empty($_SESSION['verified'])) {
                 $this->header = true;
                 $this->admin_header = false;
                 $this->footer = true;

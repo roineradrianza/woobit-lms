@@ -57,7 +57,7 @@ switch ($method) {
             $helper->response_message('Error', 'Contul nu a putut fi verificat, vă rugăm să încercați din nou.', 'error');
         }
 
-        $_SESSION['validated'] = 1;
+        $_SESSION['verified'] = 1;
 
         $helper->response_message('Succes', 'Contul dvs. a fost verificat cu succes, vă puteți utiliza acum contul în mod normal.', 'success');
         break;

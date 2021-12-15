@@ -202,6 +202,8 @@ class Helper
     public static function send_mail($subject = '', $recipients = [], $message = '', $files = []) : Mixed
     {
         $mail = new PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->setLanguage("ro");  
         try {
             //Server settings
             $mail->isSMTP(); // Send using SMTP
@@ -216,8 +218,7 @@ class Helper
             }
             $mail->Port = 587; // TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
-            $mail->setFrom(EMAIL_ACCOUNT, 'Full Learning');
-
+            $mail->setFrom(EMAIL_ACCOUNT, 'Woobit');
             //Recipients
             foreach ($recipients as $recipient) {
                 $mail->addAddress($recipient['email'], utf8_decode($recipient['full_name']));
