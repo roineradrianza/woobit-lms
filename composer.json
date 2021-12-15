@@ -22,7 +22,7 @@
         ]
     },
     "require": {
-        "phpmailer/phpmailer": "^6.2",
+        "phpmailer/phpmailer": "^6.5",
         "defuse/php-encryption": "^2.2",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
         "guzzlehttp/guzzle": "^7.2",
