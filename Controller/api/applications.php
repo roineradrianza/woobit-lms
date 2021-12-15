@@ -108,10 +108,10 @@ switch ($method) {
     case 'update':
         if (empty($_SESSION['user_id'])) {
             die(403);
-        } else if (empty($data) || empty($data['user_id'])) {
+        } else if (empty($data) || empty($data['application_id'])) {
             $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
-        $id = $data['user_id'];
+        $id = $data['application_id'];
         $_SESSION['user_type'] == 'administrator' && isset($data['status']) ? 
         (!$application->update($id, $data) ? $helper->response_message('Error', 'Statutul nu poate fi actualizat', 'error') : '')
         : $helper->response_message('Error', 'Nu sunteți autorizat să efectuați această acțiune', 'error');

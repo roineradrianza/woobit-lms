@@ -510,22 +510,26 @@ class Routes
                     }
 
                     $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
+                    $this->scripts = [
+                        ['name' => 'lib/moment.min'],
+                        ['name' => 'check-gsignin'],
+                        ['name' => 'Classes/Children.min'],
+                        ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                        ['name' => 'register-validations'],
+                        ['name' => 'profile.min', 'version' => '1.0.6'],
+                    ];
+                    $this->content = new Template("account/profile");
+                    break;
+
+                case 'teacher-panel':
+                    if (!isset($_SESSION['user_id'])) {
+                        header("Location: " . SITE_URL . "/login");
+                    }
+
                     $application = new Application;
-                    $member = new Member;
-                    $user_meta = new MemberMeta;
                     $results = $application->get($_SESSION['user_id']);
                     if (count($results) > 0) {
-                        $item = $results[0];
-                        $user = $member->get($item['user_id'])[0];
-
-                        $item['first_name'] = $user['first_name'];
-                        $item['last_name'] = $user['last_name'];
-
-                        $meta = $user_meta->get($item['user_id']);
-                        $item['meta'] = [];
-                        foreach ($meta as $i => $e) {
-                            $item['meta'][$e['meta_name']] = Helper::is_json($e['meta_val']) ? Helper::clean_json($e['meta_val']) : $e['meta_val'];
-                        }
+                        $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
                         $this->scripts = [
                             ['name' => 'lib/moment.min'],
                             ['name' => 'check-gsignin'],
@@ -534,19 +538,15 @@ class Routes
                             ['name' => 'Classes/Children.min'],
                             ['name' => 'profile.min', 'version' => '1.0.6'],
                         ];
-                        $this->content = new Template("account/teacher");
+                        $this->title = "Panou de lectori";
+                        $this->content = new Template("account/teacher", $results[0]);
                     } else {
-                        $this->scripts = [
-                            ['name' => 'lib/moment.min'],
-                            ['name' => 'check-gsignin'],
-                            ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                            ['name' => 'register-validations'],
-                            ['name' => 'Classes/Children.min'],
-                            ['name' => 'profile.min', 'version' => '1.0.6'],
-                        ];
-                        $this->content = new Template("account/profile");
+                        if (!isset($_SESSION['user_id'])) {
+                            header("Location: " . SITE_URL . "/profile");
+                        }
                     }
                     break;
+
                 case 'panel':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
@@ -630,6 +630,11 @@ class Routes
                     break;
 
                 case 'how-become-teacher':
+                    $application = new Application;
+                    $results = $application->get($_SESSION['user_id']);
+                    if (count($results) > 0) {
+                        header("Location: " . SITE_URL . "/teacher-panel");
+                    }
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],

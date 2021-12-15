@@ -26,6 +26,7 @@ class KeepSession
 					$_SESSION['gender'] = $result->gender;
 					$_SESSION['birthdate'] = $result->birthdate;
 					$_SESSION['user_type'] = $result->user_type;
+					$_SESSION['verified'] = $result->verified;
 					$_SESSION['meta'] = [];
 					$user_meta = new MemberMeta;
 					foreach ($user_meta->get($result->user_id) as $meta) {
