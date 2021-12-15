@@ -22,7 +22,10 @@
     </v-list-item>
     <?php endif ?>
     <v-list-item>
-        <v-btn href="<?= SITE_URL ?>/profile/" text>Profil</v-btn>
+        <v-btn href="<?= SITE_URL ?>/panel" text>Panou</v-btn>
+    </v-list-item>
+    <v-list-item>
+        <v-btn href="<?= SITE_URL ?>/profile" text>Profil</v-btn>
     </v-list-item>
     <v-list-item v-if="1 == 2">
         <v-btn href="<?= SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>

@@ -51,7 +51,7 @@ class Children {
 
     loadChildrenCourses() {
         var app = this
-        var url = api_url + 'child-courses/get-latest/'
+        var url = api_url + 'child-courses/get-latest'
         var data = []
         app.items.forEach(e => {
             data.push(e.children_id)
