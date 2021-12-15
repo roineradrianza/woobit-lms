@@ -516,7 +516,7 @@ class Routes
                         ['name' => 'Classes/Children.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'profile.min', 'version' => '1.0.6'],
+                        ['name' => 'profile.min', 'version' => '1.0.7'],
                     ];
                     $this->content = new Template("account/profile");
                     break;
@@ -536,7 +536,7 @@ class Routes
                             ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                             ['name' => 'register-validations'],
                             ['name' => 'Classes/Children.min'],
-                            ['name' => 'profile.min', 'version' => '1.0.6'],
+                            ['name' => 'profile.min', 'version' => '1.0.7'],
                         ];
                         $this->title = "Panou de lectori";
                         $this->content = new Template("account/teacher", $results[0]);
@@ -574,7 +574,7 @@ class Routes
                         ['name' => 'Classes/Children.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'profile.min', 'version' => '1.0.6'],
+                        ['name' => 'profile.min', 'version' => '1.0.7'],
                     ];
                     $this->content = new Template("account/profile");
                     break;

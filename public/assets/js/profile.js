@@ -71,6 +71,7 @@ let vm = new Vue({
 
       }
     },
+    child_selected: {},
     children: new Children({uid: uid}),
     profile: {
       first_name: '',
@@ -105,28 +106,8 @@ let vm = new Vue({
       }
     },
 
-    teacher_gender() {
-      if (this.profile.gender == 'F') {
-        return 'Profesora'
-      }
-      else {
-        return 'Profesor'
-      }
-    },
-
     location() {
       return this.profile.meta.country + ', ' + this.profile.meta.state
-    },
-
-    AmountInBs() {
-      var amount = this.orders.editedItem.meta.tax_day * this.orders.editedItem.total_pay
-      var percent = amount * 0.16
-      amount = amount + percent
-      var formatter = new Intl.NumberFormat('es-ES', {
-        style: 'currency',
-        currency: 'VES',
-      });
-      return formatter.format(amount)
     },
 
     GradesAverage() {
@@ -153,7 +134,6 @@ let vm = new Vue({
     check_google_user()
     this.initialize()
     this.loadCountries()
-    this.loadMyCourses()
     this.children.load()
     this.loadNewCourses()
     this.loadComingClasses()
@@ -279,8 +259,9 @@ let vm = new Vue({
 
     loadMyCourses() {
       var app = this
-      var url = api_url + 'courses/get-my-courses/' + uid
+      var url = api_url + 'child-courses/get/' + app.child_selected.children_id
       app.my_courses_loading = true
+      app.my_courses = []
       app.$http.get(url).then(res => {
         if (res.body.length > 0) {
           app.my_courses = res.body

@@ -27,35 +27,54 @@
         </v-col>
     </v-row>
 
-    <v-row v-if="my_courses.length > 0">
-        <v-col class="mb-n8" cols="12">
-            <h2 class="text-h4 mb-4">Cursuri dobândite</h2>
-            <v-divider></v-divider>
-        </v-col>
-        <v-col cols="12" md="4" v-for="course in my_courses">
-            <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="secondary"
-                :href="'<?= SITE_URL ?>/courses/'+course.slug">
-
-                <v-img width="100vw" class="align-end" :src="course.featured_image">
-                </v-img>
-
-                <v-card-title class="text-h6 font-weight-normal white--text no-word-break">{{ course.title }}
-                </v-card-title>
-
-                <v-divider class="mx-4"></v-divider>
-            </v-card>
+    <v-row>
+        <v-col cols="12">
+            <label>Selectați un copil</label>
+            <v-select v-model="child_selected" :items="children.items"
+                :item-text=" (e) => e.first_name + ' ' + e.last_name" @change="loadMyCourses" outlined return-object>
+            </v-select>
         </v-col>
     </v-row>
-    <v-row class="px-16" v-else>
-        <v-col class="d-flex justify-center" cols="12">
-            <v-img src="<?= SITE_URL ?>/img/no-courses.svg" max-width="50%"></v-img>
-        </v-col>
-        <v-col class="m-0" cols="12">
-            <h3 class="text-h4 text-center">Se pare că nu v-ați înscris încă la un curs, vă rugăm să căutați un curs și
-                să vă înscrieți.</h3>
-        </v-col>
-        <v-col class="m-0 d-flex justify-center" cols="12">
-            <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
-        </v-col>
-    </v-row>
+
+    <template v-if="child_selected.hasOwnProperty('children_id')">
+        <v-row v-if="my_courses_loading">
+            <v-col cols="12" md="4" v-for="i in 6" :key="i">
+                <v-skeleton-loader type="card"></v-skeleton-loader>
+            </v-col>
+        </v-row>
+
+        <v-row v-else-if="!my_courses_loading && my_courses.length > 0">
+            <v-col class="mb-n8" cols="12">
+                <h2 class="text-h4 mb-4">Cursuri înscrise</h2>
+                <v-divider></v-divider>
+            </v-col>
+            <v-col cols="12" md="4" v-for="course in my_courses">
+                <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="secondary"
+                    :href="'<?= SITE_URL ?>/courses/'+course.slug">
+
+                    <v-img width="100vw" class="align-end" :src="course.featured_image">
+                    </v-img>
+
+                    <v-card-title class="text-h6 font-weight-normal white--text no-word-break">{{ course.title }}
+                    </v-card-title>
+
+                    <v-divider class="mx-4"></v-divider>
+                </v-card>
+            </v-col>
+        </v-row>
+
+        <v-row class="px-16" v-else-if="!my_courses_loading && my_courses.length <= 0">
+            <v-col class="d-flex justify-center" cols="12">
+                <v-img src="<?= SITE_URL ?>/img/no-courses.svg" max-width="50%"></v-img>
+            </v-col>
+            <v-col class="m-0" cols="12">
+                <h3 class="text-h4 text-center">Se pare că el/ea nu s-a înscris încă la un curs, puteți căuta un curs și
+                    înregistra copilul.</h3>
+            </v-col>
+            <v-col class="m-0 d-flex justify-center" cols="12">
+                <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
+            </v-col>
+        </v-row>
+    </template>
+
 </v-col>
