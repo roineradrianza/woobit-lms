@@ -15,6 +15,7 @@
             <v-icon>mdi-magnify</v-icon>
         </v-list-item>
         <?php if ($_SESSION['user_type'] == 'administrator'): ?>
+
         <v-list-item href="<?= SITE_URL ?>">
             <v-list-item-content>
                 <v-list-item-title class="text-center">Acasă</v-list-item-title>
@@ -26,6 +27,11 @@
             </v-list-item-content>
         </v-list-item>
         <?php endif ?>
+        <v-list-item href="<?= SITE_URL ?>/panel/">
+            <v-list-item-content>
+                <v-list-item-title class="text-center">Panou</v-list-item-title>
+            </v-list-item-content>
+        </v-list-item>
         <v-list-item href="<?= SITE_URL ?>/profile/">
             <v-list-item-content>
                 <v-list-item-title class="text-center">Profil</v-list-item-title>

@@ -118,6 +118,25 @@ class Course extends DB
         return $arr;
     }
 
+    public function get_child_courses($ids = []) : Array
+    {
+        if (empty($ids)) {
+            return [];
+        }
+
+        $ids = implode(',', $ids);
+
+        $sql = "SELECT C.course_id, title, featured_image, slug, min_age, max_age, SC.user_id
+        FROM {$this->table_student_courses} SC INNER JOIN {$this->table} C
+        ON C.course_id = SC.course_id WHERE SC.{$this->id_user_column} IN ($ids) ORDER BY SC.course_user_id DESC";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
     public function get_own_courses($id = 0) : Array
     {
         if (empty($id)) {

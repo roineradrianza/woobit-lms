@@ -24,6 +24,9 @@
         </v-list-item>
         <?php endif ?>
         <v-list-item class="d-flex justify-center">
+            <v-btn href="<?= SITE_URL ?>/panel/" text>Panou</v-btn>
+        </v-list-item>
+        <v-list-item class="d-flex justify-center">
             <v-btn href="<?= SITE_URL ?>/profile/" text>Profil</v-btn>
         </v-list-item>
         <v-list-item class="d-flex justify-center" v-if="1 == 2">

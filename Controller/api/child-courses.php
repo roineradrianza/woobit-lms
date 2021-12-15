@@ -34,4 +34,15 @@ switch ($method) {
         echo json_encode($results);
         break;
 
+    case 'get-latest':
+
+        if (empty($data)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $data = sanitize($data);
+
+        $results = $course->get_child_courses($data);
+        echo json_encode($results);
+        break;
 }

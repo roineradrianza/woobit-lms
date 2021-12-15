@@ -513,7 +513,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
-                        ['name' => 'Classes/Children.min'],
+                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
                         ['name' => 'profile.min', 'version' => '1.0.7'],
@@ -535,7 +535,7 @@ class Routes
                             ['name' => 'check-gsignin'],
                             ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                             ['name' => 'register-validations'],
-                            ['name' => 'Classes/Children.min'],
+                            ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                             ['name' => 'profile.min', 'version' => '1.0.7'],
                         ];
                         $this->title = "Panou de lectori";
@@ -556,8 +556,8 @@ class Routes
                     $this->scripts = [
                         ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
-                        ['name' => 'Classes/Children.min'],
-                        ['name' => 'panel.min', 'version' => '1.0.5'],
+                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
+                        ['name' => 'panel.min', 'version' => '1.0.0'],
                     ];
                     $this->content = new Template("account/panel");
                     break;
@@ -571,7 +571,7 @@ class Routes
                     $this->scripts = [
                         ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
-                        ['name' => 'Classes/Children.min'],
+                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
                         ['name' => 'profile.min', 'version' => '1.0.7'],
@@ -590,7 +590,7 @@ class Routes
                         ['name' => 'check-gsignin'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'Classes/Children.min'],
+                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                         ['name' => 'my-courses.min', 'version' => '1.0.0'],
                     ];
                     $this->content = new Template("my-courses");
@@ -602,7 +602,7 @@ class Routes
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'Classes/Children.min'],
+                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                         ['name' => 'https://www.paypal.com/sdk/js?client-id=' . PAYPAL_CLIENT_ID . '&currency=USD', 'external' => true],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'checkout.min', 'version' => '1.0.4'],

@@ -7,6 +7,7 @@ class Children {
         this.dialog = false,
         this.delete_dialog = false,
         this.loading = false,
+        this.children_courses_loading = false,
         this.form = true,
         this.child = {
             first_name: '',
@@ -22,6 +23,7 @@ class Children {
             birthdate: moment().format('YYYY-MM-DD')
         },
         this.index = -1,
+        this.children_courses = [],
         this.items = []
     }
 
@@ -39,8 +41,28 @@ class Children {
         Http.get(url).then(res => {
             if (res.length > 0) {
                 app.items = res
+                app.loadChildrenCourses()
             }
             app.loading = false
+        }, err => {
+            app.response({type: 'error'})
+        })
+    }
+
+    loadChildrenCourses() {
+        var app = this
+        var url = api_url + 'child-courses/get-latest/'
+        var data = []
+        app.items.forEach(e => {
+            data.push(e.children_id)
+        });
+
+        app.children_courses_loading = true
+        Http.post(url, data).then(res => {
+            if (res.length > 0) {
+                app.children_courses = res
+            }
+            app.children_courses_loading = false
         }, err => {
             app.response({type: 'error'})
         })
