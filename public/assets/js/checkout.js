@@ -17,6 +17,8 @@ let vm = new Vue({
     tab: null,
     nav_tab: null,
     notifications: [],
+    birthdate_modal: false,
+    validations,
     course_id: url_params.get('course_id'),
     title: url_params.get('course'),
     extra: url_params.get('extra'),
@@ -24,9 +26,20 @@ let vm = new Vue({
     paypal: {},
     children: new Children({uid: uid}),
     initial_pay: 0,
+    genders: [
+      {
+        text: 'Bărbat',
+        value: 'M'
+      },
+      {
+        text: 'Femeie',
+        value: 'F'
+      },
+    ],
     info: {
       course_id: '',
       total_pay: 0,
+      children: [],
       payment_method: 'Paypal',
       meta: {
         USD: 0,

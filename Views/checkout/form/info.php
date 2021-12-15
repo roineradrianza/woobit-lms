@@ -1,5 +1,6 @@
 <v-row class="px-8 py-4">
     <v-col cols="12">
+        <?= new Controller\Template('account/parts/private/children/dialog') ?>
         <v-form lazy-validation>
             <v-row>
 
@@ -20,7 +21,7 @@
                 <v-col cols="12" md="7">
                     <v-text-field v-model="personal_info.address" label="Adresa" outlined></v-text-field>
                 </v-col>
-                 
+
                 <v-col cols="12" md="5">
                     <vue-tel-input-vuetify id="tel-input" v-model="personal_info.telephone" label='Telefon'
                         mode="international" :inputoptions="{showDialCode: true}"
@@ -32,7 +33,17 @@
                     <v-select v-model="info.children" label="Copii" :items="children.items"
                         :item-text=" (e) => e.first_name + ' ' + e.last_name"
                         @change="info.total_pay = initial_pay * info.children.length; getRONtoUSDTax()" multiple
-                        return-object outlined></v-select>
+                        return-object outlined>
+                        <template #prepend-item>
+                            <v-row class="mt-n2">
+                                <v-btn color="primary" @click="children.reset(); children.dialog = true;" block>Adăugați
+                                </v-btn>
+                            </v-row>
+                        </template>
+                    </v-select>
+                    <v-alert border="top" v-if="info.children.length <= 0" colored-border type="info" elevation="2">
+                        Trebuie să alegeți cel puțin un elev pentru a procesa plata.
+                    </v-alert>
                 </v-col>
             </v-row>
         </v-form>

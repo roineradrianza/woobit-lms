@@ -17,6 +17,12 @@
             </v-divider>
         </v-col>
         <v-col class="p-0" cols="12" md="6">
+            <h5 class="text-h5 font-weight-light">Costul pe student</h5>
+        </v-col>
+        <v-col class="p-0 d-flex justify-end" cols="12" md="6">
+            <h5 class="text-h5 font-weight-light">{{ initial_pay }} RON</h5>
+        </v-col>
+        <v-col class="p-0" cols="12" md="6">
             <h5 class="secondary--text text-h5">Plată totală</h5>
         </v-col>
         <v-col class="p-0 d-flex justify-end" cols="12" md="6">

@@ -601,10 +601,11 @@ class Routes
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
+                        ['name' => 'register-validations'],
                         ['name' => 'Classes/Children.min'],
                         ['name' => 'https://www.paypal.com/sdk/js?client-id=' . PAYPAL_CLIENT_ID . '&currency=USD', 'external' => true],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                        ['name' => 'checkout.min', 'version' => '1.0.3'],
+                        ['name' => 'checkout.min', 'version' => '1.0.4'],
                     ];
                     $this->title = 'Checkout';
                     $this->content = new Template("checkout/main");
