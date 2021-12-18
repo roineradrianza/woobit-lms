@@ -1,23 +1,23 @@
 <?= new Controller\Template('parts/header/search-form') ?>
-<v-app-bar ref="header_menu" class="bg-white sidebar" fixed flat prominent app>
-    <v-container class="mb-0 pb-0 pt-0 d-flex justify-center" fluid>
-        <v-row class="px-md-4 align-center mw-lg">
+<v-app-bar ref="header_menu" class="bg-white sidebar pb-4" fixed flat prominent app>
+    <v-container class="mb-0 pb-0 pt-0 d-flex justify-center">
+        <v-row align="end">
             <v-col class="d-md-none" cols="1">
                 <v-app-bar-nav-icon class="primary--text"
                     @click.stop="$refs.drawer.isActive = !$refs.drawer.isActive;$refs.drawer.$el.scrollIntoView()">
                 </v-app-bar-nav-icon>
             </v-col>
-            <v-col class="d-flex justify-center justify-md-start pt-6" :cols="$vuetify.breakpoint.mdAndUp ? 3 : 10">
-                <a class="py-md-2" href="/">
+            <v-col class="d-flex justify-center justify-md-start pt-6 px-md-0" :cols="$vuetify.breakpoint.mdAndUp ? 3 : 10">
+                <a href="/">
                     <v-img class="d-none d-md-inline-block d-lg-none" src="<?= SITE_URL ?>/img/woobit-logo.png"
                         max-width="10vw" contain></v-img>
                     <v-img class="d-none d-lg-inline-block d-md-none" src="<?= SITE_URL ?>/img/woobit-logo.png"
                         max-width="6vw" contain></v-img>
                     <v-img class="d-inline-block d-lg-none d-md-none" src="<?= SITE_URL ?>/img/woobit-logo.png"
-                        max-width="20vw" contain></v-img>
+                        max-width="15vw" contain></v-img>
                 </a>
             </v-col>
-            <v-col class="d-flex justify-end" :cols="$vuetify.breakpoint.mdAndUp ? 9 : 1">
+            <v-col class="d-flex justify-end px-md-0" :cols="$vuetify.breakpoint.mdAndUp ? 9 : 1">
                 <v-btn class="d-md-none" @click="$refs.menu_search_dialog.isActive = true" icon>
                     <v-icon>mdi-magnify</v-icon>
                 </v-btn>

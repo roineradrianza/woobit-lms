@@ -19,13 +19,13 @@
         rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/material-design-icons.min.css" rel="stylesheet">
     <link href="<?= SITE_URL ?>/css/vuetify.min.css" rel="stylesheet">
-    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.2" rel="stylesheet">
+    <link href="<?= SITE_URL ?>/css/app.min.css?v=1.0.3" rel="stylesheet">
     <?php if (!empty($data['styles'])): ?>
     <?php foreach ($data['styles'] as $style): ?>
     <?php if (isset($style['external']) AND $style['external']): ?>
     <link href="<?= $style['url']; ?>" rel="stylesheet">
     <?php else: ?>
-    <link href="<?= SITE_URL ?>/assets/css/<?= $style['name']; ?>.css" rel="stylesheet">
+    <link href="<?= SITE_URL ?>/assets/css/<?= $style['name'] ?>.css<?= !empty($style['version']) ? "?v={$style['version']}" : '' ?>" rel="stylesheet">
 
     <?php endif ?>
 

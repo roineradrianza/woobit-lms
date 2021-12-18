@@ -320,21 +320,6 @@ video[poster] {
   overflow-y: scroll;
 }
 /*END*/
-/*CAROUSEL*/
-.img-slide-1 {
-  width: 30vw;
-}
-#slide-1 {
-  background-image: url("../img/home/slider/1/bg-image-1-2.png");
-  background-size: cover;
-  background-position: center;
-}
-#slide-4 {
-  background-image: url("../img/home/slider/4/bg-image.png");
-  background-size: contain;
-  background-position: center;
-}
-/*END CAROUSEL*/
 @media (min-width: 600px) and (max-width: 900px) {
   .v-avatar.teacher-highlight-avatar {
     width: 15vw !important;
@@ -375,14 +360,6 @@ video[poster] {
   #slide-1 {
     background-image: url("../img/home/slider/1/bg-image.png");
     background-size: contain;
-  }
-
-  .no-ha {
-    height: 100% !important;
-  }
-
-  .no-ha .v-carousel__item {
-    height: 100% !important;
   }
   
   .v-avatar.teacher-highlight-avatar {

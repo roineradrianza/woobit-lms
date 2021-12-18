@@ -63,7 +63,7 @@ class Routes
                     $course = new Course;
                     $courses = $course->get_enabled(4);
                     $this->styles = [
-                        ['name' => 'home.min'],
+                        ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],

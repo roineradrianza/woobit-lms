@@ -1,24 +1,38 @@
-header.bg-white, header.bg-white .v-toolbar__content, #hero {
-    background: #E4E3E1;
+.no-ha.v-carousel {
+  height: 100% !important;
 }
 
-#container_1 {
-    margin-top: -100px;
+.no-ha .v-carousel__item {
+  height: 100% !important;
+}
+/*HERO CAROUSEL*/
+.img-slide-1 {
+  width: 30vw;
+}
+#slide-1 {
+  background-image: url("../../img/home/slider/1/bg-image-1.png");
+  background-size: cover;
+}
+/*END HERO CAROUSEL*/
+
+#slide_1_text h1,
+#slide_1_text h2,
+#slide_1_text h3,
+#slide-1 input,
+#slide-1 label {
+  font-size: 20px;
 }
 
-#slide_1_text h1, #slide_1_text h2, #slide_1_text h3, #slide-1 input , #slide-1 label {
-    font-size: 20px;
-}
-
-.custom_carousel .theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
-    background-color: #0976c2;
+.custom_carousel
+  .theme--dark.v-btn:not(.v-btn--flat):not(.v-btn--text):not(.v-btn--outlined) {
+  background-color: #0976c2;
 }
 
 .custom_carousel .v-btn--icon.v-size--small {
-    width: 18px;
-    height: 18px;
+  width: 18px;
+  height: 18px;
 }
 
 .custom_carousel .v-btn--icon.v-size--small .v-icon {
-    font-size: 9px !important;
+  font-size: 9px !important;
 }
