@@ -256,6 +256,18 @@ class Member extends DB
         return $result;
     }
 
+    public function edit_teacher_profile($id, $data = []) : Bool
+    {
+        if (empty($data) or empty($id)) {
+            return false;
+        }
+
+        extract($data);
+        $sql = "UPDATE {$this->table} SET first_name = '$first_name', last_name = '$last_name' WHERE {$this->id_column} = $id";
+        $result = $this->execute_query($sql);
+        return $result;
+    }
+
     public function edit_password($id = 0, $password = '') : Bool
     {
         if (empty($id) or empty($password)) {

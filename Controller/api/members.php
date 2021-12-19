@@ -65,7 +65,7 @@ switch ($method) {
                 $meta = $user_meta->get($result['user_id']);
                 $result['meta'] = [];
                 foreach ($meta as $i => $e) {
-                    $result['meta'][$e['meta_name']] = $e['meta_val'];
+                    $result['meta'][$e['meta_name']] = is_array($e['meta_val']) ? json_encode($e['meta_val'], JSON_UNESCAPED_UNICODE) : $e['meta_val'];
                 }
                 $members[] = $result;
             }
@@ -124,7 +124,8 @@ switch ($method) {
             foreach ($data['meta'] as $meta_key => $meta_value) {
                 $meta = [
                     'meta_name' => $meta_key, 
-                    'meta_val' => $meta_value, 'user_id' => $result
+                    'meta_val' => $meta_value, 
+                    'user_id' => $result
                 ];
                 $user_meta->create($meta);
             }
@@ -291,6 +292,8 @@ switch ($method) {
     case 'update-profile':
         if (empty($data)) {
             $helper->response_message('Advertencia', 'Nu s-a primit nicio informație', 'warning');
+        } elseif (empty($_SESSION['user_id'])) {
+            $helper->response_message('Advertencia', 'Sesiunea dvs. pare să fi expirat, vă rugăm să reîncărcați pagina și să încercați să vă autentificați din nou.', 'warning');
         }
 
         $id = $_SESSION['user_id'];
@@ -301,7 +304,10 @@ switch ($method) {
 
         if (isset($data['meta']) && !empty($data['meta'])) {
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['meta_name' => $meta_key, 'meta_val' => $meta_value];
+                $meta = [
+                    'meta_name' => $meta_key, 
+                    'meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value
+                ];
                 $user_meta->edit($id, $meta);
             }
         }
@@ -328,7 +334,11 @@ switch ($method) {
 
         if (isset($data['meta']) && !empty($data['meta'])) {
             foreach ($data['meta'] as $meta_key => $meta_value) {
-                $meta = ['meta_name' => $meta_key, 'meta_val' => $meta_value, 'user_id' => $id];
+                $meta = [
+                    'meta_name' => $meta_key, 
+                    'meta_val' => is_array($meta_value) ? json_encode($meta_value, JSON_UNESCAPED_UNICODE) : $meta_value, 
+                    'user_id' => $id
+                ];
                 $check_meta = $user_meta->get_meta($id, $meta_key);
                 if (empty($check_meta)) {
                     $user_meta->create($meta);

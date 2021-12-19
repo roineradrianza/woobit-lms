@@ -50,6 +50,19 @@
         </v-col>
 
         <v-col cols="12">
+            <label class="body-1 font-weight-thin pl-1">Biografie</label>
+            <template v-if="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
+                && <?= !empty($object) ? $object : 'form' ?>.status != undefined
+                && <?= !empty($object) ? $object : 'form' ?>.application_id > 0">
+                <div class="ql-editor" v-html="<?= !empty($object) ? $object : 'form' ?>.meta.bio"></div>
+            </template>
+            <template v-else>
+                <vue-editor id="bio_editor" class="mt-3" v-model="<?= !empty($object) ? $object : 'form' ?>.meta.bio"
+                    :editor-toolbar="customToolbar" placeholder="Scrieți-vă biografia aici" />
+            </template>
+        </v-col>
+
+        <v-col cols="12">
             <v-divider></v-divider>
         </v-col>
 

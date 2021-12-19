@@ -83,6 +83,7 @@ let vm = new Vue({
         teacher_address: '',
         teacher_email: '',
         teacher_telephone: '',
+        bio: '<p></p>',
         id_url: '',
         video_url: '',
         certificates: [],
@@ -119,6 +120,16 @@ let vm = new Vue({
         text: 'Respins',
         value: '3'
       }
+    ],
+    customToolbar: [
+      ["bold", "italic", "underline"],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [
+        { align: "" },
+        { align: "center" },
+        { align: "right" },
+        { align: "justify" }
+      ],
     ],
     search: '',
     notifications: [],

@@ -572,11 +572,12 @@ class Routes
                         ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
                         ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
+                        ['name' => 'vue-components/vue2-editor.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'profile.min', 'version' => '1.0.7'],
+                        ['name' => 'teacher-profile.min', 'version' => '1.0.0'],
                     ];
-                    $this->content = new Template("account/profile");
+                    $this->content = new Template("account/teacher-profile");
                     break;
 
                 case 'cursurile-mele':
@@ -652,9 +653,9 @@ class Routes
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                        ['name' => 'vue-components/vue-draggable.min.umd'],
+                        ['name' => 'vue-components/vue2-editor.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'become-teacher.min', 'version' => '1.0.1'],
+                        ['name' => 'become-teacher.min', 'version' => '1.0.2'],
                     ];
                     $this->content = new Template("become-teacher");
                     break;
