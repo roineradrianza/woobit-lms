@@ -6,10 +6,10 @@
                 <h1 class="text-h4">Cursuri creative, în direct, pentru minți luminoase</h1>
             </v-col>
             <v-col class="d-flex justify-center align-center d-md-inline" cols="12">
-                <v-btn color="primary" href="<?= SITE_URL ?>/new-class-guide">Ghid curs nou</v-btn>
+                <v-btn color="primary" href="<?= SITE_URL ?>/ghid-curs-nou">Ghid curs nou</v-btn>
                 <v-btn class="my-6" color="primary" text>Adaugă curs nou
                 </v-btn>
-                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/my-courses">Cursurile tale
+                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/cursurile-mele">Cursurile tale
                 </v-btn>
             </v-col>
             <v-col cols="12">
@@ -36,7 +36,7 @@
                                         {{ alert_message }}
                                     </v-col>
                                     <v-col class="shrink" v-if="course.slug != ''">
-                                        <v-btn v-btn :href="'<?= SITE_URL ?>/courses/' + course.slug">Mergeți la curs</v-btn>
+                                        <v-btn v-btn :href="'<?= SITE_URL ?>/cursuri/' + course.slug">Mergeți la curs</v-btn>
                                     </v-col>
                                 </v-row>
                             </v-alert>

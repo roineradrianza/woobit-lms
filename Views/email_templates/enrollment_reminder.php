@@ -25,7 +25,7 @@
                           1- Inicia sesión con los datos que le enviamos en este mail
                           <br>
                           2- Se dirige al curso de este año 
-                          <a href="<?= SITE_URL ?>/courses/<?= $data['course']['slug'] ?>" style="color: #3d0235;"><b><?= SITE_URL ?>/courses/<?= $data['course']['slug'] ?></b></a>
+                          <a href="<?= SITE_URL ?>/cursuri/<?= $data['course']['slug'] ?>" style="color: #3d0235;"><b><?= SITE_URL ?>/cursuri/<?= $data['course']['slug'] ?></b></a>
                           <br>
                           3- Coloca el número de cupón <b><?= $data['coupon']['coupon_code'] ?></b>
                           <br>

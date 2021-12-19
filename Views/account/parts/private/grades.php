@@ -46,7 +46,7 @@
 
                                 <template #item.action="{ item }">
                                     <v-btn color="secondary"
-                                        :href="'<?= SITE_URL ?>/courses/'+ grades.course.slug + '/' + item.lesson_id"
+                                        :href="'<?= SITE_URL ?>/cursuri/'+ grades.course.slug + '/' + item.lesson_id"
                                         text>
                                         Mergeți la test
                                     </v-btn>
@@ -90,7 +90,7 @@
             </h4>
         </v-col>
         <v-col class="m-0 d-flex justify-center" cols="12">
-            <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
+            <v-btn class="secondary white--text" href="<?= SITE_URL ?>/cursuri">Vezi cursuri</v-btn>
         </v-col>
     </v-row>
 </v-col>

@@ -61,7 +61,7 @@
 
                 <v-col cols="12">
                     <v-row>
-                        <?= new Controller\Template('become-teacher/partials/courses', $data) ?>
+                        <?= new Controller\Template('become-teacher/partials/cursuri', $data) ?>
                     </v-row>
                 </v-col>
             </v-row>

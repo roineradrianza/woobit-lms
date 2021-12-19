@@ -1,4 +1,4 @@
-<v-card class="my-12 flex-grow-1" href="<?= SITE_URL?>/courses/<?= $slug?>">
+<v-card class="my-12 flex-grow-1" href="<?= SITE_URL?>/cursuri/<?= $slug?>">
 
     <v-img height="200" src="<?= $featured_image ?>"></v-img>
     <v-card-subtitle class="mb-n6"><?= $category ?></v-card-subtitle>

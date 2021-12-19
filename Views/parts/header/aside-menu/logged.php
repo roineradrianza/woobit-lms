@@ -25,13 +25,13 @@
         <v-btn href="<?= SITE_URL ?>/panel" text>Panou</v-btn>
     </v-list-item>
     <v-list-item>
-        <v-btn href="<?= SITE_URL ?>/profile" text>Profil</v-btn>
+        <v-btn href="<?= SITE_URL ?>/profil-lector" text>Profil</v-btn>
     </v-list-item>
     <v-list-item v-if="1 == 2">
-        <v-btn href="<?= SITE_URL ?>/my-courses" text>Cursurile meles</v-btn>
+        <v-btn href="<?= SITE_URL ?>/cursurile-mele" text>Cursurile meles</v-btn>
     </v-list-item>
     <v-list-item class="px-6">
-        <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher" block>Aplicație lector</v-btn>
+        <v-btn color="primary" href="<?= SITE_URL ?>/lectori" block>Aplicație lector</v-btn>
     </v-list-item>
     <v-list-item>
         <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text

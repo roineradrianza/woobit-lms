@@ -22,7 +22,7 @@
                         <?= $data['content'] ?>
 
                         <p style="text-align: center;">
-                          Debajo de este texto, encontrarás el código del cupón de descuento del <b><?= $data['coupon_discount'] ?></b>, ingresalo en el curso <a href="<?= SITE_URL ?>/courses/<?= $data['course']['slug'] ?>" style="color: #3d0235;"><b>"<?= $data['course']['title'] ?>"</b></a>
+                          Debajo de este texto, encontrarás el código del cupón de descuento del <b><?= $data['coupon_discount'] ?></b>, ingresalo en el curso <a href="<?= SITE_URL ?>/cursuri/<?= $data['course']['slug'] ?>" style="color: #3d0235;"><b>"<?= $data['course']['title'] ?>"</b></a>
                         </p>
                         <div style="color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
                           <p style='text-align: center;'><?= $data['coupon_code'] ?></p>

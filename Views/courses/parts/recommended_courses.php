@@ -6,7 +6,7 @@
     <?php foreach ($data as $course): ?>
     <v-col cols="12" md="4" sm="12" class="d-flex">
         <v-card :loading="loading" class="my-12 course-card flex-grow-1"
-            href="<?= SITE_URL . '/courses/' . $course['slug'] ?>" max-width="95%">
+            href="<?= SITE_URL . '/cursuri/' . $course['slug'] ?>" max-width="95%">
 
             <v-img width="100vw" height="27vh" class="align-end" src="<?= $course['featured_image'] ?>">
                 <v-card-title class="category-label float-left mb-6 font-weight-bold">

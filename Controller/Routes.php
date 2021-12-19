@@ -75,7 +75,7 @@ class Routes
                     );
                     break;
 
-                case 'about-us':
+                case 'despre-noi':
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
@@ -211,7 +211,7 @@ class Routes
                     $this->content = new Template("login");
                     break;
 
-                case 'register':
+                case 'inregistrare':
                     if (isset($_SESSION['user_id'])) {
                         header("Location: " . $_SESSION['redirect_url']);
                     }
@@ -247,7 +247,7 @@ class Routes
                     ];
                     break;
 
-                case 'new-class-guide':
+                case 'ghid-curs-nou':
                     $this->scripts = [
                         ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'],
                         ['name' => 'home.min', 'version' => '1.10.4'],
@@ -255,12 +255,12 @@ class Routes
                     $this->content = new Template("new-class-guide");
                     break;
 
-                case 'courses':
+                case 'cursuri':
                     $base_asset = [['name' => 'courses.min', 'version' => '1.0.0']];
                     $course = new Course;
-                    if (!empty($route[1]) && $route[1] == 'create') {
+                    if (!empty($route[1]) && $route[1] == 'adauga-curs') {
                         if (!isset($_SESSION['user_id'])) {
-                            header("Location: " . SITE_URL . '/login/go?redirect_url=' . SITE_URL . '/courses/create/');
+                            header("Location: " . SITE_URL . '/login/go?redirect_url=' . SITE_URL . '/courses/adauga-curs/');
                         }
                         $this->styles = [['name' => 'login.min'], ...$base_asset];
                         $this->scripts = [
@@ -504,7 +504,7 @@ class Routes
                     }
                     break;
 
-                case 'profile':
+                case 'profil-lector':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
                     }
@@ -562,7 +562,7 @@ class Routes
                     $this->content = new Template("account/panel");
                     break;
 
-                case 'my-profile':
+                case 'profilul-meu':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
                     }
@@ -579,7 +579,7 @@ class Routes
                     $this->content = new Template("account/profile");
                     break;
 
-                case 'my-courses':
+                case 'cursurile-mele':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
                     }
@@ -629,7 +629,7 @@ class Routes
                     $this->content = new Template("checkout/approve-checkout");
                     break;
 
-                case 'how-become-teacher':
+                case 'lectori':
                     $application = new Application;
                     $results = $application->get($_SESSION['user_id']);
                     if (count($results) > 0) {
@@ -643,22 +643,23 @@ class Routes
                     $this->content = new Template("how-to-become-teacher");
                     break;
 
-                case 'become-teacher':
+                case 'aplicatie-lector':
                     if (!isset($_SESSION['user_id'])) {
-                        header("Location: " . SITE_URL . "/login/go?redirect_url=" . SITE_URL . "/become-teacher");
+                        header("Location: " . SITE_URL . "/login/go?redirect_url=" . SITE_URL . "/aplicatie-lector");
                     }
                     $this->styles = [['name' => 'login.min']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                        ['name' => 'vue-components/vue-draggable.min.umd'],
                         ['name' => 'register-validations'],
                         ['name' => 'become-teacher.min', 'version' => '1.0.1'],
                     ];
                     $this->content = new Template("become-teacher");
                     break;
 
-                case 'terms-and-conditions':
+                case 'termeni-si-conditii':
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],

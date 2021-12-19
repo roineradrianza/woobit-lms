@@ -9,8 +9,8 @@
         <template v-else>
             <v-row>
                 <v-col class="px-0" cols="12">
-                    <v-btn color="primary" href="<?= SITE_URL ?>/new-class-guide">Ghid curs nou</v-btn>
-                    <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou
+                    <v-btn color="primary" href="<?= SITE_URL ?>/ghid-curs-nou">Ghid curs nou</v-btn>
+                    <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/cursuri/adauga-curs">Adaugă curs nou
                     </v-btn>
                     <v-btn class="my-6" color="primary" text>Cursurile tale
                     </v-btn>
@@ -21,7 +21,7 @@
                     </h4>
                 </v-col>
                 <v-col class="d-flex justify-end" md="4">
-                    <v-btn color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
+                    <v-btn color="primary" href="<?= SITE_URL ?>/cursuri/adauga-curs">Adaugă curs nou</v-btn>
                 </v-col>
             </v-row>
             <?= new Controller\Template('my-courses/partials/courses') ?>
@@ -38,7 +38,7 @@
                                 </h3>
                             </v-col>
                             <v-col class="d-flex justify-center">
-                                <v-btn color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou
+                                <v-btn color="primary" href="<?= SITE_URL ?>/cursuri/adauga-curs">Adaugă curs nou
                                 </v-btn>
                             </v-col>
                         </v-row>

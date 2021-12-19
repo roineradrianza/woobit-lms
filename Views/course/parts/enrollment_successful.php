@@ -147,7 +147,7 @@
                 </v-stepper-step>
                 <v-stepper-content step="3">
                     <p>Para nuestras clases en vivos, les estaremos notificando vía correo electrónico, a través de las
-                        notificaciones de la página y en tu <a href="<?= SITE_URL ?>/profile/"
+                        notificaciones de la página y en tu <a href="<?= SITE_URL ?>/profil-lector/"
                             target="_blank">perfil</a> podrás tener un apartado de clases en vivo desde la cual podrás
                         acceder como se muestra a continuación:</p>
                     <v-col class="mt-4" cols="12">

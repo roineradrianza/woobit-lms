@@ -50,7 +50,7 @@
                                                     style="color: #3d0235;font-weight: bold;">Suma:</span>
                                                 <?= '$' . $total_pay ?></p>
 
-                                            <a href="<?= SITE_URL . "/courses/{$course['slug']}"?>"
+                                            <a href="<?= SITE_URL . "/cursuri/{$course['slug']}"?>"
                                                 style="display: block; color: #ffffff; background-color: #003146; border: solid 1px #003146; margin-top:30px;border-radius: 5px; box-sizing: border-box; cursor: pointer; text-decoration: none; font-size: 16px; font-weight: bold; margin: 0; border-color: #003146;">
                                                 <p style='text-align: center;'>Ir al curso</p>
                                             </a>

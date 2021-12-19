@@ -32,13 +32,13 @@
                 <v-list-item-title class="text-center">Panou</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
-        <v-list-item href="<?= SITE_URL ?>/profile/">
+        <v-list-item href="<?= SITE_URL ?>/profil-lector/">
             <v-list-item-content>
                 <v-list-item-title class="text-center">Profil</v-list-item-title>
             </v-list-item-content>
         </v-list-item>
         <v-list-item>
-            <v-btn color="primary" href="<?= SITE_URL ?>/how-become-teacher" block>Aplicație lector</v-btn>
+            <v-btn color="primary" href="<?= SITE_URL ?>/lectori" block>Aplicație lector</v-btn>
         </v-list-item>
         <v-list-item>
             <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text

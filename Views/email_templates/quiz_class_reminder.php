@@ -19,7 +19,7 @@
                     <tr>
                       <td style='font-size: 16px; vertical-align: top;'>
                         <p style="text-align: center">Se ha subido el quiz <b style="color: #3d0235">"<?= $lesson['lesson_name'] ?>"</b> de <b style="color: #3d0235">"<?= $course['title'] ?>"</b></p>
-                        <p style="text-align: center">Puede ir directamente al quiz a través del siguiente link: <a href="<?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
+                        <p style="text-align: center">Puede ir directamente al quiz a través del siguiente link: <a href="<?= SITE_URL ?>/cursuri/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/cursuri/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
                       </td>
                     </tr>
                   </table>

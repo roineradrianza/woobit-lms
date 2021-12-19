@@ -4,8 +4,8 @@
         <v-row>
             <v-col class="d-flex justify-center align-center d-md-inline" cols="12">
                 <v-btn color="primary" text>Ghid curs nou</v-btn>
-                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
-                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/my-courses">Cursurile tale</v-btn>
+                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/cursuri/adauga-curs">Adaugă curs nou</v-btn>
+                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/cursurile-mele">Cursurile tale</v-btn>
             </v-col>
         </v-row>
         <h3 class="text-h5">Titlul</h3>
@@ -81,7 +81,7 @@
                 înregistrată a fiecărui curs va fi menținută în arhive pentru două luni în cazul în care apar
                 nemulțumiri. Orice situație neplăcută trebuie comunicată rapid conducerii Woobit. Pentru mai multe
                 detalii cu privire la politicile și siguranța lectorilor și a cursanților, te rog sa citești aici
-                <v-btn class="white--text" color="#a500a4" href="<?= SITE_URL ?>/terms-and-conditions">Termeni și
+                <v-btn class="white--text" color="#a500a4" href="<?= SITE_URL ?>//termeni-si-conditii">Termeni și
                     Condiții</v-btn>
             </li>
         </ul>
@@ -129,6 +129,6 @@
     </v-col>
 
     <v-col class="d-flex justify-center">
-        <v-btn color="primary" href="<?= SITE_URL ?>/courses/create">Adaugă curs nou</v-btn>
+        <v-btn color="primary" href="<?= SITE_URL ?>/cursuri/adauga-curs">Adaugă curs nou</v-btn>
     </v-col>
 </v-row>

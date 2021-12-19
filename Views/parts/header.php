@@ -33,16 +33,16 @@
                     <v-tab class="black--text font-weight-bold subtitle-1" key="courses" class="d-none d-md-inline">
                         Cursuri
                     </v-tab>
-                    <v-tab href="<?= SITE_URL ?>/how-become-teacher" class="black--text font-weight-bold subtitle-1"
+                    <v-tab href="<?= SITE_URL ?>/lectori" class="black--text font-weight-bold subtitle-1"
                         key="instructors" class="d-none d-md-inline">
                         Lectori
                     </v-tab>
-                    <v-tab href="<?= SITE_URL ?>/about-us" class="black--text font-weight-bold subtitle-1" key="about"
+                    <v-tab href="<?= SITE_URL ?>/despre-noi" class="black--text font-weight-bold subtitle-1" key="about"
                         class="d-none d-md-inline">
                         Despre noi
                     </v-tab>
                     <?php if (!isset($_SESSION['user_id'])): ?>
-                    <v-tab href="<?= SITE_URL ?>/register" class="black--text font-weight-bold subtitle-1"
+                    <v-tab href="<?= SITE_URL ?>/inregistrare" class="black--text font-weight-bold subtitle-1"
                         key="register" class="d-none d-md-inline">
                         Înregistrează-te
                     </v-tab>

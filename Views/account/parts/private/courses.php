@@ -50,7 +50,7 @@
             </v-col>
             <v-col cols="12" md="4" v-for="course in my_courses">
                 <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="secondary"
-                    :href="'<?= SITE_URL ?>/courses/'+course.slug">
+                    :href="'<?= SITE_URL ?>/cursuri/'+course.slug">
 
                     <v-img width="100vw" class="align-end" :src="course.featured_image">
                     </v-img>
@@ -72,7 +72,7 @@
                     înregistra copilul.</h3>
             </v-col>
             <v-col class="m-0 d-flex justify-center" cols="12">
-                <v-btn class="secondary white--text" href="<?= SITE_URL ?>/courses">Vezi cursuri</v-btn>
+                <v-btn class="secondary white--text" href="<?= SITE_URL ?>/cursuri">Vezi cursuri</v-btn>
             </v-col>
         </v-row>
     </template>

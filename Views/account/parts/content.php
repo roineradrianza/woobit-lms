@@ -39,7 +39,7 @@
         </v-col>
         <v-col cols="12" md="4" v-for="course in new_courses">
             <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="primary"
-                :href="'<?= SITE_URL ?>/courses/'+course.slug">
+                :href="'<?= SITE_URL ?>/cursuri/'+course.slug">
 
                 <v-img width="100vw" class="align-end" :src="course.featured_image">
                 </v-img>
@@ -69,7 +69,7 @@
         </v-col>
         <v-col cols="12" md="4" v-for="course in my_courses">
             <v-card :loading="loading" class="my-12 course-card" max-width="95%" color="secondary"
-                :href="'<?= SITE_URL ?>/courses/'+course.slug">
+                :href="'<?= SITE_URL ?>/cursuri/'+course.slug">
 
                 <v-img width="100vw" class="align-end" :src="course.featured_image">
                 </v-img>

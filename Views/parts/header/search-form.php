@@ -5,7 +5,7 @@
                 <v-text-field ref="menu_search" label="Ce dorești să înveți?" solo>
                     <template #append>
                         <v-btn color="secondary"
-                            :href="'<?= SITE_URL ?>/courses/?search=' + $refs.menu_search.internalValue"
+                            :href="'<?= SITE_URL ?>/cursuri/?search=' + $refs.menu_search.internalValue"
                             text icon>
                             <v-icon>mdi-magnify</v-icon>
                         </v-btn>

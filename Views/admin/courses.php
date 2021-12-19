@@ -17,7 +17,7 @@
                 </template>
             </template>
             <template #item.actions="{ item }">
-                <a :href="'<?= SITE_URL ?>/courses/'+item.slug">
+                <a :href="'<?= SITE_URL ?>/cursuri/'+item.slug">
                     <v-icon md color="primary">
                         mdi-eye
                     </v-icon>

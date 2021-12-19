@@ -7,7 +7,7 @@
                 destine.</h3>
         </v-col>
         <v-col cols="12" md="2">
-            <v-btn class="white--text" href="<?= SITE_URL?>/become-teacher" color="#a500a4" block>Aplică aici</v-btn>
+            <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="#a500a4" block>Aplică aici</v-btn>
         </v-col>
         <v-col cols="12">
             <v-row justify="center">
@@ -179,7 +179,7 @@
         </v-col>
 
         <v-col class="d-flex justify-center" cols="12">
-            <v-btn class="white--text" href="<?= SITE_URL?>/become-teacher" color="#a500a4">Aplică aici</v-btn>
+            <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="#a500a4">Aplică aici</v-btn>
         </v-col>
 
     </v-row>

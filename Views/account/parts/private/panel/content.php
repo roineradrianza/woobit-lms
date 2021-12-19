@@ -26,7 +26,7 @@
                     v-for="course, i in filterLatestCourses(child.children_id)" :key="i">
                     <v-tooltip top color="primary">
                         <template #activator="{ on, attrs }">
-                            <v-card color="secondary" :href="'<?= SITE_URL ?>/courses/' + course.slug" width="300px" height="200px" v-bind="attrs" v-on="on">
+                            <v-card color="secondary" :href="'<?= SITE_URL ?>/cursuri/' + course.slug" width="300px" height="200px" v-bind="attrs" v-on="on">
                                 <v-img :src="course.featured_image" max-width="100%" height="100%">
                                 </v-img>
                             </v-card>
@@ -38,11 +38,11 @@
             </v-row>
         </v-col>
         <v-col cols="12">
-            <form :action="'<?= SITE_URL ?>/courses/?search=' + search" method="GET">
+            <form :action="'<?= SITE_URL ?>/cursuri/?search=' + search" method="GET">
                 <v-row>
                     <v-col cols="12" md="2" order="2" order-md="1">
                         <v-btn class="white--text py-6 px-4" color="#e70f66"
-                            :href="'<?= SITE_URL ?>/courses/?search=' + search" block rounded>
+                            :href="'<?= SITE_URL ?>/cursuri/?search=' + search" block rounded>
                             Explorează:
                         </v-btn>
                     </v-col>

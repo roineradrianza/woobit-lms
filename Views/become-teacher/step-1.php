@@ -5,7 +5,7 @@
     Toate câmpurile sunt obligatorii. Minimum absolvent de facultate (în orice domeniu) sau curent cu statut
     de student. Vorbitor nativ al limbii române*. Pentru a fi remunerat trebuie să ai un cont de PayPal.
     Trebuie să fii confortabil cu aplicația Zoom. Pentru mai multe detalii citește <v-btn class="white--text"
-        href="<?= SITE_URL?>/terms-and-conditions" color="#a500a4">Termeni și condiții</v-btn>
+        href="<?= SITE_URL?>//termeni-si-conditii" color="#a500a4">Termeni și condiții</v-btn>
 </p>
 <v-form ref="step1_form" v-model="forms.step1" :<?= !empty($form_mode) ? $form_mode : 'disabled' ?>="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
     && <?= !empty($object) ? $object : 'form' ?>.status != undefined

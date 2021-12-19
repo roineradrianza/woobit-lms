@@ -25,7 +25,7 @@
                           <br>
                         <?= $comment ?>
                         </p>
-                        <p style="text-align: center">Puede ir directo a la clase a través del siguiente link: <a href="<?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
+                        <p style="text-align: center">Puede ir directo a la clase a través del siguiente link: <a href="<?= SITE_URL ?>/cursuri/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/cursuri/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
                       </td>
                     </tr>
                   </table>

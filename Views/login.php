@@ -18,7 +18,7 @@
                 </v-row>
                 <v-btn class="white--text secondary mb-6 mt-4 py-6" :loading="loading" @click="signIn"
                     :disabled="email == '' || password == ''" block>Autentificare</v-btn>
-                <v-btn class="mb-4 secondary--text font-weight-bold" href="<?= SITE_URL ?>/register" block text>
+                <v-btn class="mb-4 secondary--text font-weight-bold" href="<?= SITE_URL ?>/inregistrare" block text>
                     Înregistrare
                 </v-btn>
                 <v-row justify="center">

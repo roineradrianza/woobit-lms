@@ -57,7 +57,7 @@
                         împărtășească din experiența lor educațională. Aceștia sunt profesori universitari, specialiști,
                         studenți, părinți, artiști sau cercetători acceptați în familia Woobit după un proces riguros de
                         selecție ce include, dar nu este limitat la: cazier, diplome, experiență profesională și
-                        recomandări. <v-btn class="white--text" href="<?= SITE_URL?>/how-become-teacher" color="#a500a4">Lectori</v-btn>
+                        recomandări. <v-btn class="white--text" href="<?= SITE_URL?>/lectori" color="#a500a4">Lectori</v-btn>
                     </p>
                 </v-col>
             </v-row>
@@ -85,7 +85,7 @@
                 <v-col cols="12" md="4">
                     <v-row>
                         <v-col class="d-flex justify-center justify-md-end" cols="12">
-                            <v-img src="<?= SITE_URL ?>/img/about-us/founder-veronica.jpg" max-width="220px"></v-img>
+                            <v-img src="<?= SITE_URL ?>/img/despre-noi/founder-veronica.jpg" max-width="220px"></v-img>
 
                         </v-col>
                         <v-col cols="12">

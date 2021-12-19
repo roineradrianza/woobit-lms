@@ -22,7 +22,7 @@
 						            <p>Hoy continuamos con <b style="color: #3d0235"><?= $course['title'] . ' - ' . $section['section_name']?></b>.</p>
 						            <p>Clase: <b style="color: #3d0235"><?= $lesson['lesson_name'] ?></b></p>
 						            <p>Hora: <b style="color: #3d0235"><?= $lesson['meta']['zoom_date'] . ' ' . $lesson['meta']['zoom_time'] . ' ' . $lesson['meta']['zoom_timezone'] ?></b></p>
-						            <p>Puede ingresar directamente a la clase a través del siguiente link: <a href="<?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/courses/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
+						            <p>Puede ingresar directamente a la clase a través del siguiente link: <a href="<?= SITE_URL ?>/cursuri/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?>" style="color: #3d0235"><?= SITE_URL ?>/cursuri/<?= $course['slug'] ?>/<?= $lesson['lesson_id'] ?></a></p>
 						            <p>PARA ENTRAR DESDE FULL LEARNING:</p>
 						            <ol>
 					                <li>Ingrese en <a href='<?= SITE_URL ?>' target='_blank' style="color: #3d0235"><?= SITE_URL ?></a></li>

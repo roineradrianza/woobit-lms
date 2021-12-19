@@ -4,7 +4,7 @@
     <?php endif?>
     <v-col class="course-details" cols="12">
         <?php if (isset($manage_course) && $manage_course): ?>
-        <v-btn class="primary white--text" href="<?= SITE_URL ?>/courses/edit/<?= $course_id ?>" block>
+        <v-btn class="primary white--text" href="<?= SITE_URL ?>/cursuri/edit/<?= $course_id ?>" block>
             Editar curso</v-btn>
         <?php endif?>
         <v-img class="grey darken-3 <?php if (!isset($meta['title_off']) || $meta['title_off'] !== '1') {echo "overlay-img";}

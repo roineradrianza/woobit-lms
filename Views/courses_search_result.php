@@ -7,7 +7,7 @@
 					<v-col class="CTA ml-md-n2" cols="12" md="6">
 						<v-text-field v-model="search" class="font-weight-light mt-16" label="Buscar cursos" light flat outlined dense solo>
 			      	<template #append>
-			      		<v-btn class="my-4 mx-6 mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/courses/?search=' + search" text icon><v-icon size="35">mdi-magnify</v-icon></v-btn>
+			      		<v-btn class="my-4 mx-6 mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/?search=' + search" text icon><v-icon size="35">mdi-magnify</v-icon></v-btn>
 			      	</template>
 			      </v-text-field>
 					</v-col>

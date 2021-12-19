@@ -24,7 +24,7 @@
                         <v-list-item-title class="text-center">Acasă</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item class="mb-n2" href="<?= SITE_URL ?>/profile/">
+                <v-list-item class="mb-n2" href="<?= SITE_URL ?>/profil-lector/">
                     <v-list-item-content>
                         <v-list-item-title class="text-center">Profil</v-list-item-title>
                     </v-list-item-content>

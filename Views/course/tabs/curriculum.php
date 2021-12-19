@@ -41,7 +41,7 @@
                                         <?php endif ?>
                                         <?php if ($data['current_user_has_enroll'] || $data['manage_course']): ?>
                                         <v-btn class="primary--text"
-                                            href="<?= SITE_URL ?>/courses/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
+                                            href="<?= SITE_URL ?>/cursuri/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
                                             text>
                                             <?php if ($lesson['lesson_type'] == 2): ?>
                                             Ir al quiz
@@ -52,7 +52,7 @@
                                         <?php endif ?>
                                         <?php if (empty($_SESSION['user_id'])): ?>
                                         <v-btn class="primary--text"
-                                            href="<?= SITE_URL ?>/login/?redirect_url=<?= SITE_URL ?>/courses/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
+                                            href="<?= SITE_URL ?>/login/?redirect_url=<?= SITE_URL ?>/cursuri/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
                                             text>Iniciar Sesión</v-btn>
                                         <?php endif ?>
                                     </v-col>

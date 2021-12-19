@@ -42,7 +42,7 @@
                         <a href="<?= SITE_URL ?>/siguranta-cursantilor" class="text-center white--text" target="_blank">
                             <p>Siguranța cursanților</p>
                         </a>
-                        <a href="<?= SITE_URL ?>/terms-and-conditions" class="text-center white--text" target="_blank">
+                        <a href="<?= SITE_URL ?>/termeni-si-conditii" class="text-center white--text" target="_blank">
                             <p>Termeni și Condiții</p>
                         </a>
                         <a href="<?= SITE_URL ?>/politica-de-utilizare-cookie-uri"

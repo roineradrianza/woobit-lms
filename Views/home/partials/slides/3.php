@@ -8,11 +8,11 @@
                         interactive.</h2>
                 </v-col>
                 <v-col cols="12" md="10">
-                    <form :action="'<?= SITE_URL ?>/courses/?search=' + search" method="GET">
+                    <form :action="'<?= SITE_URL ?>/cursuri/?search=' + search" method="GET">
                         <v-text-field v-model="search" label="Ce dorești să înveți?" light flat dense solo outlined>
                             <template #append>
                                 <v-btn class="my-4 mx-6 mx-md-0" color="secondary"
-                                    :href="'<?= SITE_URL ?>/courses/?search=' + search" text icon>
+                                    :href="'<?= SITE_URL ?>/cursuri/?search=' + search" text icon>
                                     <v-icon size="35px">mdi-magnify</v-icon>
                                 </v-btn>
                             </template>

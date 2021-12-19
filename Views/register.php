@@ -115,7 +115,7 @@
                                 Sunt de acord cu
                                 <v-tooltip bottom>
                                     <template #activator="{ on }">
-                                        <a target="_blank" href="<?= SITE_URL ?>/terms-and-conditions" @click.stop
+                                        <a target="_blank" href="<?= SITE_URL ?>//termeni-si-conditii" @click.stop
                                             v-on="on">
                                             Termenii și condițiile
                                         </a>

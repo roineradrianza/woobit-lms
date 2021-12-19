@@ -4,17 +4,17 @@
             <v-list-item-title>Cursuri</v-list-item-title>
         </v-list-item-content>
     </v-list-item>
-    <v-list-item href="<?= SITE_URL ?>/how-become-teacher">
+    <v-list-item href="<?= SITE_URL ?>/lectori">
         <v-list-item-content>
             <v-list-item-title>Lectori</v-list-item-title>
         </v-list-item-content>
     </v-list-item>
-    <v-list-item href="<?= SITE_URL ?>/about-us">
+    <v-list-item href="<?= SITE_URL ?>/despre-noi">
         <v-list-item-content>
             <v-list-item-title>Despre noi</v-list-item-title>
         </v-list-item-content>
     </v-list-item>
-    <v-list-item href="<?= SITE_URL ?>/register">
+    <v-list-item href="<?= SITE_URL ?>/inregistrare">
         <v-list-item-content>
             <v-list-item-title>Înregistrează-te</v-list-item-title>
         </v-list-item-content>

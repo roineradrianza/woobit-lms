@@ -20,7 +20,7 @@
                     </h4>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
-                    <v-btn color="primary" href="<?= SITE_URL . "/courses/$slug?course_tab=comments"?>">
+                    <v-btn color="primary" href="<?= SITE_URL . "/cursuri/$slug?course_tab=comments"?>">
                         Calificar curso</v-btn>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
@@ -51,7 +51,7 @@
                     </h4>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">
-                    <v-btn color="primary" href="<?= SITE_URL . "/courses/$slug?course_tab=comments"?>">
+                    <v-btn color="primary" href="<?= SITE_URL . "/cursuri/$slug?course_tab=comments"?>">
                         Calificar curso</v-btn>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12">

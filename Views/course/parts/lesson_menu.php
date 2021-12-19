@@ -56,7 +56,7 @@
                                             <v-icon color="success">mdi-check-circle</v-icon>
                                             <?php endif ?>
                                             <v-btn class="primary--text"
-                                                href="<?= SITE_URL ?>/courses/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
+                                                href="<?= SITE_URL ?>/cursuri/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
                                                 text>
                                                 <?php if ($lesson['lesson_type'] == 2): ?>
                                                 Ir al quiz

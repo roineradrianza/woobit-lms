@@ -10,11 +10,11 @@
                                 interactive.</h2>
                         </v-col>
                         <v-col class="px-8 px-md-0" cols="12" md="10">
-                            <form :action="'<?= SITE_URL ?>/courses/?search=' + search" method="GET">
+                            <form :action="'<?= SITE_URL ?>/cursuri/?search=' + search" method="GET">
                                 <v-text-field v-model="search" label="Ce dorești să înveți?" light flat outlined solo rounded>
                                     <template #append>
                                         <v-btn class="my-4" color="secondary"
-                                            :href="'<?= SITE_URL ?>/courses/?search=' + search" text icon>
+                                            :href="'<?= SITE_URL ?>/cursuri/?search=' + search" text icon>
                                             <v-icon size="35px">mdi-magnify</v-icon>
                                         </v-btn>
                                     </template>
