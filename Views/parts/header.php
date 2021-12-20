@@ -1,4 +1,3 @@
-<?= new Controller\Template('parts/header/search-form') ?>
 <v-app-bar ref="header_menu" class="bg-white sidebar pb-4" fixed flat prominent app>
     <v-container class="mb-0 pb-0 pt-0 d-flex justify-center">
         <v-row align="end">
@@ -18,7 +17,7 @@
                 </a>
             </v-col>
             <v-col class="d-flex justify-end px-md-0" :cols="$vuetify.breakpoint.mdAndUp ? 9 : 1">
-                <v-btn class="d-md-none" @click="$refs.menu_search_dialog.isActive = true" icon>
+                <v-btn href="<?= SITE_URL ?>/cursuri/get?search=" class="d-md-none" icon>
                     <v-icon>mdi-magnify</v-icon>
                 </v-btn>
                 <?php if(isset($_SESSION['user_id'])): ?>
@@ -27,7 +26,7 @@
                 </template>
                 <?php endif?>
                 <v-tabs v-model="nav_tab" class="menu-items d-none d-md-inline" background-color="transparent" right>
-                    <v-tab class="black--text font-weight-bold subtitle-1" key="search_courses" @click="$refs.menu_search_dialog.isActive = true">
+                    <v-tab href="<?= SITE_URL ?>/cursuri/get?search=" class="black--text font-weight-bold subtitle-1" key="search_courses">
                         <v-icon>mdi-magnify</v-icon>
                     </v-tab>
                     <v-tab class="black--text font-weight-bold subtitle-1" key="courses" class="d-none d-md-inline">

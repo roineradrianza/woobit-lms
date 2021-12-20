@@ -1,6 +1,13 @@
 <v-col cols="12" md="7" class="white px-12 py-md-8 info-container mx-md-6" v-if="main_container && !courses_container 
 && !profile_container && !orders_container && !grades_container ">
-
+    <v-row>
+        <v-col class="d-flex justify-end" cols="12">
+            <v-btn color="primary" href="<?= SITE_URL ?>/cursuri/get?search=" text>
+                <v-icon>mdi-magnify</v-icon>
+                Căutați cursuri
+            </v-btn>
+        </v-col>
+    </v-row>
     <v-row v-if="coming_classes.length > 0">
         <v-col class="mb-n8" cols="12">
             <h2 class="text-h4 mb-4">Cursuri live viitoare</h2>
@@ -81,7 +88,7 @@
             </v-card>
         </v-col>
     </v-row>
-    
+
 </v-col>
 
 <?= new Controller\Template('account/parts/private/profile_edit') ?>
