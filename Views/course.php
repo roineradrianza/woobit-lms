@@ -7,7 +7,8 @@
             <v-col cols="12" md="6">
                 <v-row>
                     <v-col cols="12">
-                        <span class="font-weight-light text-h6"><?= $data['category'][0]['name'] ?></span>
+                        <span
+                            class="font-weight-light text-h6"><?= !empty($data['category'][0]['name']) ? $data['category'][0]['name'] : '' ?></span>
                         <h1 class="text-h3 font-weight-light">
                             <?= $title ?>
                         </h1>
@@ -53,6 +54,18 @@
                     </v-col>
                 </v-row>
             </v-col>
+            <v-col cols="12">
+                <?= new Controller\Template('course/summary/editions', $data) ?>
+            </v-col>
+            <v-col cols="12">
+                <v-divider></v-divider>
+            </v-col>
+            <v-col cols="12">
+                <?= new Controller\Template('course/summary/instructor-info', $instructor) ?>
+            </v-col>
+            <v-col cols="12">
+                <v-divider></v-divider>
+            </v-col>
             <?php if(!empty($instructor['courses'])) : ?>
             <v-col cols="12">
                 <h3 class="text-h4 text-center font-weight-light">
@@ -63,14 +76,27 @@
                 <v-container>
                     <v-row justify="center">
                         <?php foreach ($instructor['courses'] as $course) : ?>
-                        <v-col class="px-md-4 px-lg-8 d-flex" cols="12" md="4" lg="3">
+                        <?php $course['category'] = !empty($course['category']) ? $course['category'][0]['name'] : '' ?>
+                        <v-col class="d-flex" cols="12" md="4" lg="3">
                             <?= new Controller\Template('courses/course_template', $course) ?>
                         </v-col>
                         <?php endforeach ?>
                     </v-row>
                 </v-container>
             </v-col>
+            <v-col cols="12">
+                <v-divider></v-divider>
+            </v-col>
             <?php endif?>
+            <?= new Controller\Template('course/summary/popular-categories', $data) ?>
+            <v-col cols="12">
+                <v-divider></v-divider>
+            </v-col>
+            <?= new Controller\Template('course/summary/popular-courses', 
+                [
+                    'category' => !empty($category[0]['name']) ? $category[0]['name'] : '',
+                ]
+            ) ?>
         </v-row>
     </v-row>
 </v-container>

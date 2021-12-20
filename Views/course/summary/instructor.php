@@ -4,7 +4,7 @@
 
             <v-row justify="center" align="center">
                 <v-col class="d-flex justify-center align-center" cols="12">
-                    <v-avatar size="80">
+                    <v-avatar size="80" ref="instructor_avatar">
                         <v-img src="<?= $avatar ?>"></v-img>
                     </v-avatar>
                     <p class="white--text mb-0 ml-2">
@@ -16,7 +16,7 @@
                                 </span>
                                 <br>
                                 <span>
-                                    Economist
+                                    Lectori
                                 </span>
                                 <br>
                                 <span>
@@ -24,12 +24,12 @@
                                         mdi-star
                                     </v-icon>
                                     <strong>
-                                        5
+                                        120
                                     </strong>
                                 </span>
                             </v-col>
                         </v-row>
-                        <v-btn class="primary--text" color="white">
+                        <v-btn class="primary--text" color="white" @click="$refs.instructor_avatar.$el.scrollIntoViewIfNeeded()">
                             Despre Mine
                             <v-icon>
                                 mdi-play-circle

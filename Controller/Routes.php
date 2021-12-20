@@ -412,6 +412,7 @@ class Routes
                                 $category = new Category;
                                 $subcategory = new SubCategory;
                                 $course_meta = new CourseMeta;
+                                $user_meta = new \Model\MemberMeta;
                                 $section = new Section;
                                 $lesson = new Lesson;
                                 $lesson_meta = new LessonMeta;
@@ -423,6 +424,11 @@ class Routes
 
                                 $instructor = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar']);
                                 $course_result['instructor'] = $instructor[0];
+                                $meta = $user_meta->get($course_result['instructor']['user_id']);
+                                    $course_result['instructor']['meta'] = [];
+                                    foreach ($meta as $i => $e) {
+                                        $course_result['instructor']['meta'][$e['meta_name']] = Helper::is_json($e['meta_val']) ? json_decode($e['meta_val']) : $e['meta_val'];;
+                                }
                                 $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id:$course_result['course_id']);
                                 $course_result['students'] = $course->get_total_students($course_result['course_id']);
                                 $course_result['classes'] = $section->get_total_lessons($course_result['course_id']);
