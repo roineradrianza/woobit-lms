@@ -25,7 +25,9 @@
     <?php if (isset($style['external']) AND $style['external']): ?>
     <link href="<?= $style['url']; ?>" rel="stylesheet">
     <?php else: ?>
-    <link href="<?= SITE_URL ?>/assets/css/<?= $style['name'] ?>.css<?= !empty($style['version']) ? "?v={$style['version']}" : '' ?>" rel="stylesheet">
+    <link
+        href="<?= SITE_URL ?>/assets/css/<?= $style['name'] ?>.css<?= !empty($style['version']) ? "?v={$style['version']}" : '' ?>"
+        rel="stylesheet">
 
     <?php endif ?>
 
@@ -57,23 +59,19 @@
         </v-app>
     </div>
     <div id="fb-root"></div>
-    <?php if (isset($_SESSION['user_id'])): ?>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <?php if ($_SESSION['user_type'] !== 'administrator') : ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?= GOOGLE_APP_ID ?>"></script>
     <script>
-    /*
-    window.dataLayer = window.dataLayer || [];
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-        dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
 
-    gtag('config', '<?= GOOGLE_APP_ID ?>');
-    */
+        gtag('config', '<?= GOOGLE_APP_ID ?>');
     </script>
-    <?php endif ?>
+    <?php if (isset($_SESSION['user_id'])): ?>
     <script>
     <?php $id = (string) $_SESSION['user_id']; ?>
     var uid = "<?= Controller\Helper::encrypt($id);?>"
