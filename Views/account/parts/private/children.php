@@ -1,5 +1,5 @@
 <v-col class="white px-12 py-md-8 info-container mx-md-6" cols="12" md="7" v-if="children_container">
-    
+
     <?= new Controller\Template('account/parts/private/children/dialog') ?>
 
     <v-dialog v-model="children.delete_dialog" max-width="900px">
@@ -20,7 +20,8 @@
                     <v-row>
                         <v-col cols="12">
                             <h4 class="text-center text-h5">
-                                ¿Sunteți sigur că doriți să o eliminați? Odată ce a fost făcută, nu mai poate fi anulată
+                                Ești sigur/ă că dorești să îl/o eliminezi? Odată ce a fost facut acest lucru, operația
+                                nu mai poate fi anulată.
                             </h4>
                         </v-col>
                         <v-col class="d-flex justify-center" cols="12">

@@ -37,7 +37,7 @@
         </v-list-item>
         <v-list-item class="d-flex justify-center">
             <v-btn color="red" href="<?= SITE_URL ?>/api/members/logout" text
-                onclick="gapi.auth2.getAuthInstance().signOut()">Deconectați-vă</v-btn>
+                onclick="gapi.auth2.getAuthInstance().signOut()">Deconectează-te</v-btn>
         </v-list-item>
     </v-list>
 </v-menu>

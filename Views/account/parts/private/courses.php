@@ -3,11 +3,11 @@
         <v-col class="d-flex justify-end" cols="12">
             <v-btn color="primary" href="<?= SITE_URL ?>/cursuri/get?search=" text>
                 <v-icon>mdi-magnify</v-icon>
-                Căutați cursuri
+                Caută cursuri
             </v-btn>
         </v-col>
     </v-row>
-    
+
     <v-row v-if="coming_classes.length > 0">
         <v-col class="mb-n8" cols="12">
             <h2 class="text-h4 mb-4">Cursuri live viitoare</h2>
@@ -38,7 +38,7 @@
 
     <v-row>
         <v-col cols="12">
-            <label>Selectați un copil</label>
+            <label>Selectează un copil:</label>
             <v-select v-model="child_selected" :items="children.items"
                 :item-text=" (e) => e.first_name + ' ' + e.last_name" @change="loadMyCourses" outlined return-object>
             </v-select>
@@ -77,11 +77,11 @@
                 <v-img src="<?= SITE_URL ?>/img/no-courses.svg" max-width="50%"></v-img>
             </v-col>
             <v-col class="m-0" cols="12">
-                <h3 class="text-h4 text-center">Se pare că el/ea nu s-a înscris încă la un curs, puteți căuta un curs și
-                    înregistra copilul.</h3>
+                <h3 class="text-h4 text-center">Se pare că el/ea nu s-a înscris încă la un curs. Te invit să cauți un
+                    curs potrivit copilului tău.</h3>
             </v-col>
             <v-col class="m-0 d-flex justify-center" cols="12">
-                <v-btn class="secondary white--text" href="<?= SITE_URL ?>/cursuri">Vezi cursuri</v-btn>
+                <v-btn class="secondary white--text" href="<?= SITE_URL ?>/cursuri">Caută cursuri</v-btn>
             </v-col>
         </v-row>
     </template>

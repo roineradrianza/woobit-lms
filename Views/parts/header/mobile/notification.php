@@ -43,7 +43,7 @@
                     <img class="ml-n4" src="<?= SITE_URL ?>/img/empty-notifications.svg" width="70%"></img>
                 </v-col>
                 <v-col class="d-flex justify-center" cols="12" md="9">
-                    <h5 class="text-h6 text-center secondary--text font-weight-bold">Nu aveți încă notificări</h5>
+                    <h5 class="text-h6 text-center secondary--text font-weight-bold">Nu ai încă notificări</h5>
                 </v-col>
             </template>
         </v-row>

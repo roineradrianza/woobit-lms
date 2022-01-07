@@ -45,7 +45,7 @@
         </v-dialog>
         <v-dialog v-model="categoryDialogDelete" max-width="50%">
             <v-card>
-                <v-card-title class="headline d-flex justify-center">¿Ești sigur că vrei să ștergi acest categoria?</v-card-title>
+                <v-card-title class="headline d-flex justify-center">Ești sigur/ă că vrei să ștergi această categorie?</v-card-title>
                 <v-card-actions>
                     <v-spacer></v-spacer>
                     <v-btn color="primary" text @click="closeCategoryDelete">Anulează</v-btn>
