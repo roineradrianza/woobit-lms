@@ -29,13 +29,13 @@ switch ($method) {
             $results = $section->get($data['section_id'], $data['course_id']);
         } else if (!isset($data['section_id']) && isset($data['course_id'])) {
             $results = $section->get(course_id:$data['course_id']);
+        } else if (!empty($query)) {
+            $results = $section->get($query);
         }
         foreach ($results as $result) {
-            $section = [];
+            $section = $result;
             $section['section_id'] = $result['section_id'];
-            $section['section_name'] = $result['section_name'];
             $section['old_section_name'] = $result['section_name'];
-            $section['section_order'] = $result['section_order'];
             $section['old_section_order'] = $result['section_order'];
             $lessons = $lesson->get($section['section_id']);
             $section['items'] = [];

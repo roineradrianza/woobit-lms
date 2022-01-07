@@ -77,7 +77,9 @@ class Orders extends DB
 
         extract($data);
         $discount = empty($discount) ? 0 : $discount;
-        $sql = "INSERT INTO {$this->table} (type, total_pay, discount, status, course_id, user_id, payment_method) VALUES($type, $total_pay, $discount, $status, $course_id, $user_id, '$payment_method')";
+        $section_id = !empty($section['section_id']) ? $section['section_id'] : 'NULL';
+        $sql = "INSERT INTO {$this->table} (type, total_pay, discount, status, course_id, section_id, user_id, payment_method) 
+        VALUES($type, $total_pay, $discount, $status, $course_id, $section_id, $user_id, '$payment_method')";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
@@ -90,7 +92,9 @@ class Orders extends DB
 
         extract($data);
         $discount = empty($discount) ? 0 : $discount;
-        $sql = "UPDATE {$this->table} SET type = $type , total_pay = $total_pay, discount = $discount, status = $status, course_id = $course_id, user_id = $user_id, payment_method = '$payment_method' WHERE {$this->id_column} = $id";
+        $sql = "UPDATE {$this->table} SET type = $type , total_pay = $total_pay, discount = $discount, 
+        status = $status, course_id = $course_id, section_id = $section_id user_id = $user_id, payment_method = '$payment_method' 
+        WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         return $result;
     }

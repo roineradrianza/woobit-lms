@@ -27,7 +27,9 @@
         "tijsverkoyen/css-to-inline-styles": "^2.2",
         "guzzlehttp/guzzle": "^7.2",
         "mpdf/mpdf": "^8.0",
-        "php-ffmpeg/php-ffmpeg": "^0.18.0"
+        "php-ffmpeg/php-ffmpeg": "^0.18.0",
+        "stripe/stripe-php": "^7.108",
+        "nesbot/carbon": "^2.55"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",

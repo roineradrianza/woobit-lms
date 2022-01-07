@@ -17,12 +17,20 @@ define("DB_ENCODE","utf8");
 //Project Name
 define("PROJECT_NAME", "");
 
+/* APP SETUP */
+define('APP_LANGUAGE', 'en');
+define('APP_CURRENCY', 'usd');
+
 /*PayU API CREDENTIALS*/
 define("PAYU_ID", "");
 define("PAYU_LOGIN", "");
 
 /*PayPal API CREDENTIALS*/
 define('PAYPAL_CLIENT_ID', '');
+
+/*STRIPE CREDENTIALS*/
+define("STRIPE_PUBLISHABLE_KEY", "");
+define("STRIPE_REAL_KEY", "");
 
 /*GOOGLE OAUTH2 CLIENT ID*/
 define("GOOGLE_APP_ID", "");

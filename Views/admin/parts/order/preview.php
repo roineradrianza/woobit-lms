@@ -10,8 +10,8 @@
                     <v-form>
                         <v-row class="mb-n4">
                             <v-col cols="12">
-                                <v-textarea class="fl-text-input" v-model="orders.editedItem.note" rows="1" dense filled rounded
-                                    auto-grow></v-textarea>
+                                <v-textarea class="fl-text-input" v-model="orders.editedItem.note" rows="1" dense filled
+                                    rounded auto-grow></v-textarea>
                             </v-col>
                         </v-row>
                     </v-form>
@@ -86,7 +86,18 @@
                                         </p>
                                     </v-col>
 
-                                    <v-col cols="4" v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.status) == 2">
+                                    <v-col cols="4">
+                                        <p class="body-1 primary--text">
+                                            Lectori:
+                                            <span
+                                                class="font-weight-light black--text">
+                                                {{ orders.editedItem.instructor.first_name + ' ' + orders.editedItem.instructor.last_name }}
+                                            </span>
+                                        </p>
+                                    </v-col>
+
+                                    <v-col cols="4"
+                                        v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.status) == 2">
                                         <p class="body-1 primary--text">
                                             Notă:
                                             <span

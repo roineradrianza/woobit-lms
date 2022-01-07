@@ -157,7 +157,7 @@ class Routes
                             break;
 
                         case 'payments':
-                            $base_asset = ['name' => 'admin/payments.min', 'version' => '1.0.3'];
+                            $base_asset = ['name' => 'admin/payments.min', 'version' => '1.0.4'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
@@ -612,7 +612,7 @@ class Routes
                         ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                         ['name' => 'https://www.paypal.com/sdk/js?client-id=' . PAYPAL_CLIENT_ID . '&currency=USD', 'external' => true],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                        ['name' => 'checkout.min', 'version' => '1.0.4'],
+                        ['name' => 'checkout.min', 'version' => '1.0.5'],
                     ];
                     $this->title = 'Checkout';
                     $this->content = new Template("checkout/main");

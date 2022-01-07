@@ -83,12 +83,13 @@ class Section extends DB
 
     public function create($data = [], $id = 0) : Mixed
     {
-        if (empty($data) || $id == 0) {
+        if (empty($data) || empty($id)) {
             return false;
         }
 
         extract($data);
-        $sql = "INSERT INTO {$this->table} (section_name, course_id) VALUES('$section_name', $id)";
+        $sql = "INSERT INTO {$this->table} (section_name, start_date, frecuency, classes, start_time, end_time course_id) 
+        VALUES('$section_name', '$start_date', $frecuency, $classes, '$start_time', '$end_time', $id)";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
@@ -100,8 +101,9 @@ class Section extends DB
         }
 
         extract($data);
-        $sql = "UPDATE {$this->table} SET section_name = '$section_name', section_order = $section_order WHERE {$this->id_column} = $id AND {$this->id_course_column} = $course_id";
-        var_dump($sql);
+        $sql = "UPDATE {$this->table} SET section_name = '$section_name', start_date = '$start_date',  frecuency = $frecuency,
+        section_order = $section_order, classes = $classes, start_time = '$start_time', end_time = '$end_time' 
+        WHERE {$this->id_column} = $id AND {$this->id_course_column} = $course_id";
         $result = $this->execute_query($sql);
         return $result;
     }
@@ -115,6 +117,32 @@ class Section extends DB
         $sql = "DELETE FROM {$this->table} WHERE {$this->id_column} = $id AND {$this->id_course_column} = $course_id";
         $result = $this->execute_query($sql);
         return $result;
+    }
+
+    public static function frecuency_text($frecuency, $classes) : String
+    {
+        $frecuency_sentence = '';
+        switch ($frecuency) {
+            case 1:
+                $frecuency_txt = ' pe săptămână';
+                if ($classes <= 1) {
+                    $frecuency_sentence = "O dată $frecuency_txt";
+                } else {
+                    $frecuency_sentence = "De $classes ori $frecuency_txt";
+                }
+                break;
+
+            case 2:
+                $frecuency_txt = ' pe lună';
+                if ($classes <= 1) {
+                    $frecuency_sentence = "O dată $frecuency_txt";
+                } else {
+                    $frecuency_sentence = "De $classes ori $frecuency_txt";
+                }
+                break;
+        }
+
+        return $frecuency_sentence;
     }
 
 }

@@ -13,6 +13,13 @@
                             <?= $title ?>
                         </h1>
                     </v-col>
+                    
+                    <?php if (!empty($meta['description'])): ?>
+                    <v-col class="ql-editor" cols="12" md="9">
+                        <?= $meta['description'] ?>
+                    </v-col>
+                    <?php endif?>
+
                     <?= new Controller\Template('course/summary/instructor', $instructor) ?>
                     <v-col cols="12">
                         <p class="primary--text">
@@ -36,12 +43,7 @@
                                 class="font-weight-light black--text">10 - 15</span>
                         </p>
                     </v-col>
-                    <?php if (!empty($meta['description'])): ?>
-                    <v-col class="ql-editor" cols="12" md="9">
-                        <?= $meta['description'] ?>
-                    </v-col>
-                    <?php endif?>
-
+                    
                 </v-row>
             </v-col>
             <v-col cols="12" md="6">
@@ -50,7 +52,7 @@
                         <img src="<?= $featured_image ?>" width="100%"></img>
                     </v-col>
                     <v-col class="px-0" cols="12">
-                        <?= new Controller\Template('course/summary/enrollment', $data) ?>
+                        <?php // new Controller\Template('course/summary/enrollment', $data) ?>
                     </v-col>
                 </v-row>
             </v-col>

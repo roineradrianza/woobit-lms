@@ -111,18 +111,19 @@ class StudentCourse extends DB
         }
 
         extract($data);
-        $sql = "INSERT INTO {$this->table} (user_id, course_id) VALUES($children_id, $course_id)";
+        $sql = "INSERT INTO {$this->table} (user_id, course_id, section_id) VALUES($children_id, $course_id, $section_id)";
         $result = $this->execute_query_return_id($sql);
         return $result;
     }
 
-    public function has_enroll($course_id, $user_id)
+    public function has_enroll($course_id, $user_id, $section_id = NULL)
     {
         if (empty($course_id) || empty($user_id)) {
             return false;
         }
 
         $sql = "SELECT user_id FROM {$this->table} WHERE user_id = $user_id AND course_id = $course_id";
+        $sql .= !empty($section_id) ? " AND section_id = $section_id" : '';
         $results = $this->execute_query($sql);
         $result = [];
         while ($row = $results->fetch_assoc()) {

@@ -71,14 +71,21 @@
                         </v-row>
                     </v-sheet>
                 </v-col>
+
+                <v-col cols="12">
+                    <v-sheet elevation="1" rounded>
+                        <v-row class="px-4 py-4">
+                            <v-col cols="4">
+                                <v-radio label="Stripe" value="Stripe"></v-radio>
+                            </v-col>
+                            <v-col class="d-flex justify-end" cols="8">
+                                <v-img src="<?= SITE_URL?>/img/payment-logos/stripe.svg" max-width="100" contain>
+                                </v-img>
+                            </v-col>
+                        </v-row>
+                    </v-sheet>
+                </v-col>
             </v-row>
         </v-radio-group>
-    </v-col>
-    <v-col cols="12">
-        <v-row>
-            <v-col cols="12" v-if="info.payment_method != '' && info.payment_method != 'Paypal'">
-                <v-divider></v-divider>
-            </v-col>
-        </v-row>
     </v-col>
 </v-row>

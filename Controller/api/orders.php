@@ -39,6 +39,7 @@ switch ($method) {
                 $order['amount'] = number_format($order['total_pay'], 2, '.', '') . " RON";
                 $order['registered_at'] = $datetime->format('Y-m-d H:i:s');
                 $order['meta'] = [];
+                $order['instructor'] = $member->get($course->get($order['course_id'])[0]['user_id'], ['user_id', 'first_name', 'last_name'])[0];
                 foreach ($meta as $i => $e) {
                     $order['meta'][$e['order_meta_name']] = $e['order_meta_val'];
                 }
@@ -66,6 +67,7 @@ switch ($method) {
                 $order['amount'] = number_format($order['total_pay'], 2, '.', '') . " RON";
                 $order['registered_at'] = $datetime->format('Y-m-d H:i:s');
                 $order['meta'] = [];
+                $order['instructor'] = $member->get($course->get($order['course_id'])[0]['user_id'], ['user_id', 'first_name', 'last_name'])[0];
                 foreach ($meta as $i => $e) {
                     $order['meta'][$e['order_meta_name']] = $e['order_meta_val'];
                 }
@@ -107,7 +109,7 @@ switch ($method) {
 
         $data['user_id'] = $_SESSION['user_id'];
         $data['status'] = 1;
-        $result = $order->create(sanitize($data));
+        $result = $order->create($data);
         if (!$result) {
             $helper->response_message('Error', 'Ordinul de plată nu a putut fi creat corect', 'error');
         }
@@ -123,7 +125,13 @@ switch ($method) {
             foreach ($data['children'] as $child) {
                 $has_enroll = $student_course->has_enroll($data['course_id'], $child['children_id']);
                 if (empty($has_enroll)) {
-                    $enrollment = $student_course->create(['course_id' => $data['course_id'], 'children_id' => $child['children_id']]);
+                    $enrollment = $student_course->create(
+                        [
+                            'course_id' => $data['course_id'], 
+                            'children_id' => $child['children_id'],
+                            'section_id' => $data['section']['section_id'],
+                        ]
+                    );
                     if ($enrollment) {
                         $full_name = "{$child['first_name']} {$child['last_name']}";
                         $notification_data = [

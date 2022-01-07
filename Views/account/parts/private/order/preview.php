@@ -49,6 +49,16 @@
                                         </p>
                                     </v-col>
 
+                                    <v-col cols="4">
+                                        <p class="body-1 primary--text">
+                                            Lectori:
+                                            <span
+                                                class="font-weight-light black--text">
+                                                {{ orders.editedItem.instructor.first_name + ' ' + orders.editedItem.instructor.last_name }}
+                                            </span>
+                                        </p>
+                                    </v-col>
+
                                     <v-col cols="4" v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.type) == 2">
                                         <p class="body-1 primary--text">Notă:
                                             <span
