@@ -639,9 +639,14 @@ class Routes
                 case 'lectori':
                     $application = new Application;
                     $results = $application->get($_SESSION['user_id']);
+                    
                     if (count($results) > 0) {
                         header("Location: " . SITE_URL . "/teacher-panel");
                     }
+
+                    $this->styles = [
+                        ['name' => 'how-to-become-teacher.min', 'version' => '1.0.0']
+                    ];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'lib/moment.min'],

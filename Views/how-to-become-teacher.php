@@ -1,185 +1,141 @@
 <v-container class="px-6 pt-16 px-md-0 pt-md-0">
     <v-row class="pt-8 pt-md-0">
-        <v-col cols="12">
+
+        <v-col class="pl-4 pl-md-0" cols="12">
             <h1 class="text-h3">Împărtășește-ți pasiunile</h1>
             <br>
-            <h3 class="text-h5 font-weight-light">Fii parte din comunitatea lectorilor Woobit și începe să modelezi
-                destine.</h3>
         </v-col>
-        <v-col cols="12" md="2">
-            <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="#a500a4" block>Aplică aici</v-btn>
-        </v-col>
-        <v-col cols="12">
-            <v-row justify="center">
-                <v-col cols="12" md="4">
-                    <v-card elevation="0">
-                        <div class="d-flex justify-center">
-                            <v-img src="<?= SITE_URL ?>/img/teacher-application-info/icon-1.svg"
-                                max-width="100px">
-                            </v-img>
-                        </div>
 
-                        <v-card-title class="d-flex justify-center" primary-title>
-                            <div class="text-center no-word-break no-white-space">
-                                <h3 class="text-h5 mb-2 mb-md-4">
-                                    Tu decizi<br>ce și cum vei preda
-                                </h3>
-                                <div class="subtitle-1">
-                                    Alege titlul, conținutulși modul de desfășurare a cursului tău.
-                                </div>
-                            </div>
-                        </v-card-title>
-                    </v-card>
+        <v-col cols="12" class="instructor-info-section-1">
+            <v-row>
+                <v-col cols="12">
+                    <h3 class="text-h5 white--text font-weight-bold">
+                        Fii parte din comunitatea lectorilor
+                        <br>
+                        Woobit și începe să modelezi destine.
+                    </h3>
                 </v-col>
-                <v-col cols="12" md="4">
-                    <v-card elevation="0">
-                        <div class="d-flex justify-center">
-                            <v-img src="<?= SITE_URL ?>/img/teacher-application-info/icon-2.svg"
-                                max-width="100px">
-                            </v-img>
-                        </div>
-                        <v-card-title class="d-flex justify-center" primary-title>
-                            <div class="text-center no-word-break no-white-space">
-                                <h3 class="text-h5 mb-2 mb-md-12">
-                                    Timpul tău e prețios
-                                </h3>
-                                <div class="subtitle-1">
-                                    Alege titlul, conținutulși modul de desfășurare a cursului tău.
-                                </div>
-                            </div>
-                        </v-card-title>
-                    </v-card>
-                </v-col>
-                <v-col cols="12" md="4">
-                    <v-card elevation="0">
-                        <div class="d-flex justify-center">
-                            <v-img src="<?= SITE_URL ?>/img/teacher-application-info/icon-3.svg"
-                                max-width="100px">
-                            </v-img>
-                        </div>
-
-                        <v-card-title class="d-flex justify-center" primary-title>
-                            <div class="text-center no-word-break no-white-space">
-                                <h3 class="text-h5 mb-2 mb-md-4">
-                                    Efortul dedicat<br>e recompensat
-                                </h3>
-                                <div class="subtitle-1">
-                                    Fă-te cunoscut în comunitate, schimbă
-                                    mentalități și câștigă bani în același timp.
-                                    Tu decizi care este valoarea muncii tale.
-                                </div>
-                            </div>
-                        </v-card-title>
-                    </v-card>
+                <v-col cols="12" md="2">
+                    <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="primary" block>Aplică aici
+                    </v-btn>
                 </v-col>
             </v-row>
         </v-col>
-        <v-col cols="12">
-            <h3 class="text-center font-weight-bold text-h4">
-                Pașii de urmat
-            </h3>
-        </v-col>
-        <v-col class="d-flex justify-center" cols="12">
-            <v-container style="max-width:900px">
-                <v-tabs class="custom-tabs" color="primary" slider-color="secondary" grow centered>
-                    <v-tab class="font-weight-bold" active>
-                        Completează
-                        <br>
-                        aplicația
-                    </v-tab>
-                    <v-tab class="font-weight-bold">
-                        Creează curicula
-                        <br>
-                        pentru curs
-                    </v-tab>
-                    <v-tab class="font-weight-bold">
-                        Publică cursul
-                    </v-tab>
-                    <v-tab-item>
-                        <v-row justify="start">
-                            <v-col class="px-md-10" cols="12" md="4" order="2" order-md="1">
-                                <p class="text-center">
-                                    Ai nevoie de 15 minute. Trebuie să fi student sau absolvent de facultate și vorbitor
-                                    nativ al limbii romane.* Vârsta minimă este de 18 ani. O copie a cazierului este
-                                    necesară. Pentru a fi remunerat trebuie să ai un cont de paypal. Trebuie să fi
-                                    confortabil și priceput în aplicația Zoom.
-                                </p>
-                            </v-col>
 
-                            <v-col class="d-flex justify-center" cols="12" md="4" order="1" order-md="2">
-                                <v-img src="<?= SITE_URL ?>/img/teacher-application-info/tab/1.svg"
-                                    max-width="250px" contain></v-img>
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
+        <v-col class="mt-4" cols="12">
+            <v-row>
+                <v-col class="instructor-info-section-2" cols="12" md="6">
+                    <h4 class="text-h5 font-weight-bold white--text">
+                        Modelul Woobit pentru lectori:
+                    </h4>
+                </v-col>
+                <v-col class="pl-md-8" cols="12" md="6">
+                    <h4 class="text-h6">
+                        <b>Tu decizi ce și cum vei preda: </b> <span class="font-weight-light">
+                            alege titlul, conținutul
+                            și modul de desfășurare a
+                            cursului tău.
+                        </span>
+                    </h4>
 
-                    <v-tab-item>
-                        <v-row justify="start">
-                            <v-col class="d-flex justify-center" cols="12" md="4">
-                                <v-img src="<?= SITE_URL ?>/img/teacher-application-info/tab/2.svg"
-                                    max-width="200px" contain></v-img>
-                            </v-col>
+                    <h4 class="text-h6">
+                        <b>Timpul tău e prețios: </b>
+                        <span class="font-weight-light">
+                            durata și frecvența cursurilor este determinată de tine.
+                        </span>
+                    </h4>
 
-                            <v-col class="px-md-10" cols="12" md="4">
-                                <p class="text-center">
-                                    Ai pasiune, cunoștințe și
-                                    dorința de a ajuta. Dezvoltă un curs interesant atât pentru tine cât și pentru
-                                    cursanții
-                                    tăi. Tema și conținutul sunt alegerea ta. Dacă ai nevoie de inspirație sau ghidare,
-                                    suntem
-                                    aici pentru tine.
-                                </p>
-                            </v-col>
-                        </v-row>
-                    </v-tab-item>
+                    <h4 class="text-h6">
+                        <b>Efortul dedicat e recompensat: </b>
+                        <span class="font-weight-light">
+                            Fă-te cunoscut în comunitate, schimbă mentalități și
+                            câștigă bani în același timp. Tu decizi care este valoarea muncii tale.
+                        </span>
+                    </h4>
 
-                    <v-tab-item>
-                        <v-row justify="end">
-                            <v-col class="d-flex justify-center" cols="12" md="4">
-                                <v-img src="<?= SITE_URL ?>/img/teacher-application-info/tab/3.svg"
-                                    max-width="200px" contain></v-img>
-                            </v-col>
-
-                            <v-col class="px-md-10" cols="12" md="4">
-                                <p class="text-center">
-                                    Woobit va promova
-                                    cursurile tale și efortul depus. O comunitate este cu atât mai puternică cu cât este
-                                    mai
-                                    mare. Promovează și tu cursurile tale în comunitatea ta. O echipă de specialiști va
-                                    analiza
-                                    oferta ta pentru a se asigura că este la standardele de calitate a Woobit.
-                                </p>
-                            </v-col>
-
-                        </v-row>
-                    </v-tab-item>
-                </v-tabs>
-            </v-container>
+                    <h4 class="text-h6">
+                        <b>Suntem aici să te susținem!</b>
+                    </h4>
+                    <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="primary">Aplică aici
+                    </v-btn>
+                </v-col>
+            </v-row>
         </v-col>
 
+
+        <v-col class="mt-4" cols="12">
+            <v-row>
+                <v-col cols="12" md="4">
+                    <h4 class="text-h5 font-weight-bold">
+                        PAȘII DE URMAT:
+                    </h4>
+                </v-col>
+                <v-col class="pl-md-8" cols="12" md="8">
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <v-img src="<?= SITE_URL ?>/img/how-to-become-teacher/section-2-1.png"></v-img>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <h4 class="text-h5 text-center mb-4">
+                                Completează aplicația
+                            </h4>
+                            <p class="text-justify">
+                                Ai nevoie de 15 minute. Trebuie să fii student sau absolvent de facultate și vorbitor
+                                nativ al limbii române.* Vârsta minimă este de 18 ani. O copie a cazierului este
+                                necesară. Pentru a fi remunerat trebuie să ai un cont de paypal. Trebuie să fii
+                                confortabil și priceput în aplicația Zoom.
+                            </p>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <v-img src="<?= SITE_URL ?>/img/how-to-become-teacher/section-2-2.png"></v-img>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <h4 class="text-h5 text-center mb-4">
+                                Creează curricula pentru curs
+                            </h4>
+                            <p class="text-justify">
+                                Ai pasiune, cunoștințe și
+                                dorința de a ajuta. Dezvoltă un curs interesant atât pentru tine, cât și pentru
+                                cursanții tăi. Tema și conținutul sunt alegerea ta. Dacă ai nevoie de inspirație sau
+                                ghidare, suntem aici pentru tine.
+                            </p>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="12" md="6">
+                            <v-img src="<?= SITE_URL ?>/img/how-to-become-teacher/section-2-3.png"></v-img>
+                        </v-col>
+                        <v-col cols="12" md="6">
+                            <h4 class="text-h5 text-center mb-4">
+                                Publică cursul
+                            </h4>
+                            <p class="text-justify">
+                                Woobit va promova
+                                cursurile tale și efortul depus. O comunitate este cu atât mai puternică cu cât este mai
+                                mare. Promovează și tu cursurile tale în comunitatea ta. O echipă de specialiști va
+                                analiza oferta ta pentru a se asigura că este la standardele de calitate ale Woobit.
+                            </p>
+                        </v-col>
+                    </v-row>
+                </v-col>
+            </v-row>
+        </v-col>
+
         <v-col cols="12">
-            <h4 class="text-center font-weight-bold text-h5">
+            <h4 class="font-weight-bold text-h5 mb-4">
                 Suntem aici pentru tine
             </h4>
-            <p class="text-center subtitle-1">
+            <p class="subtitle-1">
                 Echipa noastră îți stă la dispoziție pentru alegerea titlului cursului tău, a structurii, modalităților
-                <br>
                 de interacțiune cu participanții, deciziilor în ceea ce privește prețul cursurilor și în general
-                <br>
                 pentru
                 orice ai nevoie în cadrul experienței la Woobit.
+                <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="primary">Aplică aici</v-btn>
             </p>
-
-            <h4 class="text-center font-weight-bold text-h5 mt-16">
-                Împărtășește-ți pasiunile
-            </h4>
-            <p class="text-center subtitle-1">
-                Fii parte din comunitatea lectorilor Woobit și începe să modelezi destine!
-            </p>
-        </v-col>
-
-        <v-col class="d-flex justify-center" cols="12">
-            <v-btn class="white--text" href="<?= SITE_URL?>/aplicatie-lector" color="#a500a4">Aplică aici</v-btn>
         </v-col>
 
     </v-row>
