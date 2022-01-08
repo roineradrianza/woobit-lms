@@ -1,0 +1,25 @@
+.about-us-hero {
+    background-image: url('/img/about-us/hero.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 60vh;
+}
+
+.about-us-1, .about-us-2, .about-us-3 {
+    background-size: cover;
+    background-position: center;
+    min-height: 35vh;
+}
+
+.about-us-1 {
+    background-image: url('/img/about-us/cursuri-nisa.png');
+}
+
+.about-us-2 {
+    background-image: url('/img/about-us/lectori-unici.png');
+}
+
+.about-us-3 {
+    background-image: url('/img/about-us/cursanti-diversi.png');
+    min-height: 20vh;
+}

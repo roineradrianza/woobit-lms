@@ -22,7 +22,6 @@ let vm = new Vue({
   mounted() {
     window.addEventListener('scroll', (e) => {
       var container = this.$refs.header_menu.$el
-      console.log(window.scrollY)
       if (window.scrollY >= 400) {
         container.classList.remove('bg-white')
         container.classList.add('white')

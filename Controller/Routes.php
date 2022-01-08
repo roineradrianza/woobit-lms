@@ -76,6 +76,9 @@ class Routes
                     break;
 
                 case 'despre-noi':
+                    $this->styles = [
+                        ['name' => 'about-us.min', 'version' => '1.0.0'],
+                    ];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
                         ['name' => 'home.min', 'version' => '1.0.0'],
