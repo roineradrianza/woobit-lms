@@ -7,7 +7,7 @@ const course_slug = splitted_domain[4]
 const lesson_id = splitted_domain[5]
 const timezone = moment.tz.guess()
 Vue.component('video-player', VueVideoPlayer.videoPlayer)
-moment.locale('es')
+moment.locale(app_language)
 let vm = new Vue({
   vuetify,
   el: '#app-container',

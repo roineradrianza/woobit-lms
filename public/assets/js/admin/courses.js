@@ -2,7 +2,7 @@
 * const vuetify
 * const validations
 */
-moment.locale('ro');
+moment.locale(app_language);
 /*VUE INSTANCE*/
 let vm = new Vue({
   vuetify,

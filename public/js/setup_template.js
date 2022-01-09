@@ -6,6 +6,7 @@ const google_api_key = ''
 const google_client_key = ""
 const fb_app_id = ''
 const fb_secret_key = ""
+const app_language = 'en'
 let date =  new Date()
 const current_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
 /*VUE PLUGINS*/

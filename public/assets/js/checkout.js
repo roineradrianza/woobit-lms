@@ -2,7 +2,7 @@
 Vue.use(VueTelInputVuetify, {
   vuetify,
 });
-moment.locale('ro')
+moment.locale(app_language)
 /*VUE INSTANCE*/
 let vm = new Vue({
   vuetify,

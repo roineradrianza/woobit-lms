@@ -8,7 +8,7 @@ const course_slug = splitted_domain[4]
 const lesson_id = splitted_domain[5]
 const timezone = moment.tz.guess()
 Vue.component(VueCountdown.name, VueCountdown)
-moment.locale('es')
+moment.locale(app_language)
 
 window.addEventListener("load", (e) => {
   vm.check_attendance(vm)
