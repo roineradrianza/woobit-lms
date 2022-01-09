@@ -345,10 +345,11 @@ switch ($method) {
                 if (!$section_result) {
                     continue;
                 }
+
                 foreach ($item['items'] as $lesson_item) {
                     $lesson_item['section_id'] = empty($item['section_id']) ? $section_result : $item['section_id'];
                     $lesson_item['user_id'] = $data['user_id'];
-                    $lesson_result = empty($lesson_item['lesson_id']) ? $lesson->create($lesson_item) : $lesson->edit($lesson_item);
+                    $lesson_result = empty($lesson_item['lesson_id']) ? $lesson->create($lesson_item) : $lesson->edit($lesson_item['lesson_id'], $lesson_item);
                     if (!$lesson_result) {
                         continue;
                     }

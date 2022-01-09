@@ -88,7 +88,7 @@ class Section extends DB
         }
 
         extract($data);
-        $sql = "INSERT INTO {$this->table} (section_name, start_date, frecuency, classes, start_time, end_time course_id) 
+        $sql = "INSERT INTO {$this->table} (section_name, start_date, frecuency, classes, start_time, end_time, course_id) 
         VALUES('$section_name', '$start_date', $frecuency, $classes, '$start_time', '$end_time', $id)";
         $result = $this->execute_query_return_id($sql);
         return $result;

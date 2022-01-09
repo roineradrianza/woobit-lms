@@ -64,11 +64,11 @@
                                             <v-date-picker v-model="section.start_date" scrollable>
                                                 <v-spacer></v-spacer>
                                                 <v-btn text color="primary"
-                                                    @click="$refs.section_start_date[section_index].isActive = false">
+                                                    @click="$refs.section_start_date[$refs.section_start_date.length - 1].isActive = false">
                                                     Anulează
                                                 </v-btn>
                                                 <v-btn text color="primary"
-                                                    @click="$refs.section_start_date[section_index].save(section.start_date)">
+                                                    @click="$refs.section_start_date[$refs.section_start_date.length - 1].save(section.start_date)">
                                                     OK
                                                 </v-btn>
                                             </v-date-picker>
@@ -113,11 +113,11 @@
                                                     <v-time-picker v-model="section.start_time" full-width>
                                                         <v-spacer></v-spacer>
                                                         <v-btn text color="primary"
-                                                            @click="section_start_time[section_index].isActive = false">
+                                                            @click="section_start_time[$refs.section_start_time.length - 1].isActive = false">
                                                             Anulează
                                                         </v-btn>
                                                         <v-btn text color="primary"
-                                                            @click="$refs.section_start_time[section_index].save(section.start_time)">
+                                                            @click="$refs.section_start_time[$refs.section_start_time.length - 1].save(section.start_time)">
                                                             OK
                                                         </v-btn>
                                                     </v-time-picker>
@@ -138,11 +138,11 @@
                                                     <v-time-picker v-model="section.end_time" full-width>
                                                         <v-spacer></v-spacer>
                                                         <v-btn text color="primary"
-                                                            @click="section_end_time[section_index].isActive = false">
+                                                            @click="section_end_time[$refs.section_end_time.length - 1].isActive = false">
                                                             Anulează
                                                         </v-btn>
                                                         <v-btn text color="primary"
-                                                            @click="$refs.section_end_time[section_index].save(section.end_time)">
+                                                            @click="$refs.section_end_time[$refs.section_end_time.length - 1].save(section.end_time)">
                                                             OK
                                                         </v-btn>
                                                     </v-time-picker>
