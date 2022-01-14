@@ -16,21 +16,21 @@ class Helper
 
     }
 
-    public static function is_json($str) : Bool
+    public static function is_json($str): Bool
     {
         $str = preg_replace('/[[:cntrl:]]/', '', $str);
         $json = json_decode($str, true);
         return $json && $str != $json;
     }
 
-    public static function clean_json($str) : Mixed
+    public static function clean_json($str): Mixed
     {
         $str = preg_replace('/[[:cntrl:]]/', '', $str);
         $json = json_decode($str, true);
         return $json;
     }
 
-    public static function remove_accents($string) : String
+    public static function remove_accents($string): String
     {
         $string = str_replace(
             array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
@@ -65,39 +65,7 @@ class Helper
         return $string;
     }
 
-    public static function video_resolution() : Array
-    {
-        $video_resolution = [
-            [
-                'name' => '240p',
-                'bitrate' => 350,
-                'order' => 0,
-            ],
-            [
-                'name' => '360p',
-                'bitrate' => 700,
-                'order' => 1,
-            ],
-            [
-                'name' => '480p',
-                'bitrate' => 1200,
-                'order' => 2,
-            ],
-            [
-                'name' => '720p',
-                'bitrate' => 2500,
-                'order' => 3,
-            ],
-            [
-                'name' => '1080p',
-                'bitrate' => 5000,
-                'order' => 4,
-            ],
-        ];
-        return $video_resolution;
-    }
-
-    public static function array_sort($array, $on, $order = SORT_ASC) : Array
+    public static function array_sort($array, $on, $order = SORT_ASC): array
     {
         $new_array = array();
         $sortable_array = array();
@@ -130,7 +98,23 @@ class Helper
         return $new_array;
     }
 
-    public static function response_message($title = '', $message = '', $status = 'success', $data = '') : Array
+    public static function unique_array($array, $key) : Array
+    {
+        $temp_array = array();
+        $i = 0;
+        $key_array = array();
+
+        foreach ($array as $val) {
+            if (!in_array($val[$key], $key_array)) {
+                $key_array[$i] = $val[$key];
+                $temp_array[$i] = $val;
+            }
+            $i++;
+        }
+        return $temp_array;
+    }
+
+    public static function response_message($title = '', $message = '', $status = 'success', $data = '') : array
     {
         $res = [
             'title' => $title,
@@ -142,14 +126,14 @@ class Helper
         die();
     }
 
-    public static function date_formated($date_parts = ['year' => '', 'mon' => '', 'mday' => '']) : String
+    public static function date_formated($date_parts = ['year' => '', 'mon' => '', 'mday' => '']): String
     {
         $date = getdate();
         $current_date = $date['year'] . "-" . $date['mon'] . "-" . $date['mday'];
         return $current_date;
     }
 
-    public static function generate_pdf($template = '', $file_name = '', $folder = '/') : Mixed
+    public static function generate_pdf($template = '', $file_name = '', $folder = '/'): Mixed
     {
         set_time_limit(3600);
         $file_name = empty($file_name) ? time() : $file_name;
@@ -179,7 +163,7 @@ class Helper
         $mpdf->Output($temp_dir, \Mpdf\Output\Destination::FILE);
     }
 
-    public static function convert_slug($text) : String
+    public static function convert_slug($text): String
     {
         $table = array(
             'Š' => 'S', 'š' => 's', 'Đ' => 'Dj', 'đ' => 'dj', 'Ž' => 'Z', 'ž' => 'z', 'Č' => 'C', 'č' => 'c', 'Ć' => 'C', 'ć' => 'c',
@@ -199,11 +183,11 @@ class Helper
         return strtolower(strtr($text, $table));
     }
 
-    public static function send_mail($subject = '', $recipients = [], $message = '', $files = []) : Mixed
+    public static function send_mail($subject = '', $recipients = [], $message = '', $files = []): Mixed
     {
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
-        $mail->setLanguage("ro");  
+        $mail->setLanguage("ro");
         try {
             //Server settings
             $mail->isSMTP(); // Send using SMTP
@@ -243,7 +227,7 @@ class Helper
         return $mail;
     }
 
-    public static function rand_string($length = 16) : String
+    public static function rand_string($length = 16): String
     {
         $input = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $input_length = strlen($input);
@@ -255,7 +239,7 @@ class Helper
         return $random_string;
     }
 
-    public static function encrypt($string = '') : Mixed
+    public static function encrypt($string = ''): Mixed
     {
         if (empty($string)) {
             return $string;
@@ -265,7 +249,7 @@ class Helper
         return Crypto::encrypt($string, $key);
     }
 
-    public static function decrypt($string = '') : Mixed
+    public static function decrypt($string = ''): Mixed
     {
         if (empty($string)) {
             return $string;

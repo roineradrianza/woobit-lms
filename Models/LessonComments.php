@@ -10,13 +10,14 @@ use Model\Helper\DB;
 class LessonComments extends DB
 {
     private $table = "lesson_comments";
+    private $table_user = "children";
     private $id_column = "lesson_comment_id";
     private $id_user_column = "user_id";
     private $id_lesson_column = "lesson_id";
 
     public function get(int $id = 0, $comment_type = 'contributions')
     {
-        if ($id == 0) {
+        if (empty($id)) {
             return false;
         }
 
@@ -29,13 +30,14 @@ class LessonComments extends DB
         return $arr;
     }
 
-    public function get_lesson_comments(int $id = 0)
+    public function get_lesson_comments($id = 0)
     {
-        if ($id == 0) {
-            return false;
+        if (empty($id)) {
+            return [];
         }
 
-        $sql = "SELECT lesson_comment_id, comment, comment_type, LC.user_id, published_at, avatar, first_name, last_name FROM {$this->table} LC INNER JOIN users U ON U.user_id = LC.user_id WHERE {$this->id_lesson_column} = $id";
+        $sql = "SELECT lesson_comment_id, comment, comment_type, C.children_id, published_at, first_name, last_name, gender 
+        FROM {$this->table} LC INNER JOIN {$this->table_user} C ON C.children_id = LC.user_id WHERE {$this->id_lesson_column} = $id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {

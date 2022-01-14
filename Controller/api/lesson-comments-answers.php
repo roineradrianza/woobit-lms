@@ -1,7 +1,7 @@
 <?php 
 /*
 *	@var method
-* @var query
+*   @var query
 */
 if (empty($method)) die(403);
 use Model\{LessonComments, LessonCommentsAnswers};
@@ -24,23 +24,23 @@ switch ($method) {
 		break;
 
 	case 'create':
-		if (empty($data) || empty($_SESSION['user_id'])) $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+		if (empty($data) || empty($_SESSION['user_id'])) $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
 		$data['user_id'] = $_SESSION['user_id'];
 		$result = $lesson_comment_answer->create($data);
-		if (!$result) $helper->response_message('Error', 'No se pudo publicar', 'error');
-		$helper->response_message('Éxito', 'Se publicó la respuesta correctamente', data: ['lesson_comment_answer_id' => $result, 'avatar' => $_SESSION['avatar'], 'first_name' => $_SESSION['first_name'], 'last_name' => $_SESSION['last_name'], 'username' => $_SESSION['username']]);
+		if (!$result) $helper->response_message('Error', 'Nu a putut fi publicat', 'error');
+		$helper->response_message('Succes', 'Răspunsul a fost publicat corect', data: ['lesson_comment_answer_id' => $result, 'avatar' => $_SESSION['avatar'], 'first_name' => $_SESSION['first_name'], 'last_name' => $_SESSION['last_name']]);
 		break;
 
 	case 'update':
-		if (empty($data)) $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+		if (empty($data)) $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
 		$result = $lesson_comment_answer->edit(clean_string($data['lesson_comment_answer_id']), $data);
-		if (!$result) $helper->response_message('Error', 'No se pudo editar la respuesta correctamente', 'error');
-		$helper->response_message('Éxito', 'Se editó correctamente');
+		if (!$result) $helper->response_message('Error', 'Nu s-a putut edita corect răspunsul', 'error');
+		$helper->response_message('Succes', 'Editat corect');
 		break;
 
 	case 'delete':
 		$result = $lesson_comment_answer->delete($data['lesson_comment_answer_id']);
-		if (!$result) $helper->response_message('Error', 'No se pudo eliminar la respuesta correctamente', 'error');
-		$helper->response_message('Éxito', 'Se eliminó correctamente');
+		if (!$result) $helper->response_message('Error', 'Nu s-a putut șterge răspunsul corect', 'error');
+		$helper->response_message('Succes', 'Corect șters');
 		break;
 }

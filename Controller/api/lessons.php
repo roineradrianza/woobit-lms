@@ -26,7 +26,7 @@ switch ($method) {
 
     case 'get-classes':
         if (empty($data['course_id']) || empty($data['lesson_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = clean_string($data);
@@ -34,9 +34,18 @@ switch ($method) {
         echo json_encode($results);
         break;
 
+    case 'get-classmates':
+        if (empty($query)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $results = $student_course->get_classmates($query);
+        echo json_encode($results);
+        break;
+
     case 'join-class':
         if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         if ($_SESSION['user_type'] != 'administrator') {
@@ -60,30 +69,7 @@ switch ($method) {
         );
         break;
 
-    case 'save-video-progress':
-        if (empty($query)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
-        }
-        $query = clean_string($query);
-        if ($_SESSION['user_type'] != 'administrator') {
-            $data['video_view'] = 1;
-            $total_percent = 100 - $data['video_missing'];
-            $data['completed'] = $total_percent > 60 ? 1 : 0;
-            $data['certified_url'] = '';
-            $data['requireCertifiedPaid'] = 2;
-            $result = $lesson_view->update_video_view($query, $_SESSION['user_id'], $data);
-            if (!$result) {
-                $helper->response_message('Error', 'No se pudo ingresar a la clase', 'error');
-            }
-            $update_progress = $student_course->update_course_progress(clean_string($data['slug']), $_SESSION['user_id'], true);
-        }
-        $helper->response_message('Éxito', 'Registro del video de la clase guardado',
-            data: [
-                'certified_url' => $data['certified_url'],
-                'requireCertifiedPaid' => $data['requireCertifiedPaid']
-            ]
-        );
-        break;
+
 
     case 'delete':
         $result = $lesson_view->delete(intval($data['lesson_id']), intval($data['user_id']));

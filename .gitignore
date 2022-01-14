@@ -15,6 +15,7 @@ vendor/
 public/certified-assets/
 public/docs/*
 public/media/*
+public/lesson-materials/*
 public/js/setup.js
 Views/document_templates/certified_templates/
 Views/document_templates/certifieds.php

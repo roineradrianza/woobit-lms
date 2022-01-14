@@ -14,6 +14,7 @@ class StudentCourse extends DB
     private $table_lessons = "lessons";
     private $table_lesson_views = "lesson_views";
     private $table_users = "children";
+    private $table_parents = "users";
     private $table_course = "courses";
 
     private $id_column = "course_user_id";
@@ -31,6 +32,24 @@ class StudentCourse extends DB
         } else {
             $sql = "SELECT * FROM {$this->table}";
         }
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
+    
+    public function get_classmates($lesson_id = 0) : Array
+    {
+        if (empty($lesson_id)) {
+            return [];
+        }
+
+        $sql = "SELECT first_name, last_name, gender, C.children_id AS user_id FROM {$this->table_lessons} L INNER JOIN {$this->table_sections} S
+        ON S.section_id = L.section_id INNER JOIN {$this->table} CU ON CU.section_id = S.section_id INNER JOIN {$this->table_users} C
+        ON C.children_id = CU.user_id WHERE L.lesson_id = $lesson_id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -122,12 +141,13 @@ class StudentCourse extends DB
             return false;
         }
 
-        $sql = "SELECT user_id FROM {$this->table} WHERE user_id = $user_id AND course_id = $course_id";
+        $sql = " SELECT C.first_name, C.last_name, C.gender, CU.user_id, section_id FROM {$this->table} CU INNER JOIN {$this->table_users} C ON C.children_id = CU.user_id 
+        INNER JOIN {$this->table_parents} U ON U.user_id = C.user_id WHERE U.user_id = $user_id AND course_id = $course_id";
         $sql .= !empty($section_id) ? " AND section_id = $section_id" : '';
         $results = $this->execute_query($sql);
         $result = [];
         while ($row = $results->fetch_assoc()) {
-            $result = $row;
+            $result[] = $row;
         }
         return $result;
     }

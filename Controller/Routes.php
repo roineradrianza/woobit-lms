@@ -5,7 +5,6 @@ use Model\Application;
 use Model\Category;
 use Model\Course;
 use Model\CourseMeta;
-use Model\CourseSponsors;
 use Model\Lesson;
 use Model\LessonMeta;
 use Model\LessonViews;
@@ -300,6 +299,7 @@ class Routes
 
                             $student_course = new StudentCourse;
                             $course = new Course;
+                            $member = new Member;
 
                             $course_result = $course->get_by_slug($route[1]);
                             if (empty($course_result[0])) {
@@ -311,8 +311,10 @@ class Routes
                                 header("Location: " . SITE_URL . '/login/go?redirect_url=' . SITE_URL . '/courses/' . $route[1] . '/' . $route[2] . '/');
                             }
 
+                            $course_result['instructor'] = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar'])[0];
+                            $course_result['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
+
                             $lesson = new Lesson;
-                            $course_sponsor = new CourseSponsors;
 
                             $lesson_item = $lesson->get_by_id(clean_string($route[2]));
                             if (empty($lesson_item[0])) {
@@ -327,17 +329,21 @@ class Routes
                             $lesson_item['lesson_active'] = $lesson_meta->get_meta($lesson_item['lesson_id'], 'lesson_active');
                             $curriculum = $lesson->get_next_and_previous($lesson_item, $course_result['course_id']);
                             $course_sections = $section->get(course_id:$course_result['course_id']);
+
+                            $course_result['current_user_has_enroll'] = $student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']);
+                            $course_result['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
+                            $course_result['sections_enrolled'] = Helper::unique_array($course_result['current_user_has_enroll'], 'section_id');
+                            $course_result['sections_student_listed'] = [];
                             $course_result['sections'] = [];
+                            $course_result['students_enrolled'] = Helper::unique_array($course_result['current_user_has_enroll'], 'user_id');
+
                             foreach ($course_sections as $section_result) {
                                 $course_section = $section_result;
                                 $lessons = $lesson->get($course_section['section_id']);
                                 $course_section['items'] = [];
-                                $total_lessons = count($lessons);
-                                $total_completed = 0;
+                                
                                 foreach ($lessons as $result_lesson) {
                                     $course_lesson = $result_lesson;
-                                    $course_lesson['completed'] = $lesson_view->is_completed($course_lesson['lesson_id'], $_SESSION['user_id']);
-                                    $total_completed = $course_lesson['completed'] ? $total_completed + 1 : $total_completed;
                                     $course_lesson['meta'] = [];
                                     $lesson_metas = $lesson_meta->get($course_lesson['lesson_id']);
                                     foreach ($lesson_metas as $meta_val) {
@@ -345,71 +351,47 @@ class Routes
                                     }
                                     $course_section['items'][] = $course_lesson;
                                 }
-                                if ($total_lessons == $total_completed) {
-                                    $course_section['completed'] = true;
+                                if (!empty($course_result['current_user_has_enroll']) && array_search(
+                                    $section_result['section_id'], 
+                                    array_column($course_result['sections_enrolled'], 'section_id') ) !== false ) {
+                                    $course_result['sections_student_listed'][] = $course_section;
                                 }
-
                                 $course_result['sections'][] = $course_section;
                             }
                             $data = ['course' => $course_result, 'lesson' => $lesson_item, 'curriculum' => $curriculum];
                             switch ($lesson_item['lesson_type']) {
                                 case 1:
                                     $class_type = $lesson_meta->get_meta($lesson_item['lesson_id'], 'class_type');
-                                    $data['course']['course_sponsors'] = $course_sponsor->get($data['course']['course_id']);
                                     switch ($class_type['lesson_meta_val']) {
                                         case 'zoom_meeting':
-                                            $this->styles = [['name' => 'quill-editor.min'], ...$base_asset, ['name' => 'lesson-v1.0']];
+                                            $this->styles = [['name' => 'quill-editor.min'], ...$base_asset, ['name' => 'lesson.min']];
                                             $this->scripts = [
                                                 ['name' => 'lib/moment.min'],
                                                 ['name' => 'lib/moment-timezone-with-data.min'],
                                                 ['name' => 'lib/vue-countdown.min'],
+                                                ['name' => 'vue-components/vue2-editor.min'],
+                                                ['name' => 'Classes/Course/TeacherMessage.min'],
+                                                ['name' => 'Classes/Course/ChildProfile.min'],
                                                 ['name' => 'check-gsignin'],
-                                                ['name' => 'course/zoom_lesson.min', 'version' => '1.10.3'],
+                                                ['name' => 'course/zoom_lesson.min', 'version' => '1.0.0'],
                                             ];
                                             $this->content = new Template("course/lesson/zoom", $data);
                                             break;
 
                                         case 'streaming':
-                                            $this->styles = [['name' => 'quill-editor.min'], ...$base_asset, ['name' => 'lesson-v1.0']];
+                                            $this->styles = [['name' => 'quill-editor.min'], ...$base_asset, ['name' => 'lesson.min']];
                                             $this->scripts = [['name' => 'lib/moment.min'], ['name' => 'lib/moment-timezone-with-data.min'],
                                                 ['name' => 'lib/vue-countdown.min'], ['name' => 'check-gsignin'],
-                                                ['name' => 'course/streaming_lesson.min', 'version' => '1.0.7'],
+                                                ['name' => 'course/streaming_lesson.min', 'version' => '1.0.0'],
                                             ];
                                             $this->content = new Template("course/lesson/streaming", $data);
                                             break;
-
-                                        default:
-
-                                            $student_course = new StudentCourse;
-                                            $data['course']['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
-                                            $this->styles = [
-                                                ['name' => 'quill-editor.min'], ['name' => 'videojs-7.8.4'],
-                                                ['name' => 'videojs-resolution-switcher.min'], ['name' => 'login.min'],
-                                                ['name' => 'lesson-v1.0'],
-                                            ];
-                                            $this->scripts = [
-                                                ['name' => 'lib/videojs-7.8.4.min'], ['name' => 'lib/videojs-resolution-switcher.min'],
-                                                ['name' => 'lib/moment.min'], ['name' => 'lib/moment-timezone-with-data.min'],
-                                                ['name' => 'vue-components/vue-video.min'], ['name' => 'vue-components/vue2-editor.min'],
-                                                ['name' => 'check-gsignin'], ['name' => 'course/video_lesson.min', 'version' => '1.10.4'],
-                                            ];
-                                            $this->content = new Template("course/lesson/video", $data);
-                                            break;
                                     }
-                                    break;
-
-                                case 4:
-                                    $this->styles = [...$base_asset];
-                                    $this->scripts = [
-                                        ['name' => 'check-gsignin'],
-                                        ['name' => 'course/class_resources.min', 'version' => '1.0.0'],
-                                    ];
-                                    $this->content = new Template("course/lesson/resources", $data);
                                     break;
                             }
                         } else {
-
-                            $course_result = $course->get_by_slug(explode('?', $route[1])[0]);
+                            $slug = explode('?', $route[1])[0];
+                            $course_result = $course->get_by_slug($slug);
                             if (!empty($course_result)) {
 
                                 $category = new Category;
@@ -424,12 +406,12 @@ class Routes
                                 $student_course = new StudentCourse;
 
                                 $course_result = $course_result[0];
+                                $course_result['course_slug'] = $slug;
 
-                                $instructor = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar']);
-                                $course_result['instructor'] = $instructor[0];
+                                $course_result['instructor'] = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar'])[0];
                                 $meta = $user_meta->get($course_result['instructor']['user_id']);
-                                    $course_result['instructor']['meta'] = [];
-                                    foreach ($meta as $i => $e) {
+                                $course_result['instructor']['meta'] = [];
+                                foreach ($meta as $i => $e) {
                                         $course_result['instructor']['meta'][$e['meta_name']] = Helper::is_json($e['meta_val']) ? json_decode($e['meta_val']) : $e['meta_val'];;
                                 }
                                 $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id:$course_result['course_id']);
@@ -446,13 +428,8 @@ class Routes
                                 if (isset($_SESSION['user_id'])) {
                                     $course_result['current_user_has_enroll'] = $student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']);
                                     $course_result['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
-                                    if (!empty($course_result['meta']['paid_certified']) && intval($course_result['meta']['paid_certified'])) {
-
-                                        $order = new Orders;
-                                        $course_result['current_user_has_paid_certified'] =
-                                        !empty($order->get_course_orders($_SESSION['user_id'], $course_result['course_id'], status:1)) ?
-                                        true : false;
-                                    }
+                                    $course_result['sections_enrolled'] = Helper::unique_array($course_result['current_user_has_enroll'], 'section_id');
+                                    $course_result['sections_student_listed'] = [];
                                 }
                                 $course_sections = $section->get(course_id:$course_result['course_id']);
                                 $course_result['sections'] = [];
@@ -460,18 +437,9 @@ class Routes
                                     $course_section = $section_result;
                                     $lessons = $lesson->get($course_section['section_id']);
                                     $course_section['items'] = [];
-                                    $total_lessons = count($lessons);
-                                    $total_completed = 0;
+                                    
                                     foreach ($lessons as $result_lesson) {
                                         $course_lesson = $result_lesson;
-                                        if (!empty($course_result['current_user_has_enroll'])) {
-                                            $course_lesson['completed'] = $lesson_view->is_completed($course_lesson['lesson_id'], $_SESSION['user_id']);
-                                            $total_completed = $course_lesson['completed'] ? $total_completed + 1 : $total_completed;
-                                        }
-                                        if (!empty($course_lesson['user_id'])) {
-                                            $lesson_teacher = $member->get($course_lesson['user_id'], ['first_name', 'last_name', 'avatar']);
-                                            $course_lesson['teacher'] = $lesson_teacher[0];
-                                        }
                                         $course_lesson['meta'] = [];
                                         $lesson_metas = $lesson_meta->get($course_lesson['lesson_id']);
                                         foreach ($lesson_metas as $meta_val) {
@@ -484,10 +452,11 @@ class Routes
                                         }
                                         $course_section['items'][] = $course_lesson;
                                     }
-                                    if ($total_lessons == $total_completed) {
-                                        $course_section['completed'] = true;
+                                    if (!empty($course_result['current_user_has_enroll']) && array_search(
+                                        $section_result['section_id'], 
+                                        array_column($course_result['sections_enrolled'], 'section_id') ) !== false ) {
+                                        $course_result['sections_student_listed'][] = $course_section;
                                     }
-
                                     $course_result['sections'][] = $course_section;
                                 }
                                 $this->title = $course_result['title'];

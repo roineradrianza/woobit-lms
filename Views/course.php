@@ -1,8 +1,5 @@
 <v-container class="px-8 px-md-0">
     <v-row course_id="<?= $course_id ?>" ref="course_container">
-        <?php if (!empty($current_user_has_enroll) && empty($_COOKIE["modalv1_course_${data['course_id']}"])): ?>
-        <?= new Controller\Template('course/parts/enrollment_successful', $data) ?>
-        <?php endif?>
         <v-row>
             <v-col cols="12" md="6">
                 <v-row>
@@ -56,6 +53,17 @@
                     </v-col>
                 </v-row>
             </v-col>
+            <?php if(!empty($current_user_has_enroll)) : ?>
+            <v-col cols="12">
+                <?= new Controller\Template('course/summary/curriculum', [
+                    'course_slug' => $course_slug,
+                    'sections' => empty($manage_course) ? $sections_student_listed : $sections
+                ]) ?>
+            </v-col>
+            <v-col cols="12">
+                <v-divider></v-divider>
+            </v-col>
+            <?php endif ?>
             <v-col cols="12">
                 <?= new Controller\Template('course/summary/editions', $data) ?>
             </v-col>

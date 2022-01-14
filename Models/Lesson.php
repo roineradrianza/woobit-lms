@@ -16,9 +16,9 @@ class Lesson extends DB
     private $id_column = "lesson_id";
     private $id_section_column = "section_id";
 
-    public function get(int $id = 0)
+    public function get($id = 0) : Array
     {
-        if ($id == 0) {
+        if (empty($id)) {
             return false;
         }
 
@@ -33,7 +33,7 @@ class Lesson extends DB
 
     public function get_by_type(int $id = 0, int $lesson_type = 1)
     {
-        if ($id == 0) {
+        if (empty($id)) {
             return false;
         }
 
@@ -46,28 +46,13 @@ class Lesson extends DB
         return $arr;
     }
 
-    public function get_quizzes(int $course_id = 0)
+    public function get_by_id(int $id = 0) : Array
     {
-        if ($course_id == 0) {
-            return false;
-        }
-
-        $sql = "SELECT lesson_id, lesson_name, (SELECT lesson_meta_val FROM {$this->table_lesson_meta} WHERE lesson_meta_name = 'max_score' LIMIT 1) AS max_score, (SELECT lesson_meta_val FROM {$this->table_lesson_meta} WHERE lesson_meta_name = 'min_score' LIMIT 1) AS min_score FROM {$this->table} L INNER JOIN {$this->table_section} S ON S.section_id = L.section_id INNER JOIN {$this->table_course} C ON C.course_id = S.course_id WHERE C.course_id = $course_id AND lesson_type = 2";
-        $result = $this->execute_query($sql);
-        $arr = [];
-        while ($row = $result->fetch_assoc()) {
-            $arr[] = $row;
-        }
-        return $arr;
-    }
-
-    public function get_by_id(int $id = 0)
-    {
-        if ($id == 0) {
+        if (empty($id)) {
             return [];
         }
 
-        $sql = "SELECT lesson_id, lesson_name, lesson_order, lesson_type, section_id, U.user_id, U.first_name, U.last_name, U.avatar FROM {$this->table} L LEFT JOIN users U ON U.user_id = L.user_id WHERE {$this->id_column} = $id";
+        $sql = "SELECT lesson_id, lesson_name, lesson_order, lesson_type, section_id FROM {$this->table} WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -76,7 +61,7 @@ class Lesson extends DB
         return $arr;
     }
 
-    public function get_lesson_by_order($section_id = 0, $order = 0)
+    public function get_lesson_by_order($section_id = 0, $order = 0) : Array
     {
         if ($section_id == 0 || $order == 0) {
             return false;
@@ -91,7 +76,7 @@ class Lesson extends DB
         return $arr;
     }
 
-    public function get_next_and_previous($lesson = [], $course_id = 0)
+    public function get_next_and_previous($lesson = [], $course_id = 0) : Array
     {
         if (empty($lesson) || empty($course_id)) {
             return [];
@@ -160,7 +145,7 @@ class Lesson extends DB
         return $curriculum;
     }
 
-    public function create($data = [])
+    public function create($data = []) : Bool
     {
         if (empty($data)) {
             return false;
@@ -172,7 +157,7 @@ class Lesson extends DB
         return $result;
     }
 
-    public function edit($id, $data = [])
+    public function edit($id, $data = []) : Bool
     {
         if (empty($data) or empty($id)) {
             return false;
@@ -183,12 +168,12 @@ class Lesson extends DB
             $user_id = "NULL";
         }
 
-        $sql = "UPDATE {$this->table} SET lesson_name = '$lesson_name', lesson_type = '$lesson_type', lesson_order = $lesson_order, user_id = ${user_id} WHERE {$this->id_column} = $id AND {$this->id_section_column} = $section_id";
+        $sql = "UPDATE {$this->table} SET lesson_name = '$lesson_name', lesson_type = '$lesson_type', lesson_order = $lesson_order WHERE {$this->id_column} = $id AND {$this->id_section_column} = $section_id";
         $result = $this->execute_query($sql);
         return $result;
     }
 
-    public function delete($id, $section_id)
+    public function delete($id, $section_id) : Bool
     {
         if (empty($id)) {
             return false;
