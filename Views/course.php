@@ -10,7 +10,7 @@
                             <?= $title ?>
                         </h1>
                     </v-col>
-                    
+
                     <?php if (!empty($meta['description'])): ?>
                     <v-col class="ql-editor" cols="12" md="9">
                         <?= $meta['description'] ?>
@@ -40,7 +40,7 @@
                                 class="font-weight-light black--text">10 - 15</span>
                         </p>
                     </v-col>
-                    
+
                 </v-row>
             </v-col>
             <v-col cols="12" md="6">
@@ -53,12 +53,18 @@
                     </v-col>
                 </v-row>
             </v-col>
-            <?php if(!empty($current_user_has_enroll)) : ?>
+            <?php if(!empty($meta['long_description'])) ?>
+            <v-col class="quill-editor" cols="12">
+                <?= $meta['long_description'] ?>
+            </v-col>
+            <?php if(!empty($current_user_has_enroll) || $manage_course) : ?>
             <v-col cols="12">
-                <?= new Controller\Template('course/summary/curriculum', [
+                <?=
+                new Controller\Template('course/summary/curriculum', [
                     'course_slug' => $course_slug,
                     'sections' => empty($manage_course) ? $sections_student_listed : $sections
-                ]) ?>
+                ]) 
+            ?>
             </v-col>
             <v-col cols="12">
                 <v-divider></v-divider>

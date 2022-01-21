@@ -108,4 +108,10 @@
         </v-row>
     </v-col>
 
+    <v-col cols="12" md="12">
+        <label class="body-1 font-weight-thin pl-1">Descrierea cursului</label>
+        <vue-editor class="mt-3 fl-text-input" :editor-toolbar="customToolbar" v-model="<?= !empty($object) ? $object : 'course' ?>.meta.long_description"
+            placeholder="Descrierea cursului" />
+    </v-col>
+
 </v-row>
