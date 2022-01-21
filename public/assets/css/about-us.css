@@ -1,8 +1,6 @@
 .about-us-hero {
-    background-image: url('/img/about-us/hero.png');
-    background-size: cover;
-    background-position: center;
-    min-height: 60vh;
+    background-image: url('/img/about-us/hero.jpg');
+    min-height: 100vh;
 }
 
 .about-us-1, .about-us-2, .about-us-3 {

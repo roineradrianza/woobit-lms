@@ -267,7 +267,7 @@ switch ($method) {
             foreach ($user_meta->get($result->user_id) as $meta) {
                 $_SESSION['meta'][$meta['meta_name']] = $meta['meta_val'];
             }
-            $_SESSION['redirect_url'] = $result->user_type == 'administrator' ? SITE_URL . '/admin/' : SITE_URL . '/profile/';
+            $_SESSION['redirect_url'] = $result->user_type == 'administrator' ? SITE_URL . '/admin/' : SITE_URL . '/profil-lector/';
             $cookie_email = $helper->encrypt($_SESSION['email']);
             $cookie_password = $result->password;
             setcookie('u', "$cookie_email", time() + 60 * 60 * 24 * 365, '/');
