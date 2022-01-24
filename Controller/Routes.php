@@ -549,7 +549,7 @@ class Routes
                         ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
                         ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
-                        ['name' => 'panel.min', 'version' => '1.0.0'],
+                        ['name' => 'panel.min', 'version' => '1.0.1'],
                     ];
                     $this->content = new Template("account/panel");
                     break;

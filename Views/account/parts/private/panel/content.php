@@ -26,7 +26,8 @@
                     v-for="course, i in filterLatestCourses(child.children_id)" :key="i">
                     <v-tooltip top color="primary">
                         <template #activator="{ on, attrs }">
-                            <v-card color="secondary" :href="'<?= SITE_URL ?>/cursuri/' + course.slug" width="300px" height="200px" v-bind="attrs" v-on="on">
+                            <v-card color="secondary" :href="'<?= SITE_URL ?>/cursuri/' + course.slug" width="300px"
+                                height="200px" v-bind="attrs" v-on="on">
                                 <v-img :src="course.featured_image" max-width="100%" height="100%">
                                 </v-img>
                             </v-card>
@@ -36,6 +37,24 @@
 
                 </v-col>
             </v-row>
+        </v-col>
+        <v-col cols="12" v-if="!existsChildCourses">
+            <v-row justify="center">
+                <v-col class="d-flex justify-center" cols="12" md="8">
+                    <v-img src="<?= SITE_URL ?>/img/no-courses.svg" max-width="50%"></v-img>
+                </v-col>
+                <v-col cols="12" md="8">
+                    <h4 class="text-h5 text-center">
+                        Nu ești înscris/ă la niciun curs. Caută cursul perfect pentru tine
+                    </h4>
+                </v-col>
+            </v-row>
+        </v-col>
+        <v-col cols="12">
+            <h4 class="text-h5 text-center">
+                Te interesează un subiect anume? Ne interesează și pe noi! Trimite-ne un email la <span
+                    class="primary--text">hello@woobit.ro</span>
+            </h4>
         </v-col>
         <v-col cols="12">
             <form :action="'<?= SITE_URL ?>/cursuri/?search=' + search" method="GET">
@@ -54,4 +73,38 @@
             </form>
         </v-col>
     </v-row>
+</v-container>
+
+<v-container fluid>
+    <v-col cols="12">
+        <v-row>
+            <v-col cols="3" v-for="course in courses">
+                <v-card class="my-12 flex-grow-1" :href="'<?= SITE_URL?>/cursuri/' + course.slug">
+
+                    <v-img height="200" :src="course.featured_image"></v-img>
+                    <v-card-subtitle class="mb-n6">{{ course.category}}</v-card-subtitle>
+                    <v-card-title class="font-weight-bold">{{ course.title }}</v-card-title>
+                    <v-card-text>
+                        <v-divider></v-divider>
+                    </v-card-text>
+                    <v-card-actions class="pt-0">
+                        <v-row align="center" class="mx-0">
+                            <v-col class="d-flex align-center" cols="12" md="7" lg="8">
+                                <v-rating :value="5" color="amber" dense half-increments readonly size="18">
+                                </v-rating>
+
+                                <span class="grey--text">
+                                    5
+                                </span>
+                            </v-col>
+
+                            <v-col cols="12" md="5" lg="4">
+                                <p class="mt-2">{{ course.price <= null ? 'FREE' : course.price + " RON" }}</p>
+                            </v-col>
+                        </v-row>
+                    </v-card-actions>
+                </v-card>
+            </v-col>
+        </v-row>
+    </v-col>
 </v-container>

@@ -17,13 +17,14 @@ class Course extends DB
     private $id_column = "course_id";
     private $id_user_column = "user_id";
 
-    public function get($id = 0) : Array
+    public function get($id = 0, $rows = 4) : Array
     {
         $sql = "SELECT C.course_id, active, duration, price, featured_image,
             min_age, max_age, min_students, max_students, certified_template, 
             published_at, slug, title, category_id, C.user_id, platform_owner
             FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id";
         $sql .= !empty($id) ? " WHERE C.{$this->id_column} = $id" : '';
+        $sql .= " LIMIT $rows";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
