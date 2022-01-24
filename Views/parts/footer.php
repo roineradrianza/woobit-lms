@@ -60,7 +60,10 @@
                         <p class="text-center">Cine suntem</p>
                         <p class="text-center">Presă</p>
                         <p class="text-center">Blog</p>
-                        <p class="text-center">Contact</p>
+                        <a href="<?= SITE_URL ?>/contact"
+                            class="text-center white--text">
+                            <p class="text-center">Contact</p>
+                        </a>
                     </v-col>
                 </v-row>
             </v-col>

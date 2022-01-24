@@ -183,7 +183,7 @@ class Helper
         return strtolower(strtr($text, $table));
     }
 
-    public static function send_mail($subject = '', $recipients = [], $message = '', $files = []): Mixed
+    public static function send_mail($subject = '', $recipients = [], $message = '', $files = [], $replyTo = []): Mixed
     {
         $mail = new PHPMailer(true);
         $mail->CharSet = 'UTF-8';
@@ -206,6 +206,10 @@ class Helper
             //Recipients
             foreach ($recipients as $recipient) {
                 $mail->addAddress($recipient['email'], utf8_decode($recipient['full_name']));
+            }
+            //reply to
+            foreach ($replyTo as $recipient) {
+                $mail->addReplyTo($recipient['email'], utf8_decode($recipient['full_name']));
             }
             // Content
             $mail->isHTML(true); // Set email format to HTML
