@@ -32,7 +32,7 @@ class KeepSession
 					foreach ($user_meta->get($result->user_id) as $meta) {
 						$_SESSION['meta'][$meta['meta_name']] = $meta['meta_val'];
 					}
-					$_SESSION['redirect_url'] = $result->user_type == 'administrator' ? SITE_URL.'/admin/' : SITE_URL.'/profile/';
+					$_SESSION['redirect_url'] = $result->user_type == 'administrator' ? SITE_URL.'/admin/' : SITE_URL.'/panou/';
 				}
 				else {
 				  setcookie( 'u' , "", time() - 1, '/');
