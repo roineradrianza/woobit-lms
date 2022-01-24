@@ -3,7 +3,7 @@
 </v-row>
 
 <?= new Controller\Template('home/partials/how-works') ?>
-<v-container class="px-4 px-md-16 mb-16">
+<v-container class="px-4 px-md-0 mb-16">
     <v-row justify="center">
         <v-col cols="12" md="4">
             <v-card color="primary" flat>

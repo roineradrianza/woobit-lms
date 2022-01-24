@@ -22,7 +22,7 @@
     </v-list-item>
     <?php endif ?>
     <v-list-item>
-        <v-btn href="<?= SITE_URL ?>/panel" text>Panou</v-btn>
+        <v-btn href="<?= SITE_URL ?>/panou" text>Panou</v-btn>
     </v-list-item>
     <v-list-item>
         <v-btn href="<?= SITE_URL ?>/profil-lector" text>Profil</v-btn>

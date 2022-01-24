@@ -27,7 +27,7 @@
             </v-list-item-content>
         </v-list-item>
         <?php endif ?>
-        <v-list-item href="<?= SITE_URL ?>/panel/">
+        <v-list-item href="<?= SITE_URL ?>/panou/">
             <v-list-item-content>
                 <v-list-item-title class="text-center">Panou</v-list-item-title>
             </v-list-item-content>

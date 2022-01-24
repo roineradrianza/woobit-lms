@@ -21,8 +21,8 @@
                     <v-img class="mb-3" src="<?= SITE_URL ?>/img/home/steps-02.png?v1" max-width="110px"></v-img>
                 </div>
                 <h4 class="accent--text text-center font-weight-bold text-h5 mb-3">Alege cursul interactiv</h4>
-                <p class="text-center font-weight-regular">Cursurile sunt în direct, via zoom: fie 1 la 1, fie împreună
-                    cu un grup de copii.</p>
+                <p class="text-center font-weight-regular">Caută cursul dorit după un cuvânt cheie, un lector, un orar
+                    sau după domeniul de interes.</p>
             </v-col>
             <v-col cols="12" md="4">
                 <div class="d-flex justify-center">
