@@ -36,6 +36,8 @@ let vm = new Vue({
     countdown_container: {},
     show_button: false,
     zoom_link: false,
+    lesson_status: null,
+    lesson_status_loading: false,
     meta: {},
     notifications: [],
     recent_questions: [],
@@ -102,6 +104,9 @@ let vm = new Vue({
   mounted() {
     this.$refs.hasOwnProperty('child_profile_select') ? this.child_profile.filterAndSelect(this.$refs.child_profile_select.items) : ''
     this.course_id = this.$refs.lesson_container.getAttribute('data-course-id')
+    if (this.$refs.hasOwnProperty('alert_lesson_status')) {
+      this.lesson_status = this.$refs.alert_lesson_status.getAttribute('initial-status')
+    }
   },
 
   methods: {
@@ -256,6 +261,36 @@ let vm = new Vue({
       }, err => {
         app.join_loading = false
       })
+    },
+
+    updateLessonStatus(status) {
+      var app = this
+      app.lesson_status_loading = true
+      var url = api_url + 'lessons/update-status/' + lesson_id
+      app.$http.post(url, { lesson_id: lesson_id, lesson_status: status }).then(res => {
+        app.lesson_status_loading = false
+        if (res.body.status == 'success') {
+          app.lesson_status = status
+        }
+      }, err => {
+        app.lesson_status_loading = false
+      })
+    },
+
+    getLessonStatusColor() {
+      switch (this.lesson_status) {
+        case '2':
+          return 'warning'
+          break
+      
+        case '1':
+          return 'success'
+          break
+              
+        case '0':
+          return 'error'
+          break
+      }
     },
 
     getExt(file_name) {

@@ -13,6 +13,7 @@ class Lesson extends DB
     private $table_lesson_meta = "lessons_meta";
     private $table_section = "sections";
     private $table_course = "courses";
+    private $table_user = "users";
     private $id_column = "lesson_id";
     private $id_section_column = "section_id";
 
@@ -52,7 +53,7 @@ class Lesson extends DB
             return [];
         }
 
-        $sql = "SELECT lesson_id, lesson_name, lesson_order, lesson_type, section_id FROM {$this->table} WHERE {$this->id_column} = $id";
+        $sql = "SELECT * FROM {$this->table} WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -68,6 +69,21 @@ class Lesson extends DB
         }
 
         $sql = "SELECT * FROM {$this->table} WHERE {$this->id_section_column} = $section_id AND lesson_order = $order";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
+    public function get_lessons_pending() {
+        $sql = "SELECT CONCAT(U.first_name,' ', U.last_name) instructor, title, lesson_id, 
+        lesson_name, lesson_status, slug FROM {$this->table} L 
+        INNER JOIN {$this->table_section} S ON S.section_id = L.section_id 
+        INNER JOIN {$this->table_course} C ON C.course_id = S.course_id 
+        INNER JOIN {$this->table_user} U ON U.user_id = C.user_id 
+        WHERE lesson_status = 2";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -169,6 +185,16 @@ class Lesson extends DB
         }
 
         $sql = "UPDATE {$this->table} SET lesson_name = '$lesson_name', lesson_type = '$lesson_type', lesson_order = $lesson_order WHERE {$this->id_column} = $id AND {$this->id_section_column} = $section_id";
+        $result = $this->execute_query($sql);
+        return $result;
+    }
+
+    public function update_status($id, $status = 1) {
+        if (empty($id)) {
+            return false;
+        }
+
+        $sql = "UPDATE {$this->table} SET lesson_status = $status WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         return $result;
     }

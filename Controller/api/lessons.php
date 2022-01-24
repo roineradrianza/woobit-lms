@@ -34,6 +34,11 @@ switch ($method) {
         echo json_encode($results);
         break;
 
+    case 'get-pendings':
+        $results = $lesson->get_lessons_pending();
+        echo json_encode($results);
+        break;
+
     case 'get-classmates':
         if (empty($query)) {
             $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
@@ -41,6 +46,22 @@ switch ($method) {
 
         $results = $student_course->get_classmates($query);
         echo json_encode($results);
+        break;
+
+    case 'update-status':
+        if (empty($data)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $data = sanitize($data);
+
+        $results = $lesson->update_status($data['lesson_id'], $data['lesson_status']);
+    
+        if(!$results) {
+            $helper->response_message('Avertisment', 'Nu a putut fi procesat', 'warning');
+        }
+    
+        $helper->response_message('Succes', 'A fost prelucrat corect');
         break;
 
     case 'join-class':
@@ -52,31 +73,17 @@ switch ($method) {
             $data['zoom_view'] = 1;
             $data['video_view'] = 0;
             $data['completed'] = 1;
-            $data['certified_url'] = '';
-            $data['requireCertifiedPaid'] = 2;
             $result = $lesson_view->update_view(clean_string($query), $_SESSION['user_id'], $data);
             if (!$result) {
-                $helper->response_message('Error', 'No se pudo ingresar a la clase', 'error');
+                $helper->response_message('Error', 'Nu pot intra în sala de clasă', 'error');
             }
 
             $update_progress = $student_course->update_course_progress(clean_string($data['slug']), $_SESSION['user_id'], true);
         }
-        $helper->response_message('Éxito', 'Se unió a la clase correctamente',
-            data: [
-                'certified_url' => $data['certified_url'],
-                'requireCertifiedPaid' => $data['requireCertifiedPaid']
-            ]
-        );
+        $helper->response_message('Succes', 'S-a înscris corect în clasă');
         break;
 
 
 
-    case 'delete':
-        $result = $lesson_view->delete(intval($data['lesson_id']), intval($data['user_id']));
-        if (!$result) {
-            $helper->response_message('Error', 'No se pudo eliminar la vista de la clase correctamente', 'error');
-        }
 
-        $helper->response_message('Éxito', 'Se eliminó la vista de la clase correctamente');
-        break;
 }

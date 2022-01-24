@@ -144,6 +144,18 @@ class Routes
                             $this->content = new Template("admin/users");
                             break;
 
+                        case 'lessons-pending':
+                            $base_asset = ['name' => 'admin/lessons-pending.min', 'version' => '1.0.0'];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
+                            $this->scripts = [
+                                ['name' => 'lib/moment.min'],
+                                ['name' => 'check-gsignin'], 
+                                $base_asset,
+                            ];
+
+                            $this->content = new Template("admin/lessons-pending");
+                            break;
+    
                         case 'coupons':
                             $base_asset = ['name' => 'admin/coupons.min', 'version' => '1.0.0'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
@@ -240,13 +252,15 @@ class Routes
                     $this->content = new Template("reset-password");
                     break;
 
+                
                 case 'contact':
-                    $this->content = new Template("contact");
                     $this->styles = [['name' => 'login.min']];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
-                        ['name' => 'home.min', 'version' => '1.0.0'],
+                        ['name' => 'register-validations'],
+                        ['name' => 'contact.min', 'version' => '1.0.0'],
                     ];
+                    $this->content = new Template("contact");
                     break;
 
                 case 'ghid-curs-nou':
@@ -525,7 +539,7 @@ class Routes
                     }
                     break;
 
-                case 'panel':
+                case 'panou':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
                     }
