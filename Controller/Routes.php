@@ -623,11 +623,14 @@ class Routes
                     break;
 
                 case 'lectori':
-                    $application = new Application;
-                    $results = $application->get($_SESSION['user_id']);
                     
-                    if (count($results) > 0) {
-                        header("Location: " . SITE_URL . "/teacher-panel");
+                    if(!empty($_SESSION['user_id'])) {
+                        $application = new Application;
+                        $results = $application->get($_SESSION['user_id']);
+                    
+                        if (count($results) > 0) {
+                            header("Location: " . SITE_URL . "/teacher-panel");
+                        }
                     }
 
                     $this->styles = [
