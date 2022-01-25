@@ -76,7 +76,7 @@ class Routes
 
                 case 'despre-noi':
                     $this->styles = [
-                        ['name' => 'about-us.min', 'version' => '1.0.0'],
+                        ['name' => 'about-us.min', 'version' => '1.0.1'],
                     ];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
@@ -631,7 +631,7 @@ class Routes
                     }
 
                     $this->styles = [
-                        ['name' => 'how-to-become-teacher.min', 'version' => '1.0.0']
+                        ['name' => 'how-to-become-teacher.min', 'version' => '1.0.1']
                     ];
                     $this->scripts = [
                         ['name' => 'check-gsignin'],
