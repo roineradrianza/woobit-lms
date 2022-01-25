@@ -625,8 +625,8 @@ let vm = new Vue({
       var id = section.items.length
       id++
       var lesson = {
-        lesson_name: "Clase " + id,
-        old_lesson_name: "Clase " + id,
+        lesson_name: "Ședința " + id,
+        old_lesson_name: "Ședința " + id,
         lesson_type: 1,
         lesson_order: order,
         meta: {},

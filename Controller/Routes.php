@@ -100,7 +100,7 @@ class Routes
                     $this->title = 'Panoul de administrare';
 
                     if (empty($route[1])) {
-                        $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
+                        $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.1'];
                         $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                         $this->scripts = [
                             ['name' => 'lib/moment.min'],
@@ -300,7 +300,7 @@ class Routes
                         $this->scripts = [
                             ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'vue-components/vue2-editor.min'],
                             ['name' => 'lib/sortable.min'], ['name' => 'vue-components/vue-draggable.min.umd'],
-                            ['name' => 'course-validations'], ['name' => 'course/edit/main.min', 'version' => '1.10.4'],
+                            ['name' => 'course-validations'], ['name' => 'course/edit/main.min', 'version' => '1.10.5'],
                         ];
                         $this->content = new Template("course/edit/main");
                     } else if (!empty($route[1]) && $route[1] != 'edit') {
@@ -479,7 +479,7 @@ class Routes
                                     $this->scripts[] = ['name' => 'vue-components/vue-json-excel.umd'];
                                     $this->scripts[] = ['name' => 'course-manage.min', 'version' => '1.11.0'];
                                 } else {
-                                    $this->scripts[] = ['name' => 'course.min', 'version' => '1.0.8'];
+                                    $this->scripts[] = ['name' => 'course.min', 'version' => '1.0.9'];
                                 }
                                 $this->styles = [['name' => 'quill-editor.min'], ['name' => 'login.min'], ...$base_asset];
                                 $this->content = new Template("course", $course_result);
@@ -623,7 +623,7 @@ class Routes
                     break;
 
                 case 'lectori':
-                    
+
                     if(!empty($_SESSION['user_id'])) {
                         $application = new Application;
                         $results = $application->get($_SESSION['user_id']);

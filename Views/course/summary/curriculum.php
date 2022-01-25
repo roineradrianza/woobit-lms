@@ -1,6 +1,6 @@
 <v-row class="d-flex justify-center">
     <v-col cols="12">
-        <v-expansion-panels <?= count($sections) == 1 ? ':mandatory="true"' : '' ?> >
+        <v-expansion-panels <?= count($sections) == 1 ? ':mandatory="true"' : '' ?>>
             <?php if (!empty($sections)):?>
             <?php foreach ($sections as $section_index => $section): ?>
 
@@ -20,19 +20,19 @@
                                 <?= Carbon\Carbon::createFromDate($section['start_date'])->locale(APP_LANGUAGE)->isoFormat('dddd, MMMM Do YYYY')?>
                             </p>
                         </v-col>
-                        
+
                         <v-col cols="12" md="3">
                             <p>
                                 <v-icon>mdi-calendar-clock</v-icon>
                                 <?= \Model\Section::frecuency_text($section['frecuency'], $section['classes']) ?>
-                             </p>
+                            </p>
                         </v-col>
-                        
+
                         <v-col cols="12" md="3">
                             <p>
                                 <v-icon>mdi-clock</v-icon>
-                                <?= "{$section['start_time']} - {$section['end_time']}" ?>     
-                             </p>
+                                <?= "{$section['start_time']} - {$section['end_time']}" ?>
+                            </p>
                         </v-col>
                     </v-row>
                     <?php foreach ($section['items'] as $lesson_index => $lesson): ?>
@@ -52,7 +52,7 @@
                                         <v-btn class="primary--text"
                                             href="<?= SITE_URL ?>/cursuri/<?= $data['course_slug'] ?>/<?= $lesson['lesson_id'] ?>/"
                                             text>
-                                                Mergeți la cursuri
+                                                INTRĂ ÎN CLASSROM
                                         </v-btn>
                                     </v-col>
 

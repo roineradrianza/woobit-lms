@@ -2,7 +2,7 @@
 
 <v-row class="d-flex justify-center">
     <v-col class="d-flex justify-center" cols="12">
-        <v-btn class="secondary white--text" @click="addSection">Adăugați secțiunea</v-btn>
+        <v-btn class="secondary white--text" @click="addSection">Adaugă opțiunea</v-btn>
     </v-col>
     <v-col cols="12" md="9" class="p-0">
         <v-expansion-panels :disabled="curriculum.loading">
@@ -12,7 +12,7 @@
                         <v-expansion-panel-header @keyup.space.prevent>
                             <v-row class="d-flex justify-end" no-gutters>
                                 <v-col class="d-flex justify-start p-0" cols="10">
-                                    Secțiunea {{ section_index + 1 }}
+                                    Opțiunea {{ section_index + 1 }}
                                 </v-col>
                                 <v-col class="d-flex justify-end p-0" cols="1">
                                     <v-tooltip top>
@@ -79,18 +79,18 @@
                                         <v-select class="mt-3" v-model="section.frecuency" :items="
                                         [
                                             {
-                                                text: 'Weekly',
+                                                text: 'Săptămânal',
                                                 value: '1'
                                             },
                                             
                                             {
-                                                text: 'Monthly',
+                                                text: 'Lunar',
                                                 value: '2'
                                             }
                                         ]" outlined></v-select>
                                     </v-col>
                                     <v-col cols="12" md="4">
-                                        <label class="body-1 font-weight-thin pl-1">Numărul de clase</label>
+                                        <label class="body-1 font-weight-thin pl-1">Numărul de ședințe</label>
                                         <v-text-field type="number" class="mt-3" v-model="section.classes" outlined>
                                         </v-text-field>
                                     </v-col>
@@ -102,7 +102,7 @@
                                                 <v-dialog ref="section_start_time"
                                                     :return-value.sync="section.start_time" persistent width="290px">
                                                     <template #activator="{ on, attrs }">
-                                                        <label class="body-1 font-weight-thin pl-1">Începutul</label>
+                                                        <label class="body-1 font-weight-thin pl-1">Începe la</label>
                                                         <v-text-field v-model="section.start_time" persistent-hint
                                                             class="mt-3" readonly v-bind="attrs" v-on="on" outlined>
                                                             <template #append>
@@ -127,7 +127,7 @@
                                                 <v-dialog ref="section_end_time"
                                                     :return-value.sync="section.end_time" persistent width="290px">
                                                     <template #activator="{ on, attrs }">
-                                                        <label class="body-1 font-weight-thin pl-1">Sfârșitul</label>
+                                                        <label class="body-1 font-weight-thin pl-1">Se termină la</label>
                                                         <v-text-field v-model="section.end_time" persistent-hint
                                                             class="mt-3" readonly v-bind="attrs" v-on="on" outlined>
                                                             <template #append>
@@ -154,7 +154,7 @@
                             </v-col>
                             <v-col class="d-flex justify-center" cols="12">
                                 <v-btn class="secondary white--text" @click="addLesson(section_index)"
-                                    :loading="curriculum.add_lesson_loading">Adăugați clasa
+                                    :loading="curriculum.add_lesson_loading">Adaugă ședința
                                 </v-btn>
                             </v-col>
                             <draggable class="col col-12" v-model="section.items"
