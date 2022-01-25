@@ -18,7 +18,8 @@
             <v-card color="primary" flat>
                 <v-card-text class="px-0 py-0">
                     <h3 class="text-h4 text-center white--text">Lectori</h3>
-                    <v-img src="<?= SITE_URL ?>/img/home/lectori.png" width="100%" max-width="100vw" contain>
+                    <v-img src="<?= SITE_URL ?>/img/home/lectori.jpg" width="100%" max-width="100vw" 
+                    :max-height="$vuetify.breakpoint.mdAndDown ? $vuetify.breakpoint.smOnly ? '100%' : '236px' : '316px'">
                     </v-img>
                 </v-card-text>
             </v-card>
