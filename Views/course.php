@@ -1,6 +1,45 @@
 <v-container class="px-8 px-md-0">
     <v-row course_id="<?= $course_id ?>" ref="course_container">
         <v-row>
+            <v-col ref="alert_course_status" cols="12" initial-status="<?= $status ?>">
+                <v-alert prominent :type="getCourseStatusColor()">
+                    <v-row align="center">
+                        <v-col class="grow">
+                            <template v-if="course_status == 2">
+                                Această curs este în curs de revizuire
+                            </template>
+                            <template v-if="course_status == 1">
+                                Acest curs este aprobat în prezent.
+                            </template>
+                            <template v-if="course_status == 0">
+                                Această curs nu este aprobată în prezent
+                            </template>
+                        </v-col>
+
+                        <?php if($_SESSION['user_type'] == 'administrator'): ?>
+
+                        <v-col class="shrink">
+                            <v-btn class="white success--text" @click="updateCourseStatus('1')"
+                                v-if="course_status == 2" :loading="course_status_loading">Aprobați</v-btn>
+                            <v-btn class="white warning--text" @click="updateCourseStatus('2')"
+                                v-if="course_status == 1" :loading="course_status_loading">Pus sub revizuire</v-btn>
+                            <v-btn class="white success--text" @click="updateCourseStatus('1')"
+                                v-if="course_status == 0" :loading="course_status_loading">Aprobați</v-btn>
+                        </v-col>
+                        <v-col class="shrink">
+                            <v-btn class="white error--text" @click="updateCourseStatus('0')" v-if="course_status == 2"
+                                :loading="course_status_loading">Dezaprobă</v-btn>
+                            <v-btn class="white error--text" @click="updateCourseStatus('0')" v-if="course_status == 1"
+                                :loading="course_status_loading">Dezaprobă</v-btn>
+                            <v-btn class="white warning--text" @click="updateCourseStatus('2')"
+                                v-if="course_status == 0" :loading="course_status_loading">Pus sub revizuire</v-btn>
+                        </v-col>
+
+                        <?php endif ?>
+
+                    </v-row>
+                </v-alert>
+            </v-col>
             <v-col cols="12" md="6">
                 <v-row>
                     <v-col cols="12">

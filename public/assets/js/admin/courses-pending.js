@@ -15,12 +15,11 @@ let vm = new Vue({
       snackbar_timeout: 3000,
       snackbar_text: '',
       headers: [
-        { text: 'Clasa', align: 'start', value: 'lesson_name' },
         { text: 'Titlul cursului', value: 'title' },
         { text: 'Lectori', value: 'instructor' },
         { text: 'Acțiuni', value: 'actions', align:'center', sortable: false },
       ],
-      lessons: [],
+      courses: [],
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
@@ -49,35 +48,35 @@ let vm = new Vue({
 
     methods: {
       initialize () {
-        var url = api_url + 'lessons/get-pendings'
+        var url = api_url + 'courses/get-pendings'
         this.table_loading = true
         this.$http.get(url).then(res => {
           this.table_loading = false
-          this.lessons = res.body;
+          this.courses = res.body;
         }, err => {
 
         })
       },
 
-      updateLessonStatus(status, lesson) {
+      updateCourseStatus(status, course) {
         var app = this
         app.snackbar = false
 
-        app.lesson_status_loading = true
-        var url = api_url + 'lessons/update-status/'
-        app.$http.post(url, { lesson_id: lesson.lesson_id, lesson_status: status }).then(res => {
-          app.lesson_status_loading = false
+        app.course_status_loading = true
+        var url = api_url + 'courses/update-status/'
+        app.$http.post(url, { course_id: course.course_id, course_status: status }).then(res => {
+          app.course_status_loading = false
           app.snackbar = true
           if (res.body.status == 'success') {
-            app.lessons.splice(app.lessons.indexOf(lesson), 1)
+            app.courses.splice(app.courses.indexOf(course), 1)
 
-            var message = `"${lesson.lesson_name}"`
+            var message = `"${course.title}"`
             app.snackbar_text = message += status == 1 ? ' a fost aprobată' : ' a fost dezaprobat'
           } else {
             app.snackbar_text = res.body.message
           }
         }, err => {
-          app.lesson_status_loading = false
+          app.course_status_loading = false
         })
       },
 

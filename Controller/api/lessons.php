@@ -34,11 +34,6 @@ switch ($method) {
         echo json_encode($results);
         break;
 
-    case 'get-pendings':
-        $results = $lesson->get_lessons_pending();
-        echo json_encode($results);
-        break;
-
     case 'get-classmates':
         if (empty($query)) {
             $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
@@ -46,22 +41,6 @@ switch ($method) {
 
         $results = $student_course->get_classmates($query);
         echo json_encode($results);
-        break;
-
-    case 'update-status':
-        if (empty($data)) {
-            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
-        }
-
-        $data = sanitize($data);
-
-        $results = $lesson->update_status($data['lesson_id'], $data['lesson_status']);
-    
-        if(!$results) {
-            $helper->response_message('Avertisment', 'Nu a putut fi procesat', 'warning');
-        }
-    
-        $helper->response_message('Succes', 'A fost prelucrat corect');
         break;
 
     case 'join-class':

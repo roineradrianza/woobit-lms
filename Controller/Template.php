@@ -30,7 +30,7 @@ class Template
             /*['name' => 'Foro', 'icon' => 'mdi-post', 'url' => 'forum'],*/
             /*['name' => 'Medios', 'icon' => 'mdi-image-multiple', 'url' => 'library'],*/
             ['name' => 'Cursuri', 'icon' => 'mdi-library', 'url' => 'courses'],
-            ['name' => 'Pending lessons', 'icon' => 'mdi-table-eye', 'url' => 'lessons-pending'],
+            ['name' => 'Cursuri în așteptare', 'icon' => 'mdi-table-eye', 'url' => 'courses-pending'],
             ['name' => 'Aplicație pentru profesori', 'icon' => 'mdi-file', 'url' => 'teachers-application'],
             ['name' => 'Plăți', 'icon' => 'mdi-credit-card-outline', 'url' => 'payments'],
 /*['name' => 'Cupones', 'icon' => 'mdi-ticket-percent', 'url' => 'coupons'],*/

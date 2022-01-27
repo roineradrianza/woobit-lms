@@ -77,21 +77,6 @@ class Lesson extends DB
         return $arr;
     }
 
-    public function get_lessons_pending() {
-        $sql = "SELECT CONCAT(U.first_name,' ', U.last_name) instructor, title, lesson_id, 
-        lesson_name, lesson_status, slug FROM {$this->table} L 
-        INNER JOIN {$this->table_section} S ON S.section_id = L.section_id 
-        INNER JOIN {$this->table_course} C ON C.course_id = S.course_id 
-        INNER JOIN {$this->table_user} U ON U.user_id = C.user_id 
-        WHERE lesson_status = 2";
-        $result = $this->execute_query($sql);
-        $arr = [];
-        while ($row = $result->fetch_assoc()) {
-            $arr[] = $row;
-        }
-        return $arr;
-    }
-
     public function get_next_and_previous($lesson = [], $course_id = 0) : Array
     {
         if (empty($lesson) || empty($course_id)) {
@@ -185,16 +170,6 @@ class Lesson extends DB
         }
 
         $sql = "UPDATE {$this->table} SET lesson_name = '$lesson_name', lesson_type = '$lesson_type', lesson_order = $lesson_order WHERE {$this->id_column} = $id AND {$this->id_section_column} = $section_id";
-        $result = $this->execute_query($sql);
-        return $result;
-    }
-
-    public function update_status($id, $status = 1) {
-        if (empty($id)) {
-            return false;
-        }
-
-        $sql = "UPDATE {$this->table} SET lesson_status = $status WHERE {$this->id_column} = $id";
         $result = $this->execute_query($sql);
         return $result;
     }

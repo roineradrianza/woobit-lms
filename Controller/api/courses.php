@@ -54,6 +54,11 @@ switch ($method) {
         echo json_encode($courses);
         break;
 
+    case 'get-pendings':
+        $results = $course->get_courses_pending();
+        echo json_encode($results);
+        break;
+
     case 'get-instructors':
         if (empty($query)) {
             $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
@@ -61,6 +66,23 @@ switch ($method) {
 
         $instructors = $student_course->get_instructors($query);
         echo json_encode($instructors);
+        break;
+
+    case 'update-status':
+        if (empty($data)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $data = sanitize($data);
+        $course_id = !empty($query) ? $query : $data['course_id'];
+
+        $results = $course->update_status($course_id, $data['course_status']);
+    
+        if(!$results) {
+            $helper->response_message('Avertisment', 'Nu a putut fi procesat', 'warning');
+        }
+    
+        $helper->response_message('Succes', 'A fost prelucrat corect');
         break;
 
     case 'get-courses':

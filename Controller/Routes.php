@@ -144,8 +144,8 @@ class Routes
                             $this->content = new Template("admin/users");
                             break;
 
-                        case 'lessons-pending':
-                            $base_asset = ['name' => 'admin/lessons-pending.min', 'version' => '1.0.0'];
+                        case 'courses-pending':
+                            $base_asset = ['name' => 'admin/courses-pending.min', 'version' => '1.0.0'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
@@ -153,7 +153,7 @@ class Routes
                                 $base_asset,
                             ];
 
-                            $this->content = new Template("admin/lessons-pending");
+                            $this->content = new Template("admin/courses-pending");
                             break;
     
                         case 'coupons':
@@ -439,12 +439,18 @@ class Routes
                                 foreach ($metas as $meta) {
                                     $course_result['meta'][$meta['course_meta_name']] = $meta['course_meta_val'];
                                 }
+
                                 if (isset($_SESSION['user_id'])) {
                                     $course_result['current_user_has_enroll'] = $student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']);
                                     $course_result['manage_course'] = $course->user_has_access($course_result['course_id'], $_SESSION);
                                     $course_result['sections_enrolled'] = Helper::unique_array($course_result['current_user_has_enroll'], 'section_id');
                                     $course_result['sections_student_listed'] = [];
                                 }
+
+                                if ($course_result['status'] != '1' && !$course_result['manage_course']) {
+                                    header("Location: " . SITE_URL);
+                                }
+
                                 $course_sections = $section->get(course_id:$course_result['course_id']);
                                 $course_result['sections'] = [];
                                 foreach ($course_sections as $section_result) {
@@ -476,7 +482,6 @@ class Routes
                                 $this->title = $course_result['title'];
                                 $this->scripts = [['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'lib/lodash.min']];
                                 if (isset($course_result['manage_course']) && $course_result['manage_course']) {
-                                    $this->scripts[] = ['name' => 'vue-components/vue-json-excel.umd'];
                                     $this->scripts[] = ['name' => 'course-manage.min', 'version' => '1.11.0'];
                                 } else {
                                     $this->scripts[] = ['name' => 'course.min', 'version' => '1.0.9'];
