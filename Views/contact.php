@@ -19,7 +19,9 @@
                         <v-textarea label="Mesaj" v-model="form.message" :rules="validations.requiredRules" filled flat></v-textarea>
                     </v-col>
 					<v-col cols="12">
-                    	<v-btn class="secondary py-4 white--text" @click="sendMessage" :loading="loading" :disabled="!valid" block>Trimiteți</v-btn>
+                    	<v-btn class="secondary py-4 white--text" @click="sendMessage" :loading="loading" :disabled="!valid" block>
+                            Trimite
+                        </v-btn>
 					</v-col>
 					<?= new Controller\Template('components/alert')?>
                 </v-row>

@@ -39,10 +39,10 @@
                 </h4>
                 <h5 class="body-1 text-md-h6 text-center my-5"
                     v-if="show_button || countdown_container.totalMilliseconds < 1800000">
-                    Cu 30 de minute înainte de start sub acest text va fi activat butonul de introducere a clasei. </h5>
+                    Cu 30 de minute înainte de start sub acest text va fi activat butonul de începere a cursului. </h5>
             </v-col>
             <v-col class="text-center" cols="12" v-if="show_button && zoom_link">
-                <p>În cazul în care butonul nu funcționează, puteți accesa clasa prin următorul link</p>
+                <p>În cazul în care butonul nu funcționează, poți accesa cursul prin următorul link</p>
                 <a :href="meta.zoom_url" style="word-break: break-all;">{{ meta.zoom_url }}</a>
             </v-col>
             <v-col class="text-center" cols="12" v-if="show_button && zoom_link">
@@ -53,7 +53,7 @@
             </v-col>
             <v-col class="d-flex justify-center" cols="12" v-if="show_button">
                 <v-btn class="secondary white--text py-6" @click="joinClass" :loading="join_loading" rounded>
-                    Introduceți numărul clasa
+                    ÎNCEPE CURSUL AICI 
                 </v-btn>
             </v-col>
             <v-col cols="12">
@@ -65,7 +65,7 @@
             <v-row class="d-flex justify-center px-4" v-if="resources.length > 0">
                 <v-col cols="12">
                     <v-divider></v-divider>
-                    <h4 class="mt-4 text-h5">Materiale pentru sala de clasă</h4>
+                    <h4 class="mt-4 text-h5">Materiale pentru classroom</h4>
                 </v-col>
                 <v-col cols="12">
                     <v-row>

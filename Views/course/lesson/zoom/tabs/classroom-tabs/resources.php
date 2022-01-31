@@ -9,7 +9,7 @@
     <v-col class="d-flex align-end px-0" cols="12" md="4">
         <v-btn color="primary"
             @click="resources.unshift({name: '', preview_only: '0', edit: true, file: undefined, url: '', loading: false, percent_loading_active: false, percent_loading: 0})"
-            block dark>Adăugați material</v-btn>
+            block dark>Adaugă materiale</v-btn>
     </v-col>
     <v-row>
         <template v-for="resource, index in resources">

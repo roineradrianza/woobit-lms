@@ -13,7 +13,7 @@
     <?php endif ?>
     <v-row>
         <v-col cols="12">
-            <h3 class="text-h5">Mesajele profesorului</h3>
+            <h3 class="text-h5">Mesajele lectorului</h3>
             <v-divider></v-divider>
         </v-col>
         <?php if ($course['manage_course']) : ?>
@@ -24,14 +24,14 @@
                 <v-row>
 
                     <v-col cols="12">
-                        <label class="body-1">Adăugați unul nou</label>
+                        <label class="body-1">Adaugă un mesaj nou</label>
                         <vue-editor id="lesson_message_editor" v-model="lesson_messages.message.message" class="white mt-3"
                             :editor-toolbar="customToolbar" placeholder="Descrierea clasei" />
                     </v-col>
 
                     <v-col cols="12">
                         <v-btn color="primary" @click="lesson_messages.save()" :loading="lesson_messages.loading">
-                            Postează un mesaj
+                            Lasă un mesaj
                         </v-btn>
                     </v-col>
 

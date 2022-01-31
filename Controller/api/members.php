@@ -276,7 +276,7 @@ switch ($method) {
             $_COOKIE['p'] = $cookie_password;
             $helper->response_message('Succes', 'V-ați autentificat cu succes, vă rugăm să așteptați un moment', 'success', $_SESSION['redirect_url']);
         } else {
-            $helper->response_message('Error', 'Acreditare incorectă, vă rugăm să încercați din nou.', 'error');
+            $helper->response_message('Error', 'Parolă incorectă. Te rog să încerci din nou.', 'error');
         }
         break;
 

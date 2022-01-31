@@ -30,7 +30,7 @@
 
                         <v-tab href="#overview">Rezumat</v-tab>
 
-                        <v-tab href="#classroom">Sala de clasă</v-tab>
+                        <v-tab href="#classroom">Classroom</v-tab>
 
                         <v-tab href="#instructor">Lectori</v-tab>
 

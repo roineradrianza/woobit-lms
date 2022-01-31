@@ -43,7 +43,7 @@
             </template>
             <v-col class="d-flex justify-center" cols="12">
                 <v-btn color="secondary" @click="saveFile(resource.url, resource)" rounded>
-                    Descărcați
+                    Descarcă materialul
                 </v-btn>
             </v-col>
         </v-row>

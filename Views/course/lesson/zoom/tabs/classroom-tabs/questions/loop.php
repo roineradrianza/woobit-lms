@@ -75,7 +75,7 @@
                             <v-col cols="12" v-if="item.edit_answer_box == true">
                                 <vue-editor :id="'answer_edit_editor' + item.lesson_comment_id"
                                     class="mt-3 fl-text-input" v-model="answer.edited_answer" :editor-toolbar="toolbar"
-                                    placeholder="Redacta tu respuesta acá">
+                                    placeholder="Scrieți răspunsul dumneavoastră aici">
                                 </vue-editor>
                                 <v-btn class="primary white--text my-4" @click="editAnswer(item, answer)"
                                     :loading="item.answer_loading">
