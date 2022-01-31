@@ -2,7 +2,7 @@
 
     <v-img height="200" src="<?= $featured_image ?>"></v-img>
     <v-card-subtitle class="mb-n6"><?= $category ?></v-card-subtitle>
-    <v-card-title class="font-weight-bold"><?= $title ?></v-card-title>
+    <v-card-title class="font-weight-bold no-word-break"><?= $title ?></v-card-title>
     <v-card-text>
         <v-divider></v-divider>
     </v-card-text>
