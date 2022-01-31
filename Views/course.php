@@ -1,6 +1,7 @@
 <v-container class="px-8 px-md-0">
     <v-row course_id="<?= $course_id ?>" ref="course_container">
         <v-row>
+            <?php if (!empty($manage_course)) : ?>
             <v-col ref="alert_course_status" cols="12" initial-status="<?= $status ?>">
                 <v-alert prominent :type="getCourseStatusColor()">
                     <v-row align="center">
@@ -40,6 +41,7 @@
                     </v-row>
                 </v-alert>
             </v-col>
+            <?php endif ?>
             <v-col cols="12" md="6">
                 <v-row>
                     <v-col cols="12">
@@ -92,11 +94,12 @@
                     </v-col>
                 </v-row>
             </v-col>
-            <?php if(!empty($meta['long_description'])) ?>
+            <?php if(!empty($meta['long_description'])): ?>
             <v-col class="quill-editor" cols="12">
                 <?= $meta['long_description'] ?>
             </v-col>
-            <?php if(!empty($current_user_has_enroll) || $manage_course) : ?>
+            <?php endif ?>
+            <?php if(!empty($current_user_has_enroll) || !empty($manage_course)) : ?>
             <v-col cols="12">
                 <?=
                 new Controller\Template('course/summary/curriculum', [

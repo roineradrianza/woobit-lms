@@ -481,11 +481,7 @@ class Routes
                                 }
                                 $this->title = $course_result['title'];
                                 $this->scripts = [['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'lib/lodash.min']];
-                                if (isset($course_result['manage_course']) && $course_result['manage_course']) {
-                                    $this->scripts[] = ['name' => 'course-manage.min', 'version' => '1.11.0'];
-                                } else {
-                                    $this->scripts[] = ['name' => 'course.min', 'version' => '1.0.9'];
-                                }
+                                $this->scripts[] = !empty($course_result['manage_course']) ? ['name' => 'course-manage.min', 'version' => '1.11.0'] : ['name' => 'course.min', 'version' => '1.0.9'] ;
                                 $this->styles = [['name' => 'quill-editor.min'], ['name' => 'login.min'], ...$base_asset];
                                 $this->content = new Template("course", $course_result);
                             }
