@@ -31,7 +31,7 @@ class Category extends DB
 
 	public function get_courses() 
 	{
-		$sql = "SELECT name, (SELECT COUNT(course_id) FROM {$this->table_course_category} WHERE category_id = C.category_id) courses FROM {$this->table} C";
+		$sql = "SELECT category_id, name, (SELECT COUNT(course_id) FROM {$this->table_course_category} WHERE category_id = C.category_id) courses FROM {$this->table} C";
 		$result = $this->execute_query($sql);
 		$arr = [];
 		while ($row = $result->fetch_assoc()) {

@@ -223,6 +223,21 @@ class Course extends DB
         return $arr;
     }
 
+    public function search_by_category($category)
+    {
+        $sql = "SELECT title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, platform_owner, 
+        (SELECT COUNT(user_id) FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
+        INNER JOIN users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
+        INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id 
+        WHERE CC.category_id = $category AND status = 1 ORDER BY published_at DESC";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
     public function create($data = [], $columns = []) : Mixed
     {
         if (empty($data)) {

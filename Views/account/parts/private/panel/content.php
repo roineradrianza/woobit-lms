@@ -51,12 +51,6 @@
             </v-row>
         </v-col>
         <v-col cols="12">
-            <h4 class="text-h5 text-center">
-                Te interesează un subiect anume? Ne interesează și pe noi! Trimite-ne un email la <span
-                    class="primary--text">hello@woobit.ro</span>
-            </h4>
-        </v-col>
-        <v-col cols="12">
             <form :action="'<?= SITE_URL ?>/cursuri/?search=' + search" method="GET">
                 <v-row>
                     <v-col cols="12" md="2" order="2" order-md="1">
@@ -72,10 +66,25 @@
                 </v-row>
             </form>
         </v-col>
+        <v-col cols="12">
+            <v-row justify="center">
+                <v-col class="d-flex justify-center" cols="6" md="2" v-for="category in categories">
+                    <v-chip color="primary" :href="'<?= SITE_URL?>/categorie/' + category.category_id">
+                        {{ category.name }}
+                    </v-chip>
+                </v-col>
+            </v-row>
+        </v-col>
+        <v-col cols="12">
+            <h4 class="text-h5 text-center">
+                Te interesează un subiect anume? Ne interesează și pe noi! Trimite-ne un email la <span
+                    class="primary--text">hello@woobit.ro</span>
+            </h4>
+        </v-col>
     </v-row>
 </v-container>
 
-<v-container fluid>
+<v-container class="px-4" fluid>
     <v-col cols="12">
         <v-row>
             <v-col cols="3" v-for="course in courses">

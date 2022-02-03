@@ -1,7 +1,14 @@
-<?php if(!empty($data['search_item'])):?>
+<?php if(!empty($search_item)) : ?>
 <v-row class="gradient pt-12 pb-12 pl-md-16 pr-md-10">
     <v-col class="pl-10" cols="12">
-        <h1 class="white--text text-h2">Rezultate pentru "<?= $data['search_item'] ?>"</h1>
+        <h1 class="white--text text-h2">Rezultate pentru "<?= $search_item ?>"</h1>
+    </v-col>
+</v-row>
+<?php endif ?>
+<?php if( !empty($category) ) : ?>
+<v-row class="gradient pt-12 pb-12 pl-md-16 pr-md-10">
+    <v-col class="pl-10" cols="12">
+        <h1 class="white--text text-h2">Cursuri pe categorii "<?= $category['name'] ?>"</h1>
     </v-col>
 </v-row>
 <?php endif ?>
@@ -10,7 +17,7 @@
         <v-text-field v-model="search" class="font-weight-light mt-16" label="Ce dorești să înveți?" light flat outlined dense
             solo>
             <template #append>
-                <v-btn class="my-4 mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/?search=' + search"
+                <v-btn class="my-4 mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/get?search=' + search"
                     text icon>
                     <v-icon size="35">mdi-magnify</v-icon>
                 </v-btn>

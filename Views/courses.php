@@ -1,6 +1,6 @@
 				<v-row class="gradient pt-12 pb-12 pl-16 pr-10">
 					<v-col class="pl-10" cols="12">
-						<h1 class="white--text text-h2">Lista de cursuri</h1>
+						<h1 class="white--text text-h2">Cursuri</h1>
 					</v-col>
 				</v-row>	
 				<v-row class="pl-6 pt-6">

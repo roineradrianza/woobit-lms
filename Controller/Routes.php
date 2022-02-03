@@ -270,6 +270,32 @@ class Routes
                     ];
                     $this->content = new Template("new-class-guide");
                     break;
+                
+                case 'categorie':
+                    if (empty($route[1])) {
+                        header("Location: " . SITE_URL);
+                    }
+                    $course = new Course;
+                    $category = new Category;
+
+                    $category_item = $category->get(clean_string($route[1]));
+
+                    if (empty($category_item)) {
+                        $this->scripts = [['name' => 'check-gsignin'], ['name' => 'home.min', 'version' => '1.0.0']];
+                        $this->title = 'Pagina nu a fost găsită';
+                        $this->content = new Template("404");
+                        break;
+                    }
+
+                    $category_item = $category_item[0];
+
+                    $base_asset = [['name' => 'courses.min', 'version' => '1.0.0']];
+                    $this->scripts = $base_asset;
+                    $courses = $course->search_by_category($category_item['category_id']);
+                    $this->title = $category_item['name'];
+                    $this->content = new Template("courses_search_result", ['courses' => $courses, 'search_item' => '', 'category' => $category_item]);
+
+                    break;
 
                 case 'cursuri':
                     $base_asset = [['name' => 'courses.min', 'version' => '1.0.0']];
@@ -709,7 +735,7 @@ class Routes
 
                 default:
                     $this->scripts = [['name' => 'check-gsignin'], ['name' => 'home.min', 'version' => '1.0.0']];
-                    $this->title = 'Página no encontrada';
+                    $this->title = 'Pagina nu a fost găsită';
                     $this->content = new Template("404");
                     break;
             }
