@@ -113,11 +113,14 @@ let vm = new Vue({
           res.body.forEach((meta) => {
             app.meta[meta['lesson_meta_name']] = meta['lesson_meta_val']
             if (meta['lesson_meta_name'] == 'zoom_start_time') {
-              countdown = app.getTimeDifference(meta['lesson_meta_val'])
-              app.zoom_countdown = countdown < 0 ? 0 : countdown
-              app.countdown_container = app.$refs.meeting_countdown
+              
             }
           })
+          if (app.meta.hasOwnProperty('zoom_start_time')) {
+            countdown = app.getTimeDifference(app.meta.zoom_start_time)
+            app.zoom_countdown = countdown < 0 ? 0 : countdown
+            app.countdown_container = app.$refs.meeting_countdown
+          }
         }
       }, err => {
 

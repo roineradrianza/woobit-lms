@@ -17,7 +17,7 @@ class Course extends DB
     private $id_column = "course_id";
     private $id_user_column = "user_id";
 
-    public function get($id = 0, $rows = 4) : Array
+    public function get($id = 0, $rows = 10000) : Array
     {
         $sql = "SELECT C.course_id, status, duration, price, featured_image,
             min_age, max_age, min_students, max_students, certified_template, 

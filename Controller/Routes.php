@@ -5,6 +5,7 @@ use Model\Application;
 use Model\Category;
 use Model\Course;
 use Model\CourseMeta;
+use Model\CourseRating;
 use Model\Lesson;
 use Model\LessonMeta;
 use Model\LessonViews;
@@ -60,7 +61,13 @@ class Routes
                 case '':
 
                     $course = new Course;
-                    $courses = $course->get_enabled(4);
+                    $course_rating = new CourseRating;
+                    $courses_results = $course->get_enabled(4);
+                    $courses = [];
+                    foreach ($courses_results as $course) {
+                        $course['ratings'] = $course_rating->get_course_total($course['course_id']);
+                        $courses[] = $course;
+                    }
                     $this->styles = [
                         ['name' => 'home.min', 'version' => '1.0.0'],
                     ];
@@ -276,6 +283,7 @@ class Routes
                         header("Location: " . SITE_URL);
                     }
                     $course = new Course;
+                    $course_rating = new CourseRating;
                     $category = new Category;
 
                     $category_item = $category->get(clean_string($route[1]));
@@ -289,9 +297,14 @@ class Routes
 
                     $category_item = $category_item[0];
 
-                    $base_asset = [['name' => 'courses.min', 'version' => '1.0.0']];
+                    $base_asset = [['name' => 'courses.min', 'version' => '1.0.1']];
                     $this->scripts = $base_asset;
-                    $courses = $course->search_by_category($category_item['category_id']);
+                    $courses_result = $course->search_by_category($category_item['category_id']);
+                    $courses = [];
+                    foreach ($courses_result as $course) {
+                        $course['ratings'] = $course_rating->get_course_total($course['course_id']);
+                        $courses[] = $course;
+                    }
                     $this->title = $category_item['name'];
                     $this->content = new Template("courses_search_result", ['courses' => $courses, 'search_item' => '', 'category' => $category_item]);
 
@@ -333,7 +346,14 @@ class Routes
                         if (isset($_GET['search'])) {
                             $this->scripts = $base_asset;
                             $this->styles = $base_asset;
-                            $courses = $course->search(clean_string($_GET['search']));
+                            $courses_results = $course->search(clean_string($_GET['search']));
+                            $course_rating = new CourseRating;
+
+                            $courses = [];
+                            foreach ($courses_results as $course) {
+                                $course['ratings'] = $course_rating->get_course_total($course['course_id']);
+                                $courses[] = $course;
+                            }
                             $this->content = new Template("courses_search_result", ['courses' => $courses, 'search_item' => $_GET['search']]);
                         } else if (!empty($route[2])) {
 
@@ -413,7 +433,7 @@ class Routes
                                                 ['name' => 'Classes/Course/TeacherMessage.min'],
                                                 ['name' => 'Classes/Course/ChildProfile.min'],
                                                 ['name' => 'check-gsignin'],
-                                                ['name' => 'course/zoom_lesson.min', 'version' => '1.0.0'],
+                                                ['name' => 'course/zoom_lesson.min', 'version' => '1.0.1'],
                                             ];
                                             $this->content = new Template("course/lesson/zoom", $data);
                                             break;
@@ -444,11 +464,13 @@ class Routes
                                 $lesson_view = new LessonViews;
                                 $member = new Member;
                                 $student_course = new StudentCourse;
+                                $course_rating = new CourseRating;
 
                                 $course_result = $course_result[0];
                                 $course_result['course_slug'] = $slug;
 
                                 $course_result['instructor'] = $member->get($course_result['user_id'], ['user_id', 'first_name', 'last_name', 'avatar'])[0];
+                                $course_result['instructor']['ratings'] = $course_rating->get_instructor_total($course_result['user_id']);
                                 $meta = $user_meta->get($course_result['instructor']['user_id']);
                                 $course_result['instructor']['meta'] = [];
                                 foreach ($meta as $i => $e) {
@@ -506,8 +528,13 @@ class Routes
                                     $course_result['sections'][] = $course_section;
                                 }
                                 $this->title = $course_result['title'];
-                                $this->scripts = [['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'lib/lodash.min']];
-                                $this->scripts[] = !empty($course_result['manage_course']) ? ['name' => 'course-manage.min', 'version' => '1.11.0'] : ['name' => 'course.min', 'version' => '1.0.9'] ;
+                                $this->scripts = [
+                                    ['name' => 'lib/moment.min'], 
+                                    ['name' => 'check-gsignin'], 
+                                    ['name' => 'lib/lodash.min'],
+                                    ['name' => 'Classes/Course/Rating.min']
+                                ];
+                                $this->scripts[] = !empty($course_result['manage_course']) ? ['name' => 'course-manage.min', 'version' => '1.0.1'] : ['name' => 'course.min', 'version' => '1.0.9'] ;
                                 $this->styles = [['name' => 'quill-editor.min'], ['name' => 'login.min'], ...$base_asset];
                                 $this->content = new Template("course", $course_result);
                             }
@@ -515,9 +542,15 @@ class Routes
                     } else {
 
                         $category = new Category;
+                        $course_rating = new CourseRating;
                         $this->scripts = $base_asset;
                         $this->styles = $base_asset;
-                        $courses = $course->get_enabled();
+                        $courses_results = $course->get_enabled();
+                        $courses = [];
+                        foreach ($courses_results as $course) {
+                            $course['ratings'] = $course_rating->get_course_total($course['course_id']);
+                            $courses[] = $course;
+                        }
                         $categories = $category->get_courses();
                         $this->content = new Template("courses", ['categories' => $categories, 'courses' => $courses]);
                     }

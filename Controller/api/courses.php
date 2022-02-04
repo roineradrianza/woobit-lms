@@ -7,7 +7,7 @@ if (empty($method)) {
     die(403);
 }
 
-use Controller\Helper;
+use Controller\{Helper, ZoomInstance};
 use Model\{Course, CourseCategory, CourseRating, CourseMeta, Lesson, LessonMeta, Member};
 
 use Model\Section;
@@ -21,6 +21,7 @@ $lesson_meta = new LessonMeta;
 $course_meta = new CourseMeta;
 $member = new Member;
 $helper = new Helper;
+$zoom_instance = new ZoomInstance;
 $course_category = new CourseCategory;
 $course_rating = new CourseRating;
 $student_course = new StudentCourse;
@@ -254,6 +255,36 @@ switch ($method) {
                         continue;
                     }
                     if (!empty($lesson_item['meta'])) {
+                        if ($lesson_item['meta']['class_type'] == 'zoom_meeting') {
+                            $meta = $lesson_item['meta'];
+                            if (!empty($meta['zoom_duration']) && !empty($meta['zoom_time'])) {
+                                $meta['zoom_start_time'] = gmdate(DATE_ATOM, strtotime("{$meta['zoom_date']} {$meta['zoom_time']}:00"));
+                                $meta['zoom_topic'] = $lesson_item['lesson_name'];
+
+                                $meeting_data = [
+                                    'topic' => $meta['zoom_topic'],
+                                    'agenda' => $meta['zoom_agenda'],
+                                    'duration' => $meta['zoom_duration'],
+                                    'start_time' => $meta['zoom_start_time'],
+                                    'password' => $helper->rand_string(10),
+                                ];
+                                if (isset($data['meeting_id'])) {
+                                    $meeting_data['meeting_id'] = $data['meeting_id'];
+                                }
+                    
+                                $data_vars = $zoom_instance->create_meeting($meeting_data);
+                                if (!is_object($data_vars)) {
+                                    if ($data_vars == 400) {
+                                        $helper->response_message('Error', 'El host alternativo debe ser otra cuenta con licencia', 'error');
+                                    }
+                                }
+                                $notify = false;
+                                $meta['zoom_url'] = isset($data_vars->join_url) ? $data_vars->join_url : null;
+                                $meta['zoom_id'] = isset($data_vars->id) ? $data_vars->id : null;
+                                $meta['zoom_password'] = $meeting_data['password'];
+                                $lesson_item['meta'] = $meta;
+                            }
+                        }
                         foreach ($lesson_item['meta'] as $meta_key => $meta_value) {
                             $meta = [
                                 'lesson_meta_name' => $meta_key,
@@ -318,7 +349,6 @@ switch ($method) {
             !empty($data['featured_image']) && file_exists($old_file) ? unlink($old_file) : '';
             $data['featured_image'] = "/img/featured-images/$file_name";
         }
-        $data['active'] = intval($data['active']);
         $data['price'] = floatval($data['price']);
         $result = $course->edit($id, $data);
         if (!$result) {
@@ -382,6 +412,37 @@ switch ($method) {
                     }
                     $id = $lesson_item['lesson_id'] = empty($lesson_item['lesson_id']) ? $lesson_result : $lesson_item['lesson_id'];
                     if (!empty($lesson_item['meta'])) {
+                        if ($lesson_item['meta']['class_type'] == 'zoom_meeting') {
+                            $meta = $lesson_item['meta'];
+                            
+                            if (!empty($meta['zoom_duration']) && !empty($meta['zoom_time'])) {
+                                $meta['zoom_start_time'] = gmdate(DATE_ATOM, strtotime("{$meta['zoom_date']} {$meta['zoom_time']}:00"));
+                                $meta['zoom_topic'] = $lesson_item['lesson_name'];
+
+                                $meeting_data = [
+                                    'topic' => $meta['zoom_topic'],
+                                    'agenda' => $meta['zoom_agenda'],
+                                    'duration' => $meta['zoom_duration'],
+                                    'start_time' => $meta['zoom_start_time'],
+                                    'password' => $helper->rand_string(10),
+                                ];
+                                if (isset($data['meeting_id'])) {
+                                    $meeting_data['meeting_id'] = $data['meeting_id'];
+                                }
+                    
+                                $data_vars = $zoom_instance->create_meeting($meeting_data);
+                                if (!is_object($data_vars)) {
+                                    if ($data_vars == 400) {
+                                        $helper->response_message('Error', 'El host alternativo debe ser otra cuenta con licencia', 'error');
+                                    }
+                                }
+                                $notify = false;
+                                $meta['zoom_url'] = isset($data_vars->join_url) ? $data_vars->join_url : null;
+                                $meta['zoom_id'] = isset($data_vars->id) ? $data_vars->id : null;
+                                $meta['zoom_password'] = $meeting_data['password'];
+                                $lesson_item['meta'] = $meta;
+                            }
+                        }
                         foreach ($lesson_item['meta'] as $meta_key => $meta_value) {
                             $meta = [
                                 'lesson_meta_name' => $meta_key,
@@ -392,6 +453,7 @@ switch ($method) {
                             empty($check_meta) ? $lesson_meta->create($meta) : $lesson_meta->edit($lesson_item['lesson_id'], $meta);
                         }
                     }
+                    
                 }
             }
         }
