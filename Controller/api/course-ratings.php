@@ -18,7 +18,6 @@ $query = empty($query) ? 0 : clean_string($query);
 switch ($method) {
 
     case 'get':
-        $query = clean_string($query);
         $results = $course_rating->get($query);
         echo json_encode($results);
         break;
@@ -31,36 +30,36 @@ switch ($method) {
     
     case 'create':
         if (empty($data) || empty($data['course_id'])) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
 
         $data = sanitize($data);
         $data['user_id'] = $_SESSION['user_id'];
         $result = $course_rating->create($data);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo crear el comentario correctamente', 'error');
+            $helper->response_message('Error', 'Nu s-a putut crea corect comentariul', 'error');
         }
-        $helper->response_message('Éxito', 'Se creó el comentario correctamente', data: ['course_rating_id' => $result]);
+        $helper->response_message('Succes', 'Comentariu creat corect', data: ['course_rating_id' => $result]);
         break;
 
     case 'update':
         if (empty($data)) {
-            $helper->response_message('Advertencia', 'Ninguna información fue recibida', 'warning');
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
         }
         $data['user_id'] = $_SESSION['user_id'];
         $result = $course_rating->edit($data);
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo editar el comentario, intente de nuevo.', 'error');
+            $helper->response_message('Error', 'Nu s-a putut edita comentariul, vă rugăm să încercați din nou.', 'error');
         }
-        $helper->response_message('Éxito', 'Se editó el comentario correctamente');
+        $helper->response_message('Succes', 'Comentariul a fost editat corect');
         break;
 
     case 'delete':
         $result = $course_rating->delete(intval($data['course_rating_id']));
         if (!$result) {
-            $helper->response_message('Error', 'No se pudo eliminar el comentario correctamente', 'error');
+            $helper->response_message('Error', 'Nu s-a reușit ștergerea corectă a comentariului', 'error');
         }
 
-        $helper->response_message('Éxito', 'Se eliminó el comentario correctamente');
+        $helper->response_message('Succes', 'Comentariu eliminat corect');
         break;
 }

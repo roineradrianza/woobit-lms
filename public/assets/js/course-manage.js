@@ -8,18 +8,13 @@ let vm = new Vue({
     course_id: null,
     course_status: null,
     course_status_loading: false,
+    rating: null,
   },
 
   computed: {
   },
 
   watch: {
-    dialogUserRemove(val) {
-      val || this.closeDelete()
-    },
-    sponsorViewsStatistics(val) {
-      this.getSponsorViewsStatistics() || val
-    },
   },
 
   created() {
@@ -27,9 +22,11 @@ let vm = new Vue({
   },
 
   mounted() {
-    this.course_id = this.$refs.course_container.getAttribute('course_id')
-    if (this.$refs.hasOwnProperty('alert_course_status')) {
-      this.course_status = this.$refs.alert_course_status.getAttribute('initial-status')
+    var app = this
+    app.course_id = this.$refs.course_container.getAttribute('course_id')
+    app.rating = new Rating({course_id: app.course_id})
+    if (app.$refs.hasOwnProperty('alert_course_status')) {
+      app.course_status = app.$refs.alert_course_status.getAttribute('initial-status')
     }
   },
 

@@ -11,6 +11,7 @@ class CourseRating extends DB
 {
     private $table = "course_ratings";
     private $table_user = "users";
+    private $table_course = "courses";
     private $id_column = "course_rating_id";
     private $id_course_column = "course_id";
     private $id_user_column = "user_id";
@@ -29,6 +30,29 @@ class CourseRating extends DB
             $arr[] = $row;
         }
         return $arr;
+    }
+
+    public function get_instructor_total($user_id) {
+
+        $sql = "SELECT COUNT(course_rating_id) total, AVG(stars) average
+        FROM {$this->table} CR INNER JOIN {$this->table_course} C ON C.course_id = CR.course_id 
+        WHERE C.{$this->id_user_column} = $user_id";
+
+        $result = $this->execute_query($sql)->fetch_assoc();
+
+        return $result;
+    }
+
+    
+    public function get_course_total($course_id) {
+
+        $sql = "SELECT COUNT(course_rating_id) total, AVG(stars) average
+        FROM {$this->table} CR INNER JOIN {$this->table_course} C ON C.course_id = CR.course_id 
+        WHERE C.{$this->id_course_column} = $course_id";
+
+        $result = $this->execute_query($sql)->fetch_assoc();
+
+        return $result;
     }
 
     public function get_by_user_and_course($course_id = 0, $user_id = 0)

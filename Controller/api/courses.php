@@ -8,12 +8,7 @@ if (empty($method)) {
 }
 
 use Controller\Helper;
-use Model\Course;
-use Model\CourseCategory;
-use Model\CourseMeta;
-use Model\Lesson;
-use Model\LessonMeta;
-use Model\Member;
+use Model\{Course, CourseCategory, CourseRating, CourseMeta, Lesson, LessonMeta, Member};
 
 use Model\Section;
 
@@ -27,6 +22,7 @@ $course_meta = new CourseMeta;
 $member = new Member;
 $helper = new Helper;
 $course_category = new CourseCategory;
+$course_rating = new CourseRating;
 $student_course = new StudentCourse;
 
 $data = json_decode(file_get_contents("php://input"), true);
@@ -40,6 +36,7 @@ switch ($method) {
         if (count($results) > 0) {
             foreach ($results as $course) {
                 $result = $course;
+                $result['ratings'] = $course_rating->get_course_total($course['course_id']);
                 $result['category_id'] = isset($course['category_id']) ? $course['category_id'] : '';
                 $result['subcategory_id'] = isset($course['subcategory_id']) ? $course['subcategory_id'] : '';
 
@@ -110,7 +107,15 @@ switch ($method) {
 
         $query = $helper->decrypt($query);
         $results = $course->get_own_courses($query);
-        echo json_encode($results);
+        $courses = [];
+
+        foreach ($results as $course) {
+            $result = $course;
+            $result['ratings'] = $course_rating->get_course_total($course['course_id']);
+            $courses[] = $result;
+        }
+        
+        echo json_encode($courses);
         break;
 
     case 'get-new-courses':

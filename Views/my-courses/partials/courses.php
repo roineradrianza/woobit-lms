@@ -15,11 +15,11 @@
                 <v-container>
                     <v-row align="center" class="mx-0">
                         <v-col class="d-flex align-center" cols="12" md="7" lg="8">
-                            <v-rating :value="5" color="amber" dense half-increments readonly size="18">
+                            <v-rating :value="Math.round(course.ratings.average)" color="amber" dense half-increments readonly size="18">
                             </v-rating>
 
                             <span class="grey--text">
-                                5
+                                {{ course.ratings.total }}
                             </span>
                         </v-col>
 

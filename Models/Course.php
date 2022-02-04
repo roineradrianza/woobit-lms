@@ -175,7 +175,7 @@ class Course extends DB
 
     public function get_enabled($rows = 100000) : Array
     {
-        $sql = "SELECT title, featured_image, slug, price, CCS.name category, platform_owner, min_students, 
+        $sql = "SELECT C.course_id, title, featured_image, slug, price, CCS.name category, platform_owner, min_students, 
         max_students, min_age, max_age, (SELECT COUNT(user_id)
 		FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
         LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id
@@ -210,7 +210,7 @@ class Course extends DB
 
     public function search($search)
     {
-        $sql = "SELECT title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, platform_owner, 
+        $sql = "SELECT C.course_id, title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, platform_owner, 
         (SELECT COUNT(user_id) FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
         INNER JOIN users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
         INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id 
@@ -225,7 +225,7 @@ class Course extends DB
 
     public function search_by_category($category)
     {
-        $sql = "SELECT title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, platform_owner, 
+        $sql = "SELECT C.course_id, title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, platform_owner, 
         (SELECT COUNT(user_id) FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
         INNER JOIN users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
         INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id 

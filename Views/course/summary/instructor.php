@@ -20,16 +20,17 @@
                                 </span>
                                 <br>
                                 <span>
-                                    <v-icon color="yellow darken-3" v-for="i in 5">
-                                        mdi-star
-                                    </v-icon>
+                                    <v-rating class="d-inline" value="<?= round($ratings['average']) ?>" color="amber" dense half-increments
+                                        readonly>
+                                    </v-rating>
                                     <strong>
-                                        120
+                                    <?= empty($ratings['total']) ? 'N/A' : $ratings['total'] ?>
                                     </strong>
                                 </span>
                             </v-col>
                         </v-row>
-                        <v-btn class="primary--text" color="white" @click="$refs.instructor_avatar.$el.scrollIntoViewIfNeeded()">
+                        <v-btn class="primary--text" color="white"
+                            @click="$refs.instructor_avatar.$el.scrollIntoViewIfNeeded()">
                             Despre Mine
                             <v-icon>
                                 mdi-play-circle
