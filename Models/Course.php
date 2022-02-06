@@ -33,6 +33,21 @@ class Course extends DB
         return $arr;
     }
 
+    public function get_random_by_category($category_id, $course_id) : Array
+    {
+        $sql = "SELECT C.course_id, status, duration, price, featured_image,
+            min_age, max_age, min_students, max_students, certified_template, 
+            published_at, slug, title, category_id, C.user_id, platform_owner
+            FROM {$this->table} C LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
+            WHERE CC.category_id = $category_id AND C.course_id != $course_id ORDER BY RAND() LIMIT 4";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
     public function get_by_user($id = 0, $rows = 4, $course_id = 0) : Array
     {
         if (empty($id)) {

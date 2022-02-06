@@ -150,11 +150,7 @@
             <v-col cols="12">
                 <v-divider></v-divider>
             </v-col>
-            <?= new Controller\Template('course/summary/popular-courses', 
-                [
-                    'category' => !empty($category[0]['name']) ? $category[0]['name'] : '',
-                ]
-            ) ?>
+            <?= new Controller\Template('course/summary/popular-courses', $data) ?>
         </v-row>
     </v-row>
 </v-container>

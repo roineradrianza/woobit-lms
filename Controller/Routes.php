@@ -537,6 +537,14 @@ class Routes
                                     $course_result['sections'][] = $course_section;
                                 }
                                 $course_result['popular_categories'] = $category->get_random();
+                                $popular_courses = [];
+                                $course_result['popular_courses'] = !empty($course_result['category_id']) 
+                                ? $course->get_random_by_category($course_result['category_id'], $course_result['course_id']) : [];
+                                foreach ($course_result['popular_courses'] as $item) {
+                                    $item['ratings'] = $course_rating->get_course_total($item['course_id']);
+                                    $popular_courses[] = $item;
+                                }
+                                $course_result['popular_courses'] = $popular_courses;
                                 $this->title = $course_result['title'];
                                 $this->scripts = [
                                     ['name' => 'lib/moment.min'], 
