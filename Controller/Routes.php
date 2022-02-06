@@ -536,6 +536,7 @@ class Routes
                                     }
                                     $course_result['sections'][] = $course_section;
                                 }
+                                $course_result['popular_categories'] = $category->get_random();
                                 $this->title = $course_result['title'];
                                 $this->scripts = [
                                     ['name' => 'lib/moment.min'], 

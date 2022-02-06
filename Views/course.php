@@ -146,7 +146,7 @@
                 <v-divider></v-divider>
             </v-col>
             <?php endif?>
-            <?= new Controller\Template('course/summary/popular-categories', $data) ?>
+            <?= new Controller\Template('course/summary/popular-categories', $popular_categories) ?>
             <v-col cols="12">
                 <v-divider></v-divider>
             </v-col>

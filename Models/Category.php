@@ -29,6 +29,19 @@ class Category extends DB
 		return $arr;
 	}	
 
+	
+	public function get_random() 
+	{
+
+		$sql = "SELECT * FROM {$this->table} ORDER BY RAND() LIMIT 10";
+		$result = $this->execute_query($sql);
+		$arr = [];
+		while ($row = $result->fetch_assoc()) {
+			$arr[] = $row;
+		}
+		return $arr;
+	}	
+
 	public function get_courses() 
 	{
 		$sql = "SELECT category_id, name, (SELECT COUNT(course_id) FROM {$this->table_course_category} WHERE category_id = C.category_id) courses FROM {$this->table} C";
