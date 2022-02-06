@@ -365,6 +365,7 @@ class Routes
                             if (empty($course_result[0])) {
                                 header("Location: " . SITE_URL);
                             }
+                            
 
                             $course_result = $course_result[0];
                             if (!$student_course->has_enroll($course_result['course_id'], $_SESSION['user_id']) && !$course->user_has_access($course_result['course_id'], $_SESSION) || !isset($_SESSION['user_id'])) {
@@ -477,6 +478,14 @@ class Routes
                                         $course_result['instructor']['meta'][$e['meta_name']] = Helper::is_json($e['meta_val']) ? json_decode($e['meta_val']) : $e['meta_val'];;
                                 }
                                 $course_result['instructor']['courses'] = $course->get_by_user($course_result['instructor']['user_id'], course_id:$course_result['course_id']);
+                                $instructor_courses = [];
+                                if (!empty($course_result['instructor']['courses'])) {
+                                    foreach ($course_result['instructor']['courses'] as $item) {
+                                        $item['ratings'] = $course_rating->get_course_total($item['course_id']);
+                                        $instructor_courses[] = $item;
+                                    }
+                                }
+                                $course_result['instructor']['courses'] = $instructor_courses;
                                 $course_result['students'] = $course->get_total_students($course_result['course_id']);
                                 $course_result['classes'] = $section->get_total_lessons($course_result['course_id']);
                                 $course_result['meta'] = [];
