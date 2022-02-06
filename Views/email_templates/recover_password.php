@@ -26,8 +26,8 @@
                                         <td style='font-size: 16px; vertical-align: top;'>
                                             <p>Ați solicitat recent să vă resetați parola, puteți continua făcând clic
                                                 pe următorul link <a
-                                                    href="<?= SITE_URL ?>/password-reset/?code=<?= $data['reset_code'] ?>"
-                                                    style="color: #3d0235;"><?= SITE_URL ?>/password-reset?code=<?= $data['reset_code'] ?></a>.
+                                                    href="<?= SITE_URL ?>/password-reset/get?code=<?= $data['reset_code'] ?>"
+                                                    style="color: #3d0235;"><?= SITE_URL ?>/password-reset/get?code=<?= $data['reset_code'] ?></a>.
                                                 <br>
                                                 <br>
                                                 <span style="text-align: center;">
