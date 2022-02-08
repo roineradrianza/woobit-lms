@@ -44,7 +44,7 @@
     </v-col>
 
     <v-col cols="12" md="6">
-        <label>Ora cursului</label>
+        <label>Durata Cursului</label>
         <v-text-field name="course_duration" v-model="<?= !empty($object) ? $object : 'course' ?>.duration" outlined>
         </v-text-field>
     </v-col>

@@ -122,7 +122,7 @@
     </v-col>
 
     <v-col cols="12">
-        <h3 class="text-h5">Ora cursului</h3>
+        <h3 class="text-h5">Durata Cursului</h3>
         <p>Îți recomandăm să ai o ofertă variată în ceea ce privește ora la care vei ține cursul. Amintește-ți că vor fi
             și cursanți din diaspora și cursanți în sistemul homeschooling (ei sunt acasă dimineața.) Oferta este
             publicată la Bucharest Time(GMT+3.)</p>
