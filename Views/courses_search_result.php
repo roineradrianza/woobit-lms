@@ -13,17 +13,61 @@
 </v-row>
 <?php endif ?>
 <v-row class="d-flex justify-center">
-    <v-col class="CTA ml-md-n2" cols="12" md="6">
-        <v-text-field v-model="search" class="font-weight-light mt-16" label="Ce dorești să înveți?" light flat outlined dense
+    <v-col class="CTA ml-md-n2" cols="12" md="5">
+        <v-text-field class="mt-3" v-model="search" name="search" class="font-weight-light" label="Ce dorești să înveți?" light flat outlined
             solo>
             <template #append>
-                <v-btn class="my-4 mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/get?search=' + search"
+                <v-btn class="mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/get?search=' + search + 
+                '&start_date=' + start_date + '&category=' + category"
                     text icon>
-                    <v-icon size="35">mdi-magnify</v-icon>
+                    <v-icon size="25">mdi-magnify</v-icon>
                 </v-btn>
             </template>
         </v-text-field>
     </v-col>
+    
+    <v-col class="ml-md-n2" cols="12" md="2">
+        <v-dialog ref="start_date_dialog" v-model="start_date_modal" :return-value.sync="start_date"
+            width="20vw">
+            <template #activator="{ on, attrs }">
+                <v-text-field class="mt-3" v-model="start_date" name="start_date" label="Data de începere" readonly v-bind="attrs" v-on="on" outlined>
+                    <template #append>
+                        <v-icon v-bind="attrs" v-on="on">
+                            mdi-calendar
+                        </v-icon>
+                    </template>
+                </v-text-field>
+            </template>
+            <v-date-picker v-model="start_date" scrollable>
+                <v-spacer></v-spacer>
+                <v-btn text color="primary" @click="start_date_modal = false">
+                    Anulează
+                </v-btn>
+                <v-btn text color="primary" @click="$refs.start_date_dialog.save(start_date)">
+                    OK
+                </v-btn>
+            </v-date-picker>
+        </v-dialog>
+    </v-col>
+    
+    <v-col class="ml-md-n2" cols="12" md="2">
+        <v-select class="mt-3" v-model="category" :items="[
+            {
+                text: '',
+                value: '',
+            },
+            <?php foreach($categories as $category): ?>
+                <?php if($category['courses'] > 0) : ?>
+                    {
+                        text: '<?= $category['name'] ?>',
+                        value: <?= $category['category_id'] ?>
+                    },
+                <?php endif ?>
+            <?php endforeach?>
+            ]" name="category" label="Categorie" outlined>
+        </v-select>
+    </v-col>
+    
     <?php if (empty($courses)): ?>
     <?= new Controller\Template('courses/parts/not_results'); ?>
     <?php else: ?>

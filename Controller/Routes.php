@@ -297,7 +297,7 @@ class Routes
 
                     $category_item = $category_item[0];
 
-                    $base_asset = [['name' => 'courses.min', 'version' => '1.0.1']];
+                    $base_asset = [['name' => 'courses.min', 'version' => '1.0.2']];
                     $this->scripts = $base_asset;
                     $courses_result = $course->search_by_category($category_item['category_id']);
                     $courses = [];
@@ -346,7 +346,13 @@ class Routes
                         if (isset($_GET['search'])) {
                             $this->scripts = $base_asset;
                             $this->styles = $base_asset;
-                            $courses_results = $course->search(clean_string($_GET['search']));
+                            $category = new Category;
+                            $categories = $category->get_courses();
+                            $courses_results = $course->search(
+                                clean_string($_GET['search']),
+                                clean_string($_GET['start_date']),
+                                clean_string($_GET['category']),
+                            );
                             $course_rating = new CourseRating;
 
                             $courses = [];
@@ -354,7 +360,11 @@ class Routes
                                 $course['ratings'] = $course_rating->get_course_total($course['course_id']);
                                 $courses[] = $course;
                             }
-                            $this->content = new Template("courses_search_result", ['courses' => $courses, 'search_item' => $_GET['search']]);
+                            $this->content = new Template("courses_search_result", [
+                                'courses' => $courses, 
+                                'search_item' => $_GET['search'],
+                                'categories' => $categories
+                            ]);
                         } else if (!empty($route[2])) {
 
                             $student_course = new StudentCourse;

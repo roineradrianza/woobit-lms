@@ -11,6 +11,7 @@ use Model\Helper\DB;
 class Course extends DB
 {
     private $table = "courses";
+    private $section_table = "sections";
     private $table_student_courses = "course_users";
     private $table_meta = "course_meta";
     private $course_category = "course_category";
@@ -223,13 +224,17 @@ class Course extends DB
         return $arr;
     }
 
-    public function search($search)
+    public function search($search, $start_date = '', $category_id = 0)
     {
-        $sql = "SELECT C.course_id, title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, platform_owner, 
+        $inner = !empty($start_date) ? "INNER JOIN {$this->section_table} S ON S.course_id = C.course_id" : "";
+        $filter = "title LIKE '%$search%'";
+        $filter .= !empty($start_date) ? " AND S.start_date >= '$start_date'" : "";
+        $filter .= !empty($category_id) ? " AND CC.category_id = $category_id" : "";
+        $sql = "SELECT DISTINCT C.course_id, title, featured_image, slug, price, avatar, CONCAT(first_name, ' ', last_name) full_name, CCS.name category, 
         (SELECT COUNT(user_id) FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
         INNER JOIN users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
-        INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id 
-        WHERE title LIKE '%$search%' AND status = 1 ORDER BY published_at DESC";
+        INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id $inner WHERE $filter AND status = 1 ORDER BY published_at DESC
+        ";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
@@ -244,7 +249,7 @@ class Course extends DB
         (SELECT COUNT(user_id) FROM {$this->table_student_courses} WHERE course_id = C.course_id ) total_enrolled FROM {$this->table} C 
         INNER JOIN users U ON U.user_id = C.user_id LEFT JOIN {$this->course_category} CC ON CC.course_id = C.course_id 
         INNER JOIN course_categories CCS ON CCS.category_id = CC.category_id 
-        WHERE CC.category_id = $category AND status = 1 ORDER BY published_at DESC";
+        WHERE CC.category_id = $category AND status = 1 ORDER BY publisd_at DESC";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {
