@@ -14,8 +14,8 @@
 <?php endif ?>
 <v-row class="d-flex justify-center">
     <v-col class="CTA ml-md-n2" cols="12" md="5">
-        <v-text-field class="mt-3" v-model="search" name="search" class="font-weight-light" label="Ce dorești să înveți?" light flat outlined
-            solo>
+        <v-text-field class="mt-3" v-model="search" name="search" class="font-weight-light" label="Ce dorești să înveți?" 
+            @keyup.enter="searchCourse" light flat outlined solo>
             <template #append>
                 <v-btn class="mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/get?search=' + search + 
                 '&start_date=' + start_date + '&category=' + category"

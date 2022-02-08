@@ -34,5 +34,11 @@ let vm = new Vue({
 
     methods: {
 
+      searchCourse() {
+        var app = this
+        window.location = domain + '/cursuri/get?search=' + app.search + '&start_date=' 
+        + app.start_date + '&category=' + app.category
+      }
+
   	}
 });

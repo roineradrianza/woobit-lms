@@ -62,7 +62,8 @@
                     </v-col>
 
                     <v-col cols="12" md="6" order="1" order-md="2">
-                        <v-text-field v-model="search" label="Ce dorești să înveți?" outlined>
+                        <v-text-field v-model="search" label="Ce dorești să înveți?" 
+                        @keyup.enter="searchCourse" outlined>
                         </v-text-field>
                     </v-col>
 
