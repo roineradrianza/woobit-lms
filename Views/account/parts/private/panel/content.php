@@ -53,15 +53,60 @@
         <v-col cols="12">
             <form :action="'<?= SITE_URL ?>/cursuri/?search=' + search" method="GET">
                 <v-row>
-                    <v-col cols="12" md="2" order="2" order-md="1">
+                    <v-col cols="12" md="2" order="4" order-md="1">
                         <v-btn class="white--text py-6 px-4" color="#e70f66"
-                            :href="'<?= SITE_URL ?>/cursuri/?search=' + search" block rounded>
+                            :href="'<?= SITE_URL ?>/cursuri/get?search=' + search + 
+                            '&start_date=' + start_date + '&category=' + category" block rounded>
                             Explorează:
                         </v-btn>
                     </v-col>
-                    <v-col cols="12" md="10" order="1" order-md="2">
+
+                    <v-col cols="12" md="6" order="1" order-md="2">
                         <v-text-field v-model="search" label="Ce dorești să înveți?" outlined>
                         </v-text-field>
+                    </v-col>
+
+                    <v-col class="ml-md-n2" cols="12" md="2" order="2" order-md="3">
+                        <v-dialog ref="start_date_dialog" v-model="start_date_modal" :return-value.sync="start_date"
+                            width="20vw">
+                            <template #activator="{ on, attrs }">
+                                <v-text-field v-model="start_date" name="start_date"
+                                    label="Data de începere" readonly v-bind="attrs" v-on="on" outlined>
+                                    <template #append>
+                                        <v-icon v-bind="attrs" v-on="on">
+                                            mdi-calendar
+                                        </v-icon>
+                                    </template>
+                                </v-text-field>
+                            </template>
+                            <v-date-picker v-model="start_date" scrollable>
+                                <v-spacer></v-spacer>
+                                <v-btn text color="primary" @click="start_date_modal = false">
+                                    Anulează
+                                </v-btn>
+                                <v-btn text color="primary" @click="$refs.start_date_dialog.save(start_date)">
+                                    OK
+                                </v-btn>
+                            </v-date-picker>
+                        </v-dialog>
+                    </v-col>
+
+                    <v-col class="ml-md-n2" cols="12" md="2" order="3" order-md="4">
+                        <v-select v-model="category" :items="[
+                            {
+                                text: '',
+                                value: '',
+                            },
+                            <?php foreach($categories as $category): ?>
+                                <?php if($category['courses'] > 0) : ?>
+                                    {
+                                        text: '<?= $category['name'] ?>',
+                                        value: <?= $category['category_id'] ?>
+                                    },
+                                <?php endif ?>
+                            <?php endforeach?>
+                            ]" name="category" label="Categorie" outlined>
+                        </v-select>
                     </v-col>
                 </v-row>
             </form>
@@ -99,11 +144,12 @@
                     <v-card-actions class="pt-0">
                         <v-row align="center" class="mx-0">
                             <v-col class="d-flex align-center" cols="12" md="7" lg="8">
-                                <v-rating :value="5" color="amber" dense half-increments readonly size="18">
+                                <v-rating :value="Math.round(course.ratings.average)" color="amber" dense
+                                    half-increments readonly size="18">
                                 </v-rating>
 
                                 <span class="grey--text">
-                                    5
+                                    {{ course.ratings.total }}
                                 </span>
                             </v-col>
 

@@ -15,11 +15,15 @@ let vm = new Vue({
     snackbar: false,
     snackbar_timeout: 4000,
     snackbar_text: '',
+    start_date_modal: false,
+    start_date: '',
+    category: '',
     alert: false,
     alert_type: '',
     alert_message: '',
     notifications: [],
     courses: [],
+    categories: [],
     children: new Children({uid: uid}),
   },
 
@@ -30,6 +34,7 @@ let vm = new Vue({
     check_google_user()
     this.children.load()
     this.loadLatestCourses()
+    this.loadCategories()
   },
 
   watch: {
@@ -59,6 +64,15 @@ let vm = new Vue({
         app.courses = res.body
       }, err => {
 
+      })
+    },
+
+    loadCategories() {
+      var app = this
+      var url = api_url + 'categories/get'
+
+      app.$http.get(url).then(res => {
+        app.categories = res.body
       })
     }
   }

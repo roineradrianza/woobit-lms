@@ -13,12 +13,20 @@ let vm = new Vue({
       loading: false,
       selection: 2,
       notifications: [],
+      params: {
+        search: url_params.get('search'),
+        start_date: url_params.get('start_date'),
+        category: url_params.get('category') != '' ? parseInt(url_params.get('category')) : ''
+      }
     },
 
     computed: {
     },
 
     created () {
+      this.search = this.params.search
+      this.start_date = this.params.start_date
+      this.category = this.params.category
     },
 
     mounted () {

@@ -632,14 +632,19 @@ class Routes
                         header("Location: " . SITE_URL . "/login");
                     }
 
+                    $category = new Category;
+                    $categories = $category->get_courses();
+
                     $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
                     $this->scripts = [
                         ['name' => 'lib/moment.min'],
                         ['name' => 'check-gsignin'],
                         ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
-                        ['name' => 'panel.min', 'version' => '1.0.1'],
+                        ['name' => 'panel.min', 'version' => '1.0.2'],
                     ];
-                    $this->content = new Template("account/panel");
+                    $this->content = new Template("account/panel", [
+                        'categories' => $categories
+                    ]);
                     break;
 
                 case 'profilul-meu':
