@@ -13,8 +13,8 @@
 </v-row>
 <?php endif ?>
 <v-row class="d-flex justify-center">
-    <v-col class="CTA ml-md-n2" cols="12" md="5">
-        <v-text-field class="mt-3" v-model="search" name="search" class="font-weight-light" label="Ce dorești să înveți?" 
+    <v-col class="ml-md-n2" cols="12" md="5">
+        <v-text-field v-model="search" name="search" class="font-weight-light" label="Ce dorești să înveți?" 
             @keyup.enter="searchCourse" light flat outlined solo>
             <template #append>
                 <v-btn class="mx-md-0" color="secondary" :href="'<?= SITE_URL ?>/cursuri/get?search=' + search + 
@@ -30,7 +30,7 @@
         <v-dialog ref="start_date_dialog" v-model="start_date_modal" :return-value.sync="start_date"
             width="20vw">
             <template #activator="{ on, attrs }">
-                <v-text-field class="mt-3" v-model="start_date" name="start_date" label="Data de începere" readonly v-bind="attrs" v-on="on" outlined>
+                <v-text-field v-model="start_date" name="start_date" label="Data de începere" readonly v-bind="attrs" v-on="on" outlined>
                     <template #append>
                         <v-icon v-bind="attrs" v-on="on">
                             mdi-calendar
@@ -51,7 +51,7 @@
     </v-col>
     
     <v-col class="ml-md-n2" cols="12" md="2">
-        <v-select class="mt-3" v-model="category" :items="[
+        <v-select v-model="category" :items="[
             {
                 text: '',
                 value: '',

@@ -305,8 +305,16 @@ class Routes
                         $course['ratings'] = $course_rating->get_course_total($course['course_id']);
                         $courses[] = $course;
                     }
+                    $category = new Category;
+                    $categories = $category->get_courses();
                     $this->title = $category_item['name'];
-                    $this->content = new Template("courses_search_result", ['courses' => $courses, 'search_item' => '', 'category' => $category_item]);
+                    $this->content = new Template("courses_search_result", [
+                            'courses' => $courses, 
+                            'search_item' => '', 
+                            'category' => $category_item,
+                            'categories' => $categories
+                        ]
+                    );
 
                     break;
 
