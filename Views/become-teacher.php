@@ -51,7 +51,7 @@
 
                 <v-col class="d-flex justify-center" cols="12">
                     <v-btn class="white--text" :disabled="!application_form" :loading="loading" color="#a500a4"
-                        @click="$refs.application_form.validate ? save() : ''" v-if="form.hasOwnProperty.status < 0">
+                        @click="$refs.application_form.validate() ? save() : ''" v-if="form.status < 0">
                         Trimiteți
                         aplicația
                     </v-btn>

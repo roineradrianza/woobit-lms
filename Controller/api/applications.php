@@ -55,13 +55,22 @@ switch ($method) {
         $data = $_POST;
         $data['meta'] = isset($data['meta']) ? json_decode($data['meta'], true) : [];
 
-        if (!empty($_FILES['id_file']['name'])) {
-            $ext = explode(".", $_FILES['id_file']['name']);
+        if (!empty($_FILES['id_front_file']['name'])) {
+            $ext = explode(".", $_FILES['id_front_file']['name']);
             $file_name = "{$helper->convert_slug($ext[0])}-" . time() . '.' . end($ext);
-            if (!move_uploaded_file($_FILES["id_file"]["tmp_name"], DIRECTORY . "/public/docs/ids/$file_name")) {
+            if (!move_uploaded_file($_FILES["id_front_file"]["tmp_name"], DIRECTORY . "/public/docs/ids/$file_name")) {
                 $helper->response_message('Error', 'Documentul de identitate nu a putut fi salvat corect, vă rugăm să încercați din nou.', 'error');
             }
-            $data['meta']['id_url'] = "/docs/ids/$file_name";
+            $data['meta']['id_front_url'] = "/docs/ids/$file_name";
+        }
+        
+        if (!empty($_FILES['id_back_file']['name'])) {
+            $ext = explode(".", $_FILES['id_back_file']['name']);
+            $file_name = "{$helper->convert_slug($ext[0])}-" . time() . '.' . end($ext);
+            if (!move_uploaded_file($_FILES["id_back_file"]["tmp_name"], DIRECTORY . "/public/docs/ids/$file_name")) {
+                $helper->response_message('Error', 'Documentul de identitate nu a putut fi salvat corect, vă rugăm să încercați din nou.', 'error');
+            }
+            $data['meta']['id_back_url'] = "/docs/ids/$file_name";
         }
 
         if (!empty($_FILES['video_file']['name'])) {
@@ -102,7 +111,12 @@ switch ($method) {
             $helper->response_message('Error', 'Cererea nu a putut fi procesată, vă rugăm să încercați din nou.', 'error');
         }
 
-        $helper->response_message('Succes', 'Cererea a fost depusă ', data:['application_id' => $application_result]);
+        $helper->response_message('Succes', 'Cererea a fost depusă ', data:[
+            'application_id' => $application_result,
+            'id_front_url' => !empty($data['meta']['id_front_url']) ? $data['meta']['id_front_url'] : '',
+            'id_back_url' => !empty($data['meta']['id_back_url']) ? $data['meta']['id_back_url'] : '',
+            'video_url' => !empty($data['meta']['video_url']) ? $data['meta']['video_url'] : '',
+        ]);
         break;
 
     case 'update':

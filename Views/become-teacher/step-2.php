@@ -14,22 +14,41 @@
             </v-list-item>
         </v-col>
 
-        <v-file-input v-model="<?= !empty($object) ? $object : 'form' ?>.id_file" label="File input"
-            truncate-length="66" accept=".jpg, .jpeg, .png, .pdf" :rules="validations.imageRules" show-size outlined
-            v-if="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
-            && parseInt(<?= !empty($object) ? $object : 'form' ?>.status) != 0 
-            || <?= !empty($object) ? $object : 'form' ?>.application_id <= 0">
-            <template #selection="{ index, text }">
-                <v-chip color="primary" label small>
-                    {{ text }}
-                </v-chip>
-            </template>
-        </v-file-input>
+        <template v-if="!<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status')">
+            <v-col cols="12" md="6">
+                <v-file-input v-model="<?= !empty($object) ? $object : 'form' ?>.id_front_file" label="File input"
+                    truncate-length="66" accept=".jpg, .jpeg, .png" :rules="validations.imageRules"
+                    prepend-icon="mdi-card-account-details" show-size outlined>
+                    <template #selection="{ index, text }">
+                        <v-chip color="primary" label small>
+                            {{ text }}
+                        </v-chip>
+                    </template>
+                </v-file-input>
+            </v-col>
+            <v-col cols="12" md="6">
+                <v-file-input v-model="<?= !empty($object) ? $object : 'form' ?>.id_back_file" label="File input"
+                    truncate-length="66" accept=".jpg, .jpeg, .png" :rules="validations.imageRules"
+                    prepend-icon="mdi-card-bulleted" show-size outlined>
+                    <template #selection="{ index, text }">
+                        <v-chip color="primary" label small>
+                            {{ text }}
+                        </v-chip>
+                    </template>
+                </v-file-input>
+            </v-col>
+        </template>
 
         <template v-else>
-            <v-col cols="12">
-                <v-img :src="'<?= SITE_URL ?>' + <?= !empty($object) ? $object : 'form' ?>.meta.id_url"
-                    max-width="600px" v-if="<?= !empty($object) ? $object : 'form' ?>.meta.id_url != ''" contain>
+            <v-col cols="12" md="6">
+                <v-img :src="'<?= SITE_URL ?>' + <?= !empty($object) ? $object : 'form' ?>.meta.id_front_url"
+                    max-width="600px" v-if="<?= !empty($object) ? $object : 'form' ?>.meta.id_front_url != ''" contain>
+                </v-img>
+            </v-col>
+            
+            <v-col cols="12" md="6">
+                <v-img :src="'<?= SITE_URL ?>' + <?= !empty($object) ? $object : 'form' ?>.meta.id_back_url"
+                    max-width="600px" v-if="<?= !empty($object) ? $object : 'form' ?>.meta.id_back_url != ''" contain>
                 </v-img>
             </v-col>
         </template>

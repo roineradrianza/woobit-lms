@@ -76,7 +76,8 @@ let vm = new Vue({
       application_id: -1,
       first_name: '',
       last_name: '',
-      id_file: new File([], ''),
+      id_front_file: new File([], ''),
+      id_back_file: new File([], ''),
       video_file: new File([], ''),
       status: -1,
       meta: {
@@ -84,7 +85,8 @@ let vm = new Vue({
         teacher_email: '',
         teacher_telephone: '',
         bio: '<p></p>',
-        id_url: '',
+        id_front_url: '',
+        id_back_url: '',
         video_url: '',
         certificates: [],
         experience: {
@@ -170,7 +172,8 @@ let vm = new Vue({
         if (res.body.length > 0) {
           app.form = res.body[0]
           app.form.video_file = new File([], ''),
-          app.form.id_file = new File([], '')
+          app.form.id_front_file = new File([], '')
+          app.form.id_back_file = new File([], '')
           app.range[0] = parseInt(app.form.meta.min_students_age)
           app.range[1] = parseInt(app.form.meta.max_students_age)
         }
@@ -187,7 +190,8 @@ let vm = new Vue({
 
       form.append('first_name', app.form.first_name)
       form.append('last_name', app.form.last_name)
-      form.append('id_file', app.form.id_file)
+      form.append('id_front_file', app.form.id_front_file)
+      form.append('id_back_file', app.form.id_back_file)
       form.append('video_file', app.form.video_file)
       form.append('meta', JSON.stringify(app.form.meta))
 
@@ -197,6 +201,9 @@ let vm = new Vue({
         if (res.body.status == 'success') {
           app.form.status = 0
           method == 'create' ? app.form.application_id = res.body.data.application_id : ''
+          app.form.meta.video_url = res.body.data.video_url
+          app.form.meta.id_front_url = res.body.data.id_front_url
+          app.form.meta.id_back_url = res.body.data.id_back_url
           app.response(res.body.status, res.body.message)
         }
       }, err => {

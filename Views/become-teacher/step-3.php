@@ -19,9 +19,7 @@
 
         <v-file-input v-model="<?= !empty($object) ? $object : 'form' ?>.video_file" label="File input"
             truncate-length="66" accept=".mp4, .avi, .mkv, .wmv, .flv" :rules="validations.videoRules" show-size
-            outlined v-if="<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status') 
-            && parseInt(<?= !empty($object) ? $object : 'form' ?>.status) != 0 
-            || <?= !empty($object) ? $object : 'form' ?>.application_id <= 0">
+            outlined v-if="!<?= !empty($object) ? $object : 'form' ?>.hasOwnProperty('status')">
             <template #selection="{ index, text }">
                 <v-chip v-if="text != ''" color="primary" label small>
                     {{ text }}

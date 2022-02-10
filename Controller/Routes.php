@@ -756,7 +756,7 @@ class Routes
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'vue-components/vue2-editor.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'become-teacher.min', 'version' => '1.0.2'],
+                        ['name' => 'become-teacher.min', 'version' => '1.0.3'],
                     ];
                     $this->content = new Template("become-teacher");
                     break;
