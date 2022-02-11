@@ -9,10 +9,10 @@ if (empty($method)) {
 
 use Controller\Helper;
 
-use Model\Member;
-use Model\MemberMeta;
+use Model\{Member, MemberMeta, CourseRating};
 
 $member = new Member;
+$course_rating = new CourseRating;
 $user_meta = new MemberMeta;
 $helper = new Helper;
 
@@ -20,6 +20,19 @@ $data = json_decode(file_get_contents("php://input"), true);
 $query = empty($query) ? 0 : clean_string($query);
 
 switch ($method) {
+
+    case 'get':
+
+        $teachers = $member->get_instructors();
+        $items = [];
+        foreach ($teachers as $teacher) {
+            $teacher['ratings'] = $course_rating->get_instructor_total($teacher['user_id']);
+            $teacher['ratings']['average'] = round($teacher['ratings']['average'], 1);
+            $items[] = $teacher;
+        }
+
+        echo json_encode($items);
+        break;
 
     case 'update':
         if (empty($data)) {

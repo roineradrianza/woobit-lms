@@ -61,9 +61,25 @@ class Routes
                 case '':
 
                     $course = new Course;
+                    $member = new Member;
                     $course_rating = new CourseRating;
+                    $setting = new \Model\Setting;
                     $courses_results = $course->get_enabled(4);
                     $courses = [];
+                    $homepage_teachers = $setting->get('homepage_teachers');
+                    if (!empty($homepage_teachers)) {
+                        $homepage_teachers['value'] = !empty($homepage_teachers['value']) 
+                        ? Helper::clean_json($homepage_teachers['value']) : [];
+                        $instructors = [];
+                        foreach ($homepage_teachers['value'] as $instructor) {
+                            $instructor['avatar'] = $member->get($instructor['user_id'], ['avatar'])[0]['avatar'];
+                            $instructor['ratings'] = $course_rating->get_instructor_total($instructor['user_id']);
+                            $instructors[] = $instructor;
+                        }
+                        $homepage_teachers = $instructors;
+                    } else {
+                        $homepage_teachers = [];
+                    }
                     foreach ($courses_results as $course) {
                         $course['ratings'] = $course_rating->get_course_total($course['course_id']);
                         $courses[] = $course;
@@ -77,6 +93,7 @@ class Routes
                     ];
                     $this->content = new Template("home", [
                         'courses' => $courses,
+                        'teachers' => $homepage_teachers
                     ]
                     );
                     break;
@@ -202,9 +219,19 @@ class Routes
 
                             $this->content = new Template("admin/teachers-application");
                             break;
-                        default:
+                        
+                        case 'teachers-homepage':
+                            $base_asset = ['name' => 'admin/teachers-homepage.min', 'version' => '1.0.0'];
+                            $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
+                            $this->scripts = [
+                                ['name' => 'lib/moment.min'],
+                                ['name' => 'check-gsignin'], $base_asset,
+                            ];
 
-                        case 'courses':
+                            $this->content = new Template("admin/teachers-homepage");
+                            break;
+                        
+                        default:
                             $base_asset = ['name' => 'admin/courses.min', 'version' => '1.0.0'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [

@@ -32,6 +32,7 @@ class Template
             ['name' => 'Cursuri', 'icon' => 'mdi-library', 'url' => 'courses'],
             ['name' => 'Cursuri în așteptare', 'icon' => 'mdi-table-eye', 'url' => 'courses-pending'],
             ['name' => 'Aplicație pentru profesori', 'icon' => 'mdi-file', 'url' => 'teachers-application'],
+            ['name' => 'Profesori pe acasă', 'icon' => 'mdi-account-switch', 'url' => 'teachers-homepage'],
             ['name' => 'Plăți', 'icon' => 'mdi-credit-card-outline', 'url' => 'payments'],
 /*['name' => 'Cupones', 'icon' => 'mdi-ticket-percent', 'url' => 'coupons'],*/
             /*['name' => 'Calendario', 'icon' => 'mdi-calendar', 'url' => 'calendar'],*/

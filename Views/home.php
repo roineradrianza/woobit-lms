@@ -3,6 +3,7 @@
 </v-row>
 
 <?= new Controller\Template('home/partials/how-works') ?>
+
 <v-container class="px-4 px-md-0 mb-16">
     <v-row justify="center">
         <v-col cols="12" md="4">
@@ -35,5 +36,5 @@
         </v-col>
     </v-row>
 </v-container>
-<?= new Controller\Template('home/partials/instructors') ?>
+<?= new Controller\Template('home/partials/instructors', $data) ?>
 <?= new Controller\Template('home/partials/popular-courses', $data) ?>

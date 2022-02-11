@@ -10,6 +10,7 @@ use Model\Helper\DB;
 class Member extends DB
 {
     private $table = "users";
+    private $table_application = "applications";
     private $id_column = "user_id";
 
     public function get($id = 0, $columns = []) : Array
@@ -49,6 +50,19 @@ class Member extends DB
         }
         return $arr;
     }
+    
+    public function get_instructors() : Array
+    {
+        $sql = "SELECT U.user_id, CONCAT(first_name, ' ', last_name) full_name
+        FROM {$this->table} U INNER JOIN {$this->table_application} A ON A.user_id = U.user_id WHERE A.status = 1";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
 
     public function search_user($email = '') : Array
     {
