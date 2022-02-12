@@ -119,7 +119,7 @@
                 <v-divider></v-divider>
             </v-col>
             <v-col cols="12">
-                <?= new Controller\Template('course/summary/instructor-info', $instructor) ?>
+                <?= new Controller\Template('course/summary/instructor-info', $data) ?>
             </v-col>
             <v-col cols="12">
                 <v-divider></v-divider>
@@ -134,7 +134,7 @@
                 <v-container>
                     <v-row justify="center">
                         <?php foreach ($instructor['courses'] as $course) : ?>
-                        <?php $course['category'] = !empty($course['category']) ? $course['category'][0]['name'] : '' ?>
+                        <?php $course['category'] = !empty($course['category']) ? $course['category'] : '' ?>
                         <v-col class="d-flex" cols="12" md="4" lg="3">
                             <?= new Controller\Template('courses/course_template', $course) ?>
                         </v-col>

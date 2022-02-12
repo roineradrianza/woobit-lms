@@ -20,7 +20,7 @@
     </v-row>
 
     <v-row>
-        <?php if(!empty($_SESSION['user_id'])): ?>
+        <?php if(!empty($_SESSION['user_id']) && !empty($current_user_has_enroll) || !empty($manage_course)): ?>
         <?= new \Controller\Template('course/summary/instructor-info/rating-form')  ?>
         <?php endif ?>
         <v-col v-for="item, i in rating.items" cols="12" :key="i">
