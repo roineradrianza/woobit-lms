@@ -297,14 +297,7 @@ class Routes
                     $this->content = new Template("contact");
                     break;
 
-                case 'ghid-curs-nou':
-                    $this->scripts = [
-                        ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'],
-                        ['name' => 'home.min', 'version' => '1.10.4'],
-                    ];
-                    $this->content = new Template("new-class-guide");
-                    break;
-                
+
                 case 'categorie':
                     if (empty($route[1])) {
                         header("Location: " . SITE_URL);
@@ -636,7 +629,7 @@ class Routes
                     $this->content = new Template("account/profile");
                     break;
 
-                case 'teacher-panel':
+                case 'panou-lectori':
                     if (!isset($_SESSION['user_id'])) {
                         header("Location: " . SITE_URL . "/login");
                     }
@@ -644,17 +637,62 @@ class Routes
                     $application = new Application;
                     $results = $application->get($_SESSION['user_id']);
                     if (count($results) > 0) {
-                        $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
-                        $this->scripts = [
-                            ['name' => 'lib/moment.min'],
-                            ['name' => 'check-gsignin'],
-                            ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                            ['name' => 'register-validations'],
-                            ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
-                            ['name' => 'profile.min', 'version' => '1.0.7'],
-                        ];
-                        $this->title = "Panou de lectori";
-                        $this->content = new Template("account/teacher", $results[0]);
+                        $route[1] = empty($route[1]) ? '' : $route[1];
+                        switch ($route[1]) {
+                            case 'profilul-meu':
+                                $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
+                                $this->scripts = [
+                                    ['name' => 'lib/moment.min'],
+                                    ['name' => 'check-gsignin'],
+                                    ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
+                                    ['name' => 'vue-components/vue2-editor.min'],
+                                    ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                                    ['name' => 'register-validations'],
+                                    ['name' => 'teacher-profile.min', 'version' => '1.0.0'],
+                                ];
+                                $this->content = new Template("account/teacher-profile");
+                                break;
+                            
+                            case 'cursurile-mele':
+                                $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
+                                $this->scripts = [
+                                    ['name' => 'lib/moment.min'],
+                                    ['name' => 'check-gsignin'],
+                                    ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                                    ['name' => 'register-validations'],
+                                    ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
+                                    ['name' => 'my-courses.min', 'version' => '1.0.0'],
+                                ];
+                                $this->content = new Template("my-courses");
+                                break; 
+                                                      
+                            case 'ghid-curs-nou':
+                                $this->scripts = [
+                                    ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'],
+                                    ['name' => 'home.min', 'version' => '1.10.4'],
+                                ];
+                                $this->content = new Template("new-class-guide");
+                                break;
+                                                                                                    
+                            case 'retrospectiva':
+                                # code...
+                                break;
+
+                            default:
+                                $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
+                                $this->scripts = [
+                                    ['name' => 'lib/moment.min'],
+                                    ['name' => 'check-gsignin'],
+                                    ['name' => 'vue-components/vue-tel-input-vuetify.min'],
+                                    ['name' => 'register-validations'],
+                                    ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
+                                    ['name' => 'profile.min', 'version' => '1.0.7'],
+                                ];
+                                $this->title = "Panou de lectori";
+                                $this->content = new Template("account/teacher", $results[0]);
+                                break;
+                        }
+                        
                     } else {
                         if (!isset($_SESSION['user_id'])) {
                             header("Location: " . SITE_URL . "/profile");
@@ -680,41 +718,6 @@ class Routes
                     $this->content = new Template("account/panel", [
                         'categories' => $categories
                     ]);
-                    break;
-
-                case 'profilul-meu':
-                    if (!isset($_SESSION['user_id'])) {
-                        header("Location: " . SITE_URL . "/login");
-                    }
-
-                    $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
-                    $this->scripts = [
-                        ['name' => 'lib/moment.min'],
-                        ['name' => 'check-gsignin'],
-                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
-                        ['name' => 'vue-components/vue2-editor.min'],
-                        ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                        ['name' => 'register-validations'],
-                        ['name' => 'teacher-profile.min', 'version' => '1.0.0'],
-                    ];
-                    $this->content = new Template("account/teacher-profile");
-                    break;
-
-                case 'cursurile-mele':
-                    if (!isset($_SESSION['user_id'])) {
-                        header("Location: " . SITE_URL . "/login");
-                    }
-
-                    $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
-                    $this->scripts = [
-                        ['name' => 'lib/moment.min'],
-                        ['name' => 'check-gsignin'],
-                        ['name' => 'vue-components/vue-tel-input-vuetify.min'],
-                        ['name' => 'register-validations'],
-                        ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
-                        ['name' => 'my-courses.min', 'version' => '1.0.0'],
-                    ];
-                    $this->content = new Template("my-courses");
                     break;
 
                 case 'checkout':
@@ -757,7 +760,7 @@ class Routes
                         $results = $application->get($_SESSION['user_id']);
                     
                         if (count($results) > 0) {
-                            header("Location: " . SITE_URL . "/teacher-panel");
+                            header("Location: " . SITE_URL . "/panou-lectori");
                         }
                     }
 

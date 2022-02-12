@@ -5,7 +5,7 @@
             <v-col class="d-flex justify-center align-center d-md-inline" cols="12">
                 <v-btn color="primary" text>Ghid curs nou</v-btn>
                 <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/cursuri/adauga-curs">Adaugă curs nou</v-btn>
-                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/cursurile-mele">Cursurile tale</v-btn>
+                <v-btn class="my-6" color="primary" href="<?= SITE_URL ?>/panou-lectori/cursurile-mele">Cursurile tale</v-btn>
             </v-col>
         </v-row>
         <h3 class="text-h5">Titlul</h3>
