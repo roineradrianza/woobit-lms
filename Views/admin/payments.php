@@ -1,5 +1,7 @@
 <!-- Sizes your content based upon application components -->
 <v-row>
+    <?= new Controller\Template('components/snackbar') ?>
+
     <v-col class="px-10 mt-6" cols="12">
         <v-data-table :headers="orders.headers" :items="orders.items" class="elevation-1" :search="orders.search"
             :loading="table_loading" sort-by="order_id" sort-desc>
@@ -25,5 +27,6 @@
         </v-data-table>
     </v-col>
     <?= new Controller\Template('admin/parts/order/preview') ?>
+    <?= new Controller\Template('admin/parts/order/refund-dialog') ?>
     <?= new Controller\Template('admin/parts/order/delete') ?>
 </v-row>

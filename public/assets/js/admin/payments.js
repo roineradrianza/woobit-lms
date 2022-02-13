@@ -9,6 +9,9 @@ let vm = new Vue({
     el: '#app-container',
     data: {     
       previewImage: '',
+      snackbar: false,
+      snackbar_text: '',
+      snackbar_timeout: 3000,
       loading: false,
       table_loading: false,
       btn_approve_loading: false,
@@ -17,6 +20,7 @@ let vm = new Vue({
       dialogOrderPreview: false,
       dialogOrderDelete: false,
       rejectDialog: false,
+      dialogOrderRefund: false,
       valid: false,
       drawer: true,
       modal: false,
@@ -60,6 +64,10 @@ let vm = new Vue({
 
       dialogOrderDelete (val) {
         val || this.closeOrderDelete()
+      },
+
+      dialogOrderRefund (val) {
+        val || this.closeOrderRefund()
       },
       
     },
@@ -140,6 +148,26 @@ let vm = new Vue({
         })
       },
 
+      refundOrderItemConfirm () {
+        var app = this
+        var order = app.orders.editedItem
+        var id = order.order_id
+
+        var url = api_url + `refunds/${order.payment_method.toLowerCase()}/${id}`
+        app.$http.get(url).then(res => {
+            app.snackbar = true
+            app.snackbar_text = res.body.message
+            if (res.body.status == 'success') {
+              order.status = 3
+              Object.assign(order.meta, res.body.data)
+              Object.assign(app.orders.items[app.orders.editedIndex], app.orders.editedItem)
+            }
+            app.closeOrderRefund()
+          }, err => {
+            app.closeOrderRefund()
+        })
+      },
+
       closeDelete () {
         this.dialogDelete = false
         this.$nextTick(() => {
@@ -154,6 +182,10 @@ let vm = new Vue({
           this.orders.editedItem = Object.assign({}, this.orders.defaultItem)
           this.orders.editedIndex = -1
         })
+      },
+
+      closeOrderRefund () {
+        this.dialogOrderRefund = false
       },
 
       close () {
@@ -228,6 +260,10 @@ let vm = new Vue({
             return {color: 'error', name: 'Respins'}
             break;
 
+          case 3:
+            return {color: 'primary', name: 'Rambursat'}
+            break;
+  
         }
       }
 

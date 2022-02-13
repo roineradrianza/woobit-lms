@@ -6,17 +6,12 @@ if (empty($method)) {
 }
 
 use Controller\Helper;
-use Model\Course;
-use Model\Member;
-use Model\Notification;
-use Model\Orders;
-use Model\OrdersMeta;
-
-use Model\StudentCourse;
+use Model\{Course, Member, Notification, Orders, OrderChild, OrdersMeta, StudentCourse};
 
 $member = new Member;
 $student_course = new StudentCourse;
 $order = new Orders;
+$order_child = new OrderChild;
 $order_meta = new OrdersMeta;
 $course = new Course;
 $notification = new Notification;
@@ -125,14 +120,16 @@ switch ($method) {
             foreach ($data['children'] as $child) {
                 $has_enroll = $student_course->has_enroll($data['course_id'], $child['children_id']);
                 if (empty($has_enroll)) {
-                    $enrollment = $student_course->create(
-                        [
-                            'course_id' => $data['course_id'], 
-                            'children_id' => $child['children_id'],
-                            'section_id' => $data['section']['section_id'],
-                        ]
-                    );
+                    $student_info = [
+                        'course_id' => $data['course_id'], 
+                        'children_id' => $child['children_id'],
+                        'section_id' => $data['section']['section_id'],
+                        'order_id' => $result
+                    ];
+                    $enrollment = $student_course->create($student_info);
                     if ($enrollment) {
+                        $student_info['course_user_id'] = $enrollment;
+                        $order_child->create($student_info);
                         $full_name = "{$child['first_name']} {$child['last_name']}";
                         $notification_data = [
                             'description' => "$full_name a fost înscrisă la curs:

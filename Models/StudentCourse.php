@@ -202,4 +202,14 @@ class StudentCourse extends DB
         return $result;
     }
 
+    public function delete_by_enrollment($course_user_id) {
+        if (empty($course_user_id)) {
+            return false;
+        }
+
+        $sql = "DELETE FROM {$this->table} WHERE {$this->id_column} = $course_user_id";
+        $result = $this->execute_query($sql);
+        return $result;   
+    }
+
 }

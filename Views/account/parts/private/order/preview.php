@@ -17,6 +17,11 @@
                 <v-card-text>
                     <v-container fluid>
                         <v-row v-if="orders.editedIndex != -1">
+                            <v-col cols="12" md="8" offset-md="2" v-if="orders.editedItem.status == 3">
+                                <v-alert color="#2A3B4D" dark icon="mdi-cash-refund" prominent>
+                                    Banii pentru acest ordin de plată au fost rambursați.
+                                </v-alert>
+                            </v-col>
                             <v-col cols="12">
                                 <v-row>
 
@@ -52,14 +57,14 @@
                                     <v-col cols="4">
                                         <p class="body-1 primary--text">
                                             Lectori:
-                                            <span
-                                                class="font-weight-light black--text">
+                                            <span class="font-weight-light black--text">
                                                 {{ orders.editedItem.instructor.first_name + ' ' + orders.editedItem.instructor.last_name }}
                                             </span>
                                         </p>
                                     </v-col>
 
-                                    <v-col cols="4" v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.type) == 2">
+                                    <v-col cols="4"
+                                        v-if="orders.editedItem.note !== '' && parseInt(orders.editedItem.type) == 2">
                                         <p class="body-1 primary--text">Notă:
                                             <span
                                                 class="font-weight-light black--text">{{ orders.editedItem.note }}</span>

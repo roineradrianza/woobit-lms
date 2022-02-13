@@ -27,6 +27,7 @@ define("PAYU_LOGIN", "");
 
 /*PayPal API CREDENTIALS*/
 define('PAYPAL_CLIENT_ID', '');
+define('PAYPAL_SECRET', '');
 
 /*STRIPE CREDENTIALS*/
 define("STRIPE_PUBLISHABLE_KEY", "");

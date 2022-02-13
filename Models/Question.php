@@ -74,7 +74,7 @@ class Question extends DB
         return $arr;
     }
 
-    public function create($data = [], $lesson_id)
+    public function create($data = [], $lesson_id = 0)
     {
         if (empty($data)) {
             return false;

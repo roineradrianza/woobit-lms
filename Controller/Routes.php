@@ -195,7 +195,7 @@ class Routes
                             break;
 
                         case 'payments':
-                            $base_asset = ['name' => 'admin/payments.min', 'version' => '1.0.4'];
+                            $base_asset = ['name' => 'admin/payments.min', 'version' => '1.0.5'];
                             $this->styles = [['name' => 'login.min'], ['name' => 'admin/dashboard.min']];
                             $this->scripts = [
                                 ['name' => 'lib/moment.min'],
@@ -624,7 +624,7 @@ class Routes
                         ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                         ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                         ['name' => 'register-validations'],
-                        ['name' => 'profile.min', 'version' => '1.0.7'],
+                        ['name' => 'profile.min', 'version' => '1.0.8'],
                     ];
                     $this->content = new Template("account/profile");
                     break;
@@ -699,7 +699,7 @@ class Routes
                                     ['name' => 'vue-components/vue-tel-input-vuetify.min'],
                                     ['name' => 'register-validations'],
                                     ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
-                                    ['name' => 'profile.min', 'version' => '1.0.7'],
+                                    ['name' => 'profile.min', 'version' => '1.0.8'],
                                 ];
                                 $this->title = "Panou lectori";
                                 $this->content = new Template("account/teacher", $results[0]);

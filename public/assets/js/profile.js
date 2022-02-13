@@ -428,6 +428,10 @@ let vm = new Vue({
         case 2:
           return { color: 'error', name: 'Respinsă' }
           break;
+        
+        case 3:
+          return { color: 'primary', name: 'Rambursat' }
+          break;
       }
     },
 
