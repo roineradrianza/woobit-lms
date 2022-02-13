@@ -173,6 +173,23 @@ class Course extends DB
         return $arr;
     }
 
+    public function get_all_students_by_instructor($user_id = 0) : Array
+    {
+        if (empty($user_id)) {
+            return [];
+        }
+
+        $sql = "SELECT CU.user_id FROM {$this->table} C INNER JOIN 
+        {$this->table_student_courses} CU ON CU.course_id = C.course_id 
+        WHERE C.{$this->id_user_column} = $user_id";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
     public function get_recent_courses() : Array
     {
         $current_date = date('Y-m-d');

@@ -16,14 +16,33 @@ class Lesson extends DB
     private $table_user = "users";
     private $id_column = "lesson_id";
     private $id_section_column = "section_id";
+    private $id_course_column = "course_id";
 
     public function get($id = 0) : Array
     {
         if (empty($id)) {
-            return false;
+            return [];
         }
 
         $sql = "SELECT * FROM {$this->table} WHERE {$this->id_section_column} = $id ORDER BY lesson_order ASC";
+        $result = $this->execute_query($sql);
+        $arr = [];
+        while ($row = $result->fetch_assoc()) {
+            $arr[] = $row;
+        }
+        return $arr;
+    }
+
+    public function get_by_course($course_id = 0) : Array 
+    {
+        if (empty($course_id)) {
+            return [];
+        }
+
+        $sql = "SELECT L.lesson_id, lesson_name, L.section_id, C.course_id FROM {$this->table} L 
+        INNER JOIN {$this->table_section} S ON S.section_id = L.section_id 
+        INNER JOIN {$this->table_course} C ON C.course_id = S.course_id
+        WHERE C.{$this->id_course_column} = $course_id AND lesson_type = 1";
         $result = $this->execute_query($sql);
         $arr = [];
         while ($row = $result->fetch_assoc()) {

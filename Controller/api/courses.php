@@ -100,6 +100,41 @@ switch ($method) {
         $results = $course->get_my_courses($query);
         echo json_encode($results);
         break;
+    
+    case 'get-own-courses-and-lessons':
+        if (empty($query)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $query = $helper->decrypt($query);
+        $results = $course->get_own_courses($query);
+        $courses = [];
+        foreach ($results as $course_item) {
+            $course_item['lessons'] = [];
+            $lessons = $lesson->get_by_course($course_item['course_id']);
+            foreach ($lessons as $lesson_item) {
+                $meta = $lesson_meta->get($lesson_item['lesson_id']);
+                $lesson_item['meta'] = [];
+                foreach ($meta as $i => $e) {
+                    $lesson_item['meta'][$e['lesson_meta_name']] = $helper->is_json($e['lesson_meta_val']) 
+                    ? json_decode($e['lesson_meta_val']) : $e['lesson_meta_val'];
+                }
+                $course_item['lessons'][] = $lesson_item;
+            }
+            $courses[] = $course_item;
+        }
+        echo json_encode($courses);
+        break;
+
+    case 'get-all-students':
+        if (empty($query)) {
+            $helper->response_message('Avertisment', 'Nu s-a primit nicio informație', 'warning');
+        }
+
+        $query = $helper->decrypt($query);
+        $results = $course->get_all_students_by_instructor($query);
+        echo json_encode($results);
+        break;
 
     case 'get-own-courses':
         if (empty($query)) {

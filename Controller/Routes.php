@@ -675,7 +675,16 @@ class Routes
                                 break;
                                                                                                     
                             case 'retrospectiva':
-                                # code...
+                                $this->styles = [['name' => 'login.min'], ['name' => 'profile']];
+                                $this->scripts = [
+                                    ['name' => 'lib/moment.min'],
+                                    ['name' => 'lib/moment-timezone-with-data.min'],
+                                    ['name' => 'lib/chartJS.min'],
+                                    ['name' => 'vue-components/vue-chart.min'],                        
+                                    ['name' => 'check-gsignin'],
+                                    ['name' => 'teacher-panel/statistics.min', 'version' => '1.0.0'],
+                                ];
+                                $this->content = new Template("account/parts/private/teacher/statistics");
                                 break;
 
                             default:
