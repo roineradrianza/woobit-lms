@@ -650,6 +650,7 @@ class Routes
                                     ['name' => 'register-validations'],
                                     ['name' => 'teacher-profile.min', 'version' => '1.0.0'],
                                 ];
+                                $this->title = "Profilul meu";
                                 $this->content = new Template("account/teacher-profile");
                                 break;
                             
@@ -663,6 +664,7 @@ class Routes
                                     ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                                     ['name' => 'my-courses.min', 'version' => '1.0.0'],
                                 ];
+                                $this->title = "Cursurile mele";
                                 $this->content = new Template("my-courses");
                                 break; 
                                                       
@@ -671,6 +673,7 @@ class Routes
                                     ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'],
                                     ['name' => 'home.min', 'version' => '1.10.4'],
                                 ];
+                                $this->title = "Ghid curs nou";
                                 $this->content = new Template("new-class-guide");
                                 break;
                                                                                                     
@@ -684,6 +687,7 @@ class Routes
                                     ['name' => 'check-gsignin'],
                                     ['name' => 'teacher-panel/statistics.min', 'version' => '1.0.0'],
                                 ];
+                                $this->title = "Retrospectiva";
                                 $this->content = new Template("account/parts/private/teacher/statistics");
                                 break;
 
@@ -697,7 +701,7 @@ class Routes
                                     ['name' => 'Classes/Children.min', 'version' => '1.0.1'],
                                     ['name' => 'profile.min', 'version' => '1.0.7'],
                                 ];
-                                $this->title = "Panou de lectori";
+                                $this->title = "Panou lectori";
                                 $this->content = new Template("account/teacher", $results[0]);
                                 break;
                         }
