@@ -367,9 +367,11 @@ class Routes
                         $this->scripts = [
                             ['name' => 'lib/moment.min'], ['name' => 'check-gsignin'], ['name' => 'vue-components/vue2-editor.min'],
                             ['name' => 'lib/sortable.min'], ['name' => 'vue-components/vue-draggable.min.umd'],
-                            ['name' => 'course-validations'], ['name' => 'course/edit/main.min', 'version' => '1.10.5'],
+                            ['name' => 'course-validations'], ['name' => 'course/edit/main.min', 'version' => '1.0.0'],
                         ];
-                        $this->content = new Template("course/edit/main");
+                        $this->content = new Template("course/edit/main", [
+                            'course_id' => $course_id
+                        ]);
                     } else if (!empty($route[1]) && $route[1] != 'edit') {
                         if (isset($_GET['search'])) {
                             $this->scripts = $base_asset;

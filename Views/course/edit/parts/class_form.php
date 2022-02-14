@@ -3,13 +3,6 @@
         <label class="body-1 font-weight-thin pl-1">Tipul de lecție</label>
         <v-select class="mt-3" v-model="lessons.item.meta.class_type" :items="lessons.class_types" outlined></v-select>
     </v-col>
-    <?php if(!empty($mode) && $mode == 'edit') : ?>
-    <v-col cols="12" md="6">
-        <label class="body-1 font-weight-thin pl-1">Trimiteți poșta de publicare</label>
-        <v-select class="mt-3" v-model="lessons.item.meta.send_publish_email"
-            :items="[{text: 'Da', value: '1'}, {text: 'Nu', value: '0'}]" outlined></v-select>
-    </v-col>
-    <?php endif ?>
     <v-col cols="12" md="6">
         <label class="body-1 font-weight-thin pl-1">Durata</label>
         <v-text-field type="text" v-model="lessons.item.meta.duration" class="mt-3" hint="Exemplu: 1h 45 min"

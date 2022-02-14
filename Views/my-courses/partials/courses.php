@@ -35,9 +35,6 @@
                             <v-btn class="primary" :href="'<?= SITE_URL?>/cursuri/edit/' + course.course_id" icon>
                                 <v-icon>mdi-pencil</v-icon>
                             </v-btn>
-                            <v-btn class="error" icon>
-                                <v-icon>mdi-power</v-icon>
-                            </v-btn>
                         </v-btn-toggle>
                     </v-row>
                 </v-container>
