@@ -29,7 +29,7 @@
 
                             <?php else: ?>
 
-                            <?= new \Controller\Template('home/partials/instructors/empty_carousel') ?>
+                            <?= new \Controller\Template('home/partials/instructors/empty-carousel') ?>
 
                             <?php endif ?>
                         </v-carousel>
